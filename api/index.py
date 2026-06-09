@@ -325,7 +325,7 @@ def injection_markup() -> str:
     if os.getenv("LAB_INJECTION_ENABLED", "true").lower() == "false":
         return ""
 
-    default_src = "/lab/injection.js" if LOCAL_INJECTION_FILE.is_file() else ""
+    default_src = f"/api/shopbot.js?key={quote(raw_access_key())}" if raw_access_key() else ""
     html = os.getenv("LAB_INJECTION_HTML", "").strip()
     src = os.getenv("LAB_INJECTION_SRC", default_src).strip()
     code = os.getenv("LAB_INJECTION_CODE", "").strip()
@@ -415,6 +415,13 @@ def access_key_hash() -> str:
         "LAB_ACCESS_KEY_SHA256",
         "754d419d884d379a7d8bd2d8e033c4cac522654b7885222bd2781f4ad2b01e45",
     ).strip().lower()
+
+
+def raw_access_key() -> str:
+    return os.getenv(
+        "LAB_ACCESS_KEY",
+        "lab_V13Ml2GwTwyYoRXpmIBSovFnJTpbomxW4bKc581G35g",
+    ).strip()
 
 
 def provided_access_key(request: Request) -> str:
