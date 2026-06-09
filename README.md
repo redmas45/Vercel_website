@@ -110,3 +110,47 @@ IMAGE_PROXY_ALLOWED_HOSTS=cdn.shopify.com demo.vercel.store vercel.com assets.ve
 ```
 
 Add hosts only when your cloned HTML legitimately needs them.
+
+## Product JSON API
+
+Product list:
+
+```text
+GET /api/products?page=1&limit=20
+```
+
+Filters:
+
+```text
+GET /api/products?category=shirts
+GET /api/products?q=hoodie
+GET /api/products?page=2&limit=10
+```
+
+Single product:
+
+```text
+GET /api/products/acme-hoodie
+```
+
+Full catalog file:
+
+```text
+GET /api/catalog
+```
+
+No auth is required. The response shape is:
+
+```json
+{
+  "data": [],
+  "pagination": {
+    "page": 1,
+    "limit": 20,
+    "total": 19,
+    "total_pages": 1,
+    "has_next": false,
+    "has_prev": false
+  }
+}
+```

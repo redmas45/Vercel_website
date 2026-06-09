@@ -1,4 +1,5 @@
 import base64
+import json
 import mimetypes
 import os
 from pathlib import Path
@@ -7,13 +8,14 @@ from urllib.request import Request as UrlRequest
 from urllib.request import urlopen
 
 from fastapi import FastAPI, Query, Request
-from fastapi.responses import FileResponse, HTMLResponse, Response
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, Response
 
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT_DIR = ROOT / "out"
 ENV_FILE = ROOT / ".env"
 LOCAL_INJECTION_FILE = ROOT / "lab" / "injection.js"
+CATALOG_FILE = OUT_DIR / "api" / "products.json"
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 
@@ -29,6 +31,9 @@ async def add_realistic_security_headers(request: Request, call_next):
         "camera=(), microphone=(), geolocation=(), payment=()",
     )
     response.headers.setdefault("Content-Security-Policy", content_security_policy())
+    response.headers.setdefault("Access-Control-Allow-Origin", api_cors_origin())
+    response.headers.setdefault("Access-Control-Allow-Methods", "GET, OPTIONS")
+    response.headers.setdefault("Access-Control-Allow-Headers", "Content-Type, Authorization")
     response.set_cookie(
         "lab_session",
         "vercel-store-lab",
@@ -38,6 +43,11 @@ async def add_realistic_security_headers(request: Request, call_next):
         max_age=60 * 60 * 24,
     )
     return response
+
+
+@app.options("/{requested_path:path}")
+def options_preflight(requested_path: str = ""):
+    return Response(status_code=204)
 
 
 @app.get("/_next/image")
@@ -86,6 +96,67 @@ def remote_injection_script():
         content = upstream.read()
 
     return Response(content, media_type="application/javascript")
+
+
+@app.get("/api/products")
+def list_products(
+    page: int = Query(1, ge=1),
+    limit: int = Query(20, ge=1, le=100),
+    category: str | None = Query(None),
+    q: str | None = Query(None),
+):
+    products = load_catalog().get("products", [])
+
+    if category:
+        normalized_category = category.strip().lower()
+        products = [
+            product
+            for product in products
+            if normalized_category in [item.lower() for item in product.get("categories", [])]
+        ]
+
+    if q:
+        needle = q.strip().lower()
+        products = [
+            product
+            for product in products
+            if needle in product.get("title", "").lower()
+            or needle in product.get("description", "").lower()
+        ]
+
+    total = len(products)
+    start = (page - 1) * limit
+    end = start + limit
+
+    return JSONResponse(
+        {
+            "data": products[start:end],
+            "pagination": {
+                "page": page,
+                "limit": limit,
+                "total": total,
+                "total_pages": (total + limit - 1) // limit,
+                "has_next": end < total,
+                "has_prev": page > 1,
+            },
+        }
+    )
+
+
+@app.get("/api/products/{product_id}")
+def get_product(product_id: str):
+    products = load_catalog().get("products", [])
+
+    for product in products:
+        if product.get("id") == product_id or product.get("handle") == product_id:
+            return JSONResponse({"data": product})
+
+    return JSONResponse({"error": "Product not found"}, status_code=404)
+
+
+@app.get("/api/catalog")
+def get_catalog():
+    return JSONResponse(load_catalog())
 
 
 @app.get("/{requested_path:path}")
@@ -200,6 +271,17 @@ def allowed_image_hosts() -> set[str]:
         "cdn.shopify.com demo.vercel.store vercel.com assets.vercel.com",
     )
     return {host.strip().lower() for host in configured.split() if host.strip()}
+
+
+def load_catalog():
+    if not CATALOG_FILE.is_file():
+        return {"source": "https://demo.vercel.store/", "count": 0, "products": []}
+
+    return json.loads(CATALOG_FILE.read_text(encoding="utf-8"))
+
+
+def api_cors_origin() -> str:
+    return os.getenv("API_CORS_ORIGIN", "*").strip() or "*"
 
 
 def remote_script_headers() -> dict[str, str]:
