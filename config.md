@@ -1,32 +1,25 @@
-# Vercel Store Clone Lab Config
+# Product API Config
 
-This project is a self-hosted clone/lab based on `https://demo.vercel.store/`.
-The deployed clone is:
+Context: This is a cloned ecommerce lab site with a generated product catalog API.
 
-```text
-https://vercelclonedwebsite.vercel.app/
-```
+## Product List
 
-The site now exposes a clean JSON product catalog API generated from the cloned catalog pages.
-
-## Product List API
-
-Exact API URL:
+API URL:
 
 ```text
 https://vercelclonedwebsite.vercel.app/api/products
 ```
 
-HTTP method:
+Method:
 
 ```text
 GET
 ```
 
-Authentication:
+Auth required:
 
 ```text
-No auth required
+No
 ```
 
 Required headers:
@@ -47,22 +40,22 @@ Query params:
 page      optional integer, default 1
 limit     optional integer, default 20, max 100
 category  optional string, examples: shirts, hoodies, bags
-q         optional search string, examples: hoodie, cap
+q         optional string, examples: hoodie, cap
 ```
 
 POST body:
 
 ```text
-Not required. This is a GET endpoint.
+None. This endpoint uses GET.
 ```
 
-Example URL:
+Example:
 
 ```text
 https://vercelclonedwebsite.vercel.app/api/products?page=1&limit=2
 ```
 
-JSON path containing product list:
+Product list JSON path:
 
 ```text
 data
@@ -121,9 +114,9 @@ Sample response:
 }
 ```
 
-## Single Product API
+## Single Product
 
-Exact API URL:
+API URL:
 
 ```text
 https://vercelclonedwebsite.vercel.app/api/products/{product_id}
@@ -135,7 +128,7 @@ Example:
 https://vercelclonedwebsite.vercel.app/api/products/acme-hoodie
 ```
 
-HTTP method:
+Method:
 
 ```text
 GET
@@ -166,21 +159,21 @@ Sample response:
 }
 ```
 
-## Full Catalog API
+## Full Catalog
 
-Exact API URL:
+API URL:
 
 ```text
 https://vercelclonedwebsite.vercel.app/api/catalog
 ```
 
-HTTP method:
+Method:
 
 ```text
 GET
 ```
 
-JSON path containing product list:
+Product list JSON path:
 
 ```text
 products
@@ -200,15 +193,24 @@ stock           -> data[].stock
 image_url       -> data[].image_url
 ```
 
-For `/api/catalog`, use the same fields under:
+For `/api/catalog`, use:
 
 ```text
-products[]
+products[].id
+products[].title
+products[].description
+products[].category
+products[].brand
+products[].vendor
+products[].price
+products[].original_price
+products[].stock
+products[].image_url
 ```
 
-## Pagination Rules
+## Pagination
 
-Pagination applies to:
+Applies only to:
 
 ```text
 GET /api/products
@@ -220,39 +222,15 @@ Rules:
 page starts at 1
 limit defaults to 20
 limit max is 100
-total is the filtered product count
+total is filtered count
 total_pages = ceil(total / limit)
-has_next is true when another page exists
-has_prev is true when page > 1
+has_next true when another page exists
+has_prev true when page > 1
 ```
 
-Example:
+## Categories
 
-```text
-https://vercelclonedwebsite.vercel.app/api/products?page=1&limit=10
-```
-
-## Filters
-
-Category filter:
-
-```text
-https://vercelclonedwebsite.vercel.app/api/products?category=shirts
-```
-
-Search filter:
-
-```text
-https://vercelclonedwebsite.vercel.app/api/products?q=hoodie
-```
-
-Combined:
-
-```text
-https://vercelclonedwebsite.vercel.app/api/products?category=shirts&q=t-shirt&page=1&limit=10
-```
-
-Known categories from the current clone:
+Known category values:
 
 ```text
 bags
@@ -268,108 +246,10 @@ shirts
 stickers
 ```
 
-## Implementation Notes
+## No-API Condition
 
-The original cloned site did not expose a clean public JSON product API for this lab.
-The current project extracts product catalog data from the cloned static files during build and writes:
-
-```text
-out/api/products.json
-```
-
-The FastAPI app in:
+There is a valid JSON product API:
 
 ```text
-api/index.py
-```
-
-serves:
-
-```text
-/api/products
-/api/products/{product_id}
-/api/catalog
-```
-
-The extractor is:
-
-```text
-scripts/extract-catalog.mjs
-```
-
-The build command is:
-
-```bash
-npm run build
-```
-
-which runs:
-
-```bash
-node scripts/crawl-static.mjs && node scripts/extract-catalog.mjs
-```
-
-## JavaScript Injection Lab
-
-Local injection file:
-
-```text
-lab/injection.js
-```
-
-Default local env:
-
-```env
-LAB_INJECTION_ENABLED=true
-LAB_INJECTION_SRC=/lab/injection.js
-LAB_SECURITY_MODE=lab
-```
-
-Remote server-side injection:
-
-```env
-LAB_INJECTION_SRC=/lab/remote.js
-LAB_REMOTE_SCRIPT_URL=https://your-other-project.vercel.app/inject.js
-LAB_REMOTE_SCRIPT_KEY=shared-secret
-LAB_REMOTE_SCRIPT_KEY_HEADER=X-Lab-Api-Key
-```
-
-The browser sees only:
-
-```text
-/lab/remote.js
-```
-
-The clone server fetches the real script server-to-server and sends:
-
-```http
-X-Lab-Api-Key: shared-secret
-```
-
-## Security Headers
-
-The FastAPI app adds realistic browser-facing headers:
-
-```text
-Content-Security-Policy
-X-Content-Type-Options
-Referrer-Policy
-X-Frame-Options
-Permissions-Policy
-Access-Control-Allow-Origin
-```
-
-CORS for the catalog API is controlled by:
-
-```env
-API_CORS_ORIGIN=*
-```
-
-## If Asked Whether A JSON Product API Exists
-
-Answer:
-
-```text
-Yes. The cloned lab now exposes a JSON product API at:
 https://vercelclonedwebsite.vercel.app/api/products
 ```
