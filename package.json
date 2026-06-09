@@ -1,0 +1,19 @@
+{
+  "name": "vercel-store-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "crawl": "node scripts/crawl.mjs",
+    "export:static": "node scripts/export-static.mjs",
+    "db:init": "node scripts/init-db.mjs",
+    "clean:mirror": "node scripts/clean-mirror.mjs"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.4.5",
+    "pg": "^8.14.0",
+    "p-limit": "^6.0.0"
+  }
+}
