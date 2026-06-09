@@ -45,25 +45,38 @@ LAB_INJECTION_CODE_BASE64
 LAB_INJECTION_CODE
 ```
 
-Single-line script tag injection:
+Primary widget delivery path for this cloned site:
 
 ```env
-LAB_INJECTION_HTML=<script src="https://vercelclonedwebsite.vercel.app/shopbot.js" data-site-id="your_site_id" data-api-url="https://vercelclonedwebsite.vercel.app"></script>
+LAB_INJECTION_HTML=<script src="https://fresh-tunnel-url.example.com/shopbot.js?site=https_demo_vercel_store"></script>
+LAB_ALLOWED_SCRIPT_ORIGINS=https://fresh-tunnel-url.example.com
 LAB_INJECTION_SRC=
 LAB_INJECTION_CODE=
 ```
 
-Same-origin ShopBot injection with one access key:
+`api/index.py` injects `LAB_INJECTION_HTML` directly into served page HTML before `</body>`. When this value is set, it takes priority over `LAB_INJECTION_SRC`, `LAB_INJECTION_CODE_BASE64`, and `LAB_INJECTION_CODE`.
+
+Because the external backend tunnel URL changes per session, update both `LAB_INJECTION_HTML` and `LAB_ALLOWED_SCRIPT_ORIGINS` each time the backend restarts.
+
+Example session value:
 
 ```env
-SHOPBOT_BACKEND_URL=https://d962-103-97-243-133.ngrok-free.app
+LAB_INJECTION_HTML=<script src="https://example.ngrok-free.app/shopbot.js?site=https_demo_vercel_store"></script>
+```
+
+Legacy same-origin ShopBot entry path:
+
+```env
 SHOPBOT_SITE_ID=https_demo_vercel_store
 LAB_ACCESS_KEY_SHA256=sha256_of_raw_key
 LAB_INJECTION_HTML=
 LAB_INJECTION_SRC=/api/shopbot.js?key=raw_key
 ```
 
-This loads `/api/shopbot.js` from the clone site. That one entrypoint sets catalog config and then loads `/lab/shopbot.js` from the same origin.
+This loads `/api/shopbot.js` from the clone site. That entrypoint sets catalog config and then loads `/lab/shopbot.js` from the same origin.
+The proxy route remains in the codebase, but it is no longer the preferred widget delivery path for this cloned site because `SHOPBOT_BACKEND_URL` rotates with each tunnel session.
+
+If you keep the legacy path available for troubleshooting, do not treat `SHOPBOT_BACKEND_URL` as an always-on env var in normal deployment config.
 
 Single public entrypoint:
 
