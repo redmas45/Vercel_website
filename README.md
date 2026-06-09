@@ -1,105 +1,100 @@
-# Local clone lab for https://demo.vercel.store (self-hosted practice environment)
+# Vercel Store Clone Lab
 
-⚠️ Use this only for your own legal security practice on systems you own.  
-Do **not** deploy this as a deceptive copy of another site or target it for unauthorized testing.
+Self-hosted clone of `https://demo.vercel.store/` for controlled JavaScript injection practice on your own Vercel project.
 
-## What this project contains
+Use this only on infrastructure you own or have explicit permission to test.
 
-- `scripts/crawl.mjs`  
-  - Crawls `SOURCE_URL`
-  - Rewrites internal links/assets for local usage
-  - Stores pages and assets in PostgreSQL
-  - Writes a local static mirror under `out/`
+## Project Layout
 
-- `scripts/export-static.mjs`  
-  - Rebuilds static mirror from DB tables
+- `scripts/crawl-static.mjs` crawls the source site into `out/`.
+- `out/` contains the generated static clone.
+- `api/index.py` serves the clone on Vercel through FastAPI.
+- `lab/injection.js` is the local script you can inject into cloned pages.
+- `.env.example` lists local and Vercel environment variables.
+- `AGENT.md` documents project rules for future edits.
 
-- `scripts/init-db.mjs`  
-  - Applies schema in `db/schema.sql`
-
-- `scripts/clean-mirror.mjs`  
-  - Clears `out/` mirror directory
-
-- `db/schema.sql`  
-  - Table definitions for `clone_pages` and `clone_assets`
-
-- `docker-compose.yml`  
-  - Optional local PostgreSQL instance
-
-- `vercel.json`  
-  - Vercel config for deploying generated static files in `out/`
-
-## 1) Setup local DB
-
-```bash
-cp .env.example .env
-docker compose up -d
-```
-
-Update `.env` if you changed DB credentials.
-
-## 2) Install dependencies
+## Local Build
 
 ```bash
 npm install
+npm run build
 ```
 
-## 3) Initialize DB schema
+## Vercel Settings
 
-```bash
-npm run db:init
+Keep these settings in Vercel:
+
+```text
+Framework Preset: FastAPI
+Install Command: python -m pip install -r requirements.txt && npm install
+Build Command: npm run build
+Output Directory: out
+Root Directory: blank/default
 ```
 
-## 4) Crawl target and build mirror + DB records
+The current `vercel.json` already contains the install/build/output settings.
 
-```bash
-npm run clean:mirror
-npm run crawl
+## JavaScript Injection
+
+Local file injection:
+
+```env
+LAB_INJECTION_SRC=/lab/injection.js
 ```
 
-The following are generated:
+External project injection:
 
-- `out/` → static files for deployment
-- `clone_pages` and `clone_assets` in PostgreSQL
-
-## 5) If needed, rebuild mirror from DB
-
-```bash
-npm run export:static
+```env
+LAB_INJECTION_SRC=https://your-other-project.vercel.app/inject.js
+LAB_ALLOWED_SCRIPT_ORIGINS=https://your-other-project.vercel.app
 ```
 
-## 6) Deploy to Vercel
+Inline injection:
 
-```bash
-npm i -g vercel
-vercel login
-vercel --yes
-vercel --prod
+```env
+LAB_INJECTION_CODE=console.log("lab script loaded")
 ```
 
-Important deployment notes:
+Base64 injection:
 
-- Build step is disabled (`buildCommand` in `vercel.json`), so ensure `out/` already contains files.
-- If you prefer automatic CI deployment from GitHub:
-  - Commit this repo
-  - Import into Vercel
-  - Use **Framework Preset: Other**
-  - Set **Output Directory** to `out`
-  - Disable install/build steps or keep defaults if you already committed `out`
+```env
+LAB_INJECTION_CODE_BASE64=Y29uc29sZS5sb2coImxhYiIp
+```
 
-## Notes and limits
+For Vercel deployment, set these in **Project Settings -> Environment Variables**.
 
-- This is a **snapshot-style crawler**; highly dynamic content loaded only after heavy JS execution may be incomplete.
-- Third-party scripts/CDNs may still be referenced externally if not captured by crawler (for example, strict CORS/CDN behavior).
-- Use a local throwaway environment for JS-injection training (e.g., intentionally vulnerable apps like DVWA/OWASP Juice Shop) instead of cloned production systems.
-- If you need full JS-rendered capture, add a browser crawler in a second pass (Playwright) and run it in your own lab.
+## Security Controls
 
-## 7) Useful env vars
+`api/index.py` adds realistic browser-facing headers:
 
-| variable | purpose |
-|---|---|
-| `SOURCE_URL` | target root URL |
-| `MAX_PAGES` | upper limit of page requests |
-| `MAX_ASSETS` | upper limit of asset downloads |
-| `CRAWL_CONCURRENCY` | parallel request limit |
-| `MIRROR_DIR` | static output folder (`out` by default) |
+- `Content-Security-Policy`
+- `X-Content-Type-Options`
+- `Referrer-Policy`
+- `X-Frame-Options`
+- `Permissions-Policy`
+- `lab_session` cookie with `HttpOnly`, `Secure`, and `SameSite=Lax`
+
+Use:
+
+```env
+LAB_SECURITY_MODE=lab
+```
+
+for injection practice. Use:
+
+```env
+LAB_SECURITY_MODE=strict
+```
+
+to test a tighter CSP that blocks inline/eval style payloads.
+
+## Image Loading
+
+The original site uses Next.js image URLs like `/_next/image?...`.
+This project implements a compatible image route in FastAPI and restricts it with:
+
+```env
+IMAGE_PROXY_ALLOWED_HOSTS=cdn.shopify.com demo.vercel.store vercel.com assets.vercel.com
+```
+
+Add hosts only when your cloned HTML legitimately needs them.

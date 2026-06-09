@@ -1,5 +1,6 @@
 .env
+.vercel/
+__pycache__/
+api/__pycache__/
 node_modules/
 tmp/
-db-data/
-logs/
