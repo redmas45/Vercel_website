@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "node scripts/crawl-static.mjs",
     "crawl": "node scripts/crawl.mjs",
     "export:static": "node scripts/export-static.mjs",
     "db:init": "node scripts/init-db.mjs",
