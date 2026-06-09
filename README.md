@@ -64,6 +64,14 @@ LAB_INJECTION_SRC=/lab/injection.js
 
 This loads `/lab/injection.js` from the clone site, then loads `/lab/shopbot.js` from the same origin. The FastAPI route proxies the backend widget server-side.
 
+Single public entrypoint:
+
+```html
+<script src="https://vercelclonedwebsite.vercel.app/api/shopbot.js"></script>
+```
+
+This script sets `window.__SHOPBOT_CONFIG__` with `catalogBaseUrl` and `catalogApiUrl`, then loads `/lab/shopbot.js`.
+
 Local file injection:
 
 ```env

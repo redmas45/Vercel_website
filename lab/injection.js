@@ -6,7 +6,7 @@
   }
 
   const script = document.createElement("script");
-  script.src = "/lab/shopbot.js";
+  script.src = "/api/shopbot.js";
   script.async = true;
   script.defer = true;
   script.dataset.shopbotLoader = "1";

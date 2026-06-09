@@ -136,6 +136,46 @@ def shopbot_script():
     )
 
 
+@app.get("/api/shopbot.js")
+def shopbot_entry_script():
+    site_id = os.getenv("SHOPBOT_SITE_ID", "https_demo_vercel_store").strip()
+    catalog_base_url = os.getenv(
+        "CATALOG_BASE_URL",
+        "https://vercelclonedwebsite.vercel.app",
+    ).strip()
+    catalog_api_url = os.getenv(
+        "CATALOG_API_URL",
+        f"{catalog_base_url.rstrip('/')}/api/products",
+    ).strip()
+    config = {
+        "siteId": site_id,
+        "catalogBaseUrl": catalog_base_url.rstrip("/"),
+        "catalogApiUrl": catalog_api_url,
+        "shopbotScriptUrl": "/lab/shopbot.js",
+    }
+    js = f"""
+(() => {{
+  if (window.__SHOPBOT_ENTRY_LOADED__) return;
+  window.__SHOPBOT_ENTRY_LOADED__ = true;
+  window.__SHOPBOT_CONFIG__ = Object.assign({{}}, window.__SHOPBOT_CONFIG__ || {{}}, {json.dumps(config)});
+
+  if (document.querySelector('script[data-shopbot-loader="1"]')) return;
+
+  const script = document.createElement("script");
+  script.src = window.__SHOPBOT_CONFIG__.shopbotScriptUrl;
+  script.async = true;
+  script.defer = true;
+  script.dataset.shopbotLoader = "1";
+  document.head.appendChild(script);
+}})();
+""".lstrip()
+    return Response(
+        js,
+        media_type="application/javascript; charset=utf-8",
+        headers={"Cache-Control": "no-store, max-age=0"},
+    )
+
+
 @app.get("/api/products")
 def list_products(
     page: int = Query(1, ge=1),

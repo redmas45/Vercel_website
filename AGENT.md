@@ -55,6 +55,14 @@ LAB_INJECTION_SRC=/lab/injection.js
 
 `/lab/injection.js` loads `/lab/shopbot.js`, and `/lab/shopbot.js` proxies the external backend server-side.
 
+For external projects that want one integration URL, use:
+
+```html
+<script src="https://vercelclonedwebsite.vercel.app/api/shopbot.js"></script>
+```
+
+`/api/shopbot.js` sets `window.__SHOPBOT_CONFIG__` and loads `/lab/shopbot.js`.
+
 Preferred local setup:
 
 ```env
