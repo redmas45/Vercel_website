@@ -46,6 +46,17 @@ LAB_INJECTION_SRC=https://your-other-project.vercel.app/inject.js
 LAB_ALLOWED_SCRIPT_ORIGINS=https://your-other-project.vercel.app
 ```
 
+Preferred server-side remote setup:
+
+```env
+LAB_INJECTION_SRC=/lab/remote.js
+LAB_REMOTE_SCRIPT_URL=https://your-other-project.vercel.app/inject.js
+LAB_REMOTE_SCRIPT_KEY=shared-secret
+LAB_REMOTE_SCRIPT_KEY_HEADER=X-Lab-Api-Key
+```
+
+The remote mode keeps the key out of browser-visible HTML by having the FastAPI app fetch the script server-side.
+
 Use `LAB_SECURITY_MODE=lab` for injection practice.
 Use `LAB_SECURITY_MODE=strict` when checking how the clone behaves with tighter CSP.
 

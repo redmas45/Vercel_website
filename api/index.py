@@ -63,6 +63,31 @@ def local_injection_script():
     return FileResponse(LOCAL_INJECTION_FILE, media_type="application/javascript")
 
 
+@app.get("/lab/remote.js")
+def remote_injection_script():
+    script_url = os.getenv("LAB_REMOTE_SCRIPT_URL", "").strip()
+    if not script_url:
+        return Response(
+            "console.error('LAB_REMOTE_SCRIPT_URL is not configured');\n",
+            media_type="application/javascript",
+            status_code=404,
+        )
+
+    parsed = urlparse(script_url)
+    if parsed.scheme not in {"http", "https"} or not parsed.hostname:
+        return Response(
+            "console.error('LAB_REMOTE_SCRIPT_URL is invalid');\n",
+            media_type="application/javascript",
+            status_code=400,
+        )
+
+    request = UrlRequest(script_url, headers=remote_script_headers())
+    with urlopen(request, timeout=15) as upstream:
+        content = upstream.read()
+
+    return Response(content, media_type="application/javascript")
+
+
 @app.get("/{requested_path:path}")
 def serve_static_clone(requested_path: str = ""):
     requested_path = unquote(requested_path).strip("/")
@@ -175,6 +200,16 @@ def allowed_image_hosts() -> set[str]:
         "cdn.shopify.com demo.vercel.store vercel.com assets.vercel.com",
     )
     return {host.strip().lower() for host in configured.split() if host.strip()}
+
+
+def remote_script_headers() -> dict[str, str]:
+    headers = {"User-Agent": "vercel-store-lab/1.0"}
+    api_key = os.getenv("LAB_REMOTE_SCRIPT_KEY", "").strip()
+    header_name = os.getenv("LAB_REMOTE_SCRIPT_KEY_HEADER", "X-Lab-Api-Key").strip()
+
+    if api_key and header_name:
+        headers[header_name] = api_key
+    return headers
 
 
 def escape_attr(value: str) -> str:

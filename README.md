@@ -49,6 +49,18 @@ LAB_INJECTION_SRC=https://your-other-project.vercel.app/inject.js
 LAB_ALLOWED_SCRIPT_ORIGINS=https://your-other-project.vercel.app
 ```
 
+Server-side remote injection:
+
+```env
+LAB_INJECTION_SRC=/lab/remote.js
+LAB_REMOTE_SCRIPT_URL=https://your-other-project.vercel.app/inject.js
+LAB_REMOTE_SCRIPT_KEY=your-shared-secret
+LAB_REMOTE_SCRIPT_KEY_HEADER=X-Lab-Api-Key
+```
+
+In this mode, the browser only sees `/lab/remote.js`.
+Your clone server fetches the real script from your other project and sends `X-Lab-Api-Key` server-to-server.
+
 Inline injection:
 
 ```env
