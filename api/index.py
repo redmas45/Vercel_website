@@ -220,10 +220,13 @@ def injection_markup() -> str:
         return ""
 
     default_src = "/lab/injection.js" if LOCAL_INJECTION_FILE.is_file() else ""
+    html = os.getenv("LAB_INJECTION_HTML", "").strip()
     src = os.getenv("LAB_INJECTION_SRC", default_src).strip()
     code = os.getenv("LAB_INJECTION_CODE", "").strip()
     encoded_code = os.getenv("LAB_INJECTION_CODE_BASE64", "").strip()
 
+    if html:
+        return html
     if src:
         return f'<script src="{escape_attr(src)}" data-lab-injection="external"></script>'
     if encoded_code:

@@ -33,6 +33,17 @@ python -m pip install -r requirements.txt && npm install
 
 ## Lab Injection
 
+Use one injection mode at a time. Precedence is:
+
+```text
+LAB_INJECTION_HTML
+LAB_INJECTION_SRC
+LAB_INJECTION_CODE_BASE64
+LAB_INJECTION_CODE
+```
+
+Use `LAB_INJECTION_HTML` for one-line script tags with data attributes.
+
 Preferred local setup:
 
 ```env

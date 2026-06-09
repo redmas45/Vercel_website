@@ -36,6 +36,23 @@ The current `vercel.json` already contains the install/build/output settings.
 
 ## JavaScript Injection
 
+Use one injection mode at a time. Precedence is:
+
+```text
+LAB_INJECTION_HTML
+LAB_INJECTION_SRC
+LAB_INJECTION_CODE_BASE64
+LAB_INJECTION_CODE
+```
+
+Single-line script tag injection:
+
+```env
+LAB_INJECTION_HTML=<script src="https://vercelclonedwebsite.vercel.app/shopbot.js" data-site-id="your_site_id" data-api-url="https://vercelclonedwebsite.vercel.app"></script>
+LAB_INJECTION_SRC=
+LAB_INJECTION_CODE=
+```
+
 Local file injection:
 
 ```env
