@@ -3,7 +3,7 @@ import json
 import mimetypes
 import os
 from pathlib import Path
-from urllib.parse import unquote, urlparse
+from urllib.parse import quote, unquote, urlparse
 from urllib.request import Request as UrlRequest
 from urllib.request import urlopen
 
@@ -96,6 +96,36 @@ def remote_injection_script():
         content = upstream.read()
 
     return Response(content, media_type="application/javascript")
+
+
+@app.get("/lab/shopbot.js")
+def shopbot_script():
+    backend_url = os.getenv(
+        "SHOPBOT_BACKEND_URL",
+        "https://d962-103-97-243-133.ngrok-free.app",
+    ).strip()
+    site_id = os.getenv("SHOPBOT_SITE_ID", "https_demo_vercel_store").strip()
+    upstream_url = f"{backend_url.rstrip('/')}/shopbot.js?site={quote(site_id)}"
+
+    parsed = urlparse(upstream_url)
+    if parsed.scheme not in {"http", "https"} or not parsed.hostname:
+        return javascript_error("[lab] SHOPBOT_BACKEND_URL is invalid", status_code=400)
+
+    try:
+        request = UrlRequest(upstream_url, headers={"User-Agent": "vercel-store-lab/1.0"})
+        with urlopen(request, timeout=15) as upstream:
+            content = upstream.read()
+    except Exception as exc:
+        return javascript_error(
+            f"[lab] Failed to load ShopBot from {upstream_url}: {exc}",
+            status_code=502,
+        )
+
+    return Response(
+        content,
+        media_type="application/javascript; charset=utf-8",
+        headers={"Cache-Control": "no-store, max-age=0"},
+    )
 
 
 @app.get("/api/products")
@@ -295,6 +325,15 @@ def remote_script_headers() -> dict[str, str]:
     if api_key and header_name:
         headers[header_name] = api_key
     return headers
+
+
+def javascript_error(message: str, status_code: int = 500):
+    return Response(
+        f"console.error({json.dumps(message)});\n",
+        status_code=status_code,
+        media_type="application/javascript; charset=utf-8",
+        headers={"Cache-Control": "no-store, max-age=0"},
+    )
 
 
 def escape_attr(value: str) -> str:

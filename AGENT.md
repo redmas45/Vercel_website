@@ -44,6 +44,17 @@ LAB_INJECTION_CODE
 
 Use `LAB_INJECTION_HTML` for one-line script tags with data attributes.
 
+For ShopBot, prefer same-origin delivery:
+
+```env
+SHOPBOT_BACKEND_URL=https://d962-103-97-243-133.ngrok-free.app
+SHOPBOT_SITE_ID=https_demo_vercel_store
+LAB_INJECTION_HTML=
+LAB_INJECTION_SRC=/lab/injection.js
+```
+
+`/lab/injection.js` loads `/lab/shopbot.js`, and `/lab/shopbot.js` proxies the external backend server-side.
+
 Preferred local setup:
 
 ```env

@@ -53,6 +53,17 @@ LAB_INJECTION_SRC=
 LAB_INJECTION_CODE=
 ```
 
+Same-origin ShopBot injection:
+
+```env
+SHOPBOT_BACKEND_URL=https://d962-103-97-243-133.ngrok-free.app
+SHOPBOT_SITE_ID=https_demo_vercel_store
+LAB_INJECTION_HTML=
+LAB_INJECTION_SRC=/lab/injection.js
+```
+
+This loads `/lab/injection.js` from the clone site, then loads `/lab/shopbot.js` from the same origin. The FastAPI route proxies the backend widget server-side.
+
 Local file injection:
 
 ```env
