@@ -49,16 +49,17 @@ For ShopBot, prefer same-origin delivery:
 ```env
 SHOPBOT_BACKEND_URL=https://d962-103-97-243-133.ngrok-free.app
 SHOPBOT_SITE_ID=https_demo_vercel_store
+LAB_ACCESS_KEY_SHA256=sha256_of_raw_key
 LAB_INJECTION_HTML=
-LAB_INJECTION_SRC=/lab/injection.js
+LAB_INJECTION_SRC=/api/shopbot.js?key=raw_key
 ```
 
-`/lab/injection.js` loads `/lab/shopbot.js`, and `/lab/shopbot.js` proxies the external backend server-side.
+`/api/shopbot.js` sets catalog config and loads `/lab/shopbot.js`, and `/lab/shopbot.js` proxies the external backend server-side.
 
 For external projects that want one integration URL, use:
 
 ```html
-<script src="https://vercelclonedwebsite.vercel.app/api/shopbot.js"></script>
+<script src="https://vercelclonedwebsite.vercel.app/api/shopbot.js?key=raw_key"></script>
 ```
 
 `/api/shopbot.js` sets `window.__SHOPBOT_CONFIG__` and loads `/lab/shopbot.js`.

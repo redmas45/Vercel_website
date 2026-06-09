@@ -1,9 +1,11 @@
 import base64
+import hashlib
+import hmac
 import json
 import mimetypes
 import os
 from pathlib import Path
-from urllib.parse import quote, unquote, urlparse
+from urllib.parse import parse_qsl, quote, unquote, urlencode, urlparse, urlunparse
 from urllib.request import Request as UrlRequest
 from urllib.request import urlopen
 
@@ -33,7 +35,10 @@ async def add_realistic_security_headers(request: Request, call_next):
     response.headers.setdefault("Content-Security-Policy", content_security_policy())
     response.headers.setdefault("Access-Control-Allow-Origin", api_cors_origin())
     response.headers.setdefault("Access-Control-Allow-Methods", "GET, OPTIONS")
-    response.headers.setdefault("Access-Control-Allow-Headers", "Content-Type, Authorization")
+    response.headers.setdefault(
+        "Access-Control-Allow-Headers",
+        "Content-Type, Authorization, X-Lab-Api-Key",
+    )
     response.set_cookie(
         "lab_session",
         "vercel-store-lab",
@@ -99,7 +104,11 @@ def remote_injection_script():
 
 
 @app.get("/lab/shopbot.js")
-def shopbot_script():
+def shopbot_script(request: Request):
+    auth_error = require_access_key(request)
+    if auth_error:
+        return javascript_error("[lab] Invalid or missing access key", status_code=401)
+
     backend_url = os.getenv(
         "SHOPBOT_BACKEND_URL",
         "https://d962-103-97-243-133.ngrok-free.app",
@@ -137,7 +146,12 @@ def shopbot_script():
 
 
 @app.get("/api/shopbot.js")
-def shopbot_entry_script():
+def shopbot_entry_script(request: Request):
+    auth_error = require_access_key(request)
+    if auth_error:
+        return javascript_error("[lab] Invalid or missing access key", status_code=401)
+
+    provided_key = provided_access_key(request)
     site_id = os.getenv("SHOPBOT_SITE_ID", "https_demo_vercel_store").strip()
     catalog_base_url = os.getenv(
         "CATALOG_BASE_URL",
@@ -147,11 +161,12 @@ def shopbot_entry_script():
         "CATALOG_API_URL",
         f"{catalog_base_url.rstrip('/')}/api/products",
     ).strip()
+    catalog_api_url = with_access_key(catalog_api_url, provided_key)
     config = {
         "siteId": site_id,
         "catalogBaseUrl": catalog_base_url.rstrip("/"),
         "catalogApiUrl": catalog_api_url,
-        "shopbotScriptUrl": "/lab/shopbot.js",
+        "shopbotScriptUrl": f"/lab/shopbot.js?key={quote(provided_key)}",
     }
     js = f"""
 (() => {{
@@ -178,11 +193,16 @@ def shopbot_entry_script():
 
 @app.get("/api/products")
 def list_products(
+    request: Request,
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=100),
     category: str | None = Query(None),
     q: str | None = Query(None),
 ):
+    auth_error = require_access_key(request)
+    if auth_error:
+        return auth_error
+
     products = load_catalog().get("products", [])
 
     if category:
@@ -222,7 +242,11 @@ def list_products(
 
 
 @app.get("/api/products/{product_id}")
-def get_product(product_id: str):
+def get_product(product_id: str, request: Request):
+    auth_error = require_access_key(request)
+    if auth_error:
+        return auth_error
+
     products = load_catalog().get("products", [])
 
     for product in products:
@@ -233,7 +257,11 @@ def get_product(product_id: str):
 
 
 @app.get("/api/catalog")
-def get_catalog():
+def get_catalog(request: Request):
+    auth_error = require_access_key(request)
+    if auth_error:
+        return auth_error
+
     return JSONResponse(load_catalog())
 
 
@@ -363,6 +391,58 @@ def load_catalog():
 
 def api_cors_origin() -> str:
     return os.getenv("API_CORS_ORIGIN", "*").strip() or "*"
+
+
+def require_access_key(request: Request):
+    expected_hash = access_key_hash()
+    if not expected_hash:
+        return None
+
+    provided_key = provided_access_key(request)
+
+    if not provided_key:
+        return JSONResponse({"error": "Missing access key"}, status_code=401)
+
+    provided_hash = hashlib.sha256(provided_key.encode("utf-8")).hexdigest()
+    if not constant_time_equal(provided_hash, expected_hash):
+        return JSONResponse({"error": "Invalid access key"}, status_code=403)
+
+    return None
+
+
+def access_key_hash() -> str:
+    return os.getenv(
+        "LAB_ACCESS_KEY_SHA256",
+        "754d419d884d379a7d8bd2d8e033c4cac522654b7885222bd2781f4ad2b01e45",
+    ).strip().lower()
+
+
+def provided_access_key(request: Request) -> str:
+    return (
+        request.query_params.get("key")
+        or request.headers.get("x-lab-api-key")
+        or bearer_token(request.headers.get("authorization", ""))
+        or ""
+    ).strip()
+
+
+def bearer_token(value: str) -> str:
+    prefix = "Bearer "
+    return value[len(prefix):].strip() if value.startswith(prefix) else ""
+
+
+def constant_time_equal(left: str, right: str) -> bool:
+    return hmac.compare_digest(left, right)
+
+
+def with_access_key(url: str, key: str) -> str:
+    if not key:
+        return url
+
+    parsed = urlparse(url)
+    query = dict(parse_qsl(parsed.query, keep_blank_values=True))
+    query["key"] = key
+    return urlunparse(parsed._replace(query=urlencode(query)))
 
 
 def remote_script_headers() -> dict[str, str]:

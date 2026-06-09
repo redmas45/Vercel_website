@@ -53,21 +53,22 @@ LAB_INJECTION_SRC=
 LAB_INJECTION_CODE=
 ```
 
-Same-origin ShopBot injection:
+Same-origin ShopBot injection with one access key:
 
 ```env
 SHOPBOT_BACKEND_URL=https://d962-103-97-243-133.ngrok-free.app
 SHOPBOT_SITE_ID=https_demo_vercel_store
+LAB_ACCESS_KEY_SHA256=sha256_of_raw_key
 LAB_INJECTION_HTML=
-LAB_INJECTION_SRC=/lab/injection.js
+LAB_INJECTION_SRC=/api/shopbot.js?key=raw_key
 ```
 
-This loads `/lab/injection.js` from the clone site, then loads `/lab/shopbot.js` from the same origin. The FastAPI route proxies the backend widget server-side.
+This loads `/api/shopbot.js` from the clone site. That one entrypoint sets catalog config and then loads `/lab/shopbot.js` from the same origin.
 
 Single public entrypoint:
 
 ```html
-<script src="https://vercelclonedwebsite.vercel.app/api/shopbot.js"></script>
+<script src="https://vercelclonedwebsite.vercel.app/api/shopbot.js?key=raw_key"></script>
 ```
 
 This script sets `window.__SHOPBOT_CONFIG__` with `catalogBaseUrl` and `catalogApiUrl`, then loads `/lab/shopbot.js`.
@@ -148,6 +149,19 @@ IMAGE_PROXY_ALLOWED_HOSTS=cdn.shopify.com demo.vercel.store vercel.com assets.ve
 Add hosts only when your cloned HTML legitimately needs them.
 
 ## Product JSON API
+
+Catalog and ShopBot use the same raw access key. Vercel stores only:
+
+```env
+LAB_ACCESS_KEY_SHA256=sha256_of_raw_key
+```
+
+Give other projects:
+
+```env
+CATALOG_API_URL=https://vercelclonedwebsite.vercel.app/api/products?key=raw_key
+SHOPBOT_ENTRY_URL=https://vercelclonedwebsite.vercel.app/api/shopbot.js?key=raw_key
+```
 
 Product list:
 
