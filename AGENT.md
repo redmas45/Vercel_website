@@ -15,6 +15,9 @@ Do not add logic that targets third-party systems, steals credentials, bypasses 
 - Product catalog JSON is generated into `out/api/products.json`.
 - The live catalog API requires the lab access key.
 - The same key is used for the catalog API and the ShopBot entry script.
+- The cloned site currently uses direct `LAB_INJECTION_HTML` widget loading as the primary path.
+- `LAB_ALLOWED_SCRIPT_ORIGINS` must match the current backend tunnel origin for each session.
+- `SHOPBOT_BACKEND_URL` is legacy-only and is not the normal active widget path.
 - Local `.env` contains the active lab configuration and should not be treated as public documentation.
 
 ## Architecture
@@ -149,11 +152,12 @@ Use `LAB_INJECTION_HTML` for the direct external widget script tag.
 Example:
 
 ```env
-LAB_INJECTION_HTML=<script src="https://example.ngrok-free.app/shopbot.js?site=https_demo_vercel_store"></script>
-LAB_ALLOWED_SCRIPT_ORIGINS=https://example.ngrok-free.app
+LAB_INJECTION_HTML=<script src="https://fresh-tunnel-url.example.com/shopbot.js?site=https_demo_vercel_store"></script>
+LAB_ALLOWED_SCRIPT_ORIGINS=https://fresh-tunnel-url.example.com
 ```
 
 If `LAB_INJECTION_HTML` is set, the app ignores `LAB_INJECTION_SRC`, `LAB_INJECTION_CODE_BASE64`, and `LAB_INJECTION_CODE`.
+Update both values together whenever the backend tunnel URL changes.
 
 ## ShopBot Backend Proxy
 
