@@ -105,26 +105,34 @@ def shopbot_script():
         "https://d962-103-97-243-133.ngrok-free.app",
     ).strip()
     site_id = os.getenv("SHOPBOT_SITE_ID", "https_demo_vercel_store").strip()
-    upstream_url = f"{backend_url.rstrip('/')}/shopbot.js?site={quote(site_id)}"
+    base_url = backend_url.rstrip("/")
+    upstream_urls = [
+        f"{base_url}/shopbot.js?site={quote(site_id)}",
+        f"{base_url}/shopbot.js",
+    ]
 
-    parsed = urlparse(upstream_url)
+    parsed = urlparse(base_url)
     if parsed.scheme not in {"http", "https"} or not parsed.hostname:
         return javascript_error("[lab] SHOPBOT_BACKEND_URL is invalid", status_code=400)
 
-    try:
-        request = UrlRequest(upstream_url, headers={"User-Agent": "vercel-store-lab/1.0"})
-        with urlopen(request, timeout=15) as upstream:
-            content = upstream.read()
-    except Exception as exc:
-        return javascript_error(
-            f"[lab] Failed to load ShopBot from {upstream_url}: {exc}",
-            status_code=502,
-        )
+    last_error = None
+    for upstream_url in upstream_urls:
+        try:
+            request = UrlRequest(upstream_url, headers={"User-Agent": "vercel-store-lab/1.0"})
+            with urlopen(request, timeout=15) as upstream:
+                content = upstream.read()
 
-    return Response(
-        content,
-        media_type="application/javascript; charset=utf-8",
-        headers={"Cache-Control": "no-store, max-age=0"},
+            return Response(
+                content,
+                media_type="application/javascript; charset=utf-8",
+                headers={"Cache-Control": "no-store, max-age=0"},
+            )
+        except Exception as exc:
+            last_error = exc
+
+    return javascript_error(
+        f"[lab] Failed to load ShopBot from {base_url}/shopbot.js: {last_error}",
+        status_code=502,
     )
 
 
