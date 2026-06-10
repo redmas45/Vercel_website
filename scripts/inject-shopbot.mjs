@@ -64,11 +64,12 @@ function walkHtml(dir) {
 
 const apiUrl = resolveApiUrl();
 if (!apiUrl) {
-  console.error(
-    "[inject-shopbot] ERROR: No API URL found.\n" +
-      "  Set SHOPBOT_API_URL env var, or make sure AI_salesman_plugin/.env has PUBLIC_API_URL."
+  console.warn(
+    "[inject-shopbot] SKIP: No API URL found.\n" +
+      "  Set SHOPBOT_API_URL env var, or make sure AI_salesman_plugin/.env has PUBLIC_API_URL.\n" +
+      "  Skipping injection (build will succeed without it)."
   );
-  process.exit(1);
+  process.exit(0);
 }
 
 const scriptTag = `<script src="${apiUrl}/shopbot.js?site=${SITE_ID}"></script>`;
