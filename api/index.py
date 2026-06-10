@@ -9,8 +9,9 @@ from urllib.parse import unquote, urlparse
 from urllib.request import Request as UrlRequest
 from urllib.request import urlopen
 
-from fastapi import FastAPI, Query, Request
+from fastapi import FastAPI, Query, Request, Depends, HTTPException, status
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, Response
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -20,6 +21,17 @@ CATALOG_FILE = OUT_DIR / "api" / "products.json"
 SCRIPT_SRC_RE = re.compile(r"<script\b[^>]*\bsrc=(['\"])(.*?)\1", re.IGNORECASE)
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
+
+security = HTTPBasic()
+
+def verify_admin(credentials: HTTPBasicCredentials = Depends(security)):
+    if credentials.username != "admin" or credentials.password != "admin":
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Basic"},
+        )
+    return credentials.username
 
 
 @app.middleware("http")
@@ -87,6 +99,32 @@ def get_product(product_id: str, request: Request):
     return JSONResponse({"error": "Product not found"}, status_code=404)
 
 
+@app.get("/admin", response_class=HTMLResponse)
+def admin_panel(username: str = Depends(verify_admin)):
+    return """
+    <html><head><title>Admin Panel</title></head>
+    <body style="font-family: sans-serif; padding: 2rem;">
+        <h1>Admin Panel</h1>
+        <p>Welcome, admin. You can replenish stock for all items here.</p>
+        <form method="post" action="/admin/replenish">
+            <button type="submit" style="padding: 10px 20px; font-size: 16px; background-color: #0070f3; color: white; border: none; border-radius: 5px; cursor: pointer;">Replenish Stock</button>
+        </form>
+    </body></html>
+    """
+
+
+@app.post("/admin/replenish")
+def admin_replenish(username: str = Depends(verify_admin)):
+    if not CATALOG_FILE.is_file():
+        return HTMLResponse("<h1>Error: Catalog not found.</h1>", status_code=404)
+    data = json.loads(CATALOG_FILE.read_text(encoding="utf-8"))
+    for p in data.get("products", []):
+        p["stock"] = 100
+        p["in_stock"] = True
+    CATALOG_FILE.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+    return HTMLResponse("<h1>Stock Replenished Successfully!</h1><br><a href='/admin'>Go Back</a>")
+
+
 @app.get("/{requested_path:path}")
 def serve_static_clone(requested_path: str = ""):
     requested_path = unquote(requested_path).strip("/")
@@ -132,13 +170,19 @@ def static_candidates(requested_path: str):
 
 def inject_lab_script(html: str) -> str:
     script = injection_markup()
-    if not script:
-        return html
-
-    marker = "</head>"
-    if marker in html:
-        return html.replace(marker, f"{script}\n{marker}", 1)
-    return f"{script}\n{html}"
+    admin_btn = "<a href='/admin' style='position: fixed; bottom: 20px; left: 20px; background: black; color: white; padding: 10px; border-radius: 5px; z-index: 9999; text-decoration: none; font-family: sans-serif;'>Admin Panel</a>"
+    
+    if script:
+        marker = "</head>"
+        if marker in html:
+            html = html.replace(marker, f"{script}\n{marker}", 1)
+        else:
+            html = f"{script}\n{html}"
+            
+    body_marker = "</body>"
+    if body_marker in html:
+        return html.replace(body_marker, f"{admin_btn}\n{body_marker}", 1)
+    return f"{html}\n{admin_btn}"
 
 
 def injection_markup() -> str:

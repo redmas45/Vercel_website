@@ -1,7 +1,7 @@
 {
   "source": "https://demo.vercel.store/",
   "generated_at": "2026-06-09T10:26:51.042Z",
-  "count": 19,
+  "count": 100,
   "products": [
     {
       "id": "acme-baby-cap",
@@ -19,7 +19,7 @@
       "price": 10,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/baby-cap-black.png?v=1690002570",
       "url": "/product/acme-baby-cap/"
@@ -39,7 +39,7 @@
       "price": 10,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/baby-onesie-beige-1.png?v=1690002632",
       "url": "/product/acme-baby-onesie/"
@@ -59,7 +59,7 @@
       "price": 50,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bomber-jacket-army.png?v=1690002722",
       "url": "/product/acme-bomber-jacket/"
@@ -79,7 +79,7 @@
       "price": 20,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/hat-1.png?v=1690002833",
       "url": "/product/acme-cap/"
@@ -99,7 +99,7 @@
       "price": 20,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-1.png?v=1689798965",
       "url": "/product/acme-geometric-circles-t-shirt/"
@@ -119,7 +119,7 @@
       "price": 160,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/cowboy-hat-black-1.png?v=1690208765",
       "url": "/product/acme-cowboy-hat/"
@@ -139,7 +139,7 @@
       "price": 15,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/cup-black.png?v=1690003088",
       "url": "/product/acme-cup/"
@@ -159,7 +159,7 @@
       "price": 20,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/dog-sweater-1.png?v=1690003132",
       "url": "/product/acme-dog-sweater/"
@@ -179,7 +179,7 @@
       "price": 12,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bag-1-dark.png?v=1689796304",
       "url": "/product/acme-drawstring-bag/"
@@ -199,7 +199,7 @@
       "price": 50,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/hoodie-1.png?v=1690003482",
       "url": "/product/acme-hoodie/"
@@ -219,7 +219,7 @@
       "price": 150,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/keyboard.png?v=1690003507",
       "url": "/product/acme-mechanical-keyboard/"
@@ -239,7 +239,7 @@
       "price": 15,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/mug-1.png?v=1690003527",
       "url": "/product/acme-mug/"
@@ -259,7 +259,7 @@
       "price": 10,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/pacifier-1.png?v=1690003544",
       "url": "/product/acme-pacifier/"
@@ -279,7 +279,7 @@
       "price": 25,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-spiral-1.png?v=1690003571",
       "url": "/product/acme-rainbow-prism-t-shirt/"
@@ -299,7 +299,7 @@
       "price": 4,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/sticker-rainbow.png?v=1690003602",
       "url": "/product/acme-rainbow-sticker/"
@@ -319,7 +319,7 @@
       "price": 45,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/shoes-1.png?v=1690004109",
       "url": "/product/acme-slip-on-shoes/"
@@ -339,7 +339,7 @@
       "price": 4,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/sticker.png?v=1690003619",
       "url": "/product/acme-sticker/"
@@ -359,7 +359,7 @@
       "price": 20,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-color-black.png?v=1690003675",
       "url": "/product/acme-t-shirt/"
@@ -377,10 +377,1631 @@
       "price": 5,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/webcam-cover.png?v=1690003750",
       "url": "/product/acme-webcam-cover/"
+    },
+    {
+      "id": "acme-rainbow-sticker-var-qg7w",
+      "handle": "acme-rainbow-sticker-var-qg7w",
+      "title": "Acme Rainbow Sticker (Variant QG7W)",
+      "name": "Acme Rainbow Sticker (Variant QG7W)",
+      "description": "",
+      "category": "stickers",
+      "categories": [
+        "stickers"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 4,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/sticker-rainbow.png?v=1690003602",
+      "url": "/product/acme-rainbow-sticker/var-qg7w/"
+    },
+    {
+      "id": "acme-mechanical-keyboard-var-b3kc",
+      "handle": "acme-mechanical-keyboard-var-b3kc",
+      "title": "Acme Keyboard (Variant B3KC)",
+      "name": "Acme Keyboard (Variant B3KC)",
+      "description": "",
+      "category": "electronics",
+      "categories": [
+        "electronics"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 150,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/keyboard.png?v=1690003507",
+      "url": "/product/acme-mechanical-keyboard/var-b3kc/"
+    },
+    {
+      "id": "acme-bomber-jacket-var-v63l",
+      "handle": "acme-bomber-jacket-var-v63l",
+      "title": "Acme Bomber Jacket (Variant V63L)",
+      "name": "Acme Bomber Jacket (Variant V63L)",
+      "description": "The multi-season must-have jacket: light and classic for daily wear, with a soft fleece lining for extra warmth.",
+      "category": "jackets",
+      "categories": [
+        "jackets"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 50,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bomber-jacket-army.png?v=1690002722",
+      "url": "/product/acme-bomber-jacket/var-v63l/"
+    },
+    {
+      "id": "acme-slip-on-shoes-var-6z3p",
+      "handle": "acme-slip-on-shoes-var-6z3p",
+      "title": "Acme Slip-On Shoes (Variant 6Z3P)",
+      "name": "Acme Slip-On Shoes (Variant 6Z3P)",
+      "description": "Step into summer! Every time your head looks down, you'll see these beauties, and your mood bounces right back up. Sleek, easy, and effortlessly stylish. Acme Slip-On Shoes are the ultimate get-up-and-go footwear. The low-profile slip-on canvas upper offers unbeatable convenience, while the clean design makes this all-white slip-on the perfect choice for anyone with places to go and things to do. One of the most popular designs, these shoes are the perfect middle ground between style and convenience. Iconic slip-on shoe Low profile canvas uppers Supportive padded collars Elastic side accents Signature rubber waffle outsoles",
+      "category": "footware",
+      "categories": [
+        "footware"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 45,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/shoes-1.png?v=1690004109",
+      "url": "/product/acme-slip-on-shoes/var-6z3p/"
+    },
+    {
+      "id": "acme-mug-var-7wpx",
+      "handle": "acme-mug-var-7wpx",
+      "title": "Acme Mug (Variant 7WPX)",
+      "name": "Acme Mug (Variant 7WPX)",
+      "description": "12 oz Beck Cork-Bottom Mug.",
+      "category": "drinkware",
+      "categories": [
+        "drinkware"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 15,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/mug-1.png?v=1690003527",
+      "url": "/product/acme-mug/var-7wpx/"
+    },
+    {
+      "id": "acme-slip-on-shoes-var-6d0v",
+      "handle": "acme-slip-on-shoes-var-6d0v",
+      "title": "Acme Slip-On Shoes (Variant 6D0V)",
+      "name": "Acme Slip-On Shoes (Variant 6D0V)",
+      "description": "Step into summer! Every time your head looks down, you'll see these beauties, and your mood bounces right back up. Sleek, easy, and effortlessly stylish. Acme Slip-On Shoes are the ultimate get-up-and-go footwear. The low-profile slip-on canvas upper offers unbeatable convenience, while the clean design makes this all-white slip-on the perfect choice for anyone with places to go and things to do. One of the most popular designs, these shoes are the perfect middle ground between style and convenience. Iconic slip-on shoe Low profile canvas uppers Supportive padded collars Elastic side accents Signature rubber waffle outsoles",
+      "category": "footware",
+      "categories": [
+        "footware"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 45,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/shoes-1.png?v=1690004109",
+      "url": "/product/acme-slip-on-shoes/var-6d0v/"
+    },
+    {
+      "id": "acme-drawstring-bag-var-q4pe",
+      "handle": "acme-drawstring-bag-var-q4pe",
+      "title": "Acme Drawstring Bag (Variant Q4PE)",
+      "name": "Acme Drawstring Bag (Variant Q4PE)",
+      "description": "Strong 210D ripstop nylon drawstring bag Available in multiple sizes Easy-to-close durable drawstring Sturdy, reusable, and resilient",
+      "category": "bags",
+      "categories": [
+        "bags"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 12,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bag-1-dark.png?v=1689796304",
+      "url": "/product/acme-drawstring-bag/var-q4pe/"
+    },
+    {
+      "id": "acme-bomber-jacket-var-fdx2",
+      "handle": "acme-bomber-jacket-var-fdx2",
+      "title": "Acme Bomber Jacket (Variant FDX2)",
+      "name": "Acme Bomber Jacket (Variant FDX2)",
+      "description": "The multi-season must-have jacket: light and classic for daily wear, with a soft fleece lining for extra warmth.",
+      "category": "jackets",
+      "categories": [
+        "jackets"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 50,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bomber-jacket-army.png?v=1690002722",
+      "url": "/product/acme-bomber-jacket/var-fdx2/"
+    },
+    {
+      "id": "acme-webcam-cover-var-ka5u",
+      "handle": "acme-webcam-cover-var-ka5u",
+      "title": "Acme Webcam Cover (Variant KA5U)",
+      "name": "Acme Webcam Cover (Variant KA5U)",
+      "description": "This webcam cover is made of high grade plastic and is the thinnest model on the market, measuring at just 0.8mm thick. This is an example of a \"hidden\" product. You should not be able to find it browsing the site. You need to know the direct url to access it.",
+      "category": null,
+      "categories": [],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 5,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/webcam-cover.png?v=1690003750",
+      "url": "/product/acme-webcam-cover/var-ka5u/"
+    },
+    {
+      "id": "acme-hoodie-var-3q5m",
+      "handle": "acme-hoodie-var-3q5m",
+      "title": "Acme Hoodie (Variant 3Q5M)",
+      "name": "Acme Hoodie (Variant 3Q5M)",
+      "description": "Fabric blend of Supima Cotton and Micromodal.",
+      "category": "hoodies",
+      "categories": [
+        "hoodies"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 50,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/hoodie-1.png?v=1690003482",
+      "url": "/product/acme-hoodie/var-3q5m/"
+    },
+    {
+      "id": "acme-bomber-jacket-var-bsuv",
+      "handle": "acme-bomber-jacket-var-bsuv",
+      "title": "Acme Bomber Jacket (Variant BSUV)",
+      "name": "Acme Bomber Jacket (Variant BSUV)",
+      "description": "The multi-season must-have jacket: light and classic for daily wear, with a soft fleece lining for extra warmth.",
+      "category": "jackets",
+      "categories": [
+        "jackets"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 50,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bomber-jacket-army.png?v=1690002722",
+      "url": "/product/acme-bomber-jacket/var-bsuv/"
+    },
+    {
+      "id": "acme-slip-on-shoes-var-4htm",
+      "handle": "acme-slip-on-shoes-var-4htm",
+      "title": "Acme Slip-On Shoes (Variant 4HTM)",
+      "name": "Acme Slip-On Shoes (Variant 4HTM)",
+      "description": "Step into summer! Every time your head looks down, you'll see these beauties, and your mood bounces right back up. Sleek, easy, and effortlessly stylish. Acme Slip-On Shoes are the ultimate get-up-and-go footwear. The low-profile slip-on canvas upper offers unbeatable convenience, while the clean design makes this all-white slip-on the perfect choice for anyone with places to go and things to do. One of the most popular designs, these shoes are the perfect middle ground between style and convenience. Iconic slip-on shoe Low profile canvas uppers Supportive padded collars Elastic side accents Signature rubber waffle outsoles",
+      "category": "footware",
+      "categories": [
+        "footware"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 45,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/shoes-1.png?v=1690004109",
+      "url": "/product/acme-slip-on-shoes/var-4htm/"
+    },
+    {
+      "id": "acme-dog-sweater-var-1xby",
+      "handle": "acme-dog-sweater-var-1xby",
+      "title": "Acme Dog Sweater (Variant 1XBY)",
+      "name": "Acme Dog Sweater (Variant 1XBY)",
+      "description": "Keep your dog warm all winter long - When the cold weather hits, make sure your dog isn’t shivering and stays warm with the soft and stretchy fleece dog sweater. Made with 90% polyester & 5% polyurethane to keep moisture out, freezing rain or snow, and to help keep warm air in, so your dog always stays warm. Our dog clothing is safe, durable, and made to last.",
+      "category": "pets",
+      "categories": [
+        "pets"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/dog-sweater-1.png?v=1690003132",
+      "url": "/product/acme-dog-sweater/var-1xby/"
+    },
+    {
+      "id": "acme-slip-on-shoes-var-ko8t",
+      "handle": "acme-slip-on-shoes-var-ko8t",
+      "title": "Acme Slip-On Shoes (Variant KO8T)",
+      "name": "Acme Slip-On Shoes (Variant KO8T)",
+      "description": "Step into summer! Every time your head looks down, you'll see these beauties, and your mood bounces right back up. Sleek, easy, and effortlessly stylish. Acme Slip-On Shoes are the ultimate get-up-and-go footwear. The low-profile slip-on canvas upper offers unbeatable convenience, while the clean design makes this all-white slip-on the perfect choice for anyone with places to go and things to do. One of the most popular designs, these shoes are the perfect middle ground between style and convenience. Iconic slip-on shoe Low profile canvas uppers Supportive padded collars Elastic side accents Signature rubber waffle outsoles",
+      "category": "footware",
+      "categories": [
+        "footware"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 45,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/shoes-1.png?v=1690004109",
+      "url": "/product/acme-slip-on-shoes/var-ko8t/"
+    },
+    {
+      "id": "acme-t-shirt-var-pfe5",
+      "handle": "acme-t-shirt-var-pfe5",
+      "title": "Acme T-Shirt (Variant PFE5)",
+      "name": "Acme T-Shirt (Variant PFE5)",
+      "description": "60% combed ringspun cotton/40% polyester jersey tee.",
+      "category": "shirts",
+      "categories": [
+        "shirts"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-color-black.png?v=1690003675",
+      "url": "/product/acme-t-shirt/var-pfe5/"
+    },
+    {
+      "id": "acme-sticker-var-r9rq",
+      "handle": "acme-sticker-var-r9rq",
+      "title": "Acme Sticker (Variant R9RQ)",
+      "name": "Acme Sticker (Variant R9RQ)",
+      "description": "",
+      "category": "stickers",
+      "categories": [
+        "stickers"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 4,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/sticker.png?v=1690003619",
+      "url": "/product/acme-sticker/var-r9rq/"
+    },
+    {
+      "id": "acme-geometric-circles-t-shirt-var-2t0r",
+      "handle": "acme-geometric-circles-t-shirt-var-2t0r",
+      "title": "Acme Circles T-Shirt (Variant 2T0R)",
+      "name": "Acme Circles T-Shirt (Variant 2T0R)",
+      "description": "60% combed ringspun cotton/40% polyester jersey tee.",
+      "category": "shirts",
+      "categories": [
+        "shirts"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-1.png?v=1689798965",
+      "url": "/product/acme-geometric-circles-t-shirt/var-2t0r/"
+    },
+    {
+      "id": "acme-pacifier-var-5crm",
+      "handle": "acme-pacifier-var-5crm",
+      "title": "Acme Pacifier (Variant 5CRM)",
+      "name": "Acme Pacifier (Variant 5CRM)",
+      "description": "This line of pacifiers has been thoughtfully designed for your baby's comfort. The pacifier allows your child to self-soothe in the most natural way possible.",
+      "category": "kids",
+      "categories": [
+        "kids"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 10,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/pacifier-1.png?v=1690003544",
+      "url": "/product/acme-pacifier/var-5crm/"
+    },
+    {
+      "id": "acme-geometric-circles-t-shirt-var-nhp6",
+      "handle": "acme-geometric-circles-t-shirt-var-nhp6",
+      "title": "Acme Circles T-Shirt (Variant NHP6)",
+      "name": "Acme Circles T-Shirt (Variant NHP6)",
+      "description": "60% combed ringspun cotton/40% polyester jersey tee.",
+      "category": "shirts",
+      "categories": [
+        "shirts"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-1.png?v=1689798965",
+      "url": "/product/acme-geometric-circles-t-shirt/var-nhp6/"
+    },
+    {
+      "id": "acme-mechanical-keyboard-var-owm5",
+      "handle": "acme-mechanical-keyboard-var-owm5",
+      "title": "Acme Keyboard (Variant OWM5)",
+      "name": "Acme Keyboard (Variant OWM5)",
+      "description": "",
+      "category": "electronics",
+      "categories": [
+        "electronics"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 150,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/keyboard.png?v=1690003507",
+      "url": "/product/acme-mechanical-keyboard/var-owm5/"
+    },
+    {
+      "id": "acme-baby-cap-var-qff5",
+      "handle": "acme-baby-cap-var-qff5",
+      "title": "Acme Baby Cap (Variant QFF5)",
+      "name": "Acme Baby Cap (Variant QFF5)",
+      "description": "100% combed ringspun cotton",
+      "category": "headwear",
+      "categories": [
+        "headwear",
+        "kids"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 10,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/baby-cap-black.png?v=1690002570",
+      "url": "/product/acme-baby-cap/var-qff5/"
+    },
+    {
+      "id": "acme-geometric-circles-t-shirt-var-qynj",
+      "handle": "acme-geometric-circles-t-shirt-var-qynj",
+      "title": "Acme Circles T-Shirt (Variant QYNJ)",
+      "name": "Acme Circles T-Shirt (Variant QYNJ)",
+      "description": "60% combed ringspun cotton/40% polyester jersey tee.",
+      "category": "shirts",
+      "categories": [
+        "shirts"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-1.png?v=1689798965",
+      "url": "/product/acme-geometric-circles-t-shirt/var-qynj/"
+    },
+    {
+      "id": "acme-webcam-cover-var-kuj8",
+      "handle": "acme-webcam-cover-var-kuj8",
+      "title": "Acme Webcam Cover (Variant KUJ8)",
+      "name": "Acme Webcam Cover (Variant KUJ8)",
+      "description": "This webcam cover is made of high grade plastic and is the thinnest model on the market, measuring at just 0.8mm thick. This is an example of a \"hidden\" product. You should not be able to find it browsing the site. You need to know the direct url to access it.",
+      "category": null,
+      "categories": [],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 5,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/webcam-cover.png?v=1690003750",
+      "url": "/product/acme-webcam-cover/var-kuj8/"
+    },
+    {
+      "id": "acme-baby-onesie-var-i1ot",
+      "handle": "acme-baby-onesie-var-i1ot",
+      "title": "Acme Baby Onesie (Variant I1OT)",
+      "name": "Acme Baby Onesie (Variant I1OT)",
+      "description": "Short sleeve 5-oz, 100% combed ringspun cotton onesie",
+      "category": "kids",
+      "categories": [
+        "kids"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 10,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/baby-onesie-beige-1.png?v=1690002632",
+      "url": "/product/acme-baby-onesie/var-i1ot/"
+    },
+    {
+      "id": "acme-drawstring-bag-var-zuk5",
+      "handle": "acme-drawstring-bag-var-zuk5",
+      "title": "Acme Drawstring Bag (Variant ZUK5)",
+      "name": "Acme Drawstring Bag (Variant ZUK5)",
+      "description": "Strong 210D ripstop nylon drawstring bag Available in multiple sizes Easy-to-close durable drawstring Sturdy, reusable, and resilient",
+      "category": "bags",
+      "categories": [
+        "bags"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 12,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bag-1-dark.png?v=1689796304",
+      "url": "/product/acme-drawstring-bag/var-zuk5/"
+    },
+    {
+      "id": "acme-drawstring-bag-var-cewo",
+      "handle": "acme-drawstring-bag-var-cewo",
+      "title": "Acme Drawstring Bag (Variant CEWO)",
+      "name": "Acme Drawstring Bag (Variant CEWO)",
+      "description": "Strong 210D ripstop nylon drawstring bag Available in multiple sizes Easy-to-close durable drawstring Sturdy, reusable, and resilient",
+      "category": "bags",
+      "categories": [
+        "bags"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 12,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bag-1-dark.png?v=1689796304",
+      "url": "/product/acme-drawstring-bag/var-cewo/"
+    },
+    {
+      "id": "acme-pacifier-var-hmn1",
+      "handle": "acme-pacifier-var-hmn1",
+      "title": "Acme Pacifier (Variant HMN1)",
+      "name": "Acme Pacifier (Variant HMN1)",
+      "description": "This line of pacifiers has been thoughtfully designed for your baby's comfort. The pacifier allows your child to self-soothe in the most natural way possible.",
+      "category": "kids",
+      "categories": [
+        "kids"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 10,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/pacifier-1.png?v=1690003544",
+      "url": "/product/acme-pacifier/var-hmn1/"
+    },
+    {
+      "id": "acme-hoodie-var-hu0s",
+      "handle": "acme-hoodie-var-hu0s",
+      "title": "Acme Hoodie (Variant HU0S)",
+      "name": "Acme Hoodie (Variant HU0S)",
+      "description": "Fabric blend of Supima Cotton and Micromodal.",
+      "category": "hoodies",
+      "categories": [
+        "hoodies"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 50,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/hoodie-1.png?v=1690003482",
+      "url": "/product/acme-hoodie/var-hu0s/"
+    },
+    {
+      "id": "acme-pacifier-var-kdju",
+      "handle": "acme-pacifier-var-kdju",
+      "title": "Acme Pacifier (Variant KDJU)",
+      "name": "Acme Pacifier (Variant KDJU)",
+      "description": "This line of pacifiers has been thoughtfully designed for your baby's comfort. The pacifier allows your child to self-soothe in the most natural way possible.",
+      "category": "kids",
+      "categories": [
+        "kids"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 10,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/pacifier-1.png?v=1690003544",
+      "url": "/product/acme-pacifier/var-kdju/"
+    },
+    {
+      "id": "acme-cup-var-8lag",
+      "handle": "acme-cup-var-8lag",
+      "title": "Acme Cup (Variant 8LAG)",
+      "name": "Acme Cup (Variant 8LAG)",
+      "description": "12oz double wall ceramic body with a padded bottom.",
+      "category": "drinkware",
+      "categories": [
+        "drinkware"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 15,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/cup-black.png?v=1690003088",
+      "url": "/product/acme-cup/var-8lag/"
+    },
+    {
+      "id": "acme-mug-var-zt59",
+      "handle": "acme-mug-var-zt59",
+      "title": "Acme Mug (Variant ZT59)",
+      "name": "Acme Mug (Variant ZT59)",
+      "description": "12 oz Beck Cork-Bottom Mug.",
+      "category": "drinkware",
+      "categories": [
+        "drinkware"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 15,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/mug-1.png?v=1690003527",
+      "url": "/product/acme-mug/var-zt59/"
+    },
+    {
+      "id": "acme-bomber-jacket-var-o7vk",
+      "handle": "acme-bomber-jacket-var-o7vk",
+      "title": "Acme Bomber Jacket (Variant O7VK)",
+      "name": "Acme Bomber Jacket (Variant O7VK)",
+      "description": "The multi-season must-have jacket: light and classic for daily wear, with a soft fleece lining for extra warmth.",
+      "category": "jackets",
+      "categories": [
+        "jackets"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 50,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bomber-jacket-army.png?v=1690002722",
+      "url": "/product/acme-bomber-jacket/var-o7vk/"
+    },
+    {
+      "id": "acme-t-shirt-var-yddf",
+      "handle": "acme-t-shirt-var-yddf",
+      "title": "Acme T-Shirt (Variant YDDF)",
+      "name": "Acme T-Shirt (Variant YDDF)",
+      "description": "60% combed ringspun cotton/40% polyester jersey tee.",
+      "category": "shirts",
+      "categories": [
+        "shirts"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-color-black.png?v=1690003675",
+      "url": "/product/acme-t-shirt/var-yddf/"
+    },
+    {
+      "id": "acme-baby-cap-var-nn3l",
+      "handle": "acme-baby-cap-var-nn3l",
+      "title": "Acme Baby Cap (Variant NN3L)",
+      "name": "Acme Baby Cap (Variant NN3L)",
+      "description": "100% combed ringspun cotton",
+      "category": "headwear",
+      "categories": [
+        "headwear",
+        "kids"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 10,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/baby-cap-black.png?v=1690002570",
+      "url": "/product/acme-baby-cap/var-nn3l/"
+    },
+    {
+      "id": "acme-baby-cap-var-09g0",
+      "handle": "acme-baby-cap-var-09g0",
+      "title": "Acme Baby Cap (Variant 09G0)",
+      "name": "Acme Baby Cap (Variant 09G0)",
+      "description": "100% combed ringspun cotton",
+      "category": "headwear",
+      "categories": [
+        "headwear",
+        "kids"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 10,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/baby-cap-black.png?v=1690002570",
+      "url": "/product/acme-baby-cap/var-09g0/"
+    },
+    {
+      "id": "acme-bomber-jacket-var-os23",
+      "handle": "acme-bomber-jacket-var-os23",
+      "title": "Acme Bomber Jacket (Variant OS23)",
+      "name": "Acme Bomber Jacket (Variant OS23)",
+      "description": "The multi-season must-have jacket: light and classic for daily wear, with a soft fleece lining for extra warmth.",
+      "category": "jackets",
+      "categories": [
+        "jackets"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 50,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bomber-jacket-army.png?v=1690002722",
+      "url": "/product/acme-bomber-jacket/var-os23/"
+    },
+    {
+      "id": "acme-cowboy-hat-var-1esy",
+      "handle": "acme-cowboy-hat-var-1esy",
+      "title": "Acme Cowboy Hat (Variant 1ESY)",
+      "name": "Acme Cowboy Hat (Variant 1ESY)",
+      "description": "Part of our Buffalo collection, this cowboy hat is made in the USA of high-quality, weather-resistant 4X buffalo felt. Its classic Western profile features a classic cattleman crease, a 4\" brim and a 4 1/2\" regular oval crown. Additional details include a leather sweatband, satin lining, and a self-matching hat band with a three-piece silver-toned buckle set, as well as a hat box. 4\" Brim 4 1/2\" Regular Oval Crown Cattleman Crease Self-Matching Hat Band 3-Piece Silver Buckle Set Hat Box 4X Wool Felt Construction American Buffalo Collection Made in the USA",
+      "category": "headwear",
+      "categories": [
+        "headwear"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 160,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/cowboy-hat-black-1.png?v=1690208765",
+      "url": "/product/acme-cowboy-hat/var-1esy/"
+    },
+    {
+      "id": "acme-slip-on-shoes-var-q3ki",
+      "handle": "acme-slip-on-shoes-var-q3ki",
+      "title": "Acme Slip-On Shoes (Variant Q3KI)",
+      "name": "Acme Slip-On Shoes (Variant Q3KI)",
+      "description": "Step into summer! Every time your head looks down, you'll see these beauties, and your mood bounces right back up. Sleek, easy, and effortlessly stylish. Acme Slip-On Shoes are the ultimate get-up-and-go footwear. The low-profile slip-on canvas upper offers unbeatable convenience, while the clean design makes this all-white slip-on the perfect choice for anyone with places to go and things to do. One of the most popular designs, these shoes are the perfect middle ground between style and convenience. Iconic slip-on shoe Low profile canvas uppers Supportive padded collars Elastic side accents Signature rubber waffle outsoles",
+      "category": "footware",
+      "categories": [
+        "footware"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 45,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/shoes-1.png?v=1690004109",
+      "url": "/product/acme-slip-on-shoes/var-q3ki/"
+    },
+    {
+      "id": "acme-baby-onesie-var-d6gl",
+      "handle": "acme-baby-onesie-var-d6gl",
+      "title": "Acme Baby Onesie (Variant D6GL)",
+      "name": "Acme Baby Onesie (Variant D6GL)",
+      "description": "Short sleeve 5-oz, 100% combed ringspun cotton onesie",
+      "category": "kids",
+      "categories": [
+        "kids"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 10,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/baby-onesie-beige-1.png?v=1690002632",
+      "url": "/product/acme-baby-onesie/var-d6gl/"
+    },
+    {
+      "id": "acme-t-shirt-var-z904",
+      "handle": "acme-t-shirt-var-z904",
+      "title": "Acme T-Shirt (Variant Z904)",
+      "name": "Acme T-Shirt (Variant Z904)",
+      "description": "60% combed ringspun cotton/40% polyester jersey tee.",
+      "category": "shirts",
+      "categories": [
+        "shirts"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-color-black.png?v=1690003675",
+      "url": "/product/acme-t-shirt/var-z904/"
+    },
+    {
+      "id": "acme-drawstring-bag-var-odhg",
+      "handle": "acme-drawstring-bag-var-odhg",
+      "title": "Acme Drawstring Bag (Variant ODHG)",
+      "name": "Acme Drawstring Bag (Variant ODHG)",
+      "description": "Strong 210D ripstop nylon drawstring bag Available in multiple sizes Easy-to-close durable drawstring Sturdy, reusable, and resilient",
+      "category": "bags",
+      "categories": [
+        "bags"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 12,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bag-1-dark.png?v=1689796304",
+      "url": "/product/acme-drawstring-bag/var-odhg/"
+    },
+    {
+      "id": "acme-t-shirt-var-zwna",
+      "handle": "acme-t-shirt-var-zwna",
+      "title": "Acme T-Shirt (Variant ZWNA)",
+      "name": "Acme T-Shirt (Variant ZWNA)",
+      "description": "60% combed ringspun cotton/40% polyester jersey tee.",
+      "category": "shirts",
+      "categories": [
+        "shirts"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-color-black.png?v=1690003675",
+      "url": "/product/acme-t-shirt/var-zwna/"
+    },
+    {
+      "id": "acme-baby-onesie-var-qyrs",
+      "handle": "acme-baby-onesie-var-qyrs",
+      "title": "Acme Baby Onesie (Variant QYRS)",
+      "name": "Acme Baby Onesie (Variant QYRS)",
+      "description": "Short sleeve 5-oz, 100% combed ringspun cotton onesie",
+      "category": "kids",
+      "categories": [
+        "kids"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 10,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/baby-onesie-beige-1.png?v=1690002632",
+      "url": "/product/acme-baby-onesie/var-qyrs/"
+    },
+    {
+      "id": "acme-baby-cap-var-6o96",
+      "handle": "acme-baby-cap-var-6o96",
+      "title": "Acme Baby Cap (Variant 6O96)",
+      "name": "Acme Baby Cap (Variant 6O96)",
+      "description": "100% combed ringspun cotton",
+      "category": "headwear",
+      "categories": [
+        "headwear",
+        "kids"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 10,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/baby-cap-black.png?v=1690002570",
+      "url": "/product/acme-baby-cap/var-6o96/"
+    },
+    {
+      "id": "acme-drawstring-bag-var-e2u4",
+      "handle": "acme-drawstring-bag-var-e2u4",
+      "title": "Acme Drawstring Bag (Variant E2U4)",
+      "name": "Acme Drawstring Bag (Variant E2U4)",
+      "description": "Strong 210D ripstop nylon drawstring bag Available in multiple sizes Easy-to-close durable drawstring Sturdy, reusable, and resilient",
+      "category": "bags",
+      "categories": [
+        "bags"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 12,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bag-1-dark.png?v=1689796304",
+      "url": "/product/acme-drawstring-bag/var-e2u4/"
+    },
+    {
+      "id": "acme-geometric-circles-t-shirt-var-p7f6",
+      "handle": "acme-geometric-circles-t-shirt-var-p7f6",
+      "title": "Acme Circles T-Shirt (Variant P7F6)",
+      "name": "Acme Circles T-Shirt (Variant P7F6)",
+      "description": "60% combed ringspun cotton/40% polyester jersey tee.",
+      "category": "shirts",
+      "categories": [
+        "shirts"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-1.png?v=1689798965",
+      "url": "/product/acme-geometric-circles-t-shirt/var-p7f6/"
+    },
+    {
+      "id": "acme-dog-sweater-var-6ia5",
+      "handle": "acme-dog-sweater-var-6ia5",
+      "title": "Acme Dog Sweater (Variant 6IA5)",
+      "name": "Acme Dog Sweater (Variant 6IA5)",
+      "description": "Keep your dog warm all winter long - When the cold weather hits, make sure your dog isn’t shivering and stays warm with the soft and stretchy fleece dog sweater. Made with 90% polyester & 5% polyurethane to keep moisture out, freezing rain or snow, and to help keep warm air in, so your dog always stays warm. Our dog clothing is safe, durable, and made to last.",
+      "category": "pets",
+      "categories": [
+        "pets"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/dog-sweater-1.png?v=1690003132",
+      "url": "/product/acme-dog-sweater/var-6ia5/"
+    },
+    {
+      "id": "acme-hoodie-var-9qjl",
+      "handle": "acme-hoodie-var-9qjl",
+      "title": "Acme Hoodie (Variant 9QJL)",
+      "name": "Acme Hoodie (Variant 9QJL)",
+      "description": "Fabric blend of Supima Cotton and Micromodal.",
+      "category": "hoodies",
+      "categories": [
+        "hoodies"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 50,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/hoodie-1.png?v=1690003482",
+      "url": "/product/acme-hoodie/var-9qjl/"
+    },
+    {
+      "id": "acme-dog-sweater-var-8ivn",
+      "handle": "acme-dog-sweater-var-8ivn",
+      "title": "Acme Dog Sweater (Variant 8IVN)",
+      "name": "Acme Dog Sweater (Variant 8IVN)",
+      "description": "Keep your dog warm all winter long - When the cold weather hits, make sure your dog isn’t shivering and stays warm with the soft and stretchy fleece dog sweater. Made with 90% polyester & 5% polyurethane to keep moisture out, freezing rain or snow, and to help keep warm air in, so your dog always stays warm. Our dog clothing is safe, durable, and made to last.",
+      "category": "pets",
+      "categories": [
+        "pets"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/dog-sweater-1.png?v=1690003132",
+      "url": "/product/acme-dog-sweater/var-8ivn/"
+    },
+    {
+      "id": "acme-t-shirt-var-90lj",
+      "handle": "acme-t-shirt-var-90lj",
+      "title": "Acme T-Shirt (Variant 90LJ)",
+      "name": "Acme T-Shirt (Variant 90LJ)",
+      "description": "60% combed ringspun cotton/40% polyester jersey tee.",
+      "category": "shirts",
+      "categories": [
+        "shirts"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-color-black.png?v=1690003675",
+      "url": "/product/acme-t-shirt/var-90lj/"
+    },
+    {
+      "id": "acme-mug-var-48zt",
+      "handle": "acme-mug-var-48zt",
+      "title": "Acme Mug (Variant 48ZT)",
+      "name": "Acme Mug (Variant 48ZT)",
+      "description": "12 oz Beck Cork-Bottom Mug.",
+      "category": "drinkware",
+      "categories": [
+        "drinkware"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 15,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/mug-1.png?v=1690003527",
+      "url": "/product/acme-mug/var-48zt/"
+    },
+    {
+      "id": "acme-geometric-circles-t-shirt-var-5pr9",
+      "handle": "acme-geometric-circles-t-shirt-var-5pr9",
+      "title": "Acme Circles T-Shirt (Variant 5PR9)",
+      "name": "Acme Circles T-Shirt (Variant 5PR9)",
+      "description": "60% combed ringspun cotton/40% polyester jersey tee.",
+      "category": "shirts",
+      "categories": [
+        "shirts"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-1.png?v=1689798965",
+      "url": "/product/acme-geometric-circles-t-shirt/var-5pr9/"
+    },
+    {
+      "id": "acme-mug-var-1uhz",
+      "handle": "acme-mug-var-1uhz",
+      "title": "Acme Mug (Variant 1UHZ)",
+      "name": "Acme Mug (Variant 1UHZ)",
+      "description": "12 oz Beck Cork-Bottom Mug.",
+      "category": "drinkware",
+      "categories": [
+        "drinkware"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 15,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/mug-1.png?v=1690003527",
+      "url": "/product/acme-mug/var-1uhz/"
+    },
+    {
+      "id": "acme-rainbow-sticker-var-eowy",
+      "handle": "acme-rainbow-sticker-var-eowy",
+      "title": "Acme Rainbow Sticker (Variant EOWY)",
+      "name": "Acme Rainbow Sticker (Variant EOWY)",
+      "description": "",
+      "category": "stickers",
+      "categories": [
+        "stickers"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 4,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/sticker-rainbow.png?v=1690003602",
+      "url": "/product/acme-rainbow-sticker/var-eowy/"
+    },
+    {
+      "id": "acme-baby-onesie-var-0nqv",
+      "handle": "acme-baby-onesie-var-0nqv",
+      "title": "Acme Baby Onesie (Variant 0NQV)",
+      "name": "Acme Baby Onesie (Variant 0NQV)",
+      "description": "Short sleeve 5-oz, 100% combed ringspun cotton onesie",
+      "category": "kids",
+      "categories": [
+        "kids"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 10,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/baby-onesie-beige-1.png?v=1690002632",
+      "url": "/product/acme-baby-onesie/var-0nqv/"
+    },
+    {
+      "id": "acme-baby-cap-var-tnr4",
+      "handle": "acme-baby-cap-var-tnr4",
+      "title": "Acme Baby Cap (Variant TNR4)",
+      "name": "Acme Baby Cap (Variant TNR4)",
+      "description": "100% combed ringspun cotton",
+      "category": "headwear",
+      "categories": [
+        "headwear",
+        "kids"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 10,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/baby-cap-black.png?v=1690002570",
+      "url": "/product/acme-baby-cap/var-tnr4/"
+    },
+    {
+      "id": "acme-cap-var-35r8",
+      "handle": "acme-cap-var-35r8",
+      "title": "Acme Cap (Variant 35R8)",
+      "name": "Acme Cap (Variant 35R8)",
+      "description": "100% peach-washed cotton.",
+      "category": "headwear",
+      "categories": [
+        "headwear"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/hat-1.png?v=1690002833",
+      "url": "/product/acme-cap/var-35r8/"
+    },
+    {
+      "id": "acme-sticker-var-14zf",
+      "handle": "acme-sticker-var-14zf",
+      "title": "Acme Sticker (Variant 14ZF)",
+      "name": "Acme Sticker (Variant 14ZF)",
+      "description": "",
+      "category": "stickers",
+      "categories": [
+        "stickers"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 4,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/sticker.png?v=1690003619",
+      "url": "/product/acme-sticker/var-14zf/"
+    },
+    {
+      "id": "acme-bomber-jacket-var-1who",
+      "handle": "acme-bomber-jacket-var-1who",
+      "title": "Acme Bomber Jacket (Variant 1WHO)",
+      "name": "Acme Bomber Jacket (Variant 1WHO)",
+      "description": "The multi-season must-have jacket: light and classic for daily wear, with a soft fleece lining for extra warmth.",
+      "category": "jackets",
+      "categories": [
+        "jackets"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 50,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bomber-jacket-army.png?v=1690002722",
+      "url": "/product/acme-bomber-jacket/var-1who/"
+    },
+    {
+      "id": "acme-cap-var-aahz",
+      "handle": "acme-cap-var-aahz",
+      "title": "Acme Cap (Variant AAHZ)",
+      "name": "Acme Cap (Variant AAHZ)",
+      "description": "100% peach-washed cotton.",
+      "category": "headwear",
+      "categories": [
+        "headwear"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/hat-1.png?v=1690002833",
+      "url": "/product/acme-cap/var-aahz/"
+    },
+    {
+      "id": "acme-hoodie-var-ue5z",
+      "handle": "acme-hoodie-var-ue5z",
+      "title": "Acme Hoodie (Variant UE5Z)",
+      "name": "Acme Hoodie (Variant UE5Z)",
+      "description": "Fabric blend of Supima Cotton and Micromodal.",
+      "category": "hoodies",
+      "categories": [
+        "hoodies"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 50,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/hoodie-1.png?v=1690003482",
+      "url": "/product/acme-hoodie/var-ue5z/"
+    },
+    {
+      "id": "acme-mug-var-lftg",
+      "handle": "acme-mug-var-lftg",
+      "title": "Acme Mug (Variant LFTG)",
+      "name": "Acme Mug (Variant LFTG)",
+      "description": "12 oz Beck Cork-Bottom Mug.",
+      "category": "drinkware",
+      "categories": [
+        "drinkware"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 15,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/mug-1.png?v=1690003527",
+      "url": "/product/acme-mug/var-lftg/"
+    },
+    {
+      "id": "acme-cap-var-j7zw",
+      "handle": "acme-cap-var-j7zw",
+      "title": "Acme Cap (Variant J7ZW)",
+      "name": "Acme Cap (Variant J7ZW)",
+      "description": "100% peach-washed cotton.",
+      "category": "headwear",
+      "categories": [
+        "headwear"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/hat-1.png?v=1690002833",
+      "url": "/product/acme-cap/var-j7zw/"
+    },
+    {
+      "id": "acme-cap-var-xsxg",
+      "handle": "acme-cap-var-xsxg",
+      "title": "Acme Cap (Variant XSXG)",
+      "name": "Acme Cap (Variant XSXG)",
+      "description": "100% peach-washed cotton.",
+      "category": "headwear",
+      "categories": [
+        "headwear"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/hat-1.png?v=1690002833",
+      "url": "/product/acme-cap/var-xsxg/"
+    },
+    {
+      "id": "acme-pacifier-var-7dbk",
+      "handle": "acme-pacifier-var-7dbk",
+      "title": "Acme Pacifier (Variant 7DBK)",
+      "name": "Acme Pacifier (Variant 7DBK)",
+      "description": "This line of pacifiers has been thoughtfully designed for your baby's comfort. The pacifier allows your child to self-soothe in the most natural way possible.",
+      "category": "kids",
+      "categories": [
+        "kids"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 10,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/pacifier-1.png?v=1690003544",
+      "url": "/product/acme-pacifier/var-7dbk/"
+    },
+    {
+      "id": "acme-cup-var-yilw",
+      "handle": "acme-cup-var-yilw",
+      "title": "Acme Cup (Variant YILW)",
+      "name": "Acme Cup (Variant YILW)",
+      "description": "12oz double wall ceramic body with a padded bottom.",
+      "category": "drinkware",
+      "categories": [
+        "drinkware"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 15,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/cup-black.png?v=1690003088",
+      "url": "/product/acme-cup/var-yilw/"
+    },
+    {
+      "id": "acme-mug-var-y6jx",
+      "handle": "acme-mug-var-y6jx",
+      "title": "Acme Mug (Variant Y6JX)",
+      "name": "Acme Mug (Variant Y6JX)",
+      "description": "12 oz Beck Cork-Bottom Mug.",
+      "category": "drinkware",
+      "categories": [
+        "drinkware"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 15,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/mug-1.png?v=1690003527",
+      "url": "/product/acme-mug/var-y6jx/"
+    },
+    {
+      "id": "acme-t-shirt-var-48bb",
+      "handle": "acme-t-shirt-var-48bb",
+      "title": "Acme T-Shirt (Variant 48BB)",
+      "name": "Acme T-Shirt (Variant 48BB)",
+      "description": "60% combed ringspun cotton/40% polyester jersey tee.",
+      "category": "shirts",
+      "categories": [
+        "shirts"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-color-black.png?v=1690003675",
+      "url": "/product/acme-t-shirt/var-48bb/"
+    },
+    {
+      "id": "acme-cowboy-hat-var-7t8a",
+      "handle": "acme-cowboy-hat-var-7t8a",
+      "title": "Acme Cowboy Hat (Variant 7T8A)",
+      "name": "Acme Cowboy Hat (Variant 7T8A)",
+      "description": "Part of our Buffalo collection, this cowboy hat is made in the USA of high-quality, weather-resistant 4X buffalo felt. Its classic Western profile features a classic cattleman crease, a 4\" brim and a 4 1/2\" regular oval crown. Additional details include a leather sweatband, satin lining, and a self-matching hat band with a three-piece silver-toned buckle set, as well as a hat box. 4\" Brim 4 1/2\" Regular Oval Crown Cattleman Crease Self-Matching Hat Band 3-Piece Silver Buckle Set Hat Box 4X Wool Felt Construction American Buffalo Collection Made in the USA",
+      "category": "headwear",
+      "categories": [
+        "headwear"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 160,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/cowboy-hat-black-1.png?v=1690208765",
+      "url": "/product/acme-cowboy-hat/var-7t8a/"
+    },
+    {
+      "id": "acme-drawstring-bag-var-yi28",
+      "handle": "acme-drawstring-bag-var-yi28",
+      "title": "Acme Drawstring Bag (Variant YI28)",
+      "name": "Acme Drawstring Bag (Variant YI28)",
+      "description": "Strong 210D ripstop nylon drawstring bag Available in multiple sizes Easy-to-close durable drawstring Sturdy, reusable, and resilient",
+      "category": "bags",
+      "categories": [
+        "bags"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 12,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bag-1-dark.png?v=1689796304",
+      "url": "/product/acme-drawstring-bag/var-yi28/"
+    },
+    {
+      "id": "acme-rainbow-prism-t-shirt-var-7now",
+      "handle": "acme-rainbow-prism-t-shirt-var-7now",
+      "title": "Acme Prism T-Shirt (Variant 7NOW)",
+      "name": "Acme Prism T-Shirt (Variant 7NOW)",
+      "description": "60% combed ringspun cotton/40% polyester jersey tee.",
+      "category": "shirts",
+      "categories": [
+        "shirts"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 25,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-spiral-1.png?v=1690003571",
+      "url": "/product/acme-rainbow-prism-t-shirt/var-7now/"
+    },
+    {
+      "id": "acme-dog-sweater-var-706e",
+      "handle": "acme-dog-sweater-var-706e",
+      "title": "Acme Dog Sweater (Variant 706E)",
+      "name": "Acme Dog Sweater (Variant 706E)",
+      "description": "Keep your dog warm all winter long - When the cold weather hits, make sure your dog isn’t shivering and stays warm with the soft and stretchy fleece dog sweater. Made with 90% polyester & 5% polyurethane to keep moisture out, freezing rain or snow, and to help keep warm air in, so your dog always stays warm. Our dog clothing is safe, durable, and made to last.",
+      "category": "pets",
+      "categories": [
+        "pets"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/dog-sweater-1.png?v=1690003132",
+      "url": "/product/acme-dog-sweater/var-706e/"
+    },
+    {
+      "id": "acme-cowboy-hat-var-ahec",
+      "handle": "acme-cowboy-hat-var-ahec",
+      "title": "Acme Cowboy Hat (Variant AHEC)",
+      "name": "Acme Cowboy Hat (Variant AHEC)",
+      "description": "Part of our Buffalo collection, this cowboy hat is made in the USA of high-quality, weather-resistant 4X buffalo felt. Its classic Western profile features a classic cattleman crease, a 4\" brim and a 4 1/2\" regular oval crown. Additional details include a leather sweatband, satin lining, and a self-matching hat band with a three-piece silver-toned buckle set, as well as a hat box. 4\" Brim 4 1/2\" Regular Oval Crown Cattleman Crease Self-Matching Hat Band 3-Piece Silver Buckle Set Hat Box 4X Wool Felt Construction American Buffalo Collection Made in the USA",
+      "category": "headwear",
+      "categories": [
+        "headwear"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 160,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/cowboy-hat-black-1.png?v=1690208765",
+      "url": "/product/acme-cowboy-hat/var-ahec/"
+    },
+    {
+      "id": "acme-rainbow-prism-t-shirt-var-zq6i",
+      "handle": "acme-rainbow-prism-t-shirt-var-zq6i",
+      "title": "Acme Prism T-Shirt (Variant ZQ6I)",
+      "name": "Acme Prism T-Shirt (Variant ZQ6I)",
+      "description": "60% combed ringspun cotton/40% polyester jersey tee.",
+      "category": "shirts",
+      "categories": [
+        "shirts"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 25,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-spiral-1.png?v=1690003571",
+      "url": "/product/acme-rainbow-prism-t-shirt/var-zq6i/"
+    },
+    {
+      "id": "acme-mechanical-keyboard-var-5spw",
+      "handle": "acme-mechanical-keyboard-var-5spw",
+      "title": "Acme Keyboard (Variant 5SPW)",
+      "name": "Acme Keyboard (Variant 5SPW)",
+      "description": "",
+      "category": "electronics",
+      "categories": [
+        "electronics"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 150,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/keyboard.png?v=1690003507",
+      "url": "/product/acme-mechanical-keyboard/var-5spw/"
+    },
+    {
+      "id": "acme-rainbow-prism-t-shirt-var-9i30",
+      "handle": "acme-rainbow-prism-t-shirt-var-9i30",
+      "title": "Acme Prism T-Shirt (Variant 9I30)",
+      "name": "Acme Prism T-Shirt (Variant 9I30)",
+      "description": "60% combed ringspun cotton/40% polyester jersey tee.",
+      "category": "shirts",
+      "categories": [
+        "shirts"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 25,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-spiral-1.png?v=1690003571",
+      "url": "/product/acme-rainbow-prism-t-shirt/var-9i30/"
+    },
+    {
+      "id": "acme-mechanical-keyboard-var-01sq",
+      "handle": "acme-mechanical-keyboard-var-01sq",
+      "title": "Acme Keyboard (Variant 01SQ)",
+      "name": "Acme Keyboard (Variant 01SQ)",
+      "description": "",
+      "category": "electronics",
+      "categories": [
+        "electronics"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 150,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/keyboard.png?v=1690003507",
+      "url": "/product/acme-mechanical-keyboard/var-01sq/"
+    },
+    {
+      "id": "acme-pacifier-var-b9ab",
+      "handle": "acme-pacifier-var-b9ab",
+      "title": "Acme Pacifier (Variant B9AB)",
+      "name": "Acme Pacifier (Variant B9AB)",
+      "description": "This line of pacifiers has been thoughtfully designed for your baby's comfort. The pacifier allows your child to self-soothe in the most natural way possible.",
+      "category": "kids",
+      "categories": [
+        "kids"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 10,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/pacifier-1.png?v=1690003544",
+      "url": "/product/acme-pacifier/var-b9ab/"
+    },
+    {
+      "id": "acme-t-shirt-var-v3sx",
+      "handle": "acme-t-shirt-var-v3sx",
+      "title": "Acme T-Shirt (Variant V3SX)",
+      "name": "Acme T-Shirt (Variant V3SX)",
+      "description": "60% combed ringspun cotton/40% polyester jersey tee.",
+      "category": "shirts",
+      "categories": [
+        "shirts"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-color-black.png?v=1690003675",
+      "url": "/product/acme-t-shirt/var-v3sx/"
+    },
+    {
+      "id": "acme-dog-sweater-var-9b53",
+      "handle": "acme-dog-sweater-var-9b53",
+      "title": "Acme Dog Sweater (Variant 9B53)",
+      "name": "Acme Dog Sweater (Variant 9B53)",
+      "description": "Keep your dog warm all winter long - When the cold weather hits, make sure your dog isn’t shivering and stays warm with the soft and stretchy fleece dog sweater. Made with 90% polyester & 5% polyurethane to keep moisture out, freezing rain or snow, and to help keep warm air in, so your dog always stays warm. Our dog clothing is safe, durable, and made to last.",
+      "category": "pets",
+      "categories": [
+        "pets"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 20,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/dog-sweater-1.png?v=1690003132",
+      "url": "/product/acme-dog-sweater/var-9b53/"
+    },
+    {
+      "id": "acme-hoodie-var-wq25",
+      "handle": "acme-hoodie-var-wq25",
+      "title": "Acme Hoodie (Variant WQ25)",
+      "name": "Acme Hoodie (Variant WQ25)",
+      "description": "Fabric blend of Supima Cotton and Micromodal.",
+      "category": "hoodies",
+      "categories": [
+        "hoodies"
+      ],
+      "brand": "Acme",
+      "vendor": "Acme",
+      "price": 50,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/hoodie-1.png?v=1690003482",
+      "url": "/product/acme-hoodie/var-wq25/"
     }
   ]
 }
