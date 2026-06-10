@@ -85,13 +85,13 @@ for (const file of htmlFiles) {
   // Remove any previously injected shopbot script tag
   html = html.replace(/<script\s+src="[^"]*\/shopbot\.js[^"]*">\s*<\/script>\s*/g, "");
 
-  // Inject right before </body>
-  if (html.includes("</body>")) {
-    html = html.replace("</body>", `${scriptTag}\n</body>`);
+  // Inject right after </head>
+  if (html.includes("</head>")) {
+    html = html.replace("</head>", `</head>\n${scriptTag}`);
     writeFileSync(file, html, "utf-8");
     injected++;
   } else {
-    console.warn(`[inject-shopbot] WARN: No </body> in ${file}`);
+    console.warn(`[inject-shopbot] WARN: No </head> in ${file}`);
     skipped++;
   }
 }
