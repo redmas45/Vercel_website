@@ -48,6 +48,22 @@ function resolveApiUrl() {
   return "";
 }
 
+function isDeployableApiUrl(raw) {
+  try {
+    const parsed = new URL((raw || "").trim());
+    const host = parsed.hostname.toLowerCase();
+    return (
+      parsed.protocol === "https:" &&
+      host !== "localhost" &&
+      host !== "127.0.0.1" &&
+      host !== "0.0.0.0" &&
+      host !== "::1"
+    );
+  } catch (_err) {
+    return false;
+  }
+}
+
 function walkHtml(dir) {
   const results = [];
   for (const entry of readdirSync(dir)) {
@@ -63,17 +79,34 @@ function walkHtml(dir) {
 }
 
 const apiUrl = resolveApiUrl();
-if (!apiUrl) {
-  console.warn(
-    "[inject-shopbot] SKIP: No API URL found.\n" +
-      "  Set SHOPBOT_API_URL env var, or make sure AI_salesman_plugin/.env has PUBLIC_API_URL.\n" +
-      "  Skipping injection (build will succeed without it)."
+if (!isDeployableApiUrl(apiUrl)) {
+  console.error(
+    "[inject-shopbot] ERROR: SHOPBOT_API_URL/PUBLIC_API_URL must be a public HTTPS URL.\n" +
+      `  Got: ${apiUrl || "(empty)"}`
   );
-  process.exit(0);
+  process.exit(1);
 }
 
-const scriptTag = `<script src="${apiUrl}/shopbot.js?site=${SITE_ID}"></script>`;
-console.log(`[inject-shopbot] Using script tag:\n  ${scriptTag}\n`);
+console.log(`[inject-shopbot] Fetching shopbot.js from ${apiUrl}...`);
+let shopbotCode = "";
+try {
+  const res = await fetch(`${apiUrl}/shopbot.js?site=${SITE_ID}`, {
+    headers: { "ngrok-skip-browser-warning": "1" }
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  shopbotCode = await res.text();
+} catch (err) {
+  console.error(`[inject-shopbot] ERROR: Failed to fetch shopbot.js: ${err.message}`);
+  process.exit(1);
+}
+
+if (!shopbotCode.includes("voice-orb") || shopbotCode.includes("Visit Site to continue")) {
+  console.error("[inject-shopbot] ERROR: fetched shopbot.js does not look like the widget code.");
+  process.exit(1);
+}
+
+const scriptTag = `<script data-api-url="${apiUrl}" data-site-id="${SITE_ID}">${shopbotCode}</script>`;
+console.log("[inject-shopbot] Successfully fetched and inlined shopbot.js");
 
 const htmlFiles = walkHtml(OUT_DIR);
 let injected = 0;
@@ -84,16 +117,22 @@ for (const file of htmlFiles) {
 
   // Remove any previously injected shopbot script tag
   html = html.replace(/<script\s+src="[^"]*\/shopbot\.js[^"]*">\s*<\/script>\s*/g, "");
+  html = html.replace(
+    /<script\b(?=[^>]*\bdata-api-url=)(?=[^>]*\bdata-site-id=)[\s\S]*?<\/script>\s*/g,
+    ""
+  );
 
   // Inject right after </head>
   if (html.includes("</head>")) {
     html = html.replace("</head>", `</head>\n${scriptTag}`);
-    writeFileSync(file, html, "utf-8");
-    injected++;
+  } else if (html.includes("<head>")) {
+    html = html.replace("<head>", `<head>\n${scriptTag}`);
   } else {
-    console.warn(`[inject-shopbot] WARN: No </head> in ${file}`);
-    skipped++;
+    // If all else fails, append to end of file
+    html += `\n${scriptTag}`;
   }
+  writeFileSync(file, html, "utf-8");
+  injected++;
 }
 
 console.log(

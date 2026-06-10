@@ -176,8 +176,10 @@ def inject_lab_script(html: str) -> str:
         marker = "</head>"
         if marker in html:
             html = html.replace(marker, f"{script}\n{marker}", 1)
+        elif "<head>" in html:
+            html = html.replace("<head>", f"<head>\n{script}", 1)
         else:
-            html = f"{script}\n{html}"
+            html = f"{html}\n{script}"
             
     body_marker = "</body>"
     if body_marker in html:
