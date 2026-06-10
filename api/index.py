@@ -30,7 +30,7 @@ async def add_security_headers(request: Request, call_next):
     response.headers.setdefault("X-Frame-Options", "SAMEORIGIN")
     response.headers.setdefault(
         "Permissions-Policy",
-        "camera=(), microphone=(), geolocation=(), payment=()",
+        "camera=(), geolocation=(), payment=()",
     )
     response.headers.setdefault("Content-Security-Policy", content_security_policy())
     response.headers.setdefault("Access-Control-Allow-Origin", api_cors_origin())
