@@ -30,7 +30,7 @@ LAB_ACCESS_KEY=replace_with_raw_key
 LAB_ACCESS_KEY_SHA256=replace_with_sha256_of_raw_key
 CATALOG_BASE_URL=https://vercelclonedwebsite.vercel.app
 CATALOG_API_URL=https://vercelclonedwebsite.vercel.app/api/products?key=replace_with_raw_key
-LAB_INJECTION_HTML=<script src="https://fresh-tunnel-url.example.com/shopbot.js?site=https_demo_vercel_store"></script>
+LAB_INJECTION_HTML=<script src="https://fresh-tunnel-url.example.com/shopbot.js?site=ai_kart_main"></script>
 LAB_ALLOWED_SCRIPT_ORIGINS=https://fresh-tunnel-url.example.com
 API_CORS_ORIGIN=*
 IMAGE_PROXY_ALLOWED_HOSTS=cdn.shopify.com demo.vercel.store vercel.com assets.vercel.com

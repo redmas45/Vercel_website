@@ -28,7 +28,7 @@ function walkHtml(dir) {
 
 function main() {
   console.log("AI Salesman Cart Injector");
-  console.log("-" * 40);
+  console.log("-".repeat(40));
 
   // 1. Copy cart.js to out/cart.js
   try {

@@ -16,7 +16,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = resolve(__dirname, "..", "out");
-const SITE_ID = "https_demo_vercel_store";
+const SITE_ID = "ai_kart_main";
 
 function readEnvValue(envPath, key) {
   try {

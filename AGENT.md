@@ -106,7 +106,7 @@ LAB_ALLOWED_SCRIPT_ORIGINS
 Example:
 
 ```env
-LAB_INJECTION_HTML=<script src="https://fresh-tunnel-url.example.com/shopbot.js?site=https_demo_vercel_store"></script>
+LAB_INJECTION_HTML=<script src="https://fresh-tunnel-url.example.com/shopbot.js?site=ai_kart_main"></script>
 LAB_ALLOWED_SCRIPT_ORIGINS=https://fresh-tunnel-url.example.com
 ```
 

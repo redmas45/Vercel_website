@@ -1,21 +1,21 @@
 {
   "source": "https://demo.vercel.store/",
-  "generated_at": "2026-06-10T21:12:16.311Z",
+  "generated_at": "2026-06-11T11:40:39.889Z",
   "count": 19,
   "products": [
     {
       "id": "acme-baby-cap",
       "handle": "acme-baby-cap",
-      "title": "Acme Baby Cap",
-      "name": "Acme Baby Cap",
+      "title": "NOVA Baby Cap",
+      "name": "NOVA Baby Cap",
       "description": "100% combed ringspun cotton",
       "category": "headwear",
       "categories": [
         "headwear",
         "kids"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 10,
       "original_price": null,
       "currency": "USD",
@@ -27,15 +27,15 @@
     {
       "id": "acme-baby-onesie",
       "handle": "acme-baby-onesie",
-      "title": "Acme Baby Onesie",
-      "name": "Acme Baby Onesie",
+      "title": "NOVA Baby Onesie",
+      "name": "NOVA Baby Onesie",
       "description": "Short sleeve 5-oz, 100% combed ringspun cotton onesie",
       "category": "kids",
       "categories": [
         "kids"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 10,
       "original_price": null,
       "currency": "USD",
@@ -47,15 +47,15 @@
     {
       "id": "acme-bomber-jacket",
       "handle": "acme-bomber-jacket",
-      "title": "Acme Bomber Jacket",
-      "name": "Acme Bomber Jacket",
+      "title": "NOVA Bomber Jacket",
+      "name": "NOVA Bomber Jacket",
       "description": "The multi-season must-have jacket: light and classic for daily wear, with a soft fleece lining for extra warmth.",
       "category": "jackets",
       "categories": [
         "jackets"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 50,
       "original_price": null,
       "currency": "USD",
@@ -67,15 +67,15 @@
     {
       "id": "acme-cap",
       "handle": "acme-cap",
-      "title": "Acme Cap",
-      "name": "Acme Cap",
+      "title": "NOVA Cap",
+      "name": "NOVA Cap",
       "description": "100% peach-washed cotton.",
       "category": "headwear",
       "categories": [
         "headwear"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 20,
       "original_price": null,
       "currency": "USD",
@@ -87,15 +87,15 @@
     {
       "id": "acme-geometric-circles-t-shirt",
       "handle": "acme-geometric-circles-t-shirt",
-      "title": "Acme Circles T-Shirt",
-      "name": "Acme Circles T-Shirt",
+      "title": "NOVA Circles T-Shirt",
+      "name": "NOVA Circles T-Shirt",
       "description": "60% combed ringspun cotton/40% polyester jersey tee.",
       "category": "shirts",
       "categories": [
         "shirts"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 20,
       "original_price": null,
       "currency": "USD",
@@ -107,15 +107,15 @@
     {
       "id": "acme-cowboy-hat",
       "handle": "acme-cowboy-hat",
-      "title": "Acme Cowboy Hat",
-      "name": "Acme Cowboy Hat",
+      "title": "NOVA Cowboy Hat",
+      "name": "NOVA Cowboy Hat",
       "description": "Part of our Buffalo collection, this cowboy hat is made in the USA of high-quality, weather-resistant 4X buffalo felt. Its classic Western profile features a classic cattleman crease, a 4\" brim and a 4 1/2\" regular oval crown. Additional details include a leather sweatband, satin lining, and a self-matching hat band with a three-piece silver-toned buckle set, as well as a hat box. 4\" Brim 4 1/2\" Regular Oval Crown Cattleman Crease Self-Matching Hat Band 3-Piece Silver Buckle Set Hat Box 4X Wool Felt Construction American Buffalo Collection Made in the USA",
       "category": "headwear",
       "categories": [
         "headwear"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 160,
       "original_price": null,
       "currency": "USD",
@@ -127,15 +127,15 @@
     {
       "id": "acme-cup",
       "handle": "acme-cup",
-      "title": "Acme Cup",
-      "name": "Acme Cup",
+      "title": "NOVA Cup",
+      "name": "NOVA Cup",
       "description": "12oz double wall ceramic body with a padded bottom.",
       "category": "drinkware",
       "categories": [
         "drinkware"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 15,
       "original_price": null,
       "currency": "USD",
@@ -147,15 +147,15 @@
     {
       "id": "acme-dog-sweater",
       "handle": "acme-dog-sweater",
-      "title": "Acme Dog Sweater",
-      "name": "Acme Dog Sweater",
+      "title": "NOVA Dog Sweater",
+      "name": "NOVA Dog Sweater",
       "description": "Keep your dog warm all winter long - When the cold weather hits, make sure your dog isn’t shivering and stays warm with the soft and stretchy fleece dog sweater. Made with 90% polyester & 5% polyurethane to keep moisture out, freezing rain or snow, and to help keep warm air in, so your dog always stays warm. Our dog clothing is safe, durable, and made to last.",
       "category": "pets",
       "categories": [
         "pets"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 20,
       "original_price": null,
       "currency": "USD",
@@ -167,15 +167,15 @@
     {
       "id": "acme-drawstring-bag",
       "handle": "acme-drawstring-bag",
-      "title": "Acme Drawstring Bag",
-      "name": "Acme Drawstring Bag",
+      "title": "NOVA Drawstring Bag",
+      "name": "NOVA Drawstring Bag",
       "description": "Strong 210D ripstop nylon drawstring bag Available in multiple sizes Easy-to-close durable drawstring Sturdy, reusable, and resilient",
       "category": "bags",
       "categories": [
         "bags"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 12,
       "original_price": null,
       "currency": "USD",
@@ -187,15 +187,15 @@
     {
       "id": "acme-hoodie",
       "handle": "acme-hoodie",
-      "title": "Acme Hoodie",
-      "name": "Acme Hoodie",
+      "title": "NOVA Hoodie",
+      "name": "NOVA Hoodie",
       "description": "Fabric blend of Supima Cotton and Micromodal.",
       "category": "hoodies",
       "categories": [
         "hoodies"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 50,
       "original_price": null,
       "currency": "USD",
@@ -207,15 +207,15 @@
     {
       "id": "acme-mechanical-keyboard",
       "handle": "acme-mechanical-keyboard",
-      "title": "Acme Keyboard",
-      "name": "Acme Keyboard",
+      "title": "NOVA Keyboard",
+      "name": "NOVA Keyboard",
       "description": "",
       "category": "electronics",
       "categories": [
         "electronics"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 150,
       "original_price": null,
       "currency": "USD",
@@ -227,15 +227,15 @@
     {
       "id": "acme-mug",
       "handle": "acme-mug",
-      "title": "Acme Mug",
-      "name": "Acme Mug",
+      "title": "NOVA Mug",
+      "name": "NOVA Mug",
       "description": "12 oz Beck Cork-Bottom Mug.",
       "category": "drinkware",
       "categories": [
         "drinkware"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 15,
       "original_price": null,
       "currency": "USD",
@@ -247,15 +247,15 @@
     {
       "id": "acme-pacifier",
       "handle": "acme-pacifier",
-      "title": "Acme Pacifier",
-      "name": "Acme Pacifier",
+      "title": "NOVA Pacifier",
+      "name": "NOVA Pacifier",
       "description": "This line of pacifiers has been thoughtfully designed for your baby's comfort. The pacifier allows your child to self-soothe in the most natural way possible.",
       "category": "kids",
       "categories": [
         "kids"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 10,
       "original_price": null,
       "currency": "USD",
@@ -267,15 +267,15 @@
     {
       "id": "acme-rainbow-prism-t-shirt",
       "handle": "acme-rainbow-prism-t-shirt",
-      "title": "Acme Prism T-Shirt",
-      "name": "Acme Prism T-Shirt",
+      "title": "NOVA Prism T-Shirt",
+      "name": "NOVA Prism T-Shirt",
       "description": "60% combed ringspun cotton/40% polyester jersey tee.",
       "category": "shirts",
       "categories": [
         "shirts"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 25,
       "original_price": null,
       "currency": "USD",
@@ -287,15 +287,15 @@
     {
       "id": "acme-rainbow-sticker",
       "handle": "acme-rainbow-sticker",
-      "title": "Acme Rainbow Sticker",
-      "name": "Acme Rainbow Sticker",
+      "title": "NOVA Rainbow Sticker",
+      "name": "NOVA Rainbow Sticker",
       "description": "",
       "category": "stickers",
       "categories": [
         "stickers"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 4,
       "original_price": null,
       "currency": "USD",
@@ -307,15 +307,15 @@
     {
       "id": "acme-slip-on-shoes",
       "handle": "acme-slip-on-shoes",
-      "title": "Acme Slip-On Shoes",
-      "name": "Acme Slip-On Shoes",
-      "description": "Step into summer! Every time your head looks down, you'll see these beauties, and your mood bounces right back up. Sleek, easy, and effortlessly stylish. Acme Slip-On Shoes are the ultimate get-up-and-go footwear. The low-profile slip-on canvas upper offers unbeatable convenience, while the clean design makes this all-white slip-on the perfect choice for anyone with places to go and things to do. One of the most popular designs, these shoes are the perfect middle ground between style and convenience. Iconic slip-on shoe Low profile canvas uppers Supportive padded collars Elastic side accents Signature rubber waffle outsoles",
+      "title": "NOVA Slip-On Shoes",
+      "name": "NOVA Slip-On Shoes",
+      "description": "Step into summer! Every time your head looks down, you'll see these beauties, and your mood bounces right back up. Sleek, easy, and effortlessly stylish. NOVA Slip-On Shoes are the ultimate get-up-and-go footwear. The low-profile slip-on canvas upper offers unbeatable convenience, while the clean design makes this all-white slip-on the perfect choice for anyone with places to go and things to do. One of the most popular designs, these shoes are the perfect middle ground between style and convenience. Iconic slip-on shoe Low profile canvas uppers Supportive padded collars Elastic side accents Signature rubber waffle outsoles",
       "category": "footware",
       "categories": [
         "footware"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 45,
       "original_price": null,
       "currency": "USD",
@@ -327,15 +327,15 @@
     {
       "id": "acme-sticker",
       "handle": "acme-sticker",
-      "title": "Acme Sticker",
-      "name": "Acme Sticker",
+      "title": "NOVA Sticker",
+      "name": "NOVA Sticker",
       "description": "",
       "category": "stickers",
       "categories": [
         "stickers"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 4,
       "original_price": null,
       "currency": "USD",
@@ -347,15 +347,15 @@
     {
       "id": "acme-t-shirt",
       "handle": "acme-t-shirt",
-      "title": "Acme T-Shirt",
-      "name": "Acme T-Shirt",
+      "title": "NOVA T-Shirt",
+      "name": "NOVA T-Shirt",
       "description": "60% combed ringspun cotton/40% polyester jersey tee.",
       "category": "shirts",
       "categories": [
         "shirts"
       ],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 20,
       "original_price": null,
       "currency": "USD",
@@ -367,13 +367,13 @@
     {
       "id": "acme-webcam-cover",
       "handle": "acme-webcam-cover",
-      "title": "Acme Webcam Cover",
-      "name": "Acme Webcam Cover",
+      "title": "NOVA Webcam Cover",
+      "name": "NOVA Webcam Cover",
       "description": "This webcam cover is made of high grade plastic and is the thinnest model on the market, measuring at just 0.8mm thick. This is an example of a \"hidden\" product. You should not be able to find it browsing the site. You need to know the direct url to access it.",
       "category": null,
       "categories": [],
-      "brand": "Acme",
-      "vendor": "Acme",
+      "brand": "NOVA",
+      "vendor": "NOVA",
       "price": 5,
       "original_price": null,
       "currency": "USD",
@@ -382,5 +382,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/webcam-cover.png?v=1690003750",
       "url": "/product/acme-webcam-cover/"
     }
-  ]
+  ],
+  "brand": "AI-KART",
+  "display_name": "AI-KART"
 }

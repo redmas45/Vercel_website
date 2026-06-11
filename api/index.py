@@ -1,16 +1,19 @@
 import hashlib
 import hmac
+import html
 import json
 import mimetypes
 import os
 import re
+import time
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 from urllib.request import Request as UrlRequest
+from urllib.error import HTTPError
 from urllib.request import urlopen
 
-from fastapi import FastAPI, Query, Request, Depends, HTTPException, status
-from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, Response
+from fastapi import FastAPI, Query, Request, Depends, Form, HTTPException, status
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse, Response
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
 
@@ -19,34 +22,77 @@ OUT_DIR = ROOT / "out"
 ENV_FILE = ROOT / ".env"
 CATALOG_FILE = OUT_DIR / "api" / "products.json"
 SCRIPT_SRC_RE = re.compile(r"<script\b[^>]*\bsrc=(['\"])(.*?)\1", re.IGNORECASE)
+SHOPBOT_DISABLED_RE = re.compile(
+    r"<script>\s*console\.warn\(\"Voice orb widget disabled:[\s\S]*?</script>\s*",
+    re.IGNORECASE,
+)
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 
 security = HTTPBasic()
+FAILED_ADMIN_LOGINS: dict[str, list[float]] = {}
+ADMIN_LOGIN_WINDOW_SECONDS = 300
+ADMIN_LOGIN_MAX_FAILURES = 8
 
-def verify_admin(credentials: HTTPBasicCredentials = Depends(security)):
-    if credentials.username != "admin" or credentials.password != "admin":
+
+def verify_admin(request: Request, credentials: HTTPBasicCredentials = Depends(security)):
+    client_key = request.client.host if request.client else "unknown"
+    if admin_login_limited(client_key):
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail="Too many failed login attempts.",
+            headers={"Retry-After": "300"},
+        )
+
+    expected_user = os.getenv("ADMIN_USERNAME", "admin")
+    expected_password = os.getenv("ADMIN_PASSWORD", "admin")
+    username_ok = hmac.compare_digest(credentials.username, expected_user)
+    password_ok = hmac.compare_digest(credentials.password, expected_password)
+    if not (username_ok and password_ok):
+        record_failed_admin_login(client_key)
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
             headers={"WWW-Authenticate": "Basic"},
         )
+    clear_failed_admin_logins(client_key)
     return credentials.username
+
+
+def verify_admin_mutation(request: Request, username: str = Depends(verify_admin)):
+    if not same_origin_mutation(request):
+        raise HTTPException(status_code=403, detail="Cross-origin admin mutation blocked.")
+    return username
 
 
 @app.middleware("http")
 async def add_security_headers(request: Request, call_next):
+    https_redirect = maybe_https_redirect(request)
+    if https_redirect:
+        return https_redirect
+
     response = await call_next(request)
     response.headers.setdefault("X-Content-Type-Options", "nosniff")
     response.headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
     response.headers.setdefault("X-Frame-Options", "SAMEORIGIN")
     response.headers.setdefault(
         "Permissions-Policy",
-        "camera=(), geolocation=(), payment=()",
+        "camera=(), microphone=(self), geolocation=(), payment=()",
     )
     response.headers.setdefault("Content-Security-Policy", content_security_policy())
-    response.headers.setdefault("Access-Control-Allow-Origin", api_cors_origin())
-    response.headers.setdefault("Access-Control-Allow-Methods", "GET, OPTIONS")
+    response.headers.setdefault("Cross-Origin-Opener-Policy", "same-origin")
+    response.headers.setdefault("Cross-Origin-Resource-Policy", "same-origin")
+    if is_secure_request(request):
+        response.headers.setdefault(
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+        )
+    if request.url.path.startswith("/admin"):
+        response.headers.setdefault("Cache-Control", "no-store")
+    cors_origin = api_cors_origin()
+    if cors_origin:
+        response.headers.setdefault("Access-Control-Allow-Origin", cors_origin)
+        response.headers.setdefault("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
     response.headers.setdefault(
         "Access-Control-Allow-Headers",
         "Content-Type, Authorization, X-Lab-Api-Key",
@@ -57,6 +103,31 @@ async def add_security_headers(request: Request, call_next):
 @app.options("/{requested_path:path}")
 def options_preflight(requested_path: str = ""):
     return Response(status_code=204)
+
+
+@app.api_route("/health", methods=["GET", "HEAD"])
+async def proxy_backend_health(request: Request):
+    return await proxy_backend_request(request, "health")
+
+
+@app.api_route("/shopbot.js", methods=["GET"])
+async def proxy_shopbot_script(request: Request):
+    return await proxy_backend_request(request, "shopbot.js")
+
+
+@app.api_route("/shopbot-widget.js", methods=["GET"])
+async def proxy_shopbot_widget(request: Request):
+    return await proxy_backend_request(request, "shopbot-widget.js")
+
+
+@app.api_route("/shopbot-frame", methods=["GET"])
+async def proxy_shopbot_frame(request: Request):
+    return await proxy_backend_request(request, "shopbot-frame")
+
+
+@app.api_route("/v1/{backend_path:path}", methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"])
+async def proxy_backend_api(backend_path: str, request: Request):
+    return await proxy_backend_request(request, f"v1/{backend_path}")
 
 
 @app.get("/_next/image")
@@ -101,28 +172,256 @@ def get_product(product_id: str, request: Request):
 
 @app.get("/admin", response_class=HTMLResponse)
 def admin_panel(username: str = Depends(verify_admin)):
-    return """
-    <html><head><title>Admin Panel</title></head>
-    <body style="font-family: sans-serif; padding: 2rem;">
-        <h1>Admin Panel</h1>
-        <p>Welcome, admin. You can replenish stock for all items here.</p>
-        <form method="post" action="/admin/replenish">
-            <button type="submit" style="padding: 10px 20px; font-size: 16px; background-color: #0070f3; color: white; border: none; border-radius: 5px; cursor: pointer;">Replenish Stock</button>
-        </form>
-    </body></html>
-    """
+    catalog = load_catalog()
+    products = sorted(catalog.get("products", []), key=lambda item: item.get("name") or item.get("title") or "")
+    rows = "\n".join(render_admin_product_row(product) for product in products)
+    site_id = html.escape(os.getenv("AI_DEFAULT_SITE_ID", "ai_kart_main"))
+
+    return f"""<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI-KART Admin</title>
+    <style>
+      :root {{
+        color-scheme: light;
+        --ink: #161615;
+        --muted: #67645f;
+        --line: rgba(22, 22, 21, 0.12);
+        --surface: #f7f7f3;
+        --panel: #ffffff;
+        --accent: #155dfc;
+        --copper: #a76335;
+      }}
+      * {{ box-sizing: border-box; }}
+      body {{
+        margin: 0;
+        background: var(--surface);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }}
+      header {{
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 18px clamp(18px, 4vw, 44px);
+        border-bottom: 1px solid var(--line);
+        background: rgba(247, 247, 243, 0.92);
+        backdrop-filter: blur(14px);
+      }}
+      a {{ color: inherit; }}
+      .brand {{ display: flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: 0; }}
+      .brand-mark {{
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        background: var(--ink);
+        color: white;
+        font-size: 13px;
+      }}
+      main {{ width: min(1180px, calc(100% - 32px)); margin: 28px auto 56px; display: grid; gap: 22px; }}
+      .grid {{ display: grid; grid-template-columns: minmax(280px, 380px) minmax(0, 1fr); gap: 22px; align-items: start; }}
+      .panel {{
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: 0 18px 48px rgba(22, 22, 21, 0.06);
+      }}
+      .panel h1, .panel h2 {{ margin: 0; letter-spacing: 0; }}
+      .panel-head {{ padding: 20px; border-bottom: 1px solid var(--line); }}
+      .panel-head p {{ margin: 8px 0 0; color: var(--muted); line-height: 1.45; }}
+      form {{ display: grid; gap: 14px; padding: 20px; }}
+      label {{ display: grid; gap: 7px; color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }}
+      input, textarea {{
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        color: var(--ink);
+        font: inherit;
+        padding: 11px 12px;
+        outline: none;
+      }}
+      textarea {{ min-height: 96px; resize: vertical; }}
+      input:focus, textarea:focus {{ border-color: rgba(21, 93, 252, 0.55); box-shadow: 0 0 0 3px rgba(21, 93, 252, 0.1); }}
+      .row {{ display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }}
+      button {{
+        border: 0;
+        border-radius: 8px;
+        background: var(--ink);
+        color: #fff;
+        min-height: 42px;
+        padding: 0 16px;
+        font-weight: 760;
+        cursor: pointer;
+      }}
+      button.secondary {{ background: #eef1eb; color: var(--ink); }}
+      button.danger {{ background: #8b2f22; }}
+      .toolbar {{ display: flex; gap: 10px; flex-wrap: wrap; padding: 16px 20px; border-bottom: 1px solid var(--line); }}
+      .status-grid {{ display: grid; grid-template-columns: repeat(4, minmax(120px, 1fr)); gap: 10px; padding: 20px; }}
+      .metric {{ border: 1px solid var(--line); border-radius: 8px; padding: 14px; background: #fbfbf7; }}
+      .metric strong {{ display: block; font-size: 24px; }}
+      .metric span {{ color: var(--muted); font-size: 12px; }}
+      .table-wrap {{ overflow-x: auto; }}
+      table {{ width: 100%; border-collapse: collapse; min-width: 760px; }}
+      th, td {{ padding: 13px 16px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }}
+      th {{ color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }}
+      td img {{ width: 52px; height: 52px; object-fit: contain; border-radius: 8px; background: #f1f2ee; border: 1px solid var(--line); }}
+      .product-cell {{ display: flex; gap: 12px; align-items: center; min-width: 260px; }}
+      .product-cell strong {{ display: block; }}
+      .product-cell span {{ color: var(--muted); font-size: 13px; }}
+      .actions {{ display: flex; gap: 8px; align-items: center; }}
+      .actions form {{ padding: 0; display: contents; }}
+      .muted {{ color: var(--muted); }}
+      @media (max-width: 840px) {{
+        .grid {{ grid-template-columns: 1fr; }}
+        .status-grid {{ grid-template-columns: 1fr 1fr; }}
+      }}
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="brand"><span class="brand-mark">AK</span><span>AI-KART Admin</span></div>
+      <a href="/">Back to storefront</a>
+    </header>
+    <main>
+      <section class="panel">
+        <div class="panel-head">
+          <h1>Catalog Control</h1>
+          <p>Add, update, delete, and restock storefront products. The backend crawler reads this catalog on the next sync and updates RAG from there.</p>
+        </div>
+        <div class="status-grid" id="sync-status" data-site-id="{site_id}">
+          <div class="metric"><strong>{len(products)}</strong><span>Storefront products</span></div>
+          <div class="metric"><strong>-</strong><span>RAG active products</span></div>
+          <div class="metric"><strong>-</strong><span>Missing embeddings</span></div>
+          <div class="metric"><strong>-</strong><span>Last crawler sync</span></div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <aside class="panel">
+          <div class="panel-head">
+            <h2>Add or Update Product</h2>
+            <p>Use the same ID to update an existing product.</p>
+          </div>
+          <form method="post" action="/admin/products">
+            <label>Product ID / Handle <input name="product_id" placeholder="nova-premium-mug"></label>
+            <label>Name <input name="name" required placeholder="NOVA Premium Mug"></label>
+            <label>Description <textarea name="description" placeholder="Short customer-facing description"></textarea></label>
+            <div class="row">
+              <label>Category <input name="category" required placeholder="drinkware"></label>
+              <label>Brand <input name="brand" value="NOVA"></label>
+            </div>
+            <div class="row">
+              <label>Price <input name="price" required type="number" min="0" step="0.01" value="25"></label>
+              <label>Stock <input name="stock" required type="number" min="0" step="1" value="100"></label>
+            </div>
+            <label>Image URL <input name="image_url" placeholder="https://..."></label>
+            <button type="submit">Save Product</button>
+          </form>
+        </aside>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Products</h2>
+            <p>{len(products)} products in the storefront catalog.</p>
+          </div>
+          <div class="toolbar">
+            <form method="post" action="/admin/replenish"><button class="secondary" type="submit">Replenish All Stock</button></form>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead>
+              <tbody>{rows}</tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script>
+      const statusEl = document.getElementById("sync-status");
+      async function loadStatus() {{
+        try {{
+          const siteId = statusEl.dataset.siteId || "ai_kart_main";
+          const res = await fetch(`/v1/catalog/status?site_id=${{encodeURIComponent(siteId)}}`);
+          if (!res.ok) throw new Error(`HTTP ${{res.status}}`);
+          const data = await res.json();
+          const catalog = data.catalog || {{}};
+          const recent = (data.recent_sync_runs || [])[0];
+          statusEl.innerHTML = `
+            <div class="metric"><strong>{len(products)}</strong><span>Storefront products</span></div>
+            <div class="metric"><strong>${{catalog.active_products ?? "-"}}</strong><span>RAG active products</span></div>
+            <div class="metric"><strong>${{catalog.missing_embeddings ?? "-"}}</strong><span>Missing embeddings</span></div>
+            <div class="metric"><strong>${{recent ? recent.created_at.split(".")[0] : "-"}}</strong><span>Last crawler sync</span></div>
+          `;
+        }} catch (err) {{
+          statusEl.querySelectorAll(".metric")[1].querySelector("strong").textContent = "Offline";
+        }}
+      }}
+      loadStatus();
+    </script>
+  </body>
+</html>"""
+
+
+@app.post("/admin/products")
+def admin_save_product(
+    product_id: str = Form(""),
+    name: str = Form(...),
+    description: str = Form(""),
+    category: str = Form(...),
+    brand: str = Form("NOVA"),
+    price: float = Form(...),
+    stock: int = Form(100),
+    image_url: str = Form(""),
+    username: str = Depends(verify_admin_mutation),
+):
+    catalog = load_catalog()
+    products = catalog.setdefault("products", [])
+    product = normalize_admin_product(
+        product_id=product_id,
+        name=name,
+        description=description,
+        category=category,
+        brand=brand,
+        price=price,
+        stock=stock,
+        image_url=image_url,
+    )
+
+    products[:] = [item for item in products if item.get("id") != product["id"] and item.get("handle") != product["handle"]]
+    products.append(product)
+    save_catalog(catalog)
+    return RedirectResponse("/admin", status_code=303)
+
+
+@app.post("/admin/products/{product_id}/delete")
+def admin_delete_product(product_id: str, username: str = Depends(verify_admin_mutation)):
+    catalog = load_catalog()
+    products = catalog.setdefault("products", [])
+    products[:] = [
+        item for item in products
+        if item.get("id") != product_id and item.get("handle") != product_id
+    ]
+    save_catalog(catalog)
+    return RedirectResponse("/admin", status_code=303)
 
 
 @app.post("/admin/replenish")
-def admin_replenish(username: str = Depends(verify_admin)):
-    if not CATALOG_FILE.is_file():
-        return HTMLResponse("<h1>Error: Catalog not found.</h1>", status_code=404)
-    data = json.loads(CATALOG_FILE.read_text(encoding="utf-8"))
-    for p in data.get("products", []):
-        p["stock"] = 100
-        p["in_stock"] = True
-    CATALOG_FILE.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
-    return HTMLResponse("<h1>Stock Replenished Successfully!</h1><br><a href='/admin'>Go Back</a>")
+def admin_replenish(username: str = Depends(verify_admin_mutation)):
+    catalog = load_catalog()
+    for product in catalog.get("products", []):
+        product["stock"] = 100
+        product["in_stock"] = True
+    save_catalog(catalog)
+    return RedirectResponse("/admin", status_code=303)
 
 
 @app.get("/{requested_path:path}")
@@ -156,6 +455,9 @@ def static_candidates(requested_path: str):
         raw_candidates.append(OUT_DIR / requested_path / "index.html")
         if not Path(requested_path).suffix:
             raw_candidates.append(OUT_DIR / f"{requested_path}.html")
+        mirrored_asset = mirrored_next_asset(requested_path)
+        if mirrored_asset:
+            raw_candidates.append(mirrored_asset)
     else:
         raw_candidates.append(OUT_DIR / "index.html")
 
@@ -168,11 +470,144 @@ def static_candidates(requested_path: str):
     return safe_candidates
 
 
+def mirrored_next_asset(requested_path: str) -> Path | None:
+    if not requested_path.startswith("_next/"):
+        return None
+
+    assets_dir = OUT_DIR / "assets"
+    if not assets_dir.is_dir():
+        return None
+
+    clean_name = re.sub(r"[^a-z0-9._-]", "_", requested_path, flags=re.IGNORECASE)
+    clean_name = clean_name.strip("_")
+    matches = sorted(assets_dir.glob(f"{clean_name}_*"))
+    return matches[0] if matches else None
+
+
+async def proxy_backend_request(request: Request, backend_path: str) -> Response:
+    backend_url = backend_request_url(backend_path, str(request.url.query or ""))
+    body = await request.body()
+    headers = backend_request_headers(request)
+
+    try:
+        upstream_request = UrlRequest(
+            backend_url,
+            data=body if request.method not in {"GET", "HEAD"} else None,
+            headers=headers,
+            method=request.method,
+        )
+        with urlopen(upstream_request, timeout=60) as upstream:
+            content = upstream.read()
+            status_code = upstream.status
+            response_headers = backend_response_headers(upstream.headers.items())
+    except HTTPError as exc:
+        content = exc.read()
+        status_code = exc.code
+        response_headers = backend_response_headers(exc.headers.items())
+    except Exception as exc:
+        return JSONResponse(
+            {"error": f"Backend proxy unavailable: {exc}"},
+            status_code=502,
+        )
+
+    return Response(
+        content=content,
+        status_code=status_code,
+        headers=response_headers,
+        media_type=response_headers.get("content-type"),
+    )
+
+
+def backend_request_url(path: str, query: str) -> str:
+    origin = os.getenv("SHOPBOT_BACKEND_ORIGIN", "http://127.0.0.1:8011").strip().rstrip("/")
+    clean_path = path.strip("/")
+    url = f"{origin}/{clean_path}"
+    return f"{url}?{query}" if query else url
+
+
+def backend_request_headers(request: Request) -> dict[str, str]:
+    blocked = {
+        "host",
+        "connection",
+        "content-length",
+        "accept-encoding",
+        "proxy-authenticate",
+        "proxy-authorization",
+        "upgrade",
+    }
+    return {
+        key: value
+        for key, value in request.headers.items()
+        if key.lower() not in blocked
+    }
+
+
+def backend_response_headers(items) -> dict[str, str]:
+    blocked = {
+        "connection",
+        "content-encoding",
+        "content-length",
+        "transfer-encoding",
+        "server",
+        "date",
+    }
+    return {
+        key: value
+        for key, value in items
+        if key.lower() not in blocked
+    }
+
+
+def admin_login_limited(client_key: str) -> bool:
+    now = time.time()
+    attempts = [
+        timestamp
+        for timestamp in FAILED_ADMIN_LOGINS.get(client_key, [])
+        if now - timestamp < ADMIN_LOGIN_WINDOW_SECONDS
+    ]
+    FAILED_ADMIN_LOGINS[client_key] = attempts
+    return len(attempts) >= ADMIN_LOGIN_MAX_FAILURES
+
+
+def record_failed_admin_login(client_key: str) -> None:
+    attempts = FAILED_ADMIN_LOGINS.setdefault(client_key, [])
+    attempts.append(time.time())
+
+
+def clear_failed_admin_logins(client_key: str) -> None:
+    FAILED_ADMIN_LOGINS.pop(client_key, None)
+
+
+def same_origin_mutation(request: Request) -> bool:
+    expected_host = forwarded_host(request)
+    for header_name in ("origin", "referer"):
+        header_value = request.headers.get(header_name)
+        if not header_value:
+            continue
+        parsed = urlparse(header_value)
+        if parsed.netloc and parsed.netloc != expected_host:
+            return False
+    return True
+
+
+def forwarded_host(request: Request) -> str:
+    return request.headers.get("x-forwarded-host") or request.headers.get("host") or request.url.netloc
+
+
+def forwarded_proto(request: Request) -> str:
+    return (request.headers.get("x-forwarded-proto") or request.url.scheme or "http").split(",", 1)[0].strip().lower()
+
+
+def is_secure_request(request: Request) -> bool:
+    return forwarded_proto(request) == "https"
+
+
 def inject_lab_script(html: str) -> str:
     script = injection_markup()
     admin_btn = """<a href='/admin' title='Admin Panel' aria-label='Admin Panel' class="fixed top-4 right-20 z-50 flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors hover:bg-neutral-100 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-md"><svg class="h-4 transition-all ease-in-out hover:scale-110" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></a>"""
     
     if script:
+        html = SHOPBOT_DISABLED_RE.sub("", html)
         marker = "</head>"
         if marker in html:
             html = html.replace(marker, f"{script}\n{marker}", 1)
@@ -191,24 +626,51 @@ def injection_markup() -> str:
     return os.getenv("LAB_INJECTION_HTML", "").strip()
 
 
+def maybe_https_redirect(request: Request) -> Response | None:
+    if is_secure_request(request) or is_local_request(request):
+        return None
+
+    https_origin = os.getenv("PUBLIC_HTTPS_ORIGIN", "").strip().rstrip("/")
+    force_https = os.getenv("FORCE_HTTPS", "").strip().lower() in {"1", "true", "yes", "on"}
+    if not https_origin and not force_https:
+        return None
+
+    target = f"{https_origin or ('https://' + forwarded_host(request))}{request.url.path}"
+    if request.url.query:
+        target = f"{target}?{request.url.query}"
+    return RedirectResponse(target, status_code=308)
+
+
+def is_local_request(request: Request) -> bool:
+    host = forwarded_host(request).split(":", 1)[0].lower()
+    return host in {"127.0.0.1", "localhost", "::1"}
+
+
 def content_security_policy() -> str:
     script_origins = ["'self'"]
     script_origins.extend(sorted(allowed_script_origins()))
     script_policy = " ".join(dict.fromkeys(script_origins))
+    connect_origins = ["'self'", "https:"]
+    connect_origins.extend(sorted(allowed_script_origins()))
+    connect_policy = " ".join(dict.fromkeys(connect_origins))
+    media_origins = ["'self'", "data:", "blob:", "https:"]
+    media_origins.extend(sorted(allowed_script_origins()))
+    media_policy = " ".join(dict.fromkeys(media_origins))
 
     return "; ".join(
-        [
+        [item for item in [
             "default-src 'self'",
             f"script-src {script_policy} 'unsafe-inline' 'unsafe-eval'",
             "style-src 'self' 'unsafe-inline'",
             "img-src 'self' data: blob: https:",
-            "media-src 'self' data: blob: https:",
+            f"media-src {media_policy}",
             "font-src 'self' data:",
-            "connect-src 'self' https:",
+            f"connect-src {connect_policy}",
             "frame-ancestors 'self'",
             "base-uri 'self'",
             "form-action 'self'",
-        ]
+            "upgrade-insecure-requests" if os.getenv("PUBLIC_HTTPS_ORIGIN", "").strip() else "",
+        ] if item]
     )
 
 
@@ -238,6 +700,104 @@ def allowed_image_hosts() -> set[str]:
     return {host.strip().lower() for host in configured.split() if host.strip()}
 
 
+def render_admin_product_row(product: dict) -> str:
+    product_id = html.escape(str(product.get("id") or product.get("handle") or ""))
+    name = html.escape(str(product.get("name") or product.get("title") or "Untitled product"))
+    category = html.escape(str(product.get("category") or "products"))
+    price = float(product.get("price") or 0)
+    stock = product.get("stock")
+    stock_label = "In stock" if product.get("in_stock", True) and stock in (None, "") else str(stock or 0)
+    image_url = html.escape(str(product.get("image_url") or ""))
+    safe_description = html.escape(str(product.get("description") or ""))
+
+    return f"""
+      <tr>
+        <td>
+          <div class="product-cell">
+            <img src="{image_url}" alt="">
+            <div><strong>{name}</strong><span>{product_id}</span><span class="muted">{safe_description[:80]}</span></div>
+          </div>
+        </td>
+        <td>{category}</td>
+        <td>${price:.2f}</td>
+        <td>{html.escape(stock_label)}</td>
+        <td>
+          <div class="actions">
+            <form method="post" action="/admin/products">
+              <input type="hidden" name="product_id" value="{product_id}">
+              <input type="hidden" name="name" value="{name}">
+              <input type="hidden" name="description" value="{safe_description}">
+              <input type="hidden" name="category" value="{category}">
+              <input type="hidden" name="brand" value="{html.escape(str(product.get("brand") or "NOVA"))}">
+              <input type="hidden" name="price" value="{price:.2f}">
+              <input type="hidden" name="stock" value="100">
+              <input type="hidden" name="image_url" value="{image_url}">
+              <button class="secondary" type="submit">Restock</button>
+            </form>
+            <form method="post" action="/admin/products/{product_id}/delete">
+              <button class="danger" type="submit">Delete</button>
+            </form>
+          </div>
+        </td>
+      </tr>
+    """
+
+
+def normalize_admin_product(
+    *,
+    product_id: str,
+    name: str,
+    description: str,
+    category: str,
+    brand: str,
+    price: float,
+    stock: int,
+    image_url: str,
+) -> dict:
+    safe_name = clean_text(name)
+    if not safe_name:
+        raise HTTPException(status_code=400, detail="Product name is required.")
+
+    handle = slugify(product_id or safe_name)
+    safe_category = slugify(category or "products")
+    safe_brand = clean_text(brand) or "NOVA"
+    safe_stock = max(0, int(stock))
+    safe_price = max(0.0, float(price))
+
+    return {
+        "id": handle,
+        "handle": handle,
+        "title": safe_name,
+        "name": safe_name,
+        "description": clean_text(description) or safe_name,
+        "category": safe_category,
+        "categories": [safe_category],
+        "brand": safe_brand,
+        "vendor": safe_brand,
+        "price": safe_price,
+        "original_price": None,
+        "currency": "USD",
+        "stock": safe_stock,
+        "in_stock": safe_stock > 0,
+        "image_url": clean_text(image_url) or default_product_image(),
+        "url": f"/product/{handle}/",
+    }
+
+
+def slugify(value: str) -> str:
+    text = clean_text(value).lower()
+    text = re.sub(r"[^a-z0-9]+", "-", text).strip("-")
+    return text or "product"
+
+
+def clean_text(value: str) -> str:
+    return re.sub(r"\s+", " ", str(value or "")).strip()
+
+
+def default_product_image() -> str:
+    return "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/mug-1.png?v=1690003527"
+
+
 def load_catalog():
     if not CATALOG_FILE.is_file():
         return {"source": "https://demo.vercel.store/", "count": 0, "products": []}
@@ -245,8 +805,22 @@ def load_catalog():
     return json.loads(CATALOG_FILE.read_text(encoding="utf-8"))
 
 
+def save_catalog(catalog: dict) -> None:
+    products = sorted(
+        catalog.get("products", []),
+        key=lambda product: str(product.get("name") or product.get("title") or ""),
+    )
+    catalog["products"] = products
+    catalog["count"] = len(products)
+    catalog["generated_at"] = "admin-edited"
+    CATALOG_FILE.parent.mkdir(parents=True, exist_ok=True)
+    temp_file = CATALOG_FILE.with_suffix(".json.tmp")
+    temp_file.write_text(json.dumps(catalog, indent=2, ensure_ascii=False), encoding="utf-8")
+    temp_file.replace(CATALOG_FILE)
+
+
 def api_cors_origin() -> str:
-    return os.getenv("API_CORS_ORIGIN", "*").strip() or "*"
+    return os.getenv("API_CORS_ORIGIN", "").strip()
 
 
 def require_access_key(request: Request):
