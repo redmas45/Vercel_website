@@ -311,10 +311,11 @@ def admin_panel(username: str = Depends(verify_admin)):
             <h2>Add or Update Product</h2>
             <p>Use the same ID to update an existing product.</p>
           </div>
-          <form method="post" action="/admin/products">
+          <form method="post" action="/admin/products" id="product-form">
             <label>Product ID / Handle <input name="product_id" placeholder="nova-premium-mug"></label>
             <label>Name <input name="name" required placeholder="NOVA Premium Mug"></label>
-            <label>Description <textarea name="description" placeholder="Short customer-facing description"></textarea></label>
+            <label>Description <textarea name="description" id="product-description" placeholder="Short customer-facing description"></textarea></label>
+            <button type="button" class="secondary" id="generate-description">Generate Description with AI</button>
             <div class="row">
               <label>Category <input name="category" required placeholder="drinkware"></label>
               <label>Brand <input name="brand" value="NOVA"></label>
@@ -366,9 +367,75 @@ def admin_panel(username: str = Depends(verify_admin)):
         }}
       }}
       loadStatus();
+      document.getElementById("generate-description")?.addEventListener("click", async () => {{
+        const form = document.getElementById("product-form");
+        const button = document.getElementById("generate-description");
+        const description = document.getElementById("product-description");
+        if (!form || !button || !description) return;
+        button.disabled = true;
+        const originalText = button.textContent;
+        button.textContent = "Writing...";
+        try {{
+          const res = await fetch("/admin/description", {{
+            method: "POST",
+            body: new FormData(form),
+            credentials: "same-origin"
+          }});
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.detail || data.error || "Description generation failed");
+          description.value = data.description || "";
+        }} catch (err) {{
+          alert(err.message || String(err));
+        }} finally {{
+          button.disabled = false;
+          button.textContent = originalText;
+        }}
+      }});
     </script>
   </body>
 </html>"""
+
+
+@app.post("/admin/description")
+def admin_generate_description(
+    request: Request,
+    name: str = Form(""),
+    category: str = Form(""),
+    brand: str = Form("NOVA"),
+    price: str = Form(""),
+    username: str = Depends(verify_admin_mutation),
+):
+    if not os.getenv("OPENAI_API_KEY", "").strip():
+        return JSONResponse({"error": "OPENAI_API_KEY is not configured."}, status_code=400)
+
+    product_name = (name or "").strip()
+    if not product_name:
+        return JSONResponse({"error": "Enter a product name first."}, status_code=400)
+
+    try:
+        from openai import OpenAI
+
+        client = OpenAI()
+        model = os.getenv("LLM_MODEL", "gpt-4.1")
+        prompt = (
+            "Write one polished ecommerce product description for AI-KART. "
+            "Use 1 short paragraph, 35-65 words, no markdown, no emojis, no claims about warranties or shipping. "
+            f"Product name: {product_name}. Brand: {(brand or 'NOVA').strip()}. "
+            f"Category: {(category or 'products').strip()}. Price: {(price or '').strip()}."
+        )
+        response = client.chat.completions.create(
+            model=model,
+            messages=[
+                {"role": "system", "content": "You write accurate, concise product descriptions for an ecommerce catalog."},
+                {"role": "user", "content": prompt},
+            ],
+            temperature=0.45,
+            max_tokens=140,
+        )
+        description = (response.choices[0].message.content or "").strip()
+        return JSONResponse({"description": description})
+    except Exception as exc:
+        return JSONResponse({"error": f"Description generation failed: {exc}"}, status_code=500)
 
 
 @app.post("/admin/products")
@@ -432,6 +499,11 @@ def serve_static_clone(requested_path: str = ""):
         if candidate.is_file():
             return serve_file(candidate)
 
+    if requested_path.startswith("product/"):
+        product_page = render_dynamic_product_page(requested_path)
+        if product_page:
+            return HTMLResponse(inject_lab_script(product_page))
+
     fallback = OUT_DIR / "index.html"
     if fallback.is_file():
         return serve_file(fallback)
@@ -446,6 +518,166 @@ def serve_file(path: Path):
 
     content_type, _ = mimetypes.guess_type(path.name)
     return FileResponse(path, media_type=content_type)
+
+
+def render_dynamic_product_page(requested_path: str) -> str:
+    handle = requested_path.split("/", 1)[1].strip("/")
+    if not handle:
+        return ""
+
+    product = find_catalog_product(handle)
+    if not product:
+        return ""
+
+    name = html.escape(str(product.get("name") or product.get("title") or "Product"))
+    brand = html.escape(str(product.get("brand") or product.get("vendor") or "NOVA"))
+    category = html.escape(labelize(product.get("category") or "products"))
+    description = html.escape(str(product.get("description") or "A curated AI-KART product, ready for your next order."))
+    image_url = html.escape(str(product.get("image_url") or "https://demo.vercel.store/placeholder.png"))
+    product_id = html.escape(str(product.get("id") or product.get("handle") or handle))
+    price = float(product.get("price") or 0)
+
+    return f"""<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{name} | AI-KART</title>
+    <link rel="stylesheet" href="/premium-ui.css">
+    <style>
+      .dynamic-product {{
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 86px 28px 48px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 0.75fr);
+        gap: 42px;
+      }}
+      .dynamic-product-media {{
+        min-height: 460px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(22, 22, 21, 0.1);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.82);
+      }}
+      .dynamic-product-media img {{
+        width: min(78%, 560px);
+        max-height: 560px;
+        object-fit: contain;
+        mix-blend-mode: multiply;
+      }}
+      .dynamic-product-info {{
+        align-self: center;
+      }}
+      .dynamic-product-kicker {{
+        margin: 0 0 10px;
+        color: var(--ak-copper, #a76335);
+        font-size: 12px;
+        font-weight: 760;
+        text-transform: uppercase;
+      }}
+      .dynamic-product-info h1 {{
+        margin: 0;
+        color: var(--ak-ink, #161615);
+        font-size: clamp(34px, 5vw, 62px);
+        font-weight: 780;
+        line-height: 0.98;
+      }}
+      .dynamic-product-price {{
+        margin: 18px 0;
+        color: var(--ak-ink, #161615);
+        font-size: 22px;
+        font-weight: 780;
+      }}
+      .dynamic-product-description {{
+        color: var(--ak-muted, #686660);
+        font-size: 15px;
+        line-height: 1.7;
+      }}
+      .dynamic-product-actions {{
+        display: flex;
+        gap: 10px;
+        margin-top: 26px;
+      }}
+      .dynamic-product-actions button,
+      .dynamic-product-actions a {{
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        padding: 0 18px;
+        font-weight: 760;
+        text-decoration: none;
+      }}
+      .dynamic-product-actions button {{
+        border: 0;
+        background: var(--ak-ink, #161615);
+        color: #fff;
+        cursor: pointer;
+      }}
+      .dynamic-product-actions a {{
+        border: 1px solid rgba(22, 22, 21, 0.14);
+        color: var(--ak-ink, #161615);
+        background: rgba(255, 255, 255, 0.78);
+      }}
+      @media (max-width: 820px) {{
+        .dynamic-product {{
+          grid-template-columns: 1fr;
+          padding: 76px 16px 36px;
+        }}
+        .dynamic-product-media {{
+          min-height: 320px;
+        }}
+      }}
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="dynamic-product">
+        <div class="dynamic-product-media">
+          <img src="{image_url}" alt="{name}">
+        </div>
+        <div class="dynamic-product-info">
+          <p class="dynamic-product-kicker">{brand} / {category}</p>
+          <h1>{name}</h1>
+          <p class="dynamic-product-price">${price:.2f} USD</p>
+          <p class="dynamic-product-description">{description}</p>
+          <div class="dynamic-product-actions">
+            <button type="button" data-dynamic-add="{product_id}">Add to cart</button>
+            <a href="/">Back to catalog</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="/cart.js"></script>
+    <script src="/premium-ui.js"></script>
+    <script>
+      document.addEventListener("click", function (event) {{
+        var button = event.target.closest("[data-dynamic-add]");
+        if (!button) return;
+        var productId = button.getAttribute("data-dynamic-add");
+        if (window.ShopCart && window.ShopCart.addItem) {{
+          window.ShopCart.addItem(productId, 1);
+        }}
+      }});
+    </script>
+  </body>
+</html>"""
+
+
+def find_catalog_product(product_id: str) -> dict | None:
+    products = load_catalog().get("products", [])
+    for product in products:
+        if str(product.get("id")) == product_id or str(product.get("handle")) == product_id:
+            return product
+    return None
+
+
+def labelize(value: object) -> str:
+    text = re.sub(r"[-_]+", " ", str(value or "")).strip()
+    return re.sub(r"\s+", " ", text).title()
 
 
 def static_candidates(requested_path: str):

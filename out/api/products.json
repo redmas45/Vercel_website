@@ -1,6 +1,6 @@
 {
   "source": "https://demo.vercel.store/",
-  "generated_at": "2026-06-11T11:40:39.889Z",
+  "generated_at": "admin-edited",
   "count": 19,
   "products": [
     {
@@ -11,15 +11,14 @@
       "description": "100% combed ringspun cotton",
       "category": "headwear",
       "categories": [
-        "headwear",
-        "kids"
+        "headwear"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 10,
+      "price": 10.0,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/baby-cap-black.png?v=1690002570",
       "url": "/product/acme-baby-cap/"

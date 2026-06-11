@@ -123,7 +123,7 @@ form input::placeholder {
 
 button[aria-label="Open cart"] > div,
 a[aria-label="Admin Panel"] {
-  width: 44px !important;
+  min-width: 44px !important;
   height: 44px !important;
   border-radius: 8px !important;
   border: 1px solid rgba(22, 22, 21, 0.14) !important;
@@ -142,14 +142,20 @@ a[aria-label="Admin Panel"] {
   top: 16px;
   right: 86px;
   z-index: 2147483620;
-  display: grid;
-  place-items: center;
-  width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 44px;
   height: 44px;
+  padding: 0 13px;
   border: 1px solid rgba(22, 22, 21, 0.14);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.82);
   color: var(--ak-ink);
+  font-size: 13px;
+  font-weight: 760;
+  text-decoration: none;
   box-shadow: 0 8px 24px rgba(22, 22, 21, 0.08);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -158,6 +164,7 @@ a[aria-label="Admin Panel"] {
 .premium-admin-link svg {
   width: 18px;
   height: 18px;
+  flex: 0 0 auto;
 }
 
 .premium-masthead {
@@ -255,6 +262,67 @@ a[aria-label="Admin Panel"] {
   font-size: 13px;
 }
 
+.premium-catalog-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 18px;
+  padding: 12px;
+  border: 1px solid rgba(22, 22, 21, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.premium-category-tabs {
+  display: flex;
+  flex: 1;
+  gap: 8px;
+  min-width: 0;
+  overflow-x: auto;
+  padding-bottom: 1px;
+  scrollbar-width: thin;
+}
+
+.premium-category-tabs button,
+.premium-sort-control select {
+  min-height: 38px;
+  border: 1px solid rgba(22, 22, 21, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ak-ink);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.premium-category-tabs button {
+  flex: 0 0 auto;
+  padding: 0 13px;
+  cursor: pointer;
+}
+
+.premium-category-tabs button.active {
+  border-color: var(--ak-ink);
+  background: var(--ak-ink);
+  color: #fff;
+}
+
+.premium-sort-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  color: var(--ak-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.premium-sort-control select {
+  min-width: 174px;
+  padding: 0 34px 0 12px;
+  cursor: pointer;
+}
+
 .premium-live-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
@@ -272,6 +340,7 @@ a[aria-label="Admin Panel"] {
   background: rgba(255, 255, 255, 0.86);
   padding: 14px;
   box-shadow: 0 8px 28px rgba(22, 22, 21, 0.06);
+  cursor: pointer;
 }
 
 .premium-live-card img {
@@ -320,6 +389,14 @@ a[aria-label="Admin Panel"] {
   color: #fff;
   font-weight: 760;
   cursor: pointer;
+}
+
+.premium-live-card:focus-visible,
+.premium-live-card-foot button:focus-visible,
+.premium-category-tabs button:focus-visible,
+.premium-sort-control select:focus-visible {
+  outline: 2px solid var(--ak-blue);
+  outline-offset: 2px;
 }
 
 main {
@@ -483,6 +560,21 @@ footer {
   .premium-live-head {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .premium-catalog-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .premium-sort-control {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .premium-sort-control select {
+    flex: 1;
+    min-width: 0;
   }
 
   .premium-live-grid {

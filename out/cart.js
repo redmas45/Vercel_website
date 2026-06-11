@@ -848,6 +848,14 @@
     const grid = document.getElementById("shopbot-results-grid");
     if (!panel || !grid) return;
 
+    // Reset grid styles in case we previously set them for comparison layout
+    grid.style.display = "";
+    grid.style.flexDirection = "";
+    grid.style.overflowX = "";
+    grid.style.gap = "";
+    grid.style.padding = "";
+    grid.style.alignItems = "";
+
     activeResults = products.filter(Boolean);
     panel.querySelector(".shopbot-results-title").textContent = title;
 
@@ -881,6 +889,108 @@
     });
 
     panel.classList.add("active");
+  }
+
+  function renderComparisonResults(products) {
+    const panel = document.getElementById("shopbot-results-panel");
+    const grid = document.getElementById("shopbot-results-grid");
+    if (!panel || !grid) return;
+
+    activeResults = products.filter(Boolean);
+    panel.querySelector(".shopbot-results-title").textContent = "Product Comparison";
+
+    if (!activeResults.length) {
+      grid.style.display = "";
+      grid.style.flexDirection = "";
+      grid.style.overflowX = "";
+      grid.style.gap = "";
+      grid.style.padding = "";
+      grid.style.alignItems = "";
+      grid.innerHTML = `<p style="grid-column:1/-1;margin:0;color:#686660;">No products to compare.</p>`;
+      panel.classList.add("active");
+      return;
+    }
+
+    // Set flex layout on the grid element itself
+    grid.style.display = "flex";
+    grid.style.flexDirection = "row";
+    grid.style.overflowX = "auto";
+    grid.style.gap = "16px";
+    grid.style.padding = "16px";
+    grid.style.alignItems = "stretch";
+
+    grid.innerHTML = activeResults.map(product => {
+      const detailUrl = product.url || (product.handle ? `/product/${product.handle}/` : "");
+      const safeId = escapeHtml(product.id);
+      return `
+        <div class="shopbot-compare-card" style="display: flex; flex-direction: column; background: #ffffff; border: 1px solid rgba(22, 22, 21, 0.12); border-radius: 12px; padding: 16px; min-width: 240px; max-width: 320px; flex: 1 0 240px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); transition: transform 0.2s ease; box-sizing: border-box;">
+          <div style="height: 120px; display: flex; align-items: center; justify-content: center; background: #f1f2ee; border-radius: 8px; padding: 8px; margin-bottom: 12px; flex-shrink: 0;">
+            <img src="${escapeHtml(product.image_url || "https://demo.vercel.store/placeholder.png")}" alt="${escapeHtml(product.name)}" style="max-height: 100%; max-width: 100%; object-fit: contain; mix-blend-mode: multiply;">
+          </div>
+          <h3 style="margin: 0 0 8px 0; font-size: 15px; font-weight: 800; color: #161615; min-height: 40px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; flex-shrink: 0; line-height: 1.3;">${escapeHtml(product.name)}</h3>
+          
+          <div class="shopbot-compare-stats" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; font-size: 13px; border-top: 1px solid rgba(22,22,21,0.08); padding-top: 12px; flex-grow: 1;">
+            <div style="display: flex; justify-content: space-between;"><span style="color: #686660;">Price:</span><strong style="color: #155dfc;">$${Number(product.price || 0).toFixed(2)}</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span style="color: #686660;">Brand:</span><span style="font-weight: 600;">${escapeHtml(product.brand || "NOVA")}</span></div>
+            <div style="display: flex; justify-content: space-between;"><span style="color: #686660;">Category:</span><span style="font-style: italic;">${escapeHtml(product.category || "General")}</span></div>
+            <div style="display: flex; flex-direction: column; gap: 4px; border-top: 1px dashed rgba(22,22,21,0.08); padding-top: 8px;">
+              <span style="color: #686660;">Description:</span>
+              <p style="margin: 0; color: #222; font-size: 12px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;" title="${escapeHtml(product.description || '')}">
+                ${escapeHtml(product.description || 'No description available.')}
+              </p>
+            </div>
+          </div>
+
+          <div class="shopbot-result-actions" style="display: flex; gap: 8px; margin-top: auto; flex-shrink: 0;">
+            <button type="button" data-add="${safeId}" style="flex: 1; min-height: 36px; border-radius: 8px; border: 1px solid rgba(22, 22, 21, 0.12); background: #161615; color: #ffffff; font-size: 12px; font-weight: 760; cursor: pointer; outline: none;">Add</button>
+            ${detailUrl ? `<a href="${escapeHtml(detailUrl)}" style="flex: 1; display: inline-flex; align-items: center; justify-content: center; min-height: 36px; border-radius: 8px; border: 1px solid rgba(22, 22, 21, 0.12); background: #ffffff; color: #161615; text-decoration: none; font-size: 12px; font-weight: 760; cursor: pointer; text-align: center;">View</a>` : ""}
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    grid.querySelectorAll("[data-add]").forEach(button => {
+      button.addEventListener("click", async () => {
+        await addItem(button.getAttribute("data-add"), 1);
+        openCart();
+      });
+    });
+
+    panel.classList.add("active");
+  }
+
+  async function showComparison(productIds = []) {
+    const ids = Array.isArray(productIds) ? [...productIds] : [];
+    
+    // Auto-include current product from details page if not already present
+    if (window.location.pathname.includes("/product/")) {
+      const match = window.location.pathname.split("/").filter(Boolean);
+      const currentHandle = match.pop();
+      if (currentHandle && !ids.includes(currentHandle)) {
+        const currentProd = findLocalProduct(currentHandle);
+        if (currentProd) {
+          if (!ids.includes(String(currentProd.id))) {
+            ids.unshift(String(currentProd.id));
+          }
+        } else {
+          ids.unshift(currentHandle);
+        }
+      }
+    }
+
+    const localMatches = ids.map(findLocalProduct).filter(Boolean);
+    const missingIds = ids.filter(id => !findLocalProduct(id));
+    const remoteMatches = await fetchBackendProductsByIds(missingIds);
+    const byId = new Map([...localMatches, ...remoteMatches].map(product => [String(product.id), product]));
+
+    for (const product of remoteMatches) {
+      if (!findLocalProduct(product.id)) catalog.push(product);
+    }
+
+    const ordered = ids
+      .map(id => byId.get(String(id)) || findLocalProduct(id))
+      .filter(Boolean);
+    renderComparisonResults(ordered);
   }
 
   async function showProducts(productIds = [], title = "Recommended products") {
@@ -930,6 +1040,11 @@
     const product = await resolveProduct(productId);
     if (!product) {
       renderProductResults([], "Product detail");
+      return;
+    }
+    const detailUrl = product.url || (product.handle ? `/product/${product.handle}/` : "");
+    if (detailUrl) {
+      window.location.href = detailUrl;
       return;
     }
     renderProductResults([product], product.name);
@@ -1127,6 +1242,7 @@
       clear: clearCart,
       updateQuantity: updateQuantity,
       showProducts,
+      showComparison,
       filterProducts,
       showProductDetail
     };
@@ -1155,8 +1271,10 @@
           await addItem(pid, qty);
           openCart();
         }
-      } else if (action.action === "SHOW_PRODUCTS" || action.action === "SHOW_COMPARISON") {
+      } else if (action.action === "SHOW_PRODUCTS") {
         await showProducts(params.product_ids || [], params.search_query || "Recommended products");
+      } else if (action.action === "SHOW_COMPARISON") {
+        await showComparison(params.product_ids || []);
       } else if (action.action === "FILTER_PRODUCTS") {
         filterProducts(params);
       } else if (action.action === "SHOW_PRODUCT_DETAIL") {
