@@ -1,13 +1,14 @@
 /**
  * inject-shopbot.mjs
  *
- * Injects the AI Salesman shopbot <script> tag into every HTML file under out/.
+ * Optionally injects the AI Salesman shopbot <script> tag into every HTML file under out/.
  *
  * Usage:
  *   SHOPBOT_API_URL=https://xxxx.ngrok-free.app  node scripts/inject-shopbot.mjs
  *
- * If SHOPBOT_API_URL is not set, the script reads PUBLIC_API_URL from
- * ../AI_salesman_plugin/.env automatically.
+ * By default this only removes old widget/stub scripts so the storefront can run
+ * as a normal customer website. Set SHOPBOT_API_URL or ENABLE_SHOPBOT_INJECTION=true
+ * when you intentionally want a baked-in AI script.
  */
 
 import { readFileSync, writeFileSync, readdirSync, statSync } from "fs";
@@ -17,6 +18,18 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = resolve(__dirname, "..", "out");
 const SITE_ID = "ai_kart_main";
+const EXPLICIT_API_URL = (process.env.SHOPBOT_API_URL || "").trim();
+const ENABLE_INJECTION = (
+  Boolean(EXPLICIT_API_URL) ||
+  String(process.env.ENABLE_SHOPBOT_INJECTION || "").toLowerCase() === "true"
+);
+
+function stripExistingShopbot(html) {
+  return html
+    .replace(/<script\b[^>]*\bsrc=(['"])[^'"]*\/shopbot\.js(?:\?[^'"]*)?\1[^>]*>\s*<\/script>\s*/g, "")
+    .replace(/<script\b(?=[^>]*\bdata-api-url=)(?=[^>]*\bdata-site-id=)[\s\S]*?<\/script>\s*/g, "")
+    .replace(/<script>\s*console\.warn\("Voice orb widget disabled:[\s\S]*?<\/script>\s*/g, "");
+}
 
 function readEnvValue(envPath, key) {
   try {
@@ -38,9 +51,10 @@ function readEnvValue(envPath, key) {
 }
 
 function resolveApiUrl() {
-  if (process.env.SHOPBOT_API_URL) {
-    return process.env.SHOPBOT_API_URL.trim().replace(/\/+$/, "");
+  if (EXPLICIT_API_URL) {
+    return EXPLICIT_API_URL.replace(/\/+$/, "");
   }
+  if (!ENABLE_INJECTION) return "";
   // Fallback: read from AI_salesman_plugin .env
   const pluginEnv = resolve(__dirname, "..", "..", "AI_salesman_plugin", ".env");
   const url = readEnvValue(pluginEnv, "PUBLIC_API_URL");
@@ -92,6 +106,25 @@ function walkHtml(dir) {
   return results;
 }
 
+function scrubShopbotInjection() {
+  const htmlFiles = walkHtml(OUT_DIR);
+  let changed = 0;
+  for (const file of htmlFiles) {
+    const html = readFileSync(file, "utf-8");
+    const next = stripExistingShopbot(html);
+    if (next !== html) {
+      writeFileSync(file, next, "utf-8");
+      changed++;
+    }
+  }
+  console.log(`[inject-shopbot] Injection disabled. Removed old widget/stub scripts from ${changed} files.`);
+}
+
+if (!ENABLE_INJECTION) {
+  scrubShopbotInjection();
+  process.exit(0);
+}
+
 const apiUrl = resolveApiUrl();
 
 // Handle placeholder URL case
@@ -114,12 +147,7 @@ if (isPlaceholderUrl(apiUrl)) {
   for (const file of htmlFiles) {
     let html = readFileSync(file, "utf-8");
     
-    // Remove any previously injected shopbot script tag
-    html = html.replace(/<script\s+src="[^"]*\/shopbot\.js[^"]*">\s*<\/script>\s*/g, "");
-    html = html.replace(
-      /<script\b(?=[^>]*\bdata-api-url=)(?=[^>]*\bdata-site-id=)[\s\S]*?<\/script>\s*/g,
-      ""
-    );
+    html = stripExistingShopbot(html);
     
     // Inject stub script right after </head>
     if (html.includes("</head>")) {
@@ -157,12 +185,7 @@ if (isLocalhostUrl(apiUrl)) {
   for (const file of htmlFiles) {
     let html = readFileSync(file, "utf-8");
     
-    // Remove any previously injected shopbot script tag
-    html = html.replace(/<script\s+src="[^"]*\/shopbot\.js[^"]*">\s*<\/script>\s*/g, "");
-    html = html.replace(
-      /<script\b(?=[^>]*\bdata-api-url=)(?=[^>]*\bdata-site-id=)[\s\S]*?<\/script>\s*/g,
-      ""
-    );
+    html = stripExistingShopbot(html);
     
     // Inject stub script right after </head>
     if (html.includes("</head>")) {
@@ -200,12 +223,7 @@ if (!isDeployableApiUrl(apiUrl)) {
   for (const file of htmlFiles) {
     let html = readFileSync(file, "utf-8");
     
-    // Remove any previously injected shopbot script tag
-    html = html.replace(/<script\s+src="[^"]*\/shopbot\.js[^"]*">\s*<\/script>\s*/g, "");
-    html = html.replace(
-      /<script\b(?=[^>]*\bdata-api-url=)(?=[^>]*\bdata-site-id=)[\s\S]*?<\/script>\s*/g,
-      ""
-    );
+    html = stripExistingShopbot(html);
     
     // Inject stub script right after </head>
     if (html.includes("</head>")) {
@@ -250,11 +268,7 @@ try {
 
   for (const file of htmlFiles) {
     let html = readFileSync(file, "utf-8");
-    html = html.replace(/<script\s+src="[^"]*\/shopbot\.js[^"]*">\s*<\/script>\s*/g, "");
-    html = html.replace(
-      /<script\b(?=[^>]*\bdata-api-url=)(?=[^>]*\bdata-site-id=)[\s\S]*?<\/script>\s*/g,
-      ""
-    );
+    html = stripExistingShopbot(html);
     if (html.includes("</head>")) {
       html = html.replace("</head>", `</head>\n${stubScript}`);
     } else if (html.includes("<head>")) {
@@ -285,12 +299,7 @@ let skipped = 0;
 for (const file of htmlFiles) {
   let html = readFileSync(file, "utf-8");
 
-  // Remove any previously injected shopbot script tag
-  html = html.replace(/<script\s+src="[^"]*\/shopbot\.js[^"]*">\s*<\/script>\s*/g, "");
-  html = html.replace(
-    /<script\b(?=[^>]*\bdata-api-url=)(?=[^>]*\bdata-site-id=)[\s\S]*?<\/script>\s*/g,
-    ""
-  );
+  html = stripExistingShopbot(html);
 
   // Inject right after </head>
   if (html.includes("</head>")) {

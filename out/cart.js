@@ -1280,18 +1280,24 @@
       checkout: runSimulatedCheckout
     };
 
-    // Override or setup ShopBot Config hooks
+    // Setup default hooks without overwriting a client embed snippet.
     window.ShopBotConfig = window.ShopBotConfig || {};
     window.ShopBotConfig.apiUrl = window.ShopBotConfig.apiUrl || getShopbotApiBase();
     window.ShopBotConfig.siteId = window.ShopBotConfig.siteId || getShopbotSiteId();
-    window.ShopBotConfig.onAddToCart = async (productId, quantity) => {
+    window.ShopBotConfig.onAddToCart = window.ShopBotConfig.onAddToCart || (async (productId, quantity) => {
       console.log("[ShopCart] Voice assistant requested AddToCart:", productId, quantity);
       await addItem(productId, Number(quantity) || 1);
       openCart();
-    };
-    window.ShopBotConfig.onFilter = (params = {}) => {
+    });
+    window.ShopBotConfig.onFilter = window.ShopBotConfig.onFilter || ((params = {}) => {
       filterProducts(params);
-    };
+    });
+    window.ShopBotConfig.onOpenCart = window.ShopBotConfig.onOpenCart || (() => {
+      openCart();
+    });
+    window.ShopBotConfig.onCheckout = window.ShopBotConfig.onCheckout || ((params = {}) => {
+      runSimulatedCheckout(params);
+    });
 
     // Setup voice actions event listener fallback
     window.addEventListener("shopbot:action", async (e) => {

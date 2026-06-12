@@ -398,6 +398,26 @@ a[aria-label="Admin Panel"] {
   gap: 14px;
 }
 
+.premium-live-empty {
+  grid-column: 1 / -1;
+  padding: 34px;
+  border: 1px solid rgba(22, 22, 21, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--ak-muted);
+}
+
+.premium-live-empty h3 {
+  margin: 0 0 8px;
+  color: var(--ak-ink);
+  font-size: 20px;
+}
+
+.premium-live-empty p {
+  margin: 0;
+  font-size: 16px;
+}
+
 .premium-live-card {
   display: grid;
   grid-template-rows: auto 1fr auto;

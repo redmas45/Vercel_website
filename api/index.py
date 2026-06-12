@@ -26,6 +26,14 @@ SHOPBOT_DISABLED_RE = re.compile(
     r"<script>\s*console\.warn\(\"Voice orb widget disabled:[\s\S]*?</script>\s*",
     re.IGNORECASE,
 )
+SHOPBOT_SCRIPT_TAG_RE = re.compile(
+    r"<script\b[^>]*\bsrc=(['\"])[^'\"]*/shopbot\.js(?:\?[^'\"]*)?\1[^>]*>\s*</script>\s*",
+    re.IGNORECASE,
+)
+SHOPBOT_INLINE_SCRIPT_TAG_RE = re.compile(
+    r"<script\b(?=[^>]*\bdata-api-url=)(?=[^>]*\bdata-site-id=)[\s\S]*?</script>\s*",
+    re.IGNORECASE,
+)
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 
@@ -339,7 +347,7 @@ def admin_panel(username: str = Depends(verify_admin)):
           <div class="toolbar">
             <input type="text" id="admin-search" placeholder="Search products by name or category..." style="width: 300px;">
             <form method="post" action="/admin/replenish"><button class="secondary" type="submit">Replenish All Stock</button></form>
-            <form method="post" action="/v1/admin/crawler/run" style="display:inline;" target="crawler-frame" onsubmit="this.querySelector('button').textContent='Running...'; setTimeout(() => this.querySelector('button').textContent='Run Crawler', 3000);"><button class="secondary" type="submit">Run Crawler</button></form>
+            <form method="post" action="/v1/catalog/crawler/run" style="display:inline;" target="crawler-frame" onsubmit="this.querySelector('button').textContent='Running...'; setTimeout(() => this.querySelector('button').textContent='Run Crawler', 3000);"><button class="secondary" type="submit">Run Crawler</button></form>
             <iframe name="crawler-frame" style="display:none;"></iframe>
           </div>
           <div class="table-wrap">
@@ -891,11 +899,12 @@ def is_secure_request(request: Request) -> bool:
 
 
 def inject_lab_script(html: str) -> str:
+    html = SHOPBOT_DISABLED_RE.sub("", html)
+    html = SHOPBOT_SCRIPT_TAG_RE.sub("", html)
+    html = SHOPBOT_INLINE_SCRIPT_TAG_RE.sub("", html)
     script = injection_markup()
-    admin_btn = """<a href='/admin' title='Admin Panel' aria-label='Admin Panel' class="fixed top-4 right-20 z-50 flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors hover:bg-neutral-100 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-md"><svg class="h-4 transition-all ease-in-out hover:scale-110" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></a>"""
     
     if script:
-        html = SHOPBOT_DISABLED_RE.sub("", html)
         marker = "</head>"
         if marker in html:
             html = html.replace(marker, f"{script}\n{marker}", 1)
@@ -903,11 +912,7 @@ def inject_lab_script(html: str) -> str:
             html = html.replace("<head>", f"<head>\n{script}", 1)
         else:
             html = f"{html}\n{script}"
-            
-    body_marker = "</body>"
-    if body_marker in html:
-        return html.replace(body_marker, f"{admin_btn}\n{body_marker}", 1)
-    return f"{html}\n{admin_btn}"
+    return html
 
 
 def injection_markup() -> str:

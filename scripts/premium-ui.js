@@ -158,25 +158,20 @@
   }
 
   function ensureAdminLink() {
-    let link = document.querySelector('a[aria-label="Admin Panel"]');
-    if (!link) {
-      link = document.createElement("a");
-      link.href = "/admin";
-      link.title = "Admin Panel";
-      link.setAttribute("aria-label", "Admin Panel");
-      document.body.appendChild(link);
-    }
-    link.href = "/admin";
-    link.title = "Admin Panel";
-    link.setAttribute("aria-label", "Admin Panel");
+    if (document.querySelector(".premium-admin-link, a[aria-label='Admin Panel']")) return;
+
+    const link = document.createElement("a");
     link.className = "premium-admin-link";
+    link.href = "/admin";
+    link.setAttribute("aria-label", "Admin Panel");
     link.innerHTML = `
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
-        <circle cx="12" cy="12" r="3"></circle>
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 15.5A3.5 3.5 0 1 0 12 8a3.5 3.5 0 0 0 0 7.5Z"></path>
+        <path d="M19.4 15a1.8 1.8 0 0 0 .36 1.98l.05.05a2.16 2.16 0 0 1-3.05 3.05l-.05-.05a1.8 1.8 0 0 0-1.98-.36 1.8 1.8 0 0 0-1.1 1.65V21.5a2.16 2.16 0 0 1-4.32 0v-.08a1.8 1.8 0 0 0-1.1-1.65 1.8 1.8 0 0 0-1.98.36l-.05.05a2.16 2.16 0 0 1-3.05-3.05l.05-.05A1.8 1.8 0 0 0 4.6 15a1.8 1.8 0 0 0-1.65-1.1H2.87a2.16 2.16 0 0 1 0-4.32h.08A1.8 1.8 0 0 0 4.6 8a1.8 1.8 0 0 0-.36-1.98l-.05-.05a2.16 2.16 0 0 1 3.05-3.05l.05.05A1.8 1.8 0 0 0 9.27 3.33a1.8 1.8 0 0 0 1.1-1.65V1.6a2.16 2.16 0 0 1 4.32 0v.08a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 1.98-.36l.05-.05a2.16 2.16 0 0 1 3.05 3.05l-.05.05A1.8 1.8 0 0 0 19.4 8a1.8 1.8 0 0 0 1.65 1.1h.08a2.16 2.16 0 0 1 0 4.32h-.08A1.8 1.8 0 0 0 19.4 15Z"></path>
       </svg>
       <span>Admin</span>
     `;
+    document.body.appendChild(link);
   }
 
   function escapeHtml(value) {
@@ -251,22 +246,12 @@
     const searchQuery = String(query || "").trim();
     if (!searchQuery) return;
 
-    const products = await fetchCatalog();
-    const productIds = products
-      .filter(product => productMatchesSearch(product, searchQuery))
-      .slice(0, 12)
-      .map(product => String(product.id || product.handle || "").trim())
-      .filter(Boolean);
-
-    window.dispatchEvent(new CustomEvent("shopbot:action", {
-      detail: {
-        action: "SHOW_PRODUCTS",
-        params: {
-          product_ids: productIds,
-          search_query: searchQuery
-        }
-      }
-    }));
+    const url = new URL(window.location.href);
+    url.pathname = "/search";
+    url.search = "";
+    url.searchParams.set("q", searchQuery);
+    window.history.pushState({ searchQuery }, "", url);
+    await renderLiveCatalog({ query: searchQuery });
   }
 
   function shouldShowLiveCatalog() {
@@ -282,9 +267,18 @@
     }
   }
 
-  async function renderLiveCatalog() {
+  async function renderLiveCatalog(options = {}) {
     if (!shouldShowLiveCatalog()) return;
-    if (document.querySelector(".premium-live-catalog")) return;
+
+    const searchQuery = String(
+      options.query || new URLSearchParams(window.location.search).get("q") || ""
+    ).trim();
+    const existing = document.querySelector(".premium-live-catalog");
+    if (existing?.__premiumRenderCatalog) {
+      existing.__premiumSearchQuery = searchQuery;
+      existing.__premiumRenderCatalog();
+      return;
+    }
 
     const products = await fetchCatalog();
     if (!products.length) return;
@@ -295,6 +289,7 @@
 
     const section = document.createElement("section");
     section.className = "premium-live-catalog";
+    section.__premiumSearchQuery = searchQuery;
     section.innerHTML = `
       <div class="premium-live-head">
         <div>
@@ -369,12 +364,29 @@
     const renderGrid = () => {
       const selectedCategory = section.querySelector("[data-category].active")?.getAttribute("data-category") || "all";
       const sortBy = section.querySelector("[data-catalog-sort]")?.value || "relevance";
-      const filtered = selectedCategory === "all"
-        ? products
-        : products.filter(product => productCategories(product).includes(selectedCategory));
+      const query = String(section.__premiumSearchQuery || "").trim();
+      let filtered = query
+        ? products.filter(product => productMatchesSearch(product, query))
+        : products;
+      filtered = selectedCategory === "all"
+        ? filtered
+        : filtered.filter(product => productCategories(product).includes(selectedCategory));
       const visible = sortCatalogProducts(filtered, sortBy);
       const grid = section.querySelector(".premium-live-grid");
       if (!grid) return;
+      const heading = section.querySelector(".premium-live-head h2");
+      const count = section.querySelector(".premium-live-head span");
+      if (heading) heading.textContent = query ? `Search results for "${query}"` : "Current inventory";
+      if (count) count.textContent = `${visible.length} ${visible.length === 1 ? "product" : "products"}`;
+      if (!visible.length) {
+        grid.innerHTML = `
+          <div class="premium-live-empty">
+            <h3>No matching products</h3>
+            <p>Try a different product name, category, or brand.</p>
+          </div>
+        `;
+        return;
+      }
       grid.innerHTML = visible.map(product => {
         const id = product.id || product.handle;
         const handle = product.handle || id;
@@ -433,6 +445,7 @@
       });
     });
     toolbar.querySelector("[data-catalog-sort]")?.addEventListener("change", renderGrid);
+    section.__premiumRenderCatalog = renderGrid;
     renderGrid();
   }
 
