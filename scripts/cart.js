@@ -736,7 +736,13 @@
     const payload = {
       site_id: getShopbotSiteId(),
       address: params.address || "Not Provided",
-      payment_method: params.payment_method || "Not Provided"
+      payment_method: params.payment_method || "Not Provided",
+      items: cart.map(item => ({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity
+      }))
     };
 
     fetch(`${apiBase}/v1/cart/checkout`, {
@@ -1051,7 +1057,7 @@
     if (Number.isFinite(minPrice) && product.price < minPrice) return false;
     if (Number.isFinite(minRating) && Number(product.rating || 0) < minRating) return false;
     if (tags.length) {
-      const searchable = `${productCategories.join(" ")} ${product.description || ""}`.toLowerCase();
+      const searchable = [product.name, product.brand, ...productCategories, product.description].join(" ").toLowerCase();
       if (!tags.some(tag => searchable.includes(String(tag).toLowerCase()))) return false;
     }
     return product.in_stock !== false;
@@ -1270,7 +1276,8 @@
       showProducts,
       showComparison,
       filterProducts,
-      showProductDetail
+      showProductDetail,
+      checkout: runSimulatedCheckout
     };
 
     // Override or setup ShopBot Config hooks

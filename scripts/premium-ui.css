@@ -24,11 +24,80 @@ body {
   letter-spacing: 0;
 }
 
+html.dark,
 body.dark,
 .dark body,
 .dark .dark\:bg-neutral-900,
 .dark .dark\:bg-black {
-  background-color: transparent !important;
+  --ak-ink: #f8f6ef;
+  --ak-paper: #000000;
+  --ak-surface: #121212;
+  --ak-muted: #a09d96;
+  --ak-line: rgba(255, 255, 255, 0.12);
+  background: #000000 !important;
+  background-color: #000000 !important;
+  color: var(--ak-ink) !important;
+  color-scheme: dark;
+}
+
+html.dark body,
+.dark body {
+  background: #000000 !important;
+}
+
+/* Hide empty sidebars from the original template that cause rogue scrollbars */
+.order-first,
+.order-none.md\:order-last,
+aside:empty {
+  display: none !important;
+}
+
+.order-first::-webkit-scrollbar,
+.order-none.md\:order-last::-webkit-scrollbar,
+#shopbot-msgs::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none !important;
+}
+
+#shopbot-msgs {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#shopbot-chat:not(.visible) #shopbot-msgs {
+  overflow: hidden !important;
+}
+
+html.dark .premium-brand-mark,
+.dark .premium-brand-mark,
+html.dark .premium-category-tabs button.active,
+.dark .premium-category-tabs button.active,
+html.dark .premium-live-card-foot button,
+.dark .premium-live-card-foot button,
+html.dark a[href^="/product/"] p,
+.dark a[href^="/product/"] p,
+html.dark .dynamic-product-actions button,
+.dark .dynamic-product-actions button {
+  background: var(--ak-blue) !important;
+  color: #ffffff !important;
+}
+
+html.dark .dynamic-product-media,
+.dark .dynamic-product-media {
+  background: #050505 !important;
+  border-color: var(--ak-line) !important;
+}
+
+html.dark .dynamic-product-media img,
+.dark .dynamic-product-media img {
+  mix-blend-mode: normal !important;
+}
+
+html.dark .dynamic-product-actions a,
+.dark .dynamic-product-actions a {
+  background: var(--ak-surface) !important;
+  border-color: var(--ak-line) !important;
   color: var(--ak-ink) !important;
 }
 

@@ -594,7 +594,7 @@ def render_dynamic_product_page(requested_path: str) -> str:
     price = float(product.get("price") or 0)
 
     return f"""<!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

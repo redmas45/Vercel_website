@@ -53,6 +53,12 @@
     }
   }
 
+  function applyThemeMode() {
+    if (window.location.pathname.startsWith("/product/")) {
+      document.documentElement.classList.add("dark");
+    }
+  }
+
   function updateNav() {
     const nav = document.querySelector("nav");
     if (!nav || nav.dataset.premiumReady === "true") return;
@@ -70,15 +76,22 @@
     }
 
     const searchInput = nav.querySelector('input[name="q"], form input');
+    const searchForm = searchInput ? searchInput.closest("form") : null;
+
     if (searchInput) {
       searchInput.setAttribute("placeholder", "Search the collection");
-      searchInput.addEventListener("keypress", (e) => {
+    }
+
+    if (searchForm && searchInput) {
+      searchForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        dispatchSearchResults(searchInput.value);
+      });
+    } else if (searchInput) {
+      searchInput.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
           e.preventDefault();
-          const query = searchInput.value.trim();
-          if (query) {
-            window.location.href = `/search/?q=${encodeURIComponent(query)}`;
-          }
+          dispatchSearchResults(searchInput.value);
         }
       });
     }
@@ -210,6 +223,50 @@
     } catch (_error) {
       return [];
     }
+  }
+
+  function searchableProductText(product) {
+    return [
+      product.name,
+      product.title,
+      product.brand,
+      product.vendor,
+      product.description,
+      product.category,
+      ...(Array.isArray(product.categories) ? product.categories : [])
+    ].join(" ").toLowerCase();
+  }
+
+  function productMatchesSearch(product, query) {
+    const tokens = String(query || "")
+      .toLowerCase()
+      .split(/\s+/)
+      .filter(Boolean);
+    if (!tokens.length) return false;
+    const searchable = searchableProductText(product);
+    return tokens.every(token => searchable.includes(token));
+  }
+
+  async function dispatchSearchResults(query) {
+    const searchQuery = String(query || "").trim();
+    if (!searchQuery) return;
+
+    const products = await fetchCatalog();
+    const productIds = products
+      .filter(product => productMatchesSearch(product, searchQuery))
+      .slice(0, 12)
+      .map(product => String(product.id || product.handle || "").trim())
+      .filter(Boolean);
+
+    window.dispatchEvent(new CustomEvent("shopbot:action", {
+      detail: {
+        action: "SHOW_PRODUCTS",
+        params: {
+          product_ids: productIds,
+          search_query: searchQuery
+        }
+      }
+    }));
   }
 
   function shouldShowLiveCatalog() {
@@ -380,6 +437,7 @@
   }
 
   function run() {
+    applyThemeMode();
     document.documentElement.dataset.premiumUi = "true";
     replaceTextNodes(document.body || document.documentElement);
     updateAttributes();
@@ -424,10 +482,9 @@
     });
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    addMasthead();
-    polishHeader();
-    polishFooter();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyStaticSearchFilter);
+  } else {
     applyStaticSearchFilter();
-  });
+  }
 })();
