@@ -729,14 +729,40 @@
     }
   }
 
-  function runSimulatedCheckout() {
+  function runSimulatedCheckout(params = {}) {
     if (cart.length === 0) return;
-    closeCart();
-    cart = [];
-    saveCart();
     
-    // Open success modal
-    document.getElementById("shopbot-checkout-modal").classList.add("active");
+    const apiBase = getShopbotApiBase();
+    const payload = {
+      site_id: getShopbotSiteId(),
+      address: params.address || "Not Provided",
+      payment_method: params.payment_method || "Not Provided"
+    };
+
+    fetch(`${apiBase}/v1/cart/checkout`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }).then(async res => {
+      if (res.ok) {
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "bill.pdf";
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        a.remove();
+      }
+    }).catch(err => {
+      console.error("[ShopCart] Checkout API error:", err);
+    }).finally(() => {
+      closeCart();
+      cart = [];
+      saveCart();
+      document.getElementById("shopbot-checkout-modal").classList.add("active");
+    });
   }
 
   function productMatches(product, productId) {
@@ -1293,7 +1319,7 @@
       } else if (action.action === "NAVIGATE_TO" && (params.page === "cart" || params.page === "/cart")) {
         openCart();
       } else if (action.action === "CHECKOUT") {
-        runSimulatedCheckout();
+        runSimulatedCheckout(params);
       }
     });
   }

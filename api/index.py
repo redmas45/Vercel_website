@@ -12,7 +12,7 @@ from urllib.request import Request as UrlRequest
 from urllib.error import HTTPError
 from urllib.request import urlopen
 
-from fastapi import FastAPI, Query, Request, Depends, Form, HTTPException, status
+from fastapi import FastAPI, Query, Request, Depends, Form, HTTPException, status, UploadFile, File
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse, Response
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
@@ -324,7 +324,9 @@ def admin_panel(username: str = Depends(verify_admin)):
               <label>Price <input name="price" required type="number" min="0" step="0.01" value="25"></label>
               <label>Stock <input name="stock" required type="number" min="0" step="1" value="100"></label>
             </div>
-            <label>Image URL <input name="image_url" placeholder="https://..."></label>
+            <label>Image URL <input name="image_url" id="image-url-input" placeholder="https://..."></label>
+            <input type="file" id="local-image-upload" accept="image/*" style="display: none;">
+            <button type="button" class="secondary" id="trigger-upload">Upload Local Image</button>
             <button type="submit">Save Product</button>
           </form>
         </aside>
@@ -335,10 +337,13 @@ def admin_panel(username: str = Depends(verify_admin)):
             <p>{len(products)} products in the storefront catalog.</p>
           </div>
           <div class="toolbar">
+            <input type="text" id="admin-search" placeholder="Search products by name or category..." style="width: 300px;">
             <form method="post" action="/admin/replenish"><button class="secondary" type="submit">Replenish All Stock</button></form>
+            <form method="post" action="/v1/admin/crawler/run" style="display:inline;" target="crawler-frame" onsubmit="this.querySelector('button').textContent='Running...'; setTimeout(() => this.querySelector('button').textContent='Run Crawler', 3000);"><button class="secondary" type="submit">Run Crawler</button></form>
+            <iframe name="crawler-frame" style="display:none;"></iframe>
           </div>
           <div class="table-wrap">
-            <table>
+            <table id="product-table">
               <thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead>
               <tbody>{rows}</tbody>
             </table>
@@ -367,6 +372,44 @@ def admin_panel(username: str = Depends(verify_admin)):
         }}
       }}
       loadStatus();
+
+      document.getElementById('trigger-upload')?.addEventListener('click', () => {{
+        document.getElementById('local-image-upload')?.click();
+      }});
+      document.getElementById('local-image-upload')?.addEventListener('change', async (e) => {{
+        const file = e.target.files[0];
+        if (!file) return;
+        const btn = document.getElementById('trigger-upload');
+        const origText = btn.textContent;
+        btn.textContent = 'Uploading...';
+        btn.disabled = true;
+        const fd = new FormData();
+        fd.append('file', file);
+        try {{
+          const res = await fetch('/admin/upload-image', {{ method: 'POST', body: fd }});
+          const data = await res.json();
+          if (res.ok) {{
+            document.getElementById('image-url-input').value = data.url;
+          }} else {{
+            alert('Upload failed: ' + (data.error || res.statusText));
+          }}
+        }} catch(err) {{
+          alert('Upload error: ' + err.message);
+        }} finally {{
+          btn.textContent = origText;
+          btn.disabled = false;
+        }}
+      }});
+
+      document.getElementById('admin-search')?.addEventListener('input', (e) => {{
+        const term = e.target.value.toLowerCase();
+        const rows = document.querySelectorAll('#product-table tbody tr');
+        rows.forEach(row => {{
+          const text = row.textContent.toLowerCase();
+          row.style.display = text.includes(term) ? '' : 'none';
+        }});
+      }});
+
       document.getElementById("generate-description")?.addEventListener("click", async () => {{
         const form = document.getElementById("product-form");
         const button = document.getElementById("generate-description");
@@ -395,6 +438,19 @@ def admin_panel(username: str = Depends(verify_admin)):
   </body>
 </html>"""
 
+
+@app.post("/admin/upload-image")
+async def admin_upload_image(
+    file: UploadFile = File(...),
+    username: str = Depends(verify_admin_mutation)
+):
+    assets_dir = OUT_DIR / "assets"
+    assets_dir.mkdir(parents=True, exist_ok=True)
+    filename = f"{int(time.time())}_{file.filename.replace(' ', '_')}"
+    file_path = assets_dir / filename
+    with open(file_path, "wb") as f:
+        f.write(await file.read())
+    return JSONResponse({"url": f"/assets/{filename}"})
 
 @app.post("/admin/description")
 def admin_generate_description(

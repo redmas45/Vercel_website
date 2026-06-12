@@ -65,7 +65,6 @@
         <span class="premium-brand-mark">AK</span>
         <span class="premium-brand-copy">
           <span class="premium-brand-name">${BRAND_NAME}</span>
-          <span class="premium-brand-note">Curated Commerce</span>
         </span>
       `;
     }
@@ -73,7 +72,25 @@
     const searchInput = nav.querySelector('input[name="q"], form input');
     if (searchInput) {
       searchInput.setAttribute("placeholder", "Search the collection");
+      searchInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          const query = searchInput.value.trim();
+          if (query) {
+            window.location.href = `/search/?q=${encodeURIComponent(query)}`;
+          }
+        }
+      });
     }
+
+    // Hide unwanted category links
+    const links = nav.querySelectorAll("a");
+    links.forEach(link => {
+      const text = link.textContent.trim().toLowerCase();
+      if (["shirts", "stickers", "shopall", "apparel", "all", "shop all"].includes(text)) {
+        link.style.display = "none";
+      }
+    });
   }
 
   function addMasthead() {
@@ -91,11 +108,6 @@
           <p class="premium-kicker">New Collection</p>
           <h1 class="premium-title">Refined essentials for everyday shopping.</h1>
           <p class="premium-copy">A focused storefront for apparel, desk gear, accessories, and home goods.</p>
-        </div>
-        <div class="premium-stats" aria-label="Store highlights">
-          <div class="premium-stat"><strong>19</strong><span>Active products</span></div>
-          <div class="premium-stat"><strong>5</strong><span>Collections</span></div>
-          <div class="premium-stat"><strong>24h</strong><span>Order window</span></div>
         </div>
       </div>
     `;
@@ -123,10 +135,10 @@
           <span>Copyright ${FOOTER_YEAR} ${BRAND_NAME} Labs. All rights reserved.</span>
         </div>
         <div class="premium-footer-links">
-          <a href="/search/">Shop All</a>
-          <a href="/frequently-asked-questions/">Support</a>
-          <a href="/shipping-return-policy/">Shipping</a>
-          <a href="/privacy-policy/">Privacy</a>
+          <a href="/support/">Support</a>
+          <a href="/frequently-asked-questions/">FAQ</a>
+          <a href="/shipping-policy/">Shipping Policy</a>
+          <a href="/return-policy/">Return Policy</a>
         </div>
       </div>
     `;
@@ -384,4 +396,38 @@
   } else {
     run();
   }
+
+  function applyStaticSearchFilter() {
+    const isSearchPage = window.location.pathname.startsWith("/search");
+    if (!isSearchPage) return;
+
+    // 1. Hide sidebars
+    const sidebars = document.querySelectorAll(".order-first, .order-none.md\\:order-last");
+    sidebars.forEach(sidebar => {
+      if (sidebar) sidebar.style.display = "none";
+    });
+
+    // 2. Filter products based on ?q=
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get("q");
+    if (!q) return;
+
+    const term = q.toLowerCase();
+    const products = document.querySelectorAll("ul.grid li");
+    products.forEach(product => {
+      const text = product.textContent.toLowerCase();
+      if (!text.includes(term)) {
+        product.style.display = "none";
+      } else {
+        product.style.display = "";
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    addMasthead();
+    polishHeader();
+    polishFooter();
+    applyStaticSearchFilter();
+  });
 })();

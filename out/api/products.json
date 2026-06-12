@@ -1,7 +1,7 @@
 {
   "source": "https://demo.vercel.store/",
   "generated_at": "admin-edited",
-  "count": 19,
+  "count": 20,
   "products": [
     {
       "id": "acme-baby-cap",
@@ -38,7 +38,7 @@
       "price": 10,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/baby-onesie-beige-1.png?v=1690002632",
       "url": "/product/acme-baby-onesie/"
@@ -58,7 +58,7 @@
       "price": 50,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bomber-jacket-army.png?v=1690002722",
       "url": "/product/acme-bomber-jacket/"
@@ -78,7 +78,7 @@
       "price": 20,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/hat-1.png?v=1690002833",
       "url": "/product/acme-cap/"
@@ -98,7 +98,7 @@
       "price": 20,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-1.png?v=1689798965",
       "url": "/product/acme-geometric-circles-t-shirt/"
@@ -118,7 +118,7 @@
       "price": 160,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/cowboy-hat-black-1.png?v=1690208765",
       "url": "/product/acme-cowboy-hat/"
@@ -138,7 +138,7 @@
       "price": 15,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/cup-black.png?v=1690003088",
       "url": "/product/acme-cup/"
@@ -158,7 +158,7 @@
       "price": 20,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/dog-sweater-1.png?v=1690003132",
       "url": "/product/acme-dog-sweater/"
@@ -178,7 +178,7 @@
       "price": 12,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bag-1-dark.png?v=1689796304",
       "url": "/product/acme-drawstring-bag/"
@@ -198,7 +198,7 @@
       "price": 50,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/hoodie-1.png?v=1690003482",
       "url": "/product/acme-hoodie/"
@@ -218,7 +218,7 @@
       "price": 150,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/keyboard.png?v=1690003507",
       "url": "/product/acme-mechanical-keyboard/"
@@ -238,7 +238,7 @@
       "price": 15,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/mug-1.png?v=1690003527",
       "url": "/product/acme-mug/"
@@ -258,10 +258,30 @@
       "price": 10,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/pacifier-1.png?v=1690003544",
       "url": "/product/acme-pacifier/"
+    },
+    {
+      "id": "nova-premium-cup",
+      "handle": "nova-premium-cup",
+      "title": "NOVA Premium CUP",
+      "name": "NOVA Premium CUP",
+      "description": "The NOVA Premium CUP combines elegance and functionality, making it the perfect addition to your drinkware collection. Crafted from high-quality materials, this stylish cup features a sleek design that enhances your beverage experience. Ideal for both hot and cold drinks, the NOVA Premium CUP is perfect for everyday use or special occasions, priced at just $25.",
+      "category": "drinkware",
+      "categories": [
+        "drinkware"
+      ],
+      "brand": "NOVA",
+      "vendor": "NOVA",
+      "price": 25.0,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 100,
+      "in_stock": true,
+      "image_url": "/assets/1781249232_pexels-nikitaxnikitin-10719700.jpg",
+      "url": "/product/nova-premium-cup/"
     },
     {
       "id": "acme-rainbow-prism-t-shirt",
@@ -278,7 +298,7 @@
       "price": 25,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-spiral-1.png?v=1690003571",
       "url": "/product/acme-rainbow-prism-t-shirt/"
@@ -298,7 +318,7 @@
       "price": 4,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/sticker-rainbow.png?v=1690003602",
       "url": "/product/acme-rainbow-sticker/"
@@ -318,7 +338,7 @@
       "price": 45,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/shoes-1.png?v=1690004109",
       "url": "/product/acme-slip-on-shoes/"
@@ -338,7 +358,7 @@
       "price": 4,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/sticker.png?v=1690003619",
       "url": "/product/acme-sticker/"
@@ -358,7 +378,7 @@
       "price": 20,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-color-black.png?v=1690003675",
       "url": "/product/acme-t-shirt/"
@@ -376,7 +396,7 @@
       "price": 5,
       "original_price": null,
       "currency": "USD",
-      "stock": null,
+      "stock": 100,
       "in_stock": true,
       "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/webcam-cover.png?v=1690003750",
       "url": "/product/acme-webcam-cover/"
