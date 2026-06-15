@@ -4,10 +4,10 @@ Self-hosted clone of `https://demo.vercel.store/` for testing on infrastructure 
 
 ## Current Milestone
 
-**L3.5** is the current fallback point for this customer/spoke simulator.
+**L5.0** is the current fallback point for this customer/spoke simulator.
 
-- GitHub sync comment: `L 3.5`
-- Date: 2026-06-12
+- GitHub sync comment: `L 5`
+- Date: 2026-06-15
 - Meaning: if later changes break standalone storefront/admin/search or AI one-script injection mode, roll back to this synced state.
 
 ## What This App Does
