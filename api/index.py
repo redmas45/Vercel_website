@@ -11,6 +11,16 @@ from urllib.parse import unquote, urlparse
 from urllib.request import Request as UrlRequest
 from urllib.error import HTTPError
 from urllib.request import urlopen
+from contextlib import asynccontextmanager
+
+from api.database import (
+    init_db,
+    get_all_products,
+    get_product as db_get_product,
+    upsert_product,
+    delete_product as db_delete_product,
+    replenish_stock as db_replenish_stock
+)
 
 from fastapi import FastAPI, Query, Request, Depends, Form, HTTPException, status, UploadFile, File
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse, Response
@@ -35,7 +45,12 @@ SHOPBOT_INLINE_SCRIPT_TAG_RE = re.compile(
     re.IGNORECASE,
 )
 
-app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    init_db()
+    yield
+
+app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None, lifespan=lifespan)
 
 security = HTTPBasic()
 FAILED_ADMIN_LOGINS: dict[str, list[float]] = {}
@@ -155,33 +170,31 @@ def proxy_next_image(url: str = Query(...)):
 
 
 @app.get("/api/products")
-def list_products(request: Request):
+def list_products(request: Request) -> JSONResponse:
     auth_error = require_access_key(request)
     if auth_error:
         return auth_error
 
-    products = load_catalog().get("products", [])
+    products = get_all_products()
     return JSONResponse({"data": products})
 
 
 @app.get("/api/products/{product_id}")
-def get_product(product_id: str, request: Request):
+def get_product(product_id: str, request: Request) -> JSONResponse:
     auth_error = require_access_key(request)
     if auth_error:
         return auth_error
 
-    products = load_catalog().get("products", [])
-    for product in products:
-        if product.get("id") == product_id or product.get("handle") == product_id:
-            return JSONResponse({"data": product})
+    product = db_get_product(product_id)
+    if product:
+        return JSONResponse({"data": product})
 
     return JSONResponse({"error": "Product not found"}, status_code=404)
 
 
 @app.get("/admin", response_class=HTMLResponse)
-def admin_panel(username: str = Depends(verify_admin)):
-    catalog = load_catalog()
-    products = sorted(catalog.get("products", []), key=lambda item: item.get("name") or item.get("title") or "")
+def admin_panel(username: str = Depends(verify_admin)) -> str:
+    products = get_all_products()
     rows = "\n".join(render_admin_product_row(product) for product in products)
     site_id = html.escape(os.getenv("AI_DEFAULT_SITE_ID", "ai_kart_main"))
 
@@ -513,9 +526,7 @@ def admin_save_product(
     stock: int = Form(100),
     image_url: str = Form(""),
     username: str = Depends(verify_admin_mutation),
-):
-    catalog = load_catalog()
-    products = catalog.setdefault("products", [])
+) -> RedirectResponse:
     product = normalize_admin_product(
         product_id=product_id,
         name=name,
@@ -526,32 +537,19 @@ def admin_save_product(
         stock=stock,
         image_url=image_url,
     )
-
-    products[:] = [item for item in products if item.get("id") != product["id"] and item.get("handle") != product["handle"]]
-    products.append(product)
-    save_catalog(catalog)
+    upsert_product(product)
     return RedirectResponse("/admin", status_code=303)
 
 
 @app.post("/admin/products/{product_id}/delete")
-def admin_delete_product(product_id: str, username: str = Depends(verify_admin_mutation)):
-    catalog = load_catalog()
-    products = catalog.setdefault("products", [])
-    products[:] = [
-        item for item in products
-        if item.get("id") != product_id and item.get("handle") != product_id
-    ]
-    save_catalog(catalog)
+def admin_delete_product(product_id: str, username: str = Depends(verify_admin_mutation)) -> RedirectResponse:
+    db_delete_product(product_id)
     return RedirectResponse("/admin", status_code=303)
 
 
 @app.post("/admin/replenish")
-def admin_replenish(username: str = Depends(verify_admin_mutation)):
-    catalog = load_catalog()
-    for product in catalog.get("products", []):
-        product["stock"] = 100
-        product["in_stock"] = True
-    save_catalog(catalog)
+def admin_replenish(username: str = Depends(verify_admin_mutation)) -> RedirectResponse:
+    db_replenish_stock(100)
     return RedirectResponse("/admin", status_code=303)
 
 
@@ -732,11 +730,7 @@ def render_dynamic_product_page(requested_path: str) -> str:
 
 
 def find_catalog_product(product_id: str) -> dict | None:
-    products = load_catalog().get("products", [])
-    for product in products:
-        if str(product.get("id")) == product_id or str(product.get("handle")) == product_id:
-            return product
-    return None
+    return db_get_product(product_id)
 
 
 def labelize(value: object) -> str:
@@ -1091,31 +1085,8 @@ def default_product_image() -> str:
     return "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/mug-1.png?v=1690003527"
 
 
-def load_catalog():
-    if not CATALOG_FILE.is_file():
-        return {"source": "https://demo.vercel.store/", "count": 0, "products": []}
-
-    return json.loads(CATALOG_FILE.read_text(encoding="utf-8"))
-
-
-def save_catalog(catalog: dict) -> None:
-    products = sorted(
-        catalog.get("products", []),
-        key=lambda product: str(product.get("name") or product.get("title") or ""),
-    )
-    catalog["products"] = products
-    catalog["count"] = len(products)
-    catalog["generated_at"] = "admin-edited"
-    CATALOG_FILE.parent.mkdir(parents=True, exist_ok=True)
-    temp_file = CATALOG_FILE.with_suffix(".json.tmp")
-    temp_file.write_text(json.dumps(catalog, indent=2, ensure_ascii=False), encoding="utf-8")
-    temp_file.replace(CATALOG_FILE)
-
-
 def api_cors_origin() -> str:
     return os.getenv("API_CORS_ORIGIN", "").strip()
-
-
 def require_access_key(request: Request):
     expected_hash = access_key_hash()
     if not expected_hash:

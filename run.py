@@ -1,7 +1,17 @@
 import os
-
 import uvicorn
 
+def load_dotenv():
+    env_file = os.path.join(os.path.dirname(__file__), ".env")
+    if os.path.isfile(env_file):
+        with open(env_file, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    k, v = line.split("=", 1)
+                    os.environ.setdefault(k.strip(), v.strip().strip("'\""))
+
+load_dotenv()
 
 def truthy(value: str | None) -> bool:
     return str(value or "").strip().lower() in {"1", "true", "yes", "on"}

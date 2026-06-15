@@ -37,9 +37,16 @@ This starts the storefront on `http://127.0.0.1:8584`, keeps `/admin` available,
 
 Run with the AI HUB widget only after the HUB server is already running:
 
+First, ensure your `.env` file contains:
+
+```env
+ENABLE_AI_WIDGET=true
+SHOPBOT_HUB_ORIGIN=https://192.168.68.56:8484
+```
+
+Then simply run:
+
 ```powershell
-$env:ENABLE_AI_WIDGET="true"
-$env:SHOPBOT_HUB_ORIGIN="http://127.0.0.1:8585"
 python run.py
 ```
 
@@ -48,22 +55,6 @@ That inserts the single client-style script tag at request time:
 ```html
 <script defer src="http://127.0.0.1:8585/shopbot.js?site=ai_kart_main" data-site-id="ai_kart_main" data-brand="AI-KART"></script>
 ```
-
-## Required Environment Variables
-
-```env
-LAB_ACCESS_KEY=replace_with_raw_key
-LAB_ACCESS_KEY_SHA256=replace_with_sha256_of_raw_key
-CATALOG_BASE_URL=https://vercelclonedwebsite.vercel.app
-CATALOG_API_URL=https://vercelclonedwebsite.vercel.app/api/products?key=replace_with_raw_key
-LAB_INJECTION_HTML=<script defer src="https://fresh-tunnel-url.example.com/shopbot.js?site=ai_kart_main" data-site-id="ai_kart_main"></script>
-LAB_ALLOWED_SCRIPT_ORIGINS=https://fresh-tunnel-url.example.com
-API_CORS_ORIGIN=*
-IMAGE_PROXY_ALLOWED_HOSTS=cdn.shopify.com demo.vercel.store vercel.com assets.vercel.com
-```
-
-`LAB_ALLOWED_SCRIPT_ORIGINS` should include the same origin as the script tag in `LAB_INJECTION_HTML`.
-The app also parses `LAB_INJECTION_HTML` and adds any valid script origins to CSP automatically.
 
 ## Catalog API
 
