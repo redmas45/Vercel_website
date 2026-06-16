@@ -112,6 +112,11 @@ LAB_ALLOWED_SCRIPT_ORIGINS=http://127.0.0.1:8585
 If `LAB_INJECTION_HTML` is set, the app injects it into every served HTML page before `</head>`.
 If it is empty or unset, the app injects nothing.
 
+### Hardcoded Client Script Tag
+A hardcoded script tag can also be placed directly in the HTML storefront files (e.g. `<script defer src="https://192.168.68.51:8484/shopbot.js?site=ai_kart_main" data-site-id="ai_kart_main"></script>`):
+- The build script `scripts/inject-shopbot.mjs` is configured to preserve this script tag and ensure its presence in all static pages in `out/` after every crawl.
+- The server runtime `api/index.py` protects this script tag from regex scrubbing and automatically whitelists its origin in the CSP header.
+
 ## Security Headers
 
 `api/index.py` adds:
@@ -129,7 +134,7 @@ The app also derives script origins from `LAB_INJECTION_HTML` and adds them to C
 
 ## Local Run
 
-Run the cloned website locally using the built-in runner, which automatically loads your `.env` file:
+Run the cloned website locally using the built-in runner, which automatically loads your `.env` file. The runner will automatically detect if the configured port is blocked by another process and terminate the blocking process to free up the address:
 
 ```powershell
 python run.py

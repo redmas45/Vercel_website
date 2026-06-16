@@ -152,13 +152,13 @@ def upsert_product(product: Dict[str, Any], conn: Optional[sqlite3.Connection] =
                 json.dumps(product.get("categories", [])),
                 str(product.get("brand", "")),
                 str(product.get("vendor", "")),
-                float(product.get("price", 0.0)),
+                float(product.get("price") or 0.0),
                 product.get("original_price"),
-                str(product.get("currency", "USD")),
-                int(product.get("stock", 0)),
-                bool(product.get("in_stock", False)),
-                str(product.get("image_url", "")),
-                str(product.get("url", ""))
+                str(product.get("currency") or "USD"),
+                int(product.get("stock") or 0),
+                bool(product.get("in_stock") or False),
+                str(product.get("image_url") or ""),
+                str(product.get("url") or "")
             )
         )
         if manage_conn:

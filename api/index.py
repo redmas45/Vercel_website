@@ -894,14 +894,16 @@ def is_secure_request(request: Request) -> bool:
 
 def inject_lab_script(html: str) -> str:
     html = SHOPBOT_DISABLED_RE.sub("", html)
-    html = SHOPBOT_SCRIPT_TAG_RE.sub("", html)
     html = SHOPBOT_INLINE_SCRIPT_TAG_RE.sub("", html)
-    script = injection_markup()
-    
-    if script:
-        marker = "</head>"
-        if marker in html:
-            html = html.replace(marker, f"{script}\n{marker}", 1)
+
+    if SHOPBOT_SCRIPT_TAG_RE.search(html):
+        return html
+
+    script = injection_markup() or default_shopbot_script()
+    if script and script not in html:
+        head_marker = "</head>"
+        if head_marker in html:
+            html = html.replace(head_marker, f"{script}\n{head_marker}", 1)
         elif "<head>" in html:
             html = html.replace("<head>", f"<head>\n{script}", 1)
         else:
@@ -911,6 +913,21 @@ def inject_lab_script(html: str) -> str:
 
 def injection_markup() -> str:
     return os.getenv("LAB_INJECTION_HTML", "").strip()
+
+
+def default_shopbot_script() -> str:
+    site_id = os.getenv("SHOPBOT_SITE_ID", "ai_kart_main").strip() or "ai_kart_main"
+    brand = os.getenv("SHOPBOT_BRAND", "AI-KART").strip() or "AI-KART"
+    script_src = os.getenv("SHOPBOT_SCRIPT_SRC", f"/shopbot.js?site={site_id}").strip()
+    if not script_src:
+        return ""
+    safe_src = html.escape(script_src, quote=True)
+    safe_site_id = html.escape(site_id, quote=True)
+    safe_brand = html.escape(brand, quote=True)
+    return (
+        f'<script defer src="{safe_src}" '
+        f'data-site-id="{safe_site_id}" data-brand="{safe_brand}"></script>'
+    )
 
 
 def maybe_https_redirect(request: Request) -> Response | None:
@@ -967,7 +984,11 @@ def allowed_script_origins() -> set[str]:
         for origin in os.getenv("LAB_ALLOWED_SCRIPT_ORIGINS", "").split()
         if origin.strip()
     }
-    return configured | script_origins_from_markup(injection_markup())
+    hub_origin = os.getenv("SHOPBOT_HUB_ORIGIN", "").strip().rstrip("/")
+    parsed = urlparse(hub_origin)
+    if parsed.scheme in {"http", "https"} and parsed.netloc:
+        configured.add(hub_origin)
+    return configured | script_origins_from_markup(injection_markup() or default_shopbot_script())
 
 
 def script_origins_from_markup(markup: str) -> set[str]:

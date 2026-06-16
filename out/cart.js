@@ -1,9 +1,12 @@
 (function () {
   // --- Cart State Management ---
   const CART_KEY = "shopbot_cart";
+  const BILL_FILENAME = "bill.pdf";
+  const BILL_URL_REVOKE_DELAY_MS = 300000;
   let cart = [];
   let catalog = [];
   let activeResults = [];
+  let activeBillUrl = "";
 
   function getShopbotApiBase() {
     const configured = window.ShopBotConfig?.apiUrl;
@@ -364,6 +367,23 @@
     .shopbot-modal-ok-btn:hover {
       opacity: 0.9;
     }
+    .shopbot-bill-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      margin: 0 8px 14px;
+      padding: 0 18px;
+      border-radius: 8px;
+      background: #155dfc;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .shopbot-bill-link[hidden] {
+      display: none;
+    }
 
     #shopbot-results-panel {
       position: fixed;
@@ -675,6 +695,7 @@
         <span class="shopbot-success-icon">🎉</span>
         <h3 class="shopbot-modal-title">Checkout complete</h3>
         <p class="shopbot-modal-desc">Your order is confirmed and the cart has been cleared.</p>
+        <a class="shopbot-bill-link" id="shopbot-bill-link" href="#" download="${BILL_FILENAME}" hidden>Download bill</a>
         <button class="shopbot-modal-ok-btn">Done</button>
       </div>
     `;
@@ -729,9 +750,52 @@
     }
   }
 
-  function runSimulatedCheckout(params = {}) {
-    if (cart.length === 0) return;
-    
+  function revokeActiveBillUrl() {
+    if (!activeBillUrl) return;
+    window.URL.revokeObjectURL(activeBillUrl);
+    activeBillUrl = "";
+  }
+
+  function showCheckoutModal(title, description, billUrl = "") {
+    const modal = document.getElementById("shopbot-checkout-modal");
+    if (!modal) return;
+    const titleEl = modal.querySelector(".shopbot-modal-title");
+    const descEl = modal.querySelector(".shopbot-modal-desc");
+    const billLink = modal.querySelector("#shopbot-bill-link");
+    if (titleEl) titleEl.textContent = title;
+    if (descEl) descEl.textContent = description;
+    if (billLink) {
+      if (billUrl) {
+        billLink.href = billUrl;
+        billLink.hidden = false;
+      } else {
+        billLink.hidden = true;
+        billLink.removeAttribute("href");
+      }
+    }
+    modal.classList.add("active");
+  }
+
+  function downloadBill(blob) {
+    revokeActiveBillUrl();
+    activeBillUrl = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = activeBillUrl;
+    a.download = BILL_FILENAME;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.setTimeout(revokeActiveBillUrl, BILL_URL_REVOKE_DELAY_MS);
+    return activeBillUrl;
+  }
+
+  async function runSimulatedCheckout(params = {}) {
+    if (cart.length === 0) {
+      openCart();
+      showCheckoutModal("Cart is empty", "Add an item before checkout so a bill can be generated.");
+      return;
+    }
+
     const apiBase = getShopbotApiBase();
     const payload = {
       site_id: getShopbotSiteId(),
@@ -745,30 +809,32 @@
       }))
     };
 
-    fetch(`${apiBase}/v1/cart/checkout`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    }).then(async res => {
-      if (res.ok) {
-        const blob = await res.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "bill.pdf";
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        a.remove();
+    try {
+      const res = await fetch(`${apiBase}/v1/cart/checkout`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) {
+        throw new Error(`Checkout failed with HTTP ${res.status}`);
       }
-    }).catch(err => {
-      console.error("[ShopCart] Checkout API error:", err);
-    }).finally(() => {
+      const blob = await res.blob();
+      if (!blob.size) {
+        throw new Error("Checkout returned an empty bill.");
+      }
+      const billUrl = downloadBill(blob);
       closeCart();
       cart = [];
       saveCart();
-      document.getElementById("shopbot-checkout-modal").classList.add("active");
-    });
+      showCheckoutModal(
+        "Checkout complete",
+        "Your order is confirmed. If the bill did not download automatically, use the download button below.",
+        billUrl
+      );
+    } catch (err) {
+      console.error("[ShopCart] Checkout API error:", err);
+      showCheckoutModal("Checkout failed", "The bill could not be generated. Please try checkout again.");
+    }
   }
 
   function productMatches(product, productId) {

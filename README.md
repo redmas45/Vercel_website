@@ -33,7 +33,7 @@ Run locally in standalone customer-site mode:
 python run.py
 ```
 
-This starts the storefront on `http://127.0.0.1:8584`, keeps `/admin` available, and does not inject `shopbot.js`.
+This starts the storefront on `http://127.0.0.1:8584`, keeps `/admin` available, and does not inject `shopbot.js`. The runner will automatically terminate any other process blocking port 8584 before starting.
 
 Run with the AI HUB widget only after the HUB server is already running:
 
@@ -75,8 +75,9 @@ Single-product lookup remains available at `GET /api/products/{product_id}` and 
 
 - If `ENABLE_AI_WIDGET=true`, `run.py` builds the single HUB script tag automatically.
 - If `LAB_INJECTION_HTML` is set by another process, it is inserted into every served HTML page before `</head>`.
+- Alternatively, you can use a hardcoded script tag. The build and serve scripts are updated to preserve and protect this script tag, and automatically whitelist its origin in the CSP header.
 - If neither is set, nothing is injected and old widget/stub scripts are scrubbed during build.
-- CSP allows `'self'`, the origins in `LAB_ALLOWED_SCRIPT_ORIGINS`, and any valid external script origins parsed from `LAB_INJECTION_HTML`.
+- CSP allows `'self'`, the origins in `LAB_ALLOWED_SCRIPT_ORIGINS`, and any valid external script origins parsed from the markup.
 
 ## Vercel Settings
 
