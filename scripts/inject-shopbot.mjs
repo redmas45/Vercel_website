@@ -7,16 +7,54 @@
  *   SHOPBOT_SCRIPT_SRC=/shopbot.js?site=ai_kart_main node scripts/inject-shopbot.mjs
  */
 
-import { readFileSync, writeFileSync, readdirSync, statSync } from "fs";
+import { existsSync, readFileSync, writeFileSync, readdirSync, statSync } from "fs";
 import { join, resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = resolve(__dirname, "..", "out");
+
+loadDotEnv();
+
 const SITE_ID = "ai_kart_main";
 const SCRIPT_SRC = (process.env.SHOPBOT_SCRIPT_SRC || `/shopbot.js?site=${SITE_ID}`).trim();
-const USER_SCRIPT = `<script defer src="${SCRIPT_SRC}" data-site-id="${SITE_ID}"></script>`;
+const SCRIPT_API_URL = (
+  process.env.SHOPBOT_API_URL ||
+  process.env.SHOPBOT_HUB_ORIGIN ||
+  ""
+).trim().replace(/\/+$/, "");
+const BRAND = (process.env.SHOPBOT_BRAND || "AI-KART").trim();
+const USER_SCRIPT = [
+  "<script defer",
+  `src="${escapeAttribute(SCRIPT_SRC)}"`,
+  `data-site-id="${escapeAttribute(SITE_ID)}"`,
+  BRAND ? `data-brand="${escapeAttribute(BRAND)}"` : "",
+  SCRIPT_API_URL ? `data-api-url="${escapeAttribute(SCRIPT_API_URL)}"` : "",
+  "></script>",
+].filter(Boolean).join(" ");
 const SHOPBOT_SCRIPT_RE = /<script\b[^>]*\bsrc=(['"])[^'"]*\/shopbot\.js(?:\?[^'"]*)?\1[^>]*>\s*<\/script>\s*/gi;
+
+function loadDotEnv() {
+  const envPath = resolve(__dirname, "..", ".env");
+  if (!existsSync(envPath)) return;
+
+  const lines = readFileSync(envPath, "utf-8").split(/\r?\n/);
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#") || !trimmed.includes("=")) continue;
+    const [key, ...valueParts] = trimmed.split("=");
+    if (!key || process.env[key] !== undefined) continue;
+    process.env[key.trim()] = valueParts.join("=").trim().replace(/^['"]|['"]$/g, "");
+  }
+}
+
+function escapeAttribute(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
 
 function stripGeneratedShopbot(html) {
   return html
