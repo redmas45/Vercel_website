@@ -3,11 +3,26 @@
 Use this for the standalone setup (FastAPI Backend + React/Vite Frontend):
 
 ```text
-AI-KART public: http://aikart.ergobite.com  (or server IP on port 80)
-AI-KART backend:http://127.0.0.1:8000
-AI-KART front:  http://127.0.0.1:5175
-Project:        /var/www/Vercel_website
-Venv:           /Data/www/aikartvenv
+AI-KART public:      http://143.198.5.97/
+AI-KART backend:     http://127.0.0.1:8000
+AI-KART frontend:    http://127.0.0.1:5175
+AI Hub public:       http://143.198.5.97/aihub/
+AI Hub local:        http://127.0.0.1:5176
+Client Panel public: http://143.198.5.97/client-panel/ai_kart
+Client Panel local:  http://127.0.0.1:5177
+Project:             /var/www/Vercel_website
+Venv:                /Data/www/aikartvenv
+```
+
+All three projects are deployed independently. This guide only builds/restarts AI-KART services. It owns the shared port-80 Nginx edge config because AI-KART owns the root path `/`.
+
+Public path map:
+
+```text
+/                  -> AI-KART frontend
+/api/              -> AI-KART backend
+/aihub/            -> AI Hub
+/client-panel/<client_id> -> Client Panel
 ```
 
 ## 1. Fix Permissions
@@ -74,7 +89,7 @@ EOF
 AI Hub connection is not configured through frontend env vars. Paste the one-line script into `frontend/index.html` only when this website is connected in AI Hub CRM:
 
 ```html
-<script defer src="http://143.198.5.97/aihub/shopbot.js?site=ai_kart_main" data-site-id="ai_kart_main"></script>
+<script defer src="http://143.198.5.97/aihub/shopbot.js?site=ai_kart" data-site-id="ai_kart"></script>
 ```
 
 ## 4. Build Website
@@ -114,9 +129,11 @@ pm2 save
 pm2 list
 ```
 
-## 6. Create Nginx Config (Root Path)
+## 6. Create Shared Nginx Edge Config
 
-This setup treats AI-KART as a completely independent website at the root path (`/`).
+This setup treats AI-KART as a completely independent website at the root path (`/`). The other projects stay independent too: this Nginx file only routes public paths to their local upstreams.
+
+Run this after AI Hub and Client Panel are started locally, or rerun it later when adding those services. It does not build or restart their apps.
 
 ```bash
 sudo tee /etc/nginx/sites-available/aikart-standalone >/dev/null <<'EOF'
@@ -165,6 +182,21 @@ server {
         proxy_send_timeout 300s;
     }
 
+    # Proxy Client Panel
+    location = /client-panel {
+        return 301 /client-panel/;
+    }
+
+    location /client-panel/ {
+        proxy_pass http://127.0.0.1:5177;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto http;
+        proxy_set_header X-Forwarded-Prefix /client-panel;
+    }
+
     # Route all other traffic to the React frontend
     location / {
         proxy_pass http://127.0.0.1:5175/;
@@ -180,6 +212,7 @@ EOF
 sudo rm -f /etc/nginx/sites-enabled/default
 sudo rm -f /etc/nginx/sites-enabled/aikart
 sudo rm -f /etc/nginx/sites-enabled/aikart-aihub-paths
+sudo rm -f /etc/nginx/sites-enabled/client-panel
 sudo ln -sfn /etc/nginx/sites-available/aikart-standalone /etc/nginx/sites-enabled/aikart-standalone
 sudo nginx -t
 sudo systemctl reload nginx
@@ -190,6 +223,19 @@ sudo systemctl reload nginx
 ```bash
 curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:5175/
 curl -s -o /dev/null -w "%{http_code}\n" http://143.198.5.97/api/products
+```
+
+Expected:
+```text
+200
+200
+```
+
+After AI Hub and Client Panel are deployed, test the shared paths too:
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" http://143.198.5.97/aihub/health
+curl -s -o /dev/null -w "%{http_code}\n" http://143.198.5.97/client-panel/ai_kart
 ```
 
 Expected:

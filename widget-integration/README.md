@@ -7,7 +7,7 @@ AI-KART is a standalone client website. It does not auto-load AI Hub code.
 Paste the one-line script into `frontend/index.html` only when this website is connected in AI Hub CRM:
 
 ```html
-<script defer src="http://143.198.5.97/aihub/shopbot.js?site=ai_kart_main" data-site-id="ai_kart_main"></script>
+<script defer src="http://143.198.5.97/aihub/shopbot.js?site=ai_kart" data-site-id="ai_kart"></script>
 ```
 
 If the script is absent, no mic is shown. If AI Hub CRM disables the client, the served script is disabled and no mic is shown.

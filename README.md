@@ -2,6 +2,15 @@
 
 React/Vite storefront plus FastAPI/SQLite backend. This repo is a client/spoke website. It must work without AI Hub.
 
+On the shared server, this website owns the root public path `/` and the shared port-80 Nginx edge config. AI Hub and Client Panel stay separate services, routed publicly by path only:
+
+```text
+/                  -> AI-KART
+/api/              -> AI-KART backend
+/aihub/            -> AI Hub
+/client-panel/<client_id> -> Client Panel
+```
+
 ## Contract With AI Hub
 
 AI Hub connection is manual only. The website does not inject Hub code from environment variables.
@@ -9,7 +18,7 @@ AI Hub connection is manual only. The website does not inject Hub code from envi
 When the client is connected in AI Hub CRM, paste one script tag into `frontend/index.html`:
 
 ```html
-<script defer src="http://143.198.5.97/aihub/shopbot.js?site=ai_kart_main" data-site-id="ai_kart_main"></script>
+<script defer src="http://143.198.5.97/aihub/shopbot.js?site=ai_kart" data-site-id="ai_kart"></script>
 ```
 
 No pasted script means no mic. Disabled client in AI Hub CRM means no mic.
