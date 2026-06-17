@@ -171,20 +171,12 @@ def proxy_next_image(url: str = Query(...)):
 
 @app.get("/api/products")
 def list_products(request: Request) -> JSONResponse:
-    auth_error = require_access_key(request)
-    if auth_error:
-        return auth_error
-
     products = get_all_products()
     return JSONResponse({"data": products})
 
 
 @app.get("/api/products/{product_id}")
 def get_product(product_id: str, request: Request) -> JSONResponse:
-    auth_error = require_access_key(request)
-    if auth_error:
-        return auth_error
-
     product = db_get_product(product_id)
     if product:
         return JSONResponse({"data": product})
