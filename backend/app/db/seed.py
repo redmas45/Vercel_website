@@ -6,7 +6,9 @@ from pathlib import Path
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.db.models import Product
+from app.core.config import settings
+from app.core.security import hash_password
+from app.db.models import Product, User
 from app.db.session import AsyncSessionLocal
 
 SEED_FILE = Path(__file__).resolve().parents[2] / "products.seed.json"
@@ -54,3 +56,20 @@ async def seed_if_empty() -> None:
 
         await session.commit()
         print(f"[seed] Seeded {len(products_data)} products into the database.")
+
+
+async def ensure_default_admin() -> None:
+    async with AsyncSessionLocal() as session:
+        count_result = await session.execute(select(func.count()).select_from(User).where(User.role == "admin"))
+        count = count_result.scalar_one()
+        if count > 0:
+            return
+        admin = User(
+            email=settings.default_admin_email.strip().lower(),
+            name="Store Admin",
+            password_hash=hash_password(settings.default_admin_password),
+            role="admin",
+        )
+        session.add(admin)
+        await session.commit()
+        print(f"[seed] Created default admin user {admin.email}.")

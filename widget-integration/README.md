@@ -1,82 +1,45 @@
 # AI-KART Widget Integration
 
-This document explains how the `shopbot.js` hub script connects to the AI-KART React storefront.
+AI-KART is a standalone client website. It does not auto-load AI Hub code.
 
-## Script injection
+## Connection
 
-The frontend loads the hub's script dynamically via `useVoiceWidget.ts` on app mount. Set the hub origin in the frontend `.env.local`:
-
-```env
-VITE_SHOPBOT_HUB_ORIGIN=https://192.168.68.51:8484
-VITE_SHOPBOT_SITE_ID=ai_kart_main
-```
-
-The injected script tag will look like:
+Paste the one-line script into `frontend/index.html` only when this website is connected in AI Hub CRM:
 
 ```html
-<script defer
-  src="https://192.168.68.51:8484/shopbot.js?site=ai_kart_main"
-  data-site-id="ai_kart_main"
-  data-shopbot-hub="true">
-</script>
+<script defer src="http://143.198.5.97/aihub/shopbot.js?site=ai_kart_main" data-site-id="ai_kart_main"></script>
 ```
 
-## Orb attachment
+If the script is absent, no mic is shown. If AI Hub CRM disables the client, the served script is disabled and no mic is shown.
 
-The Voice Orb element has a stable DOM id and data attribute for the hub to attach to:
+## Storefront Hooks
 
-```html
-<div id="shopbot-voice-orb" data-shopbot-trigger="true" ...>
-```
+The React app exposes generic browser hooks for the Hub script:
 
-## Orb state contract (Option A)
+- `window.ShopCart.addItem(productId, quantity)`
+- `window.ShopCart.open()`
+- `window.ShopCart.clear()`
+- `window.ShopCart.removeItem(productId)`
+- `window.ShopCart.updateQuantity(productId, quantity)`
+- `window.ShopCart.showProductDetail(productId)`
+- `window.ShopCart.filterProducts(params)`
+- `window.ShopBotConfig.onAddToCart(productId, quantity)`
+- `window.ShopBotConfig.onOpenCart()`
 
-The hub script drives the orb's visual state by dispatching a `CustomEvent` on `window`:
+These hooks do not contain a Hub URL or Hub credentials. The pasted script provides the Hub connection.
 
-```js
-window.dispatchEvent(new CustomEvent('shopbot:orb-state', {
-  detail: { state: 'idle' | 'listening' | 'speaking' }
-}));
-```
-
-The React `useVoiceWidget` hook listens for this event and updates the orb's CSS class accordingly.
-
-## Storefront → Hub: action event bus
-
-The storefront dispatches `CustomEvent("shopbot:action", ...)` for hub-triggered actions (mirrors the existing `cart.js` pattern):
-
-```js
-window.dispatchEvent(new CustomEvent('shopbot:action', {
-  detail: {
-    action: 'ADD_TO_CART',
-    params: { product_id: 'acme-mug', quantity: 1 }
-  }
-}));
-```
-
-Supported actions: `ADD_TO_CART`, `SHOW_PRODUCTS`, `FILTER_PRODUCTS`, `OPEN_CART`, `CHECKOUT`.
-
-## Hub → Storefront: window.ShopBotConfig
-
-`useVoiceWidget` sets up `window.ShopBotConfig` so the hub can read site config and trigger storefront callbacks:
-
-| Property | Value |
-|---|---|
-| `window.ShopBotConfig.siteId` | `ai_kart_main` |
-| `window.ShopBotConfig.apiUrl` | `window.location.origin` |
-| `window.ShopBotConfig.onOpenCart` | Opens the cart drawer |
-| `window.ShopBotConfig.onAddToCart(id, qty)` | Adds item and opens cart |
+If a shopper is logged in, `window.ShopBotConfig.sessionId` is set to a stable website user session such as `user-12`. Anonymous visitors keep the Hub widget's anonymous browser session.
 
 ## Catalog API
 
-The hub fetches the product catalog from the same endpoint shape it already expects:
+AI Hub crawler reads:
 
-```
+```text
 GET /api/products
-→ { "data": [ ...products... ] }
-
-GET /api/products/{id}
-→ { "data": { ...product } }
 ```
 
-Run the backend on port 8000 (default) — the Vite dev server proxies `/api` to it automatically.
+Response shape:
+
+```json
+{ "data": [] }
+```

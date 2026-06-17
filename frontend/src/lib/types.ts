@@ -25,9 +25,20 @@ export interface ProductDetailResponse {
   data: Product;
 }
 
-export type OrbState = 'idle' | 'listening' | 'speaking';
-
 export interface CartItem {
   product: Product;
   quantity: number;
+}
+
+export interface User {
+  id: number;
+  email: string;
+  name: string;
+  role: 'admin' | 'customer';
+  created_at?: string | null;
+}
+
+export interface AuthResponse {
+  token: string;
+  user: User;
 }

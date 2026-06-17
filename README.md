@@ -1,12 +1,24 @@
 # AI-KART
 
-A premium voice-powered e-commerce storefront — React/Vite SPA + FastAPI/SQLite backend.
+React/Vite storefront plus FastAPI/SQLite backend. This repo is a client/spoke website. It must work without AI Hub.
 
----
+## Contract With AI Hub
 
-## Running locally
+AI Hub connection is manual only. The website does not inject Hub code from environment variables.
 
-### 1. Backend (FastAPI + SQLite)
+When the client is connected in AI Hub CRM, paste one script tag into `frontend/index.html`:
+
+```html
+<script defer src="http://143.198.5.97/aihub/shopbot.js?site=ai_kart_main" data-site-id="ai_kart_main"></script>
+```
+
+No pasted script means no mic. Disabled client in AI Hub CRM means no mic.
+
+When a shopper logs in, the storefront exposes a stable `window.ShopBotConfig.sessionId` to the pasted Hub script. AI Hub can then enforce per-shopper/session token limits from the client panel.
+
+## Running Locally
+
+Backend:
 
 ```bash
 cd backend
@@ -14,9 +26,7 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-On first run, the backend creates an SQLite database (`aikart.db`) and seeds it from `products.seed.json` automatically. Subsequent runs are idempotent — the seed runs only if the products table is empty.
-
-### 2. Frontend (React + Vite)
+Frontend:
 
 ```bash
 cd frontend
@@ -24,66 +34,47 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173`. The Vite dev server proxies `/api` calls to the backend at `http://127.0.0.1:8000`.
+Open `http://localhost:5173`.
 
----
+## Website Admin
 
-## Configuration
+The client website owns users and products. AI Hub CRM does not manage storefront inventory.
 
-### Backend — `backend/.env`
+Default local admin is created when the backend database is empty:
 
-Copy `backend/.env.example` to `backend/.env`:
+```text
+admin@aikart.local
+admin123
+```
+
+Change these in `backend/.env`:
 
 ```env
-DATABASE_URL=sqlite+aiosqlite:///./aikart.db
-CORS_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
-SHOPBOT_HUB_ORIGIN=           # e.g. https://192.168.68.51:8484
-LAB_ALLOWED_SCRIPT_ORIGINS=   # space-separated extra CSP origins
+AUTH_SECRET_KEY=change-me
+DEFAULT_ADMIN_EMAIL=admin@aikart.local
+DEFAULT_ADMIN_PASSWORD=admin123
+UPLOAD_DIR=static/uploads
 ```
 
-### Frontend — `frontend/.env.local`
+Admin URL:
 
-Copy `frontend/.env.example` to `frontend/.env.local`:
-
-```env
-VITE_API_BASE_URL=            # leave empty for Vite proxy; set to backend URL in production
-VITE_SHOPBOT_HUB_ORIGIN=      # e.g. https://192.168.68.51:8484
-VITE_SHOPBOT_SITE_ID=ai_kart_main
+```text
+/admin
 ```
 
----
+Admin can:
 
-## Pointing frontend at a different API
+- Add/delete website users.
+- Add/delete products.
+- Upload product images from local files.
 
-In production (or when not using the Vite proxy), set `VITE_API_BASE_URL` in `frontend/.env.local`:
-
-```env
-VITE_API_BASE_URL=https://your-backend-host.com
-```
-
----
-
-## Testing the Voice Orb
-
-1. Start the hub server (external — not part of this repo).
-2. Set `VITE_SHOPBOT_HUB_ORIGIN` to the hub's address.
-3. Run the frontend.
-4. The orb loads `shopbot.js` from the hub. The hub drives orb state via:
-
-```js
-window.dispatchEvent(new CustomEvent('shopbot:orb-state', {
-  detail: { state: 'listening' } // or 'speaking', 'idle'
-}));
-```
-
-See `widget-integration/README.md` for the full contract.
-
----
-
-## API
+## Public API
 
 | Endpoint | Description |
 |---|---|
-| `GET /api/products` | List all products (supports `?category=`, `?q=`, `?min_price=`, `?max_price=`) |
-| `GET /api/products/{id}` | Single product by id or handle |
+| `GET /api/products` | List products for storefront and Hub crawler |
+| `GET /api/products/{id}` | Product by id or handle |
+| `POST /api/auth/signup` | Customer signup |
+| `POST /api/auth/login` | Customer/admin login |
+| `GET /api/auth/me` | Current website user |
 | `GET /health` | Health check |

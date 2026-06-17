@@ -1,16 +1,19 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
-import { VoiceOrb } from './components/layout/VoiceOrb';
 import { CartDrawer } from './components/cart/CartDrawer';
-import { useVoiceWidget } from './hooks/useVoiceWidget';
+import { useShopBotBridge } from './hooks/useShopBotBridge';
 import { Home } from './pages/Home';
 import { ShopListing } from './pages/ShopListing';
 import { ProductDetail } from './pages/ProductDetail';
 import { Cart } from './pages/Cart';
+import { Login } from './pages/Login';
+import { Signup } from './pages/Signup';
+import { Admin } from './pages/Admin';
+import { Account } from './pages/Account';
 
 function AppShell() {
-  const { orbState } = useVoiceWidget();
+  useShopBotBridge();
 
   return (
     <>
@@ -20,12 +23,15 @@ function AppShell() {
         <Route path="/shop" element={<ShopListing />} />
         <Route path="/product/:productId" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/admin" element={<Admin />} />
         {/* Fallback */}
         <Route path="*" element={<Home />} />
       </Routes>
       <Footer />
       <CartDrawer />
-      <VoiceOrb state={orbState} />
     </>
   );
 }

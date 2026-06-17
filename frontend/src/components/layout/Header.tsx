@@ -18,8 +18,8 @@ export function Header() {
 
         {/* Nav */}
         <nav className="hidden md:flex items-center gap-6">
-          {(['/', '/shop', '/shop?category=new', '/shop?category=sale'] as const).map((href, i) => {
-            const labels = ['Home', 'Shop', 'New', 'Sale'];
+          {(['/', '/shop', '/shop?category=new', '/shop?category=sale', '/admin'] as const).map((href, i) => {
+            const labels = ['Home', 'Shop', 'New', 'Sale', 'Admin'];
             return (
               <NavLink
                 key={href}
@@ -40,6 +40,12 @@ export function Header() {
 
         {/* Right actions */}
         <div className="flex items-center gap-3">
+          <Link
+            to="/login"
+            className="hidden sm:inline text-[12px] font-[500] text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors"
+          >
+            Login
+          </Link>
           <Link
             to="/shop"
             className="text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors"

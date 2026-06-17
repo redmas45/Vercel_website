@@ -1,6 +1,8 @@
 from __future__ import annotations
 
-from sqlalchemy import Boolean, Float, Integer, String, Text
+from datetime import datetime
+
+from sqlalchemy import Boolean, DateTime, Float, Integer, String, Text, func
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -26,3 +28,14 @@ class Product(Base):
     in_stock: Mapped[bool] = mapped_column(Boolean, default=True)
     image_url: Mapped[str] = mapped_column(Text, default="")
     url: Mapped[str] = mapped_column(Text, default="")
+
+
+class User(Base):
+    __tablename__ = "users"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    email: Mapped[str] = mapped_column(String(255), unique=True, index=True)
+    name: Mapped[str] = mapped_column(String(255), default="")
+    password_hash: Mapped[str] = mapped_column(String(255))
+    role: Mapped[str] = mapped_column(String(40), default="customer")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())

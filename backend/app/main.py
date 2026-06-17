@@ -3,14 +3,17 @@ from __future__ import annotations
 from contextlib import asynccontextmanager
 from urllib.parse import urlparse
 
+from pathlib import Path
+
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
+from fastapi.staticfiles import StaticFiles
 
-from app.api import health, products
+from app.api import admin, auth, health, products
 from app.core.config import settings
 from app.db.models import Base
-from app.db.seed import seed_if_empty
+from app.db.seed import ensure_default_admin, seed_if_empty
 from app.db.session import engine
 
 
@@ -20,6 +23,7 @@ async def lifespan(app: FastAPI):
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
     await seed_if_empty()
+    await ensure_default_admin()
     yield
 
 
@@ -78,4 +82,10 @@ def _build_csp() -> str:
 
 # ─── Routers ──────────────────────────────────────────────────────────────────
 app.include_router(health.router)
+app.include_router(auth.router)
+app.include_router(admin.router)
 app.include_router(products.router)
+
+static_dir = Path(settings.upload_dir).parent
+static_dir.mkdir(parents=True, exist_ok=True)
+app.mount("/static", StaticFiles(directory=static_dir), name="static")

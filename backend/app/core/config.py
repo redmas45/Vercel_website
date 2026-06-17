@@ -18,11 +18,14 @@ class Settings(BaseSettings):
 
     # Widget / hub integration
     lab_allowed_script_origins: str = ""
-    shopbot_hub_origin: str = ""
 
     # App
     app_env: str = "development"
     public_https_origin: str = ""
+    auth_secret_key: str = "dev-change-me"
+    default_admin_email: str = "admin@aikart.local"
+    default_admin_password: str = "admin123"
+    upload_dir: str = "static/uploads"
 
     @property
     def cors_origins_list(self) -> list[str]:
@@ -34,8 +37,6 @@ class Settings(BaseSettings):
         for o in self.lab_allowed_script_origins.split():
             if o.strip():
                 origins.add(o.strip())
-        if self.shopbot_hub_origin.strip():
-            origins.add(self.shopbot_hub_origin.strip().rstrip("/"))
         return origins
 
 

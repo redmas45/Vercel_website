@@ -4,5 +4,6 @@ __pycache__/
 api/__pycache__/
 node_modules/
 tmp/
+backend/*.dev.db
 
 .vercel

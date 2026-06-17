@@ -57,18 +57,24 @@ cat > /var/www/Vercel_website/backend/.env <<'EOF'
 DATABASE_URL=sqlite+aiosqlite:///./aikart.db
 # Allows local proxy, public IP, and the custom domain
 CORS_ORIGINS=http://143.198.5.97,http://aikart.ergobite.com,http://127.0.0.1:5175,http://localhost:5175
-# This origin determines the CSP policy for the widget
-SHOPBOT_HUB_ORIGIN=http://143.198.5.97/aihub
+LAB_ALLOWED_SCRIPT_ORIGINS=http://143.198.5.97/aihub
+AUTH_SECRET_KEY=change_this_long_random_value
+DEFAULT_ADMIN_EMAIL=admin@aikart.local
+DEFAULT_ADMIN_PASSWORD=change_this_admin_password
+UPLOAD_DIR=static/uploads
 EOF
 
 # Frontend config
 cat > /var/www/Vercel_website/frontend/.env.local <<'EOF'
 # API runs on the same domain as the frontend, so we leave this blank
 VITE_API_BASE_URL=
-# The AI Hub injection script
-VITE_SHOPBOT_HUB_ORIGIN=http://143.198.5.97/aihub
-VITE_SHOPBOT_SITE_ID=ai_kart_main
 EOF
+```
+
+AI Hub connection is not configured through frontend env vars. Paste the one-line script into `frontend/index.html` only when this website is connected in AI Hub CRM:
+
+```html
+<script defer src="http://143.198.5.97/aihub/shopbot.js?site=ai_kart_main" data-site-id="ai_kart_main"></script>
 ```
 
 ## 4. Build Website
