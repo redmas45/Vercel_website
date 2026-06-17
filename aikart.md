@@ -114,6 +114,11 @@ This setup treats AI-KART as a completely independent website at the root path (
 
 ```bash
 sudo tee /etc/nginx/sites-available/aikart-standalone >/dev/null <<'EOF'
+map $http_upgrade $connection_upgrade_aihub {
+    default upgrade;
+    "" close;
+}
+
 server {
     listen 80;
     server_name aikart.ergobite.com 143.198.5.97 _;
@@ -128,6 +133,30 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto http;
+    }
+
+    # Proxy AI-Hub
+    location = /aihub {
+        return 301 /aihub/;
+    }
+
+    location = /aihub/ {
+        return 302 /aihub/crm/;
+    }
+
+    location /aihub/ {
+        proxy_pass http://127.0.0.1:5176/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto http;
+        proxy_set_header X-Forwarded-Prefix /aihub;
+        proxy_set_header Upgrade $http_upgrade;
+        # If connection_upgrade mapping is missing, just use upgrade directly
+        proxy_set_header Connection $connection_upgrade_aihub; 
+        proxy_read_timeout 300s;
+        proxy_send_timeout 300s;
     }
 
     # Route all other traffic to the React frontend
