@@ -11,7 +11,7 @@ AI Hub local:        http://127.0.0.1:5176
 Client Panel public: http://143.198.5.97/client-panel/ai_kart
 Client Panel local:  http://127.0.0.1:5177
 Project:             /var/www/Vercel_website
-Shared venv:         /Data/www/aikartvenv
+Backend venv:        /Data/www/aikartvenv
 ```
 
 AI-KART owns the shared public Nginx edge:
@@ -144,7 +144,7 @@ pm2 -v
 
 ## 5. Ensure And Enter Python Venv
 
-Use host `python3` only to create the shared server venv. After activation, `python` and `pip` should point inside `/Data/www/aikartvenv`.
+Use host `python3` only to create the AI-KART backend venv. After activation, `python` and `pip` should point inside `/Data/www/aikartvenv`.
 
 ```bash
 set -e
@@ -161,24 +161,30 @@ python -m pip install --upgrade pip
 
 ## 6. Ensure Env Files
 
-This creates missing env files only. It does not overwrite existing secrets.
+This creates missing env files and replaces only placeholder secret values. Existing real secrets are not overwritten.
 
 ```bash
 set -e
 cd /var/www/Vercel_website
 
-CREATED_ENV=0
+make_secret() {
+  if command -v openssl >/dev/null 2>&1; then
+    openssl rand -hex 32
+  else
+    python3 -c 'import secrets; print(secrets.token_hex(32))'
+  fi
+}
+
 if [ ! -f backend/.env ]; then
   cat > backend/.env <<'EOF'
 DATABASE_URL=sqlite+aiosqlite:///./aikart.db
 CORS_ORIGINS=http://143.198.5.97,http://aikart.ergobite.com,http://127.0.0.1:5175,http://localhost:5175
 LAB_ALLOWED_SCRIPT_ORIGINS=http://143.198.5.97
-AUTH_SECRET_KEY=change_this_long_random_value
+AUTH_SECRET_KEY=__GENERATE_AUTH_SECRET__
 DEFAULT_ADMIN_EMAIL=admin@aikart.local
-DEFAULT_ADMIN_PASSWORD=change_this_admin_password
+DEFAULT_ADMIN_PASSWORD=__GENERATE_ADMIN_PASSWORD__
 UPLOAD_DIR=static/uploads
 EOF
-  CREATED_ENV=1
 fi
 
 if [ ! -f frontend/.env.local ]; then
@@ -187,16 +193,28 @@ VITE_API_BASE_URL=
 EOF
 fi
 
-if [ "$CREATED_ENV" = "1" ]; then
-  echo "Created backend/.env. Replace AUTH_SECRET_KEY and DEFAULT_ADMIN_PASSWORD, then rerun this step."
-  exit 1
+if grep -qE '^AUTH_SECRET_KEY=(change_this_long_random_value|__GENERATE_AUTH_SECRET__)$' backend/.env; then
+  AUTH_SECRET="$(make_secret)"
+  sed -i "s|^AUTH_SECRET_KEY=.*|AUTH_SECRET_KEY=${AUTH_SECRET}|" backend/.env
 fi
 
-if grep -q 'change_this_' backend/.env; then
-  echo "ERROR: backend/.env still contains placeholder secrets."
-  exit 1
+if grep -qE '^DEFAULT_ADMIN_PASSWORD=(change_this_admin_password|__GENERATE_ADMIN_PASSWORD__)$' backend/.env; then
+  ADMIN_PASSWORD="$(make_secret)"
+  sed -i "s|^DEFAULT_ADMIN_PASSWORD=.*|DEFAULT_ADMIN_PASSWORD=${ADMIN_PASSWORD}|" backend/.env
+  mkdir -p .deploy-backups
+  ADMIN_PASSWORD_FILE=".deploy-backups/aikart-admin-password.$(date +%Y%m%d-%H%M%S).txt"
+  {
+    echo "AI-KART generated admin password"
+    echo "DEFAULT_ADMIN_EMAIL=admin@aikart.local"
+    echo "DEFAULT_ADMIN_PASSWORD=${ADMIN_PASSWORD}"
+  } > "$ADMIN_PASSWORD_FILE"
+  chmod 600 "$ADMIN_PASSWORD_FILE"
+  echo "Generated DEFAULT_ADMIN_PASSWORD and saved it to: /var/www/Vercel_website/${ADMIN_PASSWORD_FILE}"
 fi
 
+grep -E '^(DATABASE_URL|CORS_ORIGINS|LAB_ALLOWED_SCRIPT_ORIGINS|DEFAULT_ADMIN_EMAIL|UPLOAD_DIR)=' backend/.env
+grep -q '^AUTH_SECRET_KEY=.' backend/.env && echo "AUTH_SECRET_KEY=set"
+grep -q '^DEFAULT_ADMIN_PASSWORD=.' backend/.env && echo "DEFAULT_ADMIN_PASSWORD=set"
 echo "Env files OK."
 ```
 
@@ -217,7 +235,7 @@ npm run build
 
 ## 8. Restart AI-KART With PM2
 
-PM2 starts the backend with `/Data/www/aikartvenv/bin/python` directly, so the running app uses the shared venv even if your shell prompt does not show it.
+PM2 starts the backend with `/Data/www/aikartvenv/bin/python` directly, so the running app uses the backend venv even if your shell prompt does not show it.
 
 ```bash
 set -e
