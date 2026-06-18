@@ -1,6 +1,6 @@
 # AI-KART Deployment Runbook
 
-Use this for the current no-DNS server setup.
+Use this for the current public-IP server setup.
 
 ```text
 AI-KART public:      http://143.198.5.97/
@@ -14,7 +14,7 @@ Project:             /var/www/Vercel_website
 Venv:                /Data/www/aikartvenv
 ```
 
-AI-KART owns public `/` and the shared system Nginx routing:
+AI-KART owns the shared public Nginx edge:
 
 ```text
 /                         -> AI-KART frontend on 127.0.0.1:5175
@@ -23,117 +23,83 @@ AI-KART owns public `/` and the shared system Nginx routing:
 /client-panel/<client_id> -> Client Panel on 127.0.0.1:5177
 ```
 
-Deploy order:
+## Rules
 
-1. Deploy AI Hub from `/var/www/AI_salesman_plugin/aihub.md`.
-2. Deploy AI-KART with this file only if storefront/backend code changed, or if shared Nginx routing must be applied.
-3. Deploy Client Panel from `/var/www/client_panel/clientpanel.md`.
+- AI-KART must work without AI Hub.
+- The Hub widget connection is the tracked script tag in `frontend/index.html`.
+- `backend/aikart.db` is runtime data. It is ignored and backed up before every pull.
+- `.env`, `.env.local`, `.node`, `node_modules`, `dist`, uploads, and `.deploy-backups` are ignored runtime files.
+- The deploy command below stashes tracked server edits before pulling. It does not stash ignored runtime files.
+- Do not run `git stash pop` as part of deployment.
 
-For Hub CRM or Client Panel UI-only changes, AI-KART source does not need a rebuild. Only reload this guide's Nginx config if public `/aihub/` or `/client-panel/` routing is broken.
+## Deploy
 
-## 1. Preflight
+Paste this on the server. It is safe to rerun.
 
 ```bash
 set -e
-
 cd /var/www/Vercel_website
 
-command -v git
-command -v curl
-command -v sudo
-command -v nginx || true
-command -v python3
-
-pwd
-git status --short
-```
-
-Expected:
-
-```text
-/var/www/Vercel_website
-```
-
-If `git status --short` shows local changes on the server, stop and inspect them before pulling.
-
-## 2. Pull Code
-
-```bash
-cd /var/www/Vercel_website
-git pull
-```
-
-## 3. Fix Permissions
-
-```bash
-sudo chown -R $(whoami):$(whoami) /var/www/Vercel_website
-sudo mkdir -p /Data/www
-sudo chown -R $(whoami):$(whoami) /Data/www
-```
-
-## 4. Ensure Node For This Project
-
-This keeps Node local to the project and avoids depending on system Node.
-
-```bash
-cd /var/www/Vercel_website
-
-ARCH="$(uname -m)"
-if [ "$ARCH" = "x86_64" ]; then
-  NODE_ARCH="x64"
-elif [ "$ARCH" = "aarch64" ]; then
-  NODE_ARCH="arm64"
-else
-  echo "Unsupported arch: $ARCH"
-  exit 1
+echo "== backup runtime DB =="
+mkdir -p .deploy-backups/aikart-db
+if [ -f backend/aikart.db ]; then
+  cp -p backend/aikart.db ".deploy-backups/aikart-db/aikart.$(date +%Y%m%d-%H%M%S).db"
 fi
+
+echo "== safe git pull =="
+git fetch origin
+if ! git diff --quiet || ! git diff --cached --quiet; then
+  git stash push -m "pre-aikart-deploy-$(date +%Y%m%d-%H%M%S)"
+fi
+git pull --ff-only
+
+LATEST_AIKART_DB="$(ls -t .deploy-backups/aikart-db/aikart.*.db 2>/dev/null | head -n 1 || true)"
+if [ ! -f backend/aikart.db ] && [ -n "$LATEST_AIKART_DB" ]; then
+  cp -p "$LATEST_AIKART_DB" backend/aikart.db
+fi
+
+echo "== permissions =="
+sudo chown -R "$(whoami):$(whoami)" /var/www/Vercel_website
+sudo mkdir -p /Data/www
+sudo chown -R "$(whoami):$(whoami)" /Data/www
+
+echo "== project-local Node =="
+ARCH="$(uname -m)"
+case "$ARCH" in
+  x86_64) NODE_ARCH="x64" ;;
+  aarch64) NODE_ARCH="arm64" ;;
+  *) echo "Unsupported arch: $ARCH"; exit 1 ;;
+esac
 
 mkdir -p /var/www/Vercel_website/.node
 cd /var/www/Vercel_website/.node
-
 NODE_FILE="$(curl -fsSL https://nodejs.org/dist/latest-v22.x/SHASUMS256.txt | grep "linux-${NODE_ARCH}.tar.xz" | awk '{print $2}' | head -n 1)"
-
 if [ ! -f "$NODE_FILE" ]; then
   curl -fsSLO "https://nodejs.org/dist/latest-v22.x/${NODE_FILE}"
 fi
-
 tar -xf "$NODE_FILE"
 ln -sfn "${NODE_FILE%.tar.xz}" current
-
 export PATH="/var/www/Vercel_website/.node/current/bin:$PATH"
 node -v
 npm -v
-```
 
-## 5. Ensure PM2
-
-```bash
+echo "== PM2 =="
 if ! command -v pm2 >/dev/null 2>&1; then
   sudo /var/www/Vercel_website/.node/current/bin/npm install -g pm2
 fi
-
-command -v pm2
 pm2 -v
-```
 
-## 6. Create Backend Venv
-
-Use `python3` on the host. Do not rely on host-side `python`.
-
-```bash
+echo "== Python venv =="
 cd /var/www/Vercel_website
-
 if [ ! -x /Data/www/aikartvenv/bin/python ]; then
   python3 -m venv /Data/www/aikartvenv
 fi
-
 /Data/www/aikartvenv/bin/python -m pip install --upgrade pip
-```
 
-## 7. Create Environment Files
-
-```bash
-cat > /var/www/Vercel_website/backend/.env <<'EOF'
+echo "== env files =="
+CREATED_ENV=0
+if [ ! -f backend/.env ]; then
+  cat > backend/.env <<'EOF'
 DATABASE_URL=sqlite+aiosqlite:///./aikart.db
 CORS_ORIGINS=http://143.198.5.97,http://aikart.ergobite.com,http://127.0.0.1:5175,http://localhost:5175
 LAB_ALLOWED_SCRIPT_ORIGINS=http://143.198.5.97
@@ -142,32 +108,26 @@ DEFAULT_ADMIN_EMAIL=admin@aikart.local
 DEFAULT_ADMIN_PASSWORD=change_this_admin_password
 UPLOAD_DIR=static/uploads
 EOF
+  CREATED_ENV=1
+fi
 
-cat > /var/www/Vercel_website/frontend/.env.local <<'EOF'
+if [ ! -f frontend/.env.local ]; then
+  cat > frontend/.env.local <<'EOF'
 VITE_API_BASE_URL=
 EOF
+fi
 
-nano /var/www/Vercel_website/backend/.env
-```
+if [ "$CREATED_ENV" = "1" ]; then
+  echo "Created backend/.env. Replace AUTH_SECRET_KEY and DEFAULT_ADMIN_PASSWORD, then rerun this deploy block."
+  exit 1
+fi
 
-Replace:
+if grep -q 'change_this_' backend/.env; then
+  echo "ERROR: backend/.env still contains placeholder secrets."
+  exit 1
+fi
 
-```text
-change_this_long_random_value
-change_this_admin_password
-```
-
-AI Hub connection is not configured through frontend env vars. The one-line Hub script lives in `frontend/index.html` only when this site is connected:
-
-```html
-<script defer src="http://143.198.5.97/aihub/shopbot.js?site=ai_kart" data-site-id="ai_kart"></script>
-```
-
-If this script already exists and storefront code did not change, do not edit AI-KART just to deploy Hub CRM or Client Panel changes.
-
-## 8. Build AI-KART
-
-```bash
+echo "== build backend and frontend =="
 cd /var/www/Vercel_website/backend
 /Data/www/aikartvenv/bin/python -m pip install -r requirements.txt
 
@@ -175,13 +135,8 @@ cd /var/www/Vercel_website/frontend
 export PATH="/var/www/Vercel_website/.node/current/bin:$PATH"
 npm install
 npm run build
-```
 
-## 9. Start With PM2
-
-This recreates the PM2 processes so the server uses the current commands and project-local Node path.
-
-```bash
+echo "== restart PM2 apps =="
 cd /var/www/Vercel_website/backend
 pm2 delete ai-kart-backend || true
 pm2 start /Data/www/aikartvenv/bin/python \
@@ -198,36 +153,21 @@ pm2 start /var/www/Vercel_website/.node/current/bin/npm \
 
 pm2 save
 pm2 list
+
+echo "== local smoke =="
+curl -fsS http://127.0.0.1:5175/ >/dev/null
+curl -fsS http://127.0.0.1:8000/health >/dev/null
+curl -fsS http://127.0.0.1:8000/api/products >/dev/null
+echo "AI-KART local deploy OK."
 ```
 
-## 10. Test Local AI-KART
+## Apply Shared Nginx
+
+Run this after AI Hub is listening on `127.0.0.1:5176`. It is safe to rerun.
 
 ```bash
-curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:5175/
-curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8000/health
-curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8000/api/products
-```
+set -e
 
-Expected:
-
-```text
-200
-200
-200
-```
-
-If these fail, do not reload public Nginx yet. Check:
-
-```bash
-pm2 logs ai-kart-backend --lines 80
-pm2 logs ai-kart-frontend --lines 80
-```
-
-## 11. Apply Shared Nginx Edge Config
-
-Run this after AI Hub is listening on `127.0.0.1:5176`. Client Panel can be deployed before or after this; the route is still valid either way.
-
-```bash
 sudo tee /etc/nginx/sites-available/aikart-standalone >/dev/null <<'EOF'
 map $http_upgrade $connection_upgrade_aihub {
     default upgrade;
@@ -303,54 +243,60 @@ sudo rm -f /etc/nginx/sites-enabled/client-panel
 sudo ln -sfn /etc/nginx/sites-available/aikart-standalone /etc/nginx/sites-enabled/aikart-standalone
 sudo nginx -t
 sudo systemctl reload nginx
+echo "Shared Nginx route OK."
 ```
 
-## 12. Test Public Routes
+## Public Smoke
 
 ```bash
-curl -s -o /dev/null -w "%{http_code}\n" http://143.198.5.97/
-curl -s -o /dev/null -w "%{http_code}\n" http://143.198.5.97/api/products
-curl -s -o /dev/null -w "%{http_code}\n" http://143.198.5.97/aihub/health
-curl -s -o /dev/null -w "%{http_code}\n" http://143.198.5.97/aihub/crm/
-curl -s http://143.198.5.97/aihub/crm/ | grep -E 'assets/index-.*\.js'
+curl -fsS http://143.198.5.97/ >/dev/null
+curl -fsS http://143.198.5.97/api/products >/dev/null
+curl -fsS http://143.198.5.97/aihub/health >/dev/null
+curl -fsS http://143.198.5.97/aihub/crm/ | grep -E 'assets/index-.*\.js' >/dev/null
+echo "AI-KART and AI Hub public routes OK."
 ```
 
-Expected:
-
-```text
-200
-200
-200
-200
-AI Hub CRM bundle path
-```
-
-After Client Panel is deployed, also run:
+After Client Panel is deployed:
 
 ```bash
-curl -s -o /dev/null -w "%{http_code}\n" http://143.198.5.97/client-panel/ai_kart
-curl -s http://143.198.5.97/client-panel/ai_kart | grep -E 'assets/index-.*\.js'
+curl -fsS http://143.198.5.97/client-panel/ai_kart | grep -E 'assets/index-.*\.js' >/dev/null
+echo "Client Panel public route OK."
 ```
 
-Expected:
+## Git Recovery
 
-```text
-200
-Client Panel bundle path
+The deploy command handles the old `backend/aikart.db` pull blocker by backing up the DB, stashing tracked edits, pulling, and restoring the DB if the pull removed it.
+
+Useful inspection commands:
+
+```bash
+cd /var/www/Vercel_website
+git status --short
+git stash list --grep=pre-aikart-deploy
+ls -lh .deploy-backups/aikart-db
 ```
 
-## 13. Common Failure Map
+If `git pull --ff-only` says the branch has diverged, the server has local commits. Do not force reset from a deploy paste. Inspect with:
+
+```bash
+git log --oneline --left-right HEAD...@{u}
+```
+
+## Failure Map
 
 ```text
-AI-KART local works but public / is down
-  -> Nginx route or system Nginx state is wrong. Reapply step 11.
+Local AI-KART works but public / fails
+  -> Rerun "Apply Shared Nginx".
 
-/aihub/health fails publicly but 127.0.0.1:5176/health works
-  -> Reapply step 11.
+/aihub/health fails publicly but 127.0.0.1:5176 works
+  -> Rerun "Apply Shared Nginx".
 
-/client-panel/ai_kart fails publicly but 127.0.0.1:5177/client-panel/ai_kart works
-  -> Reapply step 11.
+/client-panel/ai_kart fails publicly but 127.0.0.1:5177 works
+  -> Rerun "Apply Shared Nginx".
 
-Python command missing
-  -> This guide uses host-side python3 and /Data/www/aikartvenv/bin/python directly.
+Mic is missing
+  -> Confirm frontend/index.html includes the tracked /aihub/shopbot.js script and the Hub client is enabled.
+
+Mic UI loads but recording fails on public HTTP
+  -> Browser microphone access needs HTTPS. Use DNS plus HTTPS for production.
 ```

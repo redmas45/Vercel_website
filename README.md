@@ -45,6 +45,10 @@ npm run dev
 
 Open `http://localhost:5173`.
 
+## Deployment
+
+Use [aikart.md](aikart.md). The runbook backs up the runtime SQLite DB, stashes tracked server edits before `git pull --ff-only`, preserves ignored runtime files, and applies the shared Nginx route.
+
 ## Website Admin
 
 The client website owns users and products. AI Hub CRM does not manage storefront inventory.
