@@ -271,7 +271,62 @@ curl -fsS http://127.0.0.1:8000/api/products >/dev/null
 echo "AI-KART local deploy OK."
 ```
 
-## 10. Apply Shared Nginx
+## 10. Reset AI-KART Admin Login
+
+Use this if `/admin` says `Invalid email or password` even though `backend/.env` has the expected `DEFAULT_ADMIN_EMAIL` and `DEFAULT_ADMIN_PASSWORD`.
+
+The `.env` values seed the first admin only. If an admin already exists in `backend/aikart.db`, changing `.env` does not change that stored password. This command updates or creates the admin row to match `backend/.env`.
+
+```bash
+set -e
+cd /var/www/Vercel_website/backend
+. /Data/www/aikartvenv/bin/activate
+
+python - <<'PY'
+import asyncio
+
+from sqlalchemy import select
+
+from app.core.config import settings
+from app.core.security import hash_password
+from app.db.models import User
+from app.db.session import AsyncSessionLocal
+
+
+async def main() -> None:
+    email = settings.default_admin_email.strip().lower()
+    password = settings.default_admin_password
+    if not email or "@" not in email:
+        raise SystemExit("DEFAULT_ADMIN_EMAIL is invalid.")
+    if not password or len(password) < 6:
+        raise SystemExit("DEFAULT_ADMIN_PASSWORD must be at least 6 characters.")
+
+    async with AsyncSessionLocal() as session:
+        result = await session.execute(select(User).where(User.email == email))
+        user = result.scalar_one_or_none()
+        if user is None:
+            user = User(email=email, name="Store Admin", password_hash=hash_password(password), role="admin")
+            session.add(user)
+            action = "created"
+        else:
+            user.password_hash = hash_password(password)
+            user.role = "admin"
+            action = "updated"
+        await session.commit()
+        print(f"Admin {action}: {email}")
+
+
+asyncio.run(main())
+PY
+```
+
+Restart backend after resetting:
+
+```bash
+pm2 restart ai-kart-backend
+```
+
+## 11. Apply Shared Nginx
 
 Run this after AI Hub is listening on `127.0.0.1:5176`. It is safe to rerun.
 
@@ -356,7 +411,7 @@ sudo systemctl reload nginx
 echo "Shared Nginx route OK."
 ```
 
-## 11. Public Smoke
+## 12. Public Smoke
 
 ```bash
 set -e
@@ -398,13 +453,16 @@ git log --oneline --left-right HEAD...@{u}
 
 ```text
 Local AI-KART works but public / fails
-  -> Rerun step 10, "Apply Shared Nginx".
+  -> Rerun step 11, "Apply Shared Nginx".
 
 /aihub/health fails publicly but 127.0.0.1:5176 works
-  -> Rerun step 10, "Apply Shared Nginx".
+  -> Rerun step 11, "Apply Shared Nginx".
 
 /client-panel/ai_kart fails publicly but 127.0.0.1:5177 works
-  -> Rerun step 10, "Apply Shared Nginx".
+  -> Rerun step 11, "Apply Shared Nginx".
+
+Admin login says "Invalid email or password"
+  -> Run step 10, "Reset AI-KART Admin Login".
 
 Mic is missing
   -> Confirm frontend/index.html includes the tracked /aihub/shopbot.js script and the Hub client is enabled.
