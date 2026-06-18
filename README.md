@@ -49,19 +49,14 @@ Open `http://localhost:5173`.
 
 The client website owns users and products. AI Hub CRM does not manage storefront inventory.
 
-Default local admin is created when the backend database is empty:
-
-```text
-admin@aikart.local
-admin123
-```
+Default local admin is created when the backend database is empty. Use placeholder values locally and replace them on the server.
 
 Change these in `backend/.env`:
 
 ```env
 AUTH_SECRET_KEY=change-me
 DEFAULT_ADMIN_EMAIL=admin@aikart.local
-DEFAULT_ADMIN_PASSWORD=admin123
+DEFAULT_ADMIN_PASSWORD=change_this_admin_password
 UPLOAD_DIR=static/uploads
 ```
 

@@ -24,7 +24,7 @@ class Settings(BaseSettings):
     public_https_origin: str = ""
     auth_secret_key: str = "dev-change-me"
     default_admin_email: str = "admin@aikart.local"
-    default_admin_password: str = "admin123"
+    default_admin_password: str = "change_this_admin_password"
     upload_dir: str = "static/uploads"
 
     @property

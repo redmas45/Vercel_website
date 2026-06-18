@@ -136,7 +136,7 @@ fi
 cat > /var/www/Vercel_website/backend/.env <<'EOF'
 DATABASE_URL=sqlite+aiosqlite:///./aikart.db
 CORS_ORIGINS=http://143.198.5.97,http://aikart.ergobite.com,http://127.0.0.1:5175,http://localhost:5175
-LAB_ALLOWED_SCRIPT_ORIGINS=http://143.198.5.97/aihub
+LAB_ALLOWED_SCRIPT_ORIGINS=http://143.198.5.97
 AUTH_SECRET_KEY=change_this_long_random_value
 DEFAULT_ADMIN_EMAIL=admin@aikart.local
 DEFAULT_ADMIN_PASSWORD=change_this_admin_password
