@@ -1,6 +1,6 @@
-# AI-KART Website Deployment
+# AI-KART Deployment Runbook
 
-Use this for the standalone setup (FastAPI Backend + React/Vite Frontend):
+Use this for the current no-DNS server setup.
 
 ```text
 AI-KART public:      http://143.198.5.97/
@@ -14,26 +14,66 @@ Project:             /var/www/Vercel_website
 Venv:                /Data/www/aikartvenv
 ```
 
-All three projects are deployed independently. This guide only builds/restarts AI-KART services. It owns the shared port-80 Nginx edge config because AI-KART owns the root path `/`.
-
-Public path map:
+AI-KART owns public `/` and the shared system Nginx routing:
 
 ```text
-/                  -> AI-KART frontend
-/api/              -> AI-KART backend
-/aihub/            -> AI Hub
-/client-panel/<client_id> -> Client Panel
+/                         -> AI-KART frontend on 127.0.0.1:5175
+/api/                     -> AI-KART backend on 127.0.0.1:8000
+/aihub/                   -> AI Hub app on 127.0.0.1:5176
+/client-panel/<client_id> -> Client Panel on 127.0.0.1:5177
 ```
 
-## 1. Fix Permissions
+Deploy order:
+
+1. Deploy AI Hub from `/var/www/AI_salesman_plugin/aihub.md`.
+2. Deploy AI-KART with this file only if storefront/backend code changed, or if shared Nginx routing must be applied.
+3. Deploy Client Panel from `/var/www/client_panel/clientpanel.md`.
+
+For Hub CRM or Client Panel UI-only changes, AI-KART source does not need a rebuild. Only reload this guide's Nginx config if public `/aihub/` or `/client-panel/` routing is broken.
+
+## 1. Preflight
+
+```bash
+set -e
+
+cd /var/www/Vercel_website
+
+command -v git
+command -v curl
+command -v sudo
+command -v nginx || true
+command -v python3
+
+pwd
+git status --short
+```
+
+Expected:
+
+```text
+/var/www/Vercel_website
+```
+
+If `git status --short` shows local changes on the server, stop and inspect them before pulling.
+
+## 2. Pull Code
 
 ```bash
 cd /var/www/Vercel_website
-sudo chown -R $(whoami):$(whoami) /var/www/Vercel_website
-sudo chown -R $(whoami):$(whoami) /Data/www/aikartvenv
+git pull
 ```
 
-## 2. Install Project Node
+## 3. Fix Permissions
+
+```bash
+sudo chown -R $(whoami):$(whoami) /var/www/Vercel_website
+sudo mkdir -p /Data/www
+sudo chown -R $(whoami):$(whoami) /Data/www
+```
+
+## 4. Ensure Node For This Project
+
+This keeps Node local to the project and avoids depending on system Node.
 
 ```bash
 cd /var/www/Vercel_website
@@ -53,7 +93,10 @@ cd /var/www/Vercel_website/.node
 
 NODE_FILE="$(curl -fsSL https://nodejs.org/dist/latest-v22.x/SHASUMS256.txt | grep "linux-${NODE_ARCH}.tar.xz" | awk '{print $2}' | head -n 1)"
 
-curl -fsSLO "https://nodejs.org/dist/latest-v22.x/${NODE_FILE}"
+if [ ! -f "$NODE_FILE" ]; then
+  curl -fsSLO "https://nodejs.org/dist/latest-v22.x/${NODE_FILE}"
+fi
+
 tar -xf "$NODE_FILE"
 ln -sfn "${NODE_FILE%.tar.xz}" current
 
@@ -62,15 +105,36 @@ node -v
 npm -v
 ```
 
-## 3. Create `.env`
-
-Create the environments for both frontend and backend:
+## 5. Ensure PM2
 
 ```bash
-# Backend config
+if ! command -v pm2 >/dev/null 2>&1; then
+  sudo /var/www/Vercel_website/.node/current/bin/npm install -g pm2
+fi
+
+command -v pm2
+pm2 -v
+```
+
+## 6. Create Backend Venv
+
+Use `python3` on the host. Do not rely on host-side `python`.
+
+```bash
+cd /var/www/Vercel_website
+
+if [ ! -x /Data/www/aikartvenv/bin/python ]; then
+  python3 -m venv /Data/www/aikartvenv
+fi
+
+/Data/www/aikartvenv/bin/python -m pip install --upgrade pip
+```
+
+## 7. Create Environment Files
+
+```bash
 cat > /var/www/Vercel_website/backend/.env <<'EOF'
 DATABASE_URL=sqlite+aiosqlite:///./aikart.db
-# Allows local proxy, public IP, and the custom domain
 CORS_ORIGINS=http://143.198.5.97,http://aikart.ergobite.com,http://127.0.0.1:5175,http://localhost:5175
 LAB_ALLOWED_SCRIPT_ORIGINS=http://143.198.5.97/aihub
 AUTH_SECRET_KEY=change_this_long_random_value
@@ -79,61 +143,89 @@ DEFAULT_ADMIN_PASSWORD=change_this_admin_password
 UPLOAD_DIR=static/uploads
 EOF
 
-# Frontend config
 cat > /var/www/Vercel_website/frontend/.env.local <<'EOF'
-# API runs on the same domain as the frontend, so we leave this blank
 VITE_API_BASE_URL=
 EOF
+
+nano /var/www/Vercel_website/backend/.env
 ```
 
-AI Hub connection is not configured through frontend env vars. Paste the one-line script into `frontend/index.html` only when this website is connected in AI Hub CRM:
+Replace:
+
+```text
+change_this_long_random_value
+change_this_admin_password
+```
+
+AI Hub connection is not configured through frontend env vars. The one-line Hub script lives in `frontend/index.html` only when this site is connected:
 
 ```html
 <script defer src="http://143.198.5.97/aihub/shopbot.js?site=ai_kart" data-site-id="ai_kart"></script>
 ```
 
-## 4. Build Website
+If this script already exists and storefront code did not change, do not edit AI-KART just to deploy Hub CRM or Client Panel changes.
+
+## 8. Build AI-KART
 
 ```bash
 cd /var/www/Vercel_website/backend
-source /Data/www/aikartvenv/bin/activate
-python -m pip install -r requirements.txt
+/Data/www/aikartvenv/bin/python -m pip install -r requirements.txt
 
 cd /var/www/Vercel_website/frontend
 export PATH="/var/www/Vercel_website/.node/current/bin:$PATH"
-rm -rf node_modules
 npm install
 npm run build
 ```
 
-## 5. Start Website (PM2)
+## 9. Start With PM2
 
-Start the FastAPI backend and Vite frontend separately:
+This recreates the PM2 processes so the server uses the current commands and project-local Node path.
 
 ```bash
-# Start Backend
 cd /var/www/Vercel_website/backend
-source /Data/www/aikartvenv/bin/activate
-pm2 describe ai-kart-backend >/dev/null \
-  && pm2 restart ai-kart-backend \
-  || pm2 start "uvicorn app.main:app --host 127.0.0.1 --port 8000" --name ai-kart-backend --cwd /var/www/Vercel_website/backend
+pm2 delete ai-kart-backend || true
+pm2 start /Data/www/aikartvenv/bin/python \
+  --name ai-kart-backend \
+  --cwd /var/www/Vercel_website/backend \
+  -- -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 
-# Start Frontend
 cd /var/www/Vercel_website/frontend
-export PATH="/var/www/Vercel_website/.node/current/bin:$PATH"
-pm2 describe ai-kart-frontend >/dev/null \
-  && pm2 restart ai-kart-frontend \
-  || pm2 start "npm run preview -- --port 5175 --host 127.0.0.1" --name ai-kart-frontend --cwd /var/www/Vercel_website/frontend
+pm2 delete ai-kart-frontend || true
+pm2 start /var/www/Vercel_website/.node/current/bin/npm \
+  --name ai-kart-frontend \
+  --cwd /var/www/Vercel_website/frontend \
+  -- run preview -- --port 5175 --host 127.0.0.1
 
 pm2 save
 pm2 list
 ```
 
-## 6. Create Shared Nginx Edge Config
+## 10. Test Local AI-KART
 
-This setup treats AI-KART as a completely independent website at the root path (`/`). The other projects stay independent too: this Nginx file only routes public paths to their local upstreams.
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:5175/
+curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8000/health
+curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8000/api/products
+```
 
-Run this after AI Hub and Client Panel are started locally, or rerun it later when adding those services. It does not build or restart their apps.
+Expected:
+
+```text
+200
+200
+200
+```
+
+If these fail, do not reload public Nginx yet. Check:
+
+```bash
+pm2 logs ai-kart-backend --lines 80
+pm2 logs ai-kart-frontend --lines 80
+```
+
+## 11. Apply Shared Nginx Edge Config
+
+Run this after AI Hub is listening on `127.0.0.1:5176`. Client Panel can be deployed before or after this; the route is still valid either way.
 
 ```bash
 sudo tee /etc/nginx/sites-available/aikart-standalone >/dev/null <<'EOF'
@@ -148,7 +240,6 @@ server {
 
     client_max_body_size 25m;
 
-    # Route API calls to the backend
     location /api/ {
         proxy_pass http://127.0.0.1:8000/api/;
         proxy_http_version 1.1;
@@ -158,7 +249,6 @@ server {
         proxy_set_header X-Forwarded-Proto http;
     }
 
-    # Proxy AI-Hub
     location = /aihub {
         return 301 /aihub/;
     }
@@ -176,13 +266,11 @@ server {
         proxy_set_header X-Forwarded-Proto http;
         proxy_set_header X-Forwarded-Prefix /aihub;
         proxy_set_header Upgrade $http_upgrade;
-        # If connection_upgrade mapping is missing, just use upgrade directly
-        proxy_set_header Connection $connection_upgrade_aihub; 
+        proxy_set_header Connection $connection_upgrade_aihub;
         proxy_read_timeout 300s;
         proxy_send_timeout 300s;
     }
 
-    # Proxy Client Panel
     location = /client-panel {
         return 301 /client-panel/;
     }
@@ -197,7 +285,6 @@ server {
         proxy_set_header X-Forwarded-Prefix /client-panel;
     }
 
-    # Route all other traffic to the React frontend
     location / {
         proxy_pass http://127.0.0.1:5175/;
         proxy_http_version 1.1;
@@ -218,28 +305,52 @@ sudo nginx -t
 sudo systemctl reload nginx
 ```
 
-## 7. Test AI-KART
+## 12. Test Public Routes
 
 ```bash
-curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:5175/
+curl -s -o /dev/null -w "%{http_code}\n" http://143.198.5.97/
 curl -s -o /dev/null -w "%{http_code}\n" http://143.198.5.97/api/products
+curl -s -o /dev/null -w "%{http_code}\n" http://143.198.5.97/aihub/health
+curl -s -o /dev/null -w "%{http_code}\n" http://143.198.5.97/aihub/crm/
+curl -s http://143.198.5.97/aihub/crm/ | grep -E 'assets/index-.*\.js'
 ```
 
 Expected:
+
 ```text
 200
 200
+200
+200
+AI Hub CRM bundle path
 ```
 
-After AI Hub and Client Panel are deployed, test the shared paths too:
+After Client Panel is deployed, also run:
 
 ```bash
-curl -s -o /dev/null -w "%{http_code}\n" http://143.198.5.97/aihub/health
 curl -s -o /dev/null -w "%{http_code}\n" http://143.198.5.97/client-panel/ai_kart
+curl -s http://143.198.5.97/client-panel/ai_kart | grep -E 'assets/index-.*\.js'
 ```
 
 Expected:
+
 ```text
 200
-200
+Client Panel bundle path
+```
+
+## 13. Common Failure Map
+
+```text
+AI-KART local works but public / is down
+  -> Nginx route or system Nginx state is wrong. Reapply step 11.
+
+/aihub/health fails publicly but 127.0.0.1:5176/health works
+  -> Reapply step 11.
+
+/client-panel/ai_kart fails publicly but 127.0.0.1:5177/client-panel/ai_kart works
+  -> Reapply step 11.
+
+Python command missing
+  -> This guide uses host-side python3 and /Data/www/aikartvenv/bin/python directly.
 ```
