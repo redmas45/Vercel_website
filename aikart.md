@@ -11,7 +11,7 @@ AI Hub local:        http://127.0.0.1:5176
 Client Panel public: http://143.198.5.97/client-panel/ai_kart
 Client Panel local:  http://127.0.0.1:5177
 Project:             /var/www/Vercel_website
-Venv:                /Data/www/aikartvenv
+Shared venv:         /Data/www/aikartvenv
 ```
 
 AI-KART owns the shared public Nginx edge:
@@ -29,12 +29,16 @@ AI-KART owns the shared public Nginx edge:
 - The Hub widget connection is the tracked script tag in `frontend/index.html`.
 - `backend/aikart.db` is runtime data. It is ignored and backed up before every pull.
 - `.env`, `.env.local`, `.node`, `node_modules`, `dist`, uploads, and `.deploy-backups` are ignored runtime files.
-- The deploy command below stashes tracked server edits before pulling. It does not stash ignored runtime files.
+- The Git step stashes tracked server edits before pulling. It does not stash ignored runtime files.
 - Do not run `git stash pop` as part of deployment.
 
-## Deploy
+## Deploy Order
 
-Paste this on the server. It is safe to rerun.
+Run these sections in order. Each block is intentionally small so you can see where a failure happens.
+
+## 1. Safe Git Pull
+
+This backs up the runtime SQLite DB, stashes any tracked server-local edits, pulls only if fast-forward is possible, and restores the DB if an old tracked copy was removed during pull.
 
 ```bash
 set -e
@@ -58,12 +62,52 @@ if [ ! -f backend/aikart.db ] && [ -n "$LATEST_AIKART_DB" ]; then
   cp -p "$LATEST_AIKART_DB" backend/aikart.db
 fi
 
-echo "== permissions =="
-sudo chown -R "$(whoami):$(whoami)" /var/www/Vercel_website
-sudo mkdir -p /Data/www
-sudo chown -R "$(whoami):$(whoami)" /Data/www
+git status --short
+```
 
-echo "== project-local Node =="
+Expected result: no pull conflict. Ignored runtime files like `backend/aikart.db`, `backend/.env`, `.node`, and `node_modules` may exist locally and are fine.
+
+## 2. Fast Permissions
+
+This avoids `chown -R` on the whole project. Full recursive project ownership can be slow because it walks `node_modules`, `.node`, build output, uploads, and cache folders.
+
+```bash
+set -e
+cd /var/www/Vercel_website
+
+sudo mkdir -p /Data/www
+mkdir -p .deploy-backups/aikart-db backend/static/uploads
+
+sudo chown "$(whoami):$(whoami)" /var/www/Vercel_website /Data/www
+sudo chown -R "$(whoami):$(whoami)" .deploy-backups backend/static/uploads
+
+for path in backend/.env backend/aikart.db frontend/.env.local; do
+  if [ -e "$path" ]; then
+    sudo chown "$(whoami):$(whoami)" "$path"
+  fi
+done
+
+fix_tree_if_top_owner_is_wrong() {
+  path="$1"
+  if [ -e "$path" ] && [ "$(stat -c '%u' "$path")" != "$(id -u)" ]; then
+    sudo chown -R "$(whoami):$(whoami)" "$path"
+  fi
+}
+
+fix_tree_if_top_owner_is_wrong .node
+fix_tree_if_top_owner_is_wrong frontend/node_modules
+fix_tree_if_top_owner_is_wrong frontend/dist
+fix_tree_if_top_owner_is_wrong /Data/www/aikartvenv
+```
+
+## 3. Ensure Project-Local Node
+
+This installs Node under the project at `.node/current`, so deployment does not depend on system Node.
+
+```bash
+set -e
+cd /var/www/Vercel_website
+
 ARCH="$(uname -m)"
 case "$ARCH" in
   x86_64) NODE_ARCH="x64" ;;
@@ -79,24 +123,50 @@ if [ ! -f "$NODE_FILE" ]; then
 fi
 tar -xf "$NODE_FILE"
 ln -sfn "${NODE_FILE%.tar.xz}" current
+
 export PATH="/var/www/Vercel_website/.node/current/bin:$PATH"
 node -v
 npm -v
+```
 
-echo "== PM2 =="
+## 4. Ensure PM2
+
+```bash
+set -e
+export PATH="/var/www/Vercel_website/.node/current/bin:$PATH"
+
 if ! command -v pm2 >/dev/null 2>&1; then
   sudo /var/www/Vercel_website/.node/current/bin/npm install -g pm2
 fi
-pm2 -v
 
-echo "== Python venv =="
+pm2 -v
+```
+
+## 5. Ensure And Enter Python Venv
+
+Use host `python3` only to create the shared server venv. After activation, `python` and `pip` should point inside `/Data/www/aikartvenv`.
+
+```bash
+set -e
 cd /var/www/Vercel_website
+
 if [ ! -x /Data/www/aikartvenv/bin/python ]; then
   python3 -m venv /Data/www/aikartvenv
 fi
-/Data/www/aikartvenv/bin/python -m pip install --upgrade pip
 
-echo "== env files =="
+. /Data/www/aikartvenv/bin/activate
+which python
+python -m pip install --upgrade pip
+```
+
+## 6. Ensure Env Files
+
+This creates missing env files only. It does not overwrite existing secrets.
+
+```bash
+set -e
+cd /var/www/Vercel_website
+
 CREATED_ENV=0
 if [ ! -f backend/.env ]; then
   cat > backend/.env <<'EOF'
@@ -118,7 +188,7 @@ EOF
 fi
 
 if [ "$CREATED_ENV" = "1" ]; then
-  echo "Created backend/.env. Replace AUTH_SECRET_KEY and DEFAULT_ADMIN_PASSWORD, then rerun this deploy block."
+  echo "Created backend/.env. Replace AUTH_SECRET_KEY and DEFAULT_ADMIN_PASSWORD, then rerun this step."
   exit 1
 fi
 
@@ -127,16 +197,32 @@ if grep -q 'change_this_' backend/.env; then
   exit 1
 fi
 
-echo "== build backend and frontend =="
+echo "Env files OK."
+```
+
+## 7. Build Backend And Frontend
+
+```bash
+set -e
 cd /var/www/Vercel_website/backend
-/Data/www/aikartvenv/bin/python -m pip install -r requirements.txt
+. /Data/www/aikartvenv/bin/activate
+which python
+python -m pip install -r requirements.txt
 
 cd /var/www/Vercel_website/frontend
 export PATH="/var/www/Vercel_website/.node/current/bin:$PATH"
 npm install
 npm run build
+```
 
-echo "== restart PM2 apps =="
+## 8. Restart AI-KART With PM2
+
+PM2 starts the backend with `/Data/www/aikartvenv/bin/python` directly, so the running app uses the shared venv even if your shell prompt does not show it.
+
+```bash
+set -e
+export PATH="/var/www/Vercel_website/.node/current/bin:$PATH"
+
 cd /var/www/Vercel_website/backend
 pm2 delete ai-kart-backend || true
 pm2 start /Data/www/aikartvenv/bin/python \
@@ -153,15 +239,21 @@ pm2 start /var/www/Vercel_website/.node/current/bin/npm \
 
 pm2 save
 pm2 list
+```
 
-echo "== local smoke =="
+## 9. Local Smoke
+
+Run this before touching public Nginx.
+
+```bash
+set -e
 curl -fsS http://127.0.0.1:5175/ >/dev/null
 curl -fsS http://127.0.0.1:8000/health >/dev/null
 curl -fsS http://127.0.0.1:8000/api/products >/dev/null
 echo "AI-KART local deploy OK."
 ```
 
-## Apply Shared Nginx
+## 10. Apply Shared Nginx
 
 Run this after AI Hub is listening on `127.0.0.1:5176`. It is safe to rerun.
 
@@ -246,9 +338,10 @@ sudo systemctl reload nginx
 echo "Shared Nginx route OK."
 ```
 
-## Public Smoke
+## 11. Public Smoke
 
 ```bash
+set -e
 curl -fsS http://143.198.5.97/ >/dev/null
 curl -fsS http://143.198.5.97/api/products >/dev/null
 curl -fsS http://143.198.5.97/aihub/health >/dev/null
@@ -259,13 +352,14 @@ echo "AI-KART and AI Hub public routes OK."
 After Client Panel is deployed:
 
 ```bash
+set -e
 curl -fsS http://143.198.5.97/client-panel/ai_kart | grep -E 'assets/index-.*\.js' >/dev/null
 echo "Client Panel public route OK."
 ```
 
 ## Git Recovery
 
-The deploy command handles the old `backend/aikart.db` pull blocker by backing up the DB, stashing tracked edits, pulling, and restoring the DB if the pull removed it.
+The Git step handles the old `backend/aikart.db` pull blocker by backing up the DB, stashing tracked edits, pulling, and restoring the DB if the pull removed it.
 
 Useful inspection commands:
 
@@ -286,13 +380,13 @@ git log --oneline --left-right HEAD...@{u}
 
 ```text
 Local AI-KART works but public / fails
-  -> Rerun "Apply Shared Nginx".
+  -> Rerun step 10, "Apply Shared Nginx".
 
 /aihub/health fails publicly but 127.0.0.1:5176 works
-  -> Rerun "Apply Shared Nginx".
+  -> Rerun step 10, "Apply Shared Nginx".
 
 /client-panel/ai_kart fails publicly but 127.0.0.1:5177 works
-  -> Rerun "Apply Shared Nginx".
+  -> Rerun step 10, "Apply Shared Nginx".
 
 Mic is missing
   -> Confirm frontend/index.html includes the tracked /aihub/shopbot.js script and the Hub client is enabled.
