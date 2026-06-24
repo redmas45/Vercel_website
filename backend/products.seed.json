@@ -1,7 +1,7 @@
 {
   "source": "https://demo.vercel.store/ + official phone product pages",
-  "generated_at": "2026-06-24T11:30:00.000Z",
-  "count": 34,
+  "generated_at": "2026-06-24T13:55:00.000Z",
+  "count": 42,
   "products": [
     {
       "id": "acme-baby-cap",
@@ -21,8 +21,13 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/baby-cap-black.png?v=1690002570",
-      "url": "/product/acme-baby-cap/"
+      "image_url": "/static/catalog/real-fashion-cap-1.jpg",
+      "url": "/product/acme-baby-cap/",
+      "images": [
+        "/static/catalog/real-fashion-cap-1.jpg",
+        "/static/catalog/real-fashion-cap-2.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-baby-onesie",
@@ -41,8 +46,12 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/baby-onesie-beige-1.png?v=1690002632",
-      "url": "/product/acme-baby-onesie/"
+      "image_url": "/static/catalog/real-kids-baby-onesie-1.jpg",
+      "url": "/product/acme-baby-onesie/",
+      "images": [
+        "/static/catalog/real-kids-baby-onesie-1.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-bomber-jacket",
@@ -61,8 +70,12 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bomber-jacket-army.png?v=1690002722",
-      "url": "/product/acme-bomber-jacket/"
+      "image_url": "/static/catalog/real-fashion-jacket-1.jpg",
+      "url": "/product/acme-bomber-jacket/",
+      "images": [
+        "/static/catalog/real-fashion-jacket-1.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-cap",
@@ -81,8 +94,13 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/hat-1.png?v=1690002833",
-      "url": "/product/acme-cap/"
+      "image_url": "/static/catalog/real-fashion-cap-2.jpg",
+      "url": "/product/acme-cap/",
+      "images": [
+        "/static/catalog/real-fashion-cap-2.jpg",
+        "/static/catalog/real-fashion-cap-1.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-geometric-circles-t-shirt",
@@ -101,8 +119,14 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-1.png?v=1689798965",
-      "url": "/product/acme-geometric-circles-t-shirt/"
+      "image_url": "/static/catalog/real-fashion-tshirt-2.jpg",
+      "url": "/product/acme-geometric-circles-t-shirt/",
+      "images": [
+        "/static/catalog/real-fashion-tshirt-2.jpg",
+        "/static/catalog/dummy-mens-shirts-gigabyte-aorus-men-tshirt.webp",
+        "/static/catalog/real-fashion-tshirt-1.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-cowboy-hat",
@@ -121,8 +145,13 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/cowboy-hat-black-1.png?v=1690208765",
-      "url": "/product/acme-cowboy-hat/"
+      "image_url": "/static/catalog/real-fashion-cap-2.jpg",
+      "url": "/product/acme-cowboy-hat/",
+      "images": [
+        "/static/catalog/real-fashion-cap-2.jpg",
+        "/static/catalog/real-fashion-cap-1.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-cup",
@@ -141,15 +170,19 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/cup-black.png?v=1690003088",
-      "url": "/product/acme-cup/"
+      "image_url": "/static/catalog/real-drinkware-mug-1.jpg",
+      "url": "/product/acme-cup/",
+      "images": [
+        "/static/catalog/real-drinkware-mug-1.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-dog-sweater",
       "handle": "acme-dog-sweater",
       "title": "NOVA Dog Sweater",
       "name": "NOVA Dog Sweater",
-      "description": "Keep your dog warm all winter long - When the cold weather hits, make sure your dog isn’t shivering and stays warm with the soft and stretchy fleece dog sweater. Made with 90% polyester & 5% polyurethane to keep moisture out, freezing rain or snow, and to help keep warm air in, so your dog always stays warm. Our dog clothing is safe, durable, and made to last.",
+      "description": "Keep your dog warm all winter long - When the cold weather hits, make sure your dog isn\u2019t shivering and stays warm with the soft and stretchy fleece dog sweater. Made with 90% polyester & 5% polyurethane to keep moisture out, freezing rain or snow, and to help keep warm air in, so your dog always stays warm. Our dog clothing is safe, durable, and made to last.",
       "category": "pets",
       "categories": [
         "pets"
@@ -161,8 +194,12 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/dog-sweater-1.png?v=1690003132",
-      "url": "/product/acme-dog-sweater/"
+      "image_url": "/static/catalog/real-pet-dog-sweater-1.jpg",
+      "url": "/product/acme-dog-sweater/",
+      "images": [
+        "/static/catalog/real-pet-dog-sweater-1.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-drawstring-bag",
@@ -181,8 +218,14 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bag-1-dark.png?v=1689796304",
-      "url": "/product/acme-drawstring-bag/"
+      "image_url": "/static/catalog/dummy-womens-bags-blue-women-s-handbag.webp",
+      "url": "/product/acme-drawstring-bag/",
+      "images": [
+        "/static/catalog/dummy-womens-bags-blue-women-s-handbag.webp",
+        "/static/catalog/dummy-womens-bags-white-faux-leather-backpack.webp",
+        "/static/catalog/dummy-womens-bags-women-handbag-black.webp"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-hoodie",
@@ -201,8 +244,12 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/hoodie-1.png?v=1690003482",
-      "url": "/product/acme-hoodie/"
+      "image_url": "/static/catalog/real-fashion-hoodie-1.jpg",
+      "url": "/product/acme-hoodie/",
+      "images": [
+        "/static/catalog/real-fashion-hoodie-1.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-mechanical-keyboard",
@@ -221,8 +268,14 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/keyboard.png?v=1690003507",
-      "url": "/product/acme-mechanical-keyboard/"
+      "image_url": "/static/catalog/real-electronics-keyboard-mouse-2.jpg",
+      "url": "/product/acme-mechanical-keyboard/",
+      "images": [
+        "/static/catalog/real-electronics-keyboard-mouse-2.jpg",
+        "/static/catalog/photo-computer_accessories-1.jpg",
+        "/static/catalog/real-electronics-keyboard-mouse-1.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-mug",
@@ -241,8 +294,12 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/mug-1.png?v=1690003527",
-      "url": "/product/acme-mug/"
+      "image_url": "/static/catalog/real-drinkware-mug-1.jpg",
+      "url": "/product/acme-mug/",
+      "images": [
+        "/static/catalog/real-drinkware-mug-1.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-pacifier",
@@ -261,8 +318,12 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/pacifier-1.png?v=1690003544",
-      "url": "/product/acme-pacifier/"
+      "image_url": "/static/catalog/real-kids-pacifier-1.jpg",
+      "url": "/product/acme-pacifier/",
+      "images": [
+        "/static/catalog/real-kids-pacifier-1.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-rainbow-prism-t-shirt",
@@ -281,8 +342,14 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-spiral-1.png?v=1690003571",
-      "url": "/product/acme-rainbow-prism-t-shirt/"
+      "image_url": "/static/catalog/real-fashion-tshirt-2.jpg",
+      "url": "/product/acme-rainbow-prism-t-shirt/",
+      "images": [
+        "/static/catalog/real-fashion-tshirt-2.jpg",
+        "/static/catalog/dummy-mens-shirts-gigabyte-aorus-men-tshirt.webp",
+        "/static/catalog/real-fashion-tshirt-1.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-rainbow-sticker",
@@ -301,8 +368,13 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/sticker-rainbow.png?v=1690003602",
-      "url": "/product/acme-rainbow-sticker/"
+      "image_url": "/static/catalog/real-sticker-pack-1.jpg",
+      "url": "/product/acme-rainbow-sticker/",
+      "images": [
+        "/static/catalog/real-sticker-pack-1.jpg",
+        "/static/catalog/photo-stationery-1.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-slip-on-shoes",
@@ -321,8 +393,13 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/shoes-1.png?v=1690004109",
-      "url": "/product/acme-slip-on-shoes/"
+      "image_url": "/static/catalog/dummy-mens-shoes-sports-sneakers-off-white-red.webp",
+      "url": "/product/acme-slip-on-shoes/",
+      "images": [
+        "/static/catalog/dummy-mens-shoes-sports-sneakers-off-white-red.webp",
+        "/static/catalog/dummy-mens-shoes-puma-future-rider-trainers.webp"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-sticker",
@@ -341,8 +418,13 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/sticker.png?v=1690003619",
-      "url": "/product/acme-sticker/"
+      "image_url": "/static/catalog/real-sticker-pack-1.jpg",
+      "url": "/product/acme-sticker/",
+      "images": [
+        "/static/catalog/real-sticker-pack-1.jpg",
+        "/static/catalog/photo-stationery-1.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-t-shirt",
@@ -361,8 +443,14 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-color-black.png?v=1690003675",
-      "url": "/product/acme-t-shirt/"
+      "image_url": "/static/catalog/dummy-mens-shirts-gigabyte-aorus-men-tshirt.webp",
+      "url": "/product/acme-t-shirt/",
+      "images": [
+        "/static/catalog/dummy-mens-shirts-gigabyte-aorus-men-tshirt.webp",
+        "/static/catalog/real-fashion-tshirt-1.jpg",
+        "/static/catalog/real-fashion-tshirt-2.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "acme-webcam-cover",
@@ -379,8 +467,14 @@
       "currency": "USD",
       "stock": null,
       "in_stock": true,
-      "image_url": "https://cdn.shopify.com/s/files/1/0754/3727/7491/files/webcam-cover.png?v=1690003750",
-      "url": "/product/acme-webcam-cover/"
+      "image_url": "/static/catalog/real-electronics-keyboard-mouse-1.jpg",
+      "url": "/product/acme-webcam-cover/",
+      "images": [
+        "/static/catalog/real-electronics-keyboard-mouse-1.jpg",
+        "/static/catalog/real-electronics-keyboard-mouse-2.jpg",
+        "/static/catalog/photo-computer_accessories-1.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "phone-iphone-17",
@@ -402,7 +496,13 @@
       "in_stock": true,
       "source_url": "https://www.apple.com/iphone-17/",
       "image_url": "/static/uploads/phones/iphone-17.png",
-      "url": "/product/iphone-17/"
+      "url": "/product/iphone-17/",
+      "images": [
+        "/static/uploads/phones/iphone-17.png",
+        "/static/uploads/phones/iphone-17-pro.png",
+        "/static/uploads/phones/iphone-air.png"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "phone-iphone-air",
@@ -424,7 +524,13 @@
       "in_stock": true,
       "source_url": "https://www.apple.com/iphone-air/",
       "image_url": "/static/uploads/phones/iphone-air.png",
-      "url": "/product/iphone-air/"
+      "url": "/product/iphone-air/",
+      "images": [
+        "/static/uploads/phones/iphone-air.png",
+        "/static/uploads/phones/iphone-17.png",
+        "/static/uploads/phones/iphone-17-pro.png"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "phone-iphone-17-pro",
@@ -446,7 +552,13 @@
       "in_stock": true,
       "source_url": "https://www.apple.com/iphone-17-pro/",
       "image_url": "/static/uploads/phones/iphone-17-pro.png",
-      "url": "/product/iphone-17-pro/"
+      "url": "/product/iphone-17-pro/",
+      "images": [
+        "/static/uploads/phones/iphone-17-pro.png",
+        "/static/uploads/phones/iphone-17.png",
+        "/static/uploads/phones/iphone-air.png"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "phone-galaxy-s26",
@@ -468,7 +580,13 @@
       "in_stock": true,
       "source_url": "https://www.samsung.com/us/smartphones/galaxy-s26/",
       "image_url": "/static/uploads/phones/galaxy-s26.jpg",
-      "url": "/product/galaxy-s26/"
+      "url": "/product/galaxy-s26/",
+      "images": [
+        "/static/uploads/phones/galaxy-s26.jpg",
+        "/static/uploads/phones/galaxy-s26-plus.jpg",
+        "/static/uploads/phones/galaxy-s26-ultra.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "phone-galaxy-s26-plus",
@@ -490,7 +608,13 @@
       "in_stock": true,
       "source_url": "https://www.samsung.com/us/smartphones/galaxy-s26-plus/buy/",
       "image_url": "/static/uploads/phones/galaxy-s26-plus.jpg",
-      "url": "/product/galaxy-s26-plus/"
+      "url": "/product/galaxy-s26-plus/",
+      "images": [
+        "/static/uploads/phones/galaxy-s26-plus.jpg",
+        "/static/uploads/phones/galaxy-s26.jpg",
+        "/static/uploads/phones/galaxy-s26-ultra.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "phone-galaxy-s26-ultra",
@@ -512,7 +636,13 @@
       "in_stock": true,
       "source_url": "https://www.samsung.com/us/smartphones/galaxy-s26-ultra/buy/",
       "image_url": "/static/uploads/phones/galaxy-s26-ultra.jpg",
-      "url": "/product/galaxy-s26-ultra/"
+      "url": "/product/galaxy-s26-ultra/",
+      "images": [
+        "/static/uploads/phones/galaxy-s26-ultra.jpg",
+        "/static/uploads/phones/galaxy-s26-plus.jpg",
+        "/static/uploads/phones/galaxy-s26.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "phone-oppo-find-x9",
@@ -534,7 +664,13 @@
       "in_stock": true,
       "source_url": "https://www.oppo.com/en/smartphones/series-find-x/find-x9/",
       "image_url": "/static/uploads/phones/oppo-find-x9.png",
-      "url": "/product/oppo-find-x9/"
+      "url": "/product/oppo-find-x9/",
+      "images": [
+        "/static/uploads/phones/oppo-find-x9.png",
+        "/static/uploads/phones/oppo-find-x9-pro.png",
+        "/static/uploads/phones/oppo-find-x9-ultra.png"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "phone-oppo-find-x9-pro",
@@ -556,7 +692,13 @@
       "in_stock": true,
       "source_url": "https://www.oppo.com/en/smartphones/series-find-x/find-x9-pro/",
       "image_url": "/static/uploads/phones/oppo-find-x9-pro.png",
-      "url": "/product/oppo-find-x9-pro/"
+      "url": "/product/oppo-find-x9-pro/",
+      "images": [
+        "/static/uploads/phones/oppo-find-x9-pro.png",
+        "/static/uploads/phones/oppo-find-x9.png",
+        "/static/uploads/phones/oppo-find-x9-ultra.png"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "phone-oppo-find-x9-ultra",
@@ -578,7 +720,13 @@
       "in_stock": true,
       "source_url": "https://www.oppo.com/en/smartphones/series-find-x/find-x9-ultra/",
       "image_url": "/static/uploads/phones/oppo-find-x9-ultra.png",
-      "url": "/product/oppo-find-x9-ultra/"
+      "url": "/product/oppo-find-x9-ultra/",
+      "images": [
+        "/static/uploads/phones/oppo-find-x9-ultra.png",
+        "/static/uploads/phones/oppo-find-x9-pro.png",
+        "/static/uploads/phones/oppo-find-x9.png"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "phone-redmi-note-15-5g",
@@ -600,7 +748,13 @@
       "in_stock": true,
       "source_url": "https://www.mi.com/global/product/redmi-note-15-5g/",
       "image_url": "/static/uploads/phones/redmi-note-15-5g.jpg",
-      "url": "/product/redmi-note-15-5g/"
+      "url": "/product/redmi-note-15-5g/",
+      "images": [
+        "/static/uploads/phones/redmi-note-15-5g.jpg",
+        "/static/uploads/phones/redmi-note-15-pro.jpg",
+        "/static/uploads/phones/redmi-note-15-pro-plus-5g.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "phone-redmi-note-15-pro",
@@ -622,7 +776,13 @@
       "in_stock": true,
       "source_url": "https://www.mi.com/global/product/redmi-note-15-pro/",
       "image_url": "/static/uploads/phones/redmi-note-15-pro.jpg",
-      "url": "/product/redmi-note-15-pro/"
+      "url": "/product/redmi-note-15-pro/",
+      "images": [
+        "/static/uploads/phones/redmi-note-15-pro.jpg",
+        "/static/uploads/phones/redmi-note-15-5g.jpg",
+        "/static/uploads/phones/redmi-note-15-pro-plus-5g.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "phone-redmi-note-15-pro-plus-5g",
@@ -644,7 +804,13 @@
       "in_stock": true,
       "source_url": "https://www.mi.com/global/product/redmi-note-15-pro-plus-5g/",
       "image_url": "/static/uploads/phones/redmi-note-15-pro-plus-5g.jpg",
-      "url": "/product/redmi-note-15-pro-plus-5g/"
+      "url": "/product/redmi-note-15-pro-plus-5g/",
+      "images": [
+        "/static/uploads/phones/redmi-note-15-pro-plus-5g.jpg",
+        "/static/uploads/phones/redmi-note-15-pro.jpg",
+        "/static/uploads/phones/redmi-note-15-5g.jpg"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "phone-vivo-x300",
@@ -666,7 +832,13 @@
       "in_stock": true,
       "source_url": "https://www.vivo.com/en/products/x300",
       "image_url": "/static/uploads/phones/vivo-x300.png",
-      "url": "/product/vivo-x300/"
+      "url": "/product/vivo-x300/",
+      "images": [
+        "/static/uploads/phones/vivo-x300.png",
+        "/static/uploads/phones/vivo-x300-pro.png",
+        "/static/uploads/phones/vivo-x300-ultra.png"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "phone-vivo-x300-pro",
@@ -688,7 +860,13 @@
       "in_stock": true,
       "source_url": "https://www.vivo.com/en/products/x300-pro",
       "image_url": "/static/uploads/phones/vivo-x300-pro.png",
-      "url": "/product/vivo-x300-pro/"
+      "url": "/product/vivo-x300-pro/",
+      "images": [
+        "/static/uploads/phones/vivo-x300-pro.png",
+        "/static/uploads/phones/vivo-x300.png",
+        "/static/uploads/phones/vivo-x300-ultra.png"
+      ],
+      "image_source": "local-real-catalog"
     },
     {
       "id": "phone-vivo-x300-ultra",
@@ -710,7 +888,233 @@
       "in_stock": true,
       "source_url": "https://www.vivo.com/en/products/x300-ultra",
       "image_url": "/static/uploads/phones/vivo-x300-ultra.png",
-      "url": "/product/vivo-x300-ultra/"
+      "url": "/product/vivo-x300-ultra/",
+      "images": [
+        "/static/uploads/phones/vivo-x300-ultra.png",
+        "/static/uploads/phones/vivo-x300-pro.png",
+        "/static/uploads/phones/vivo-x300.png"
+      ],
+      "image_source": "local-real-catalog"
+    },
+    {
+      "id": "phone-iphone-17e",
+      "handle": "iphone-17e",
+      "title": "iPhone 17e",
+      "name": "iPhone 17e",
+      "description": "Value iPhone for shoppers who want iOS, A19 performance, Apple Intelligence, 48MP Fusion camera, MagSafe, USB-C, and long software support without Pro pricing.",
+      "category": "electronics",
+      "categories": [
+        "electronics",
+        "phones"
+      ],
+      "brand": "Apple",
+      "vendor": "Apple",
+      "price": 599,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 26,
+      "in_stock": true,
+      "source_url": "https://www.apple.com/iphone-17e/",
+      "image_url": "/static/uploads/phones/iphone-17e.png",
+      "url": "/product/iphone-17e/",
+      "images": [
+        "/static/uploads/phones/iphone-17e.png",
+        "/static/uploads/phones/iphone-17.png",
+        "/static/uploads/phones/iphone-air.png"
+      ],
+      "image_source": "local-real-catalog"
+    },
+    {
+      "id": "phone-pixel-10a",
+      "handle": "pixel-10a",
+      "title": "Google Pixel 10a",
+      "name": "Google Pixel 10a",
+      "description": "Midrange Google phone for buyers who want clean Android, Google AI, strong everyday photos, a bright Actua display, and seven-year style software support at a practical price.",
+      "category": "electronics",
+      "categories": [
+        "electronics",
+        "phones"
+      ],
+      "brand": "Google",
+      "vendor": "Google",
+      "price": 499,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 22,
+      "in_stock": true,
+      "source_url": "https://store.google.com/product/pixel_10a?hl=en-US",
+      "image_url": "/static/uploads/phones/pixel-10a.png",
+      "url": "/product/pixel-10a/",
+      "images": [
+        "/static/uploads/phones/pixel-10a.png"
+      ],
+      "image_source": "local-real-catalog"
+    },
+    {
+      "id": "phone-galaxy-a17-5g",
+      "handle": "galaxy-a17-5g",
+      "title": "Samsung Galaxy A17 5G",
+      "name": "Samsung Galaxy A17 5G",
+      "description": "Budget Samsung 5G phone for shoppers under $200 who need reliable basics, triple cameras, optical image stabilization, expandable storage, and long battery life.",
+      "category": "electronics",
+      "categories": [
+        "electronics",
+        "phones"
+      ],
+      "brand": "Samsung",
+      "vendor": "Samsung",
+      "price": 199.99,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 38,
+      "in_stock": true,
+      "source_url": "https://www.samsung.com/us/smartphones/galaxy-a17-5g/",
+      "image_url": "/static/uploads/phones/galaxy-a17-5g.jpg",
+      "url": "/product/galaxy-a17-5g/",
+      "images": [
+        "/static/uploads/phones/galaxy-a17-5g.jpg",
+        "/static/uploads/phones/galaxy-a36-5g.jpg",
+        "/static/uploads/phones/galaxy-s26.jpg"
+      ],
+      "image_source": "local-real-catalog"
+    },
+    {
+      "id": "phone-galaxy-a36-5g",
+      "handle": "galaxy-a36-5g",
+      "title": "Samsung Galaxy A36 5G",
+      "name": "Samsung Galaxy A36 5G",
+      "description": "Sub-$400 Samsung phone for buyers who want a big 120Hz AMOLED display, 5000mAh battery, IP67 durability, 45W charging, Knox security, and long OS updates.",
+      "category": "electronics",
+      "categories": [
+        "electronics",
+        "phones"
+      ],
+      "brand": "Samsung",
+      "vendor": "Samsung",
+      "price": 399.99,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 31,
+      "in_stock": true,
+      "source_url": "https://www.samsung.com/us/smartphones/galaxy-a36-5g/",
+      "image_url": "/static/uploads/phones/galaxy-a36-5g.jpg",
+      "url": "/product/galaxy-a36-5g/",
+      "images": [
+        "/static/uploads/phones/galaxy-a36-5g.jpg",
+        "/static/uploads/phones/galaxy-a17-5g.jpg",
+        "/static/uploads/phones/galaxy-s26.jpg"
+      ],
+      "image_source": "local-real-catalog"
+    },
+    {
+      "id": "phone-oppo-a5-pro-5g",
+      "handle": "oppo-a5-pro-5g",
+      "title": "OPPO A5 Pro 5G",
+      "name": "OPPO A5 Pro 5G",
+      "description": "Durable OPPO 5G phone for practical buyers who prioritize IP69 water and dust resistance, military-grade shock resistance, AI LinkBoost, and a 5800mAh battery.",
+      "category": "electronics",
+      "categories": [
+        "electronics",
+        "phones"
+      ],
+      "brand": "OPPO",
+      "vendor": "OPPO",
+      "price": 299,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 29,
+      "in_stock": true,
+      "source_url": "https://www.oppo.com/en/smartphones/series-a/a5-pro-5g/",
+      "image_url": "/static/uploads/phones/oppo-a5-pro-5g.png",
+      "url": "/product/oppo-a5-pro-5g/",
+      "images": [
+        "/static/uploads/phones/oppo-a5-pro-5g.png",
+        "/static/uploads/phones/oppo-find-x9.png",
+        "/static/uploads/phones/oppo-find-x9-pro.png"
+      ],
+      "image_source": "local-real-catalog"
+    },
+    {
+      "id": "phone-redmi-15-5g",
+      "handle": "redmi-15-5g",
+      "title": "REDMI 15 5G",
+      "name": "REDMI 15 5G",
+      "description": "Budget REDMI 5G phone for shoppers near $200 who care most about 7000mAh battery life, a large 6.9-inch FHD+ display, Snapdragon 6s Gen 3, and 50MP AI camera.",
+      "category": "electronics",
+      "categories": [
+        "electronics",
+        "phones"
+      ],
+      "brand": "Redmi",
+      "vendor": "Xiaomi",
+      "price": 199,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 42,
+      "in_stock": true,
+      "source_url": "https://www.mi.com/global/product/redmi-15-5g/",
+      "image_url": "/static/uploads/phones/redmi-15-5g.png",
+      "url": "/product/redmi-15-5g/",
+      "images": [
+        "/static/uploads/phones/redmi-15-5g.png",
+        "/static/uploads/phones/redmi-note-15-5g.jpg",
+        "/static/uploads/phones/redmi-note-15-pro.jpg"
+      ],
+      "image_source": "local-real-catalog"
+    },
+    {
+      "id": "phone-vivo-y29s-5g",
+      "handle": "vivo-y29s-5g",
+      "title": "vivo Y29s 5G",
+      "name": "vivo Y29s 5G",
+      "description": "Affordable vivo 5G phone for battery-first shoppers who want 5500mAh BlueVolt battery, SGS and military-grade shock resistance, IP64 protection, and everyday cameras.",
+      "category": "electronics",
+      "categories": [
+        "electronics",
+        "phones"
+      ],
+      "brand": "vivo",
+      "vendor": "vivo",
+      "price": 229,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 34,
+      "in_stock": true,
+      "source_url": "https://www.vivo.com/en/products/y29s-5g",
+      "image_url": "/static/uploads/phones/vivo-y29s-5g.jpg",
+      "url": "/product/vivo-y29s-5g/",
+      "images": [
+        "/static/uploads/phones/vivo-y29s-5g.jpg",
+        "/static/uploads/phones/vivo-x300.png",
+        "/static/uploads/phones/vivo-x300-pro.png"
+      ],
+      "image_source": "local-real-catalog"
+    },
+    {
+      "id": "phone-oneplus-nord-ce4-lite-5g",
+      "handle": "oneplus-nord-ce4-lite-5g",
+      "title": "OnePlus Nord CE4 Lite 5G",
+      "name": "OnePlus Nord CE4 Lite 5G",
+      "description": "Battery-focused midrange phone for shoppers under $400 who want a 5500mAh battery, 80W SUPERVOOC charging, 120Hz AMOLED display, 50MP Sony camera, and expandable storage.",
+      "category": "electronics",
+      "categories": [
+        "electronics",
+        "phones"
+      ],
+      "brand": "OnePlus",
+      "vendor": "OnePlus",
+      "price": 299,
+      "original_price": null,
+      "currency": "USD",
+      "stock": 25,
+      "in_stock": true,
+      "source_url": "https://www.oneplus.com/global/nord-ce4-lite-5g",
+      "image_url": "/static/uploads/phones/oneplus-nord-ce4-lite-5g.jpg",
+      "url": "/product/oneplus-nord-ce4-lite-5g/",
+      "images": [
+        "/static/uploads/phones/oneplus-nord-ce4-lite-5g.jpg"
+      ],
+      "image_source": "local-real-catalog"
     }
   ],
   "brand": "AI-KART",

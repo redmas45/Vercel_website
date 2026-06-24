@@ -1,61 +1,46 @@
 from __future__ import annotations
 
-import re
-import secrets
-from pathlib import Path
-
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile, status
-from sqlalchemy import select
-from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.auth import current_admin
-from app.core.config import settings
-from app.core.security import hash_password
-from app.db.models import Product, User
-from app.db.session import get_db
+from app.db.models import User
+from app.dependencies import get_admin_service, get_review_repository
+from app.repositories.review_repository import ReviewRepository
 from app.schemas.auth import CreateUserRequest, UserSchema
 from app.schemas.product import ProductListResponse, ProductSchema
+from app.schemas.review import ReviewSchema
+from app.serializers.product_serializer import serialize_product
+from app.services.admin_service import AdminService
 
 router = APIRouter(prefix="/api/admin", tags=["admin"], dependencies=[Depends(current_admin)])
 
-IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
-DEFAULT_CURRENCY = "USD"
-
 
 @router.get("/users", response_model=list[UserSchema])
-async def list_users(db: AsyncSession = Depends(get_db)) -> list[User]:
-    result = await db.execute(select(User).order_by(User.created_at.desc()))
-    return list(result.scalars().all())
+async def list_users(admin_service: AdminService = Depends(get_admin_service)) -> list[User]:
+    return await admin_service.list_users()
 
 
 @router.post("/users", response_model=UserSchema, status_code=status.HTTP_201_CREATED)
-async def create_user(req: CreateUserRequest, db: AsyncSession = Depends(get_db)) -> User:
-    email = _clean_email(req.email)
-    existing = await _user_by_email(db, email)
-    if existing:
-        raise HTTPException(status_code=409, detail="Email is already registered.")
-    user = User(email=email, name=req.name.strip(), password_hash=hash_password(req.password), role=req.role)
-    db.add(user)
-    await db.commit()
-    await db.refresh(user)
-    return user
+async def create_user(
+    req: CreateUserRequest,
+    admin_service: AdminService = Depends(get_admin_service),
+) -> User:
+    return await admin_service.create_user(req)
 
 
 @router.delete("/users/{user_id}")
-async def delete_user(user_id: int, db: AsyncSession = Depends(get_db)) -> dict[str, str]:
-    user = await db.get(User, user_id)
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found.")
-    await db.delete(user)
-    await db.commit()
+async def delete_user(
+    user_id: int,
+    admin_service: AdminService = Depends(get_admin_service),
+) -> dict[str, str]:
+    await admin_service.delete_user(user_id)
     return {"status": "ok"}
 
 
 @router.get("/products", response_model=ProductListResponse)
-async def admin_products(db: AsyncSession = Depends(get_db)) -> ProductListResponse:
-    result = await db.execute(select(Product).order_by(Product.name.asc()))
-    products = list(result.scalars().all())
-    return ProductListResponse(data=[_serialize(product) for product in products])
+async def admin_products(admin_service: AdminService = Depends(get_admin_service)) -> ProductListResponse:
+    products = await admin_service.list_products()
+    return ProductListResponse(data=[serialize_product(product) for product in products])
 
 
 @router.post("/products", response_model=ProductSchema, status_code=status.HTTP_201_CREATED)
@@ -68,103 +53,70 @@ async def create_product(
     stock: int | None = Form(None),
     in_stock: bool = Form(True),
     image_url: str = Form(""),
+    images: str = Form(""),
+    specs: str = Form(""),
+    variants: str = Form(""),
+    highlights: str = Form(""),
+    is_featured: bool = Form(False),
+    is_new_arrival: bool = Form(False),
+    is_bestseller: bool = Form(False),
     image: UploadFile | None = File(None),
-    db: AsyncSession = Depends(get_db),
+    admin_service: AdminService = Depends(get_admin_service),
 ) -> ProductSchema:
-    clean_name = _required_text(name, "Product name is required.")
-    handle = await _unique_handle(db, clean_name)
-    stored_image_url = await _store_image(image) if image and image.filename else image_url.strip()
-    product = Product(
-        id=handle,
-        handle=handle,
-        title=clean_name,
-        name=clean_name,
-        description=description.strip(),
-        category=category.strip() or None,
-        brand=brand.strip() or "NOVA",
-        vendor=brand.strip() or "NOVA",
-        price=max(float(price), 0.0),
-        original_price=None,
-        currency=DEFAULT_CURRENCY,
+    product = await admin_service.create_product(
+        name=name,
+        price=price,
+        description=description,
+        category=category,
+        brand=brand,
         stock=stock,
-        in_stock=bool(in_stock),
-        image_url=stored_image_url,
-        url=f"/product/{handle}/",
+        in_stock=in_stock,
+        image_url=image_url,
+        images=images,
+        specs=specs,
+        variants=variants,
+        highlights=highlights,
+        is_featured=is_featured,
+        is_new_arrival=is_new_arrival,
+        is_bestseller=is_bestseller,
+        image=image,
     )
-    db.add(product)
-    await db.commit()
-    await db.refresh(product)
-    return _serialize(product)
+    return serialize_product(product)
 
 
 @router.delete("/products/{product_id}")
-async def delete_product(product_id: str, db: AsyncSession = Depends(get_db)) -> dict[str, str]:
-    product = await db.get(Product, product_id)
-    if not product:
-        raise HTTPException(status_code=404, detail="Product not found.")
-    await db.delete(product)
-    await db.commit()
+async def delete_product(
+    product_id: str,
+    admin_service: AdminService = Depends(get_admin_service),
+) -> dict[str, str]:
+    await admin_service.delete_product(product_id)
     return {"status": "ok"}
 
 
-async def _store_image(image: UploadFile) -> str:
-    suffix = Path(image.filename or "").suffix.lower()
-    if suffix not in IMAGE_EXTENSIONS:
-        raise HTTPException(status_code=400, detail="Product image must be jpg, png, webp, or gif.")
-    upload_dir = Path(settings.upload_dir)
-    upload_dir.mkdir(parents=True, exist_ok=True)
-    file_name = f"{secrets.token_hex(10)}{suffix}"
-    file_path = upload_dir / file_name
-    file_path.write_bytes(await image.read())
-    public_dir = settings.upload_dir.strip("/").replace("\\", "/")
-    return f"/{public_dir}/{file_name}"
+@router.get("/reviews", response_model=list[ReviewSchema])
+async def admin_reviews(review_repository: ReviewRepository = Depends(get_review_repository)) -> list[ReviewSchema]:
+    reviews = await review_repository.list_all_reviews()
+    return [ReviewSchema.model_validate(review) for review in reviews]
 
 
-async def _unique_handle(db: AsyncSession, name: str) -> str:
-    base = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-") or "product"
-    handle = base[:80]
-    index = 2
-    while await db.get(Product, handle):
-        handle = f"{base[:72]}-{index}"
-        index += 1
-    return handle
+@router.patch("/reviews/{review_id}", response_model=ReviewSchema)
+async def update_review_status(
+    review_id: str,
+    is_published: bool,
+    review_repository: ReviewRepository = Depends(get_review_repository),
+) -> ReviewSchema:
+    review = await review_repository.set_published(review_id, is_published)
+    if review is None:
+        raise HTTPException(status_code=404, detail="Review not found.")
+    return ReviewSchema.model_validate(review)
 
 
-async def _user_by_email(db: AsyncSession, email: str) -> User | None:
-    result = await db.execute(select(User).where(User.email == email))
-    return result.scalar_one_or_none()
-
-
-def _serialize(product: Product) -> ProductSchema:
-    return ProductSchema(
-        id=product.id,
-        handle=product.handle,
-        title=product.title,
-        name=product.name,
-        description=product.description or "",
-        category=product.category,
-        categories=[product.category] if product.category else [],
-        brand=product.brand,
-        vendor=product.vendor,
-        price=product.price,
-        original_price=product.original_price,
-        currency=product.currency,
-        stock=product.stock,
-        in_stock=product.in_stock,
-        image_url=product.image_url,
-        url=product.url,
-    )
-
-
-def _clean_email(email: str) -> str:
-    clean = str(email or "").strip().lower()
-    if "@" not in clean or "." not in clean.split("@")[-1]:
-        raise HTTPException(status_code=422, detail="Valid email is required.")
-    return clean
-
-
-def _required_text(value: str, message: str) -> str:
-    clean = str(value or "").strip()
-    if not clean:
-        raise HTTPException(status_code=422, detail=message)
-    return clean
+@router.delete("/reviews/{review_id}")
+async def delete_review(
+    review_id: str,
+    review_repository: ReviewRepository = Depends(get_review_repository),
+) -> dict[str, str]:
+    deleted = await review_repository.delete_review(review_id)
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Review not found.")
+    return {"status": "ok"}

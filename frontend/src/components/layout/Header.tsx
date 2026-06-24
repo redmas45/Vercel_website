@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useCart } from '../../hooks/useCart';
+import { SearchBar } from './SearchBar';
 
 export function Header() {
   const { totalItems, openCart } = useCart();
@@ -18,7 +19,7 @@ export function Header() {
 
         {/* Nav */}
         <nav className="hidden md:flex items-center gap-6">
-          {(['/', '/shop', '/shop?category=new', '/shop?category=sale', '/admin'] as const).map((href, i) => {
+          {(['/', '/shop', '/new', '/sale', '/admin'] as const).map((href, i) => {
             const labels = ['Home', 'Shop', 'New', 'Sale', 'Admin'];
             return (
               <NavLink
@@ -46,16 +47,7 @@ export function Header() {
           >
             Login
           </Link>
-          <Link
-            to="/shop"
-            className="text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors"
-            aria-label="Search"
-          >
-            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8">
-              <circle cx="9" cy="9" r="6" />
-              <path d="m15 15 3 3" strokeLinecap="round" />
-            </svg>
-          </Link>
+          <SearchBar />
 
           <button
             onClick={openCart}

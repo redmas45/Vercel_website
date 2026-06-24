@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 import type { Product } from '../../lib/types';
 import { useCart } from '../../hooks/useCart';
+import { useToast } from '../../hooks/useToast';
+import { useWishlist } from '../../hooks/useWishlist';
+import { money } from '../../lib/format';
+import { RatingStars } from '../ui/RatingStars';
 
 interface ProductCardProps {
   product: Product;
@@ -10,6 +14,8 @@ const IMAGE_BG = ['bg-[#f5f0eb]', 'bg-[var(--color-accent-contrast)]', 'bg-[#eff
 
 export function ProductCard({ product }: ProductCardProps) {
   const { addItem, openCart } = useCart();
+  const { showToast } = useToast();
+  const wishlist = useWishlist();
   // Alternate image backgrounds by product id hash for visual variety
   const bgIndex = product.id.charCodeAt(0) % IMAGE_BG.length;
 
@@ -17,6 +23,17 @@ export function ProductCard({ product }: ProductCardProps) {
     e.preventDefault();
     addItem(product);
     openCart();
+    showToast('Item added to cart');
+  }
+
+  async function toggleWishlist(event: React.MouseEvent): Promise<void> {
+    event.preventDefault();
+    try {
+      const saved = await wishlist.toggle(product.id);
+      showToast(saved ? 'Added to wishlist' : 'Removed from wishlist', 'neutral');
+    } catch {
+      showToast('Wishlist update failed', 'neutral');
+    }
   }
 
   return (
@@ -30,7 +47,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <img
             src={product.image_url}
             alt={product.name}
-            className="w-full h-full object-contain p-5 mix-blend-multiply transition-transform duration-300 group-hover:scale-105"
+            className="w-full h-full object-contain p-5 transition-transform duration-300 group-hover:scale-105"
             loading="lazy"
           />
         ) : (
@@ -38,6 +55,21 @@ export function ProductCard({ product }: ProductCardProps) {
             No image
           </div>
         )}
+
+        <button
+          className="absolute right-2 top-2 grid h-8 w-8 place-items-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[14px] text-[var(--color-ink)]"
+          type="button"
+          aria-label="Toggle wishlist"
+          onClick={toggleWishlist}
+        >
+          {wishlist.has(product.id) ? '♥' : '♡'}
+        </button>
+
+        {product.discount_percent ? (
+          <span className="absolute left-2 top-2 rounded-full bg-[var(--color-ink)] px-2 py-1 text-[10px] text-[var(--color-paper)]">
+            {product.discount_percent}% off
+          </span>
+        ) : null}
 
         {/* Quick-add overlay */}
         <button
@@ -54,9 +86,13 @@ export function ProductCard({ product }: ProductCardProps) {
         <p className="text-[11px] font-[500] text-[var(--color-ink)] truncate leading-tight">
           {product.name}
         </p>
-        <p className="text-[11px] font-[500] text-[var(--color-accent-dark)] mt-0.5">
-          ${product.price.toFixed(2)} USD
-        </p>
+        <RatingStars rating={product.rating} count={product.review_count} />
+        <div className="mt-0.5 flex flex-wrap items-center gap-1.5">
+          <p className="text-[11px] font-[500] text-[var(--color-accent)]">{money(product.price, product.currency)}</p>
+          {product.original_price ? (
+            <p className="text-[10px] text-[var(--color-muted)] line-through">{money(product.original_price, product.currency)}</p>
+          ) : null}
+        </div>
       </div>
     </Link>
   );

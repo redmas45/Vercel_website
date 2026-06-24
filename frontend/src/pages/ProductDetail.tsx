@@ -1,45 +1,73 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { getProduct } from '../lib/api';
-import type { Product } from '../lib/types';
+import { Link, useParams } from 'react-router-dom';
+import { DeliveryChecker } from '../components/product/DeliveryChecker';
+import { FrequentlyBoughtTogether } from '../components/product/FrequentlyBoughtTogether';
+import { ImageGallery } from '../components/product/ImageGallery';
+import { RecommendationRail } from '../components/product/RecommendationRail';
+import { ReviewSection } from '../components/product/ReviewSection';
+import { SpecsAccordion } from '../components/product/SpecsAccordion';
+import { VariantSelector } from '../components/product/VariantSelector';
+import { RatingStars } from '../components/ui/RatingStars';
+import { SkeletonBlock } from '../components/ui/Skeleton';
 import { useCart } from '../hooks/useCart';
-import { Button } from '../components/ui/Button';
-import { Badge } from '../components/ui/Badge';
+import { rememberProduct } from '../hooks/useRecentlyViewed';
+import { useToast } from '../hooks/useToast';
+import { useWishlist } from '../hooks/useWishlist';
+import { money, percentText, stockText } from '../lib/format';
+import { getProduct, getRelatedProducts } from '../lib/productApi';
+import type { Product } from '../lib/types';
 
 export function ProductDetail() {
   const { productId } = useParams<{ productId: string }>();
   const [product, setProduct] = useState<Product | null>(null);
+  const [crossSell, setCrossSell] = useState<Product[]>([]);
+  const [frequentlyBought, setFrequentlyBought] = useState<Product[]>([]);
+  const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [added, setAdded] = useState(false);
+  const [error, setError] = useState('');
   const { addItem, openCart } = useCart();
+  const wishlist = useWishlist();
+  const { showToast } = useToast();
 
   useEffect(() => {
     if (!productId) return;
     setLoading(true);
-    getProduct(productId)
-      .then(setProduct)
-      .catch(() => setError('Product not found.'))
+    setError('');
+    Promise.all([getProduct(productId), getRelatedProducts(productId)])
+      .then(([nextProduct, related]) => {
+        setProduct(nextProduct);
+        setCrossSell(related.cross_sell);
+        setFrequentlyBought(related.frequently_bought_with);
+        rememberProduct(nextProduct.id);
+        window.ShopBotConfig?.onProductView?.(nextProduct.id);
+      })
+      .catch(() => setError('Product failed to load.'))
       .finally(() => setLoading(false));
   }, [productId]);
 
-  function handleAdd() {
+  function addToCart(): void {
     if (!product) return;
-    addItem(product);
-    setAdded(true);
-    setTimeout(() => setAdded(false), 1800);
+    addItem(product, quantity);
     openCart();
+    showToast('Item added to cart');
+  }
+
+  async function toggleWishlist(): Promise<void> {
+    if (!product) return;
+    const saved = await wishlist.toggle(product.id);
+    showToast(saved ? 'Added to wishlist' : 'Removed from wishlist', 'neutral');
   }
 
   if (loading) {
     return (
-      <main className="max-w-[1200px] mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-2 gap-12">
-          <div className="aspect-square rounded-[10px] bg-[var(--color-border)] animate-pulse" />
-          <div className="space-y-4">
-            <div className="h-4 w-1/3 bg-[var(--color-border)] rounded animate-pulse" />
-            <div className="h-10 w-2/3 bg-[var(--color-border)] rounded animate-pulse" />
-            <div className="h-6 w-1/4 bg-[var(--color-border)] rounded animate-pulse" />
+      <main className="mx-auto max-w-[1240px] px-4 py-8 md:px-6">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_420px]">
+          <SkeletonBlock className="aspect-square" />
+          <div className="grid content-start gap-4">
+            <SkeletonBlock className="h-5 w-1/3" />
+            <SkeletonBlock className="h-12 w-full" />
+            <SkeletonBlock className="h-8 w-1/2" />
+            <SkeletonBlock className="h-36 w-full" />
           </div>
         </div>
       </main>
@@ -48,97 +76,112 @@ export function ProductDetail() {
 
   if (error || !product) {
     return (
-      <main className="max-w-[1200px] mx-auto px-6 py-16 text-center">
-        <p className="text-[var(--color-muted)] text-[13px]">{error ?? 'Product not found.'}</p>
-        <Link to="/shop" className="mt-4 inline-block text-[13px] text-[var(--color-ink)] underline underline-offset-2">
-          Back to shop
-        </Link>
+      <main className="mx-auto max-w-[720px] px-6 py-16 text-center">
+        <p className="text-[13px] text-[var(--color-muted)]">{error || 'Product not found.'}</p>
+        <Link className="mt-4 inline-block text-[13px] text-[var(--color-accent)]" to="/shop">Back to shop</Link>
       </main>
     );
   }
 
   return (
-    <main className="max-w-[1200px] mx-auto px-6 py-12">
-      {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-[11px] text-[var(--color-muted)] mb-8">
-        <Link to="/" className="hover:text-[var(--color-ink)] transition-colors">Home</Link>
+    <main className="mx-auto max-w-[1240px] px-4 py-6 md:px-6 md:py-10">
+      <nav className="mb-6 flex flex-wrap items-center gap-2 text-[12px] text-[var(--color-muted)]">
+        <Link to="/">Home</Link>
         <span>/</span>
-        <Link to="/shop" className="hover:text-[var(--color-ink)] transition-colors">Shop</Link>
-        {product.category && (
+        <Link to="/shop">Shop</Link>
+        {product.category ? (
           <>
             <span>/</span>
-            <Link
-              to={`/shop?category=${product.category}`}
-              className="hover:text-[var(--color-ink)] transition-colors capitalize"
-            >
-              {product.category}
-            </Link>
+            <Link to={`/shop?category=${product.category}`}>{product.category}</Link>
           </>
-        )}
+        ) : null}
         <span>/</span>
         <span className="text-[var(--color-ink)]">{product.name}</span>
       </nav>
 
-      <div className="grid md:grid-cols-2 gap-12 items-start">
-        {/* Image */}
-        <div className="aspect-square rounded-[10px] bg-[var(--color-accent-contrast)] flex items-center justify-center overflow-hidden border border-[var(--color-border)]">
-          <img
-            src={product.image_url}
-            alt={product.name}
-            className="w-4/5 h-4/5 object-contain mix-blend-multiply"
-          />
-        </div>
-
-        {/* Info */}
-        <div>
-          <div className="flex items-center gap-2 mb-3">
-            <p className="text-[10px] uppercase tracking-[0.08em] text-[var(--color-accent-dark)]">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_440px]">
+        <ImageGallery product={product} />
+        <aside className="grid content-start gap-4 lg:sticky lg:top-20">
+          <div>
+            <Link className="text-[12px] uppercase tracking-[0.08em] text-[var(--color-accent)]" to={`/shop?brand=${encodeURIComponent(product.brand)}`}>
               {product.brand}
-            </p>
-            {product.category && (
-              <Badge>{product.category}</Badge>
-            )}
-          </div>
-
-          <h1
-            className="text-[var(--color-ink)] font-[500] leading-[1.05]"
-            style={{ fontSize: 'clamp(28px, 4vw, 48px)' }}
-          >
-            {product.name}
-          </h1>
-
-          <p className="text-[22px] font-[500] text-[var(--color-accent)] mt-4">
-            ${product.price.toFixed(2)}{' '}
-            <span className="text-[14px] text-[var(--color-muted)] font-[400]">{product.currency}</span>
-          </p>
-
-          {product.description && (
-            <p className="mt-5 text-[13px] text-[var(--color-muted)] leading-relaxed max-w-[440px]">
-              {product.description}
-            </p>
-          )}
-
-          <div className="mt-8 flex gap-3">
-            <Button
-              onClick={handleAdd}
-              className="h-11 px-8 text-[13px]"
-              id="add-to-cart-btn"
-            >
-              {added ? 'Added ✓' : 'Add to cart'}
-            </Button>
-            <Link to="/shop">
-              <Button variant="secondary" className="h-11 px-6 text-[13px]">
-                Back to catalog
-              </Button>
             </Link>
+            <h1 className="mt-2 text-[30px] font-[500] leading-tight text-[var(--color-ink)] md:text-[42px]">{product.name}</h1>
+            <div className="mt-3 flex flex-wrap items-center gap-2">
+              <RatingStars rating={product.rating} count={product.review_count} />
+              <span className="text-[12px] text-[var(--color-muted)]">| {(product.review_count || 0) + 356} sold this month</span>
+            </div>
           </div>
 
-          {/* Stock */}
-          <p className="mt-5 text-[11px] text-[var(--color-muted)]">
-            {product.in_stock ? '✓ In stock' : '✗ Out of stock'}
-          </p>
-        </div>
+          <section className="border-y border-[var(--color-border)] py-4">
+            <div className="flex flex-wrap items-end gap-2">
+              <p className="text-[28px] font-[500] text-[var(--color-accent)]">{money(product.price, product.currency)}</p>
+              {product.original_price ? <p className="pb-1 text-[13px] text-[var(--color-muted)] line-through">{money(product.original_price, product.currency)}</p> : null}
+              {product.discount_percent ? <p className="pb-1 text-[13px] text-[var(--color-muted)]">{percentText(product.discount_percent)}</p> : null}
+            </div>
+            <p className="mt-2 inline-flex rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1 text-[12px] text-[var(--color-muted)]">
+              Bank offer: 10% off on HDFC cards
+            </p>
+          </section>
+
+          <VariantSelector variants={product.variants} />
+
+          <section className="grid gap-4 border-b border-[var(--color-border)] pb-4">
+            <div className="flex items-center gap-3">
+              <p className="text-[12px] text-[var(--color-muted)]">Quantity</p>
+              <div className="inline-flex h-9 overflow-hidden rounded-[8px] border border-[var(--color-border)]">
+                <button className="w-9" type="button" onClick={() => setQuantity((value) => Math.max(1, value - 1))}>-</button>
+                <span className="grid w-10 place-items-center text-[13px]">{quantity}</span>
+                <button className="w-9" type="button" onClick={() => setQuantity((value) => value + 1)}>+</button>
+              </div>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <button className="h-11 rounded-[8px] bg-[var(--color-ink)] px-5 text-[13px] font-[500] text-[var(--color-paper)]" id="add-to-cart-btn" type="button" onClick={addToCart}>
+                Add to cart
+              </button>
+              <button className="h-11 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] px-5 text-[13px] font-[500] text-[var(--color-ink)]" type="button" onClick={addToCart}>
+                Buy now
+              </button>
+            </div>
+          </section>
+
+          <DeliveryChecker />
+          <p className="text-[12px] text-[var(--color-muted)]">{stockText(product)}</p>
+          <div className="flex flex-wrap gap-3">
+            <button className="h-9 rounded-[8px] border border-[var(--color-border)] px-4 text-[12px]" type="button" onClick={toggleWishlist}>
+              {wishlist.has(product.id) ? 'Saved to wishlist' : 'Add to wishlist'}
+            </button>
+            <button className="h-9 rounded-[8px] border border-[var(--color-border)] px-4 text-[12px]" type="button" onClick={() => navigator.clipboard?.writeText(window.location.href)}>
+              Share
+            </button>
+          </div>
+        </aside>
       </div>
+
+      <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_360px]">
+        <section className="grid gap-6">
+          {product.highlights?.length ? (
+            <section className="rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
+              <h2 className="mb-3 text-[16px] font-[500] text-[var(--color-ink)]">Highlights</h2>
+              <ul className="grid gap-2 text-[13px] text-[var(--color-muted)]">
+                {product.highlights.map((highlight) => <li key={highlight}>- {highlight}</li>)}
+              </ul>
+            </section>
+          ) : null}
+          <SpecsAccordion specs={product.specs} />
+          {product.description ? (
+            <section className="rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
+              <h2 className="mb-3 text-[16px] font-[500] text-[var(--color-ink)]">Product description</h2>
+              <div className="grid gap-3 text-[13px] leading-6 text-[var(--color-muted)]" dangerouslySetInnerHTML={{ __html: product.description }} />
+            </section>
+          ) : null}
+        </section>
+        <FrequentlyBoughtTogether product={product} products={frequentlyBought} />
+      </div>
+
+      <RecommendationRail title="You may also like" products={crossSell} />
+      <RecommendationRail title="Customers who bought this also bought" products={frequentlyBought} />
+      <ReviewSection productId={product.id} />
     </main>
   );
 }

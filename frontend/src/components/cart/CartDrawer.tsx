@@ -1,8 +1,18 @@
 import { useCart } from '../../hooks/useCart';
 import { Button } from '../ui/Button';
+import { CartCrossSell } from './CartCrossSell';
+import { money } from '../../lib/format';
+import { Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export function CartDrawer() {
-  const { items, isOpen, closeCart, removeItem, updateQuantity, totalPrice } = useCart();
+  const { items, isOpen, closeCart, removeItem, updateQuantity, cartTotal, totalItems } = useCart();
+  const totals = cartTotal();
+  const location = useLocation();
+
+  useEffect(() => {
+    closeCart();
+  }, [location.pathname, closeCart]);
 
   return (
     <>
@@ -27,7 +37,7 @@ export function CartDrawer() {
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--color-border)]">
-          <h2 className="text-[15px] font-[500] text-[var(--color-ink)]">Cart</h2>
+          <h2 className="text-[15px] font-[500] text-[var(--color-ink)]">Cart ({totalItems()} items)</h2>
           <button
             onClick={closeCart}
             className="text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors"
@@ -60,12 +70,13 @@ export function CartDrawer() {
                   <img
                     src={product.image_url}
                     alt={product.name}
-                    className="w-full h-full object-contain p-1.5 mix-blend-multiply"
+                    className="w-full h-full object-contain p-1.5"
                   />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-[12px] font-[500] text-[var(--color-ink)] truncate">{product.name}</p>
-                  <p className="text-[11px] text-[var(--color-accent-dark)] mt-0.5">${product.price.toFixed(2)}</p>
+                  <p className="text-[11px] text-[var(--color-accent)] mt-0.5">{money(product.price, product.currency)}</p>
+                  <p className="text-[11px] text-[var(--color-muted)]">Variant: standard</p>
                   <div className="flex items-center gap-2 mt-2">
                     <button
                       onClick={() => updateQuantity(product.id, quantity - 1)}
@@ -82,28 +93,42 @@ export function CartDrawer() {
                     </button>
                     <button
                       onClick={() => removeItem(product.id)}
-                      className="ml-auto text-[11px] text-[var(--color-muted)] hover:text-red-500 transition-colors"
+                      className="ml-auto text-[11px] text-[var(--color-muted)] transition-colors"
                     >
                       Remove
                     </button>
                   </div>
+                  <button className="mt-2 text-[11px] text-[var(--color-muted)]" type="button">Save for later</button>
                 </div>
               </div>
             ))
           )}
+          {items.length > 0 ? <CartCrossSell /> : null}
         </div>
 
         {/* Footer */}
         {items.length > 0 && (
           <div className="px-6 py-5 border-t border-[var(--color-border)] space-y-3">
             <div className="flex justify-between text-[13px] text-[var(--color-muted)]">
-              <span>Subtotal</span>
-              <span className="font-[500] text-[var(--color-ink)]">${totalPrice().toFixed(2)} USD</span>
+              <span>Items</span>
+              <span className="font-[500] text-[var(--color-ink)]">{money(totals.subtotal)}</span>
             </div>
-            <p className="text-[11px] text-[var(--color-muted)]">Taxes & shipping calculated at checkout.</p>
-            <Button className="w-full h-11" onClick={() => alert('Checkout coming soon!')}>
-              Proceed to checkout
-            </Button>
+            <div className="flex justify-between text-[13px] text-[var(--color-muted)]">
+              <span>Delivery</span>
+              <span className="font-[500] text-[var(--color-ink)]">Free</span>
+            </div>
+            <div className="flex justify-between text-[13px] text-[var(--color-muted)]">
+              <span>Discount</span>
+              <span className="font-[500] text-[var(--color-ink)]">-{money(totals.discount)}</span>
+            </div>
+            <div className="flex justify-between border-t border-[var(--color-border)] pt-3 text-[14px] text-[var(--color-ink)]">
+              <span>Total</span>
+              <span className="font-[500]">{money(totals.total)}</span>
+            </div>
+            {totals.discount ? <p className="text-[11px] text-[var(--color-muted)]">You save {money(totals.discount)} on this order.</p> : null}
+            <Link to="/checkout" onClick={closeCart}>
+              <Button className="w-full h-11">Proceed to checkout</Button>
+            </Link>
           </div>
         )}
       </div>

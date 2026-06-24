@@ -1,6 +1,7 @@
-import { type FormEvent, type InputHTMLAttributes, useState } from 'react';
+import { type FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { signup } from '../lib/api';
+import { Field } from '../components/ui/FormField';
+import { signup } from '../lib/authApi';
 
 export function Signup() {
   const navigate = useNavigate();
@@ -50,18 +51,5 @@ export function Signup() {
         </p>
       </section>
     </main>
-  );
-}
-
-function Field(props: InputHTMLAttributes<HTMLInputElement> & { label: string }) {
-  const { label, ...inputProps } = props;
-  return (
-    <label className="grid gap-1.5">
-      <span className="text-[12px] font-[500] text-[var(--color-muted)]">{label}</span>
-      <input
-        {...inputProps}
-        className="h-10 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-paper)] px-3 text-[13px] outline-none focus:border-[var(--color-muted)]"
-      />
-    </label>
   );
 }

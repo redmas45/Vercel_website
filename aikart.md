@@ -19,6 +19,7 @@ AI-KART owns the shared public Nginx edge:
 ```text
 /                         -> AI-KART frontend on 127.0.0.1:5175
 /api/                     -> AI-KART backend on 127.0.0.1:8000
+/static/                  -> AI-KART backend static files on 127.0.0.1:8000
 /aihub/                   -> AI Hub app on 127.0.0.1:5176
 /client-panel/<client_id> -> Client Panel on 127.0.0.1:5177
 ```
@@ -28,6 +29,9 @@ AI-KART owns the shared public Nginx edge:
 - AI-KART must work without AI Hub.
 - The Hub widget connection is the tracked script tag in `frontend/index.html`.
 - `backend/aikart.db` is runtime data. It is ignored and backed up before every pull.
+- `backend/products.seed.json` and `backend/products.seed.v2.json` sync on backend startup, including existing databases.
+- Expanded catalog images under `backend/static/catalog/` are committed and deploy with Git.
+- Phone catalog images under `backend/static/uploads/phones/` are runtime uploads and are ignored by Git. Copy them to the server before running step 8A if they changed.
 - `.env`, `.env.local`, `.node`, `node_modules`, `dist`, uploads, and `.deploy-backups` are ignored runtime files.
 - The Git step stashes tracked server edits before pulling. It does not stash ignored runtime files.
 - Do not run `git stash pop` as part of deployment.
@@ -259,6 +263,86 @@ pm2 save
 pm2 list
 ```
 
+## 8A. Validate Catalog Seed And Images
+
+Run this after catalog, review, or image changes. The backend startup syncs `backend/products.seed.json`, `backend/products.seed.v2.json`, and `backend/reviews.seed.json` into the existing SQLite DB, so do not run a manual SQLite product upsert.
+
+Committed catalog art under `backend/static/catalog/` arrives through Git. If runtime phone uploads changed, copy them from your workstation before restarting the backend:
+
+```bash
+rsync -av backend/static/uploads/phones/ dev@143.198.5.97:/var/www/Vercel_website/backend/static/uploads/phones/
+```
+
+Then run on the server:
+
+```bash
+set -e
+cd /var/www/Vercel_website/backend
+. /Data/www/aikartvenv/bin/activate
+
+pm2 restart ai-kart-backend
+sleep 3
+
+python - <<'PY'
+import json
+import time
+import urllib.request
+from pathlib import Path
+
+seed_files = [Path("products.seed.json"), Path("products.seed.v2.json")]
+missing = []
+external = []
+seed_count = 0
+
+for seed_file in seed_files:
+    raw = json.loads(seed_file.read_text(encoding="utf-8"))
+    for item in raw.get("products", []):
+        seed_count += 1
+        urls = [str(item.get("image_url") or "")]
+        urls.extend(str(url) for url in item.get("images") or [])
+        for url in urls:
+            if "source.unsplash.com" in url or "cdn.shopify.com" in url:
+                external.append(f"{seed_file}:{item.get('id')}:{url}")
+            if url.startswith("/static/"):
+                image_path = Path("static") / url.removeprefix("/static/")
+                if not image_path.is_file():
+                    missing.append(str(image_path))
+
+if external:
+    raise SystemExit("External seed image URLs remain:\n" + "\n".join(external[:20]))
+if missing:
+    raise SystemExit("Missing local image files:\n" + "\n".join(missing[:20]))
+
+for attempt in range(10):
+    try:
+        with urllib.request.urlopen("http://127.0.0.1:8000/health", timeout=5):
+            break
+    except Exception:
+        if attempt == 9:
+            raise
+        time.sleep(1)
+
+with urllib.request.urlopen("http://127.0.0.1:8000/api/products?per_page=96", timeout=10) as response:
+    payload = json.load(response)
+
+items = payload.get("data", [])
+total = payload.get("meta", {}).get("total")
+bad_api_images = [
+    item.get("image_url")
+    for item in items
+    if "source.unsplash.com" in str(item.get("image_url")) or "cdn.shopify.com" in str(item.get("image_url"))
+]
+
+print(f"Seed products checked: {seed_count}")
+print(f"API total products: {total}")
+print(f"API page products checked: {len(items)}")
+if total is not None and total < 500:
+    raise SystemExit("Expected expanded catalog in API. Check backend seed sync logs.")
+if bad_api_images:
+    raise SystemExit("External image URLs still visible through API:\n" + "\n".join(map(str, bad_api_images[:20])))
+PY
+```
+
 ## 9. Local Smoke
 
 Run this before touching public Nginx.
@@ -268,6 +352,9 @@ set -e
 curl -fsS http://127.0.0.1:5175/ >/dev/null
 curl -fsS http://127.0.0.1:8000/health >/dev/null
 curl -fsS http://127.0.0.1:8000/api/products >/dev/null
+curl -fsS http://127.0.0.1:8000/static/catalog/product-fallback.jpg >/dev/null
+curl -fsS "http://127.0.0.1:8000/api/products?per_page=1" | grep -E '/static/(catalog|uploads)/' >/dev/null
+curl -fsS "http://127.0.0.1:8000/api/products?category=electronics&q=phone" | grep -E 'OPPO Find X9|iPhone 17e|Galaxy A36' >/dev/null
 echo "AI-KART local deploy OK."
 ```
 
@@ -354,6 +441,15 @@ server {
         proxy_set_header X-Forwarded-Proto http;
     }
 
+    location /static/ {
+        proxy_pass http://127.0.0.1:8000/static/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto http;
+    }
+
     location = /aihub {
         return 301 /aihub/;
     }
@@ -417,6 +513,9 @@ echo "Shared Nginx route OK."
 set -e
 curl -fsS http://143.198.5.97/ >/dev/null
 curl -fsS http://143.198.5.97/api/products >/dev/null
+curl -fsS http://143.198.5.97/static/catalog/product-fallback.jpg >/dev/null
+curl -fsS "http://143.198.5.97/api/products?per_page=1" | grep -E '/static/(catalog|uploads)/' >/dev/null
+curl -fsS "http://143.198.5.97/api/products?category=electronics&q=phone" | grep -E 'OPPO Find X9|iPhone 17e|Galaxy A36' >/dev/null
 curl -fsS http://143.198.5.97/aihub/health >/dev/null
 curl -fsS http://143.198.5.97/aihub/crm/ | grep -E 'assets/index-.*\.js' >/dev/null
 echo "AI-KART and AI Hub public routes OK."
@@ -463,6 +562,12 @@ Local AI-KART works but public / fails
 
 Admin login says "Invalid email or password"
   -> Run step 10, "Reset AI-KART Admin Login".
+
+New products from products.seed.json or products.seed.v2.json do not appear
+  -> Restart ai-kart-backend so startup seed sync runs, then run step 8A validation.
+
+Product images are broken
+  -> Confirm backend/static/catalog/ exists from Git. If phone upload images changed, copy backend/static/uploads/phones/, then rerun step 8A validation.
 
 Mic is missing
   -> Confirm frontend/index.html includes the tracked /aihub/shopbot.js script and the Hub client is enabled.

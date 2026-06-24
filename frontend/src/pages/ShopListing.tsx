@@ -1,150 +1,125 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { listProducts } from '../lib/api';
-import type { Product } from '../lib/types';
+import { ActiveFilterPills } from '../components/shop/ActiveFilterPills';
+import { FilterRail } from '../components/shop/FilterRail';
+import { Pagination } from '../components/shop/Pagination';
 import { ProductGrid } from '../components/product/ProductGrid';
+import { listProductResult } from '../lib/productApi';
+import type { Product, ProductListMeta } from '../lib/types';
 
-const ALL_CATEGORIES = [
-  'bags', 'drinkware', 'electronics', 'footware', 'headwear',
-  'hoodies', 'jackets', 'kids', 'pets', 'shirts', 'stickers',
-];
+type ShopPreset = 'new' | 'sale';
 
-export function ShopListing() {
+export function ShopListing({ forcedQuery, preset }: { forcedQuery?: string; preset?: ShopPreset }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState<Product[]>([]);
+  const [meta, setMeta] = useState<ProductListMeta | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const selectedCategory = searchParams.get('category') ?? '';
-  const searchQuery = searchParams.get('q') ?? '';
+  const [error, setError] = useState('');
+  const searchKey = searchParams.toString();
+  const query = forcedQuery ?? searchParams.get('q') ?? '';
+  const page = Number(searchParams.get('page') || 1);
+  const filters = useMemo(() => new URLSearchParams(searchKey), [searchKey]);
+  const effectiveFilters = useMemo(() => {
+    const next = new URLSearchParams(searchKey);
+    if (preset === 'new') {
+      next.set('new_arrival', 'true');
+      if (!next.get('sort')) next.set('sort', 'newest');
+    }
+    if (preset === 'sale') {
+      next.set('discount_min', next.get('discount_min') || '30');
+      if (!next.get('sort')) next.set('sort', 'popularity');
+    }
+    return next;
+  }, [searchKey, preset]);
 
   useEffect(() => {
     setLoading(true);
-    setError(null);
-    listProducts({
-      category: selectedCategory || undefined,
-      q: searchQuery || undefined,
+    setError('');
+    listProductResult({
+      category: effectiveFilters.get('category') || undefined,
+      subcategory: effectiveFilters.get('subcategory') || undefined,
+      brand: effectiveFilters.get('brand') || undefined,
+      price_min: numberParam(effectiveFilters, 'price_min'),
+      price_max: numberParam(effectiveFilters, 'price_max'),
+      rating_min: numberParam(effectiveFilters, 'rating_min'),
+      discount_min: numberParam(effectiveFilters, 'discount_min'),
+      in_stock: effectiveFilters.get('in_stock') === 'true' ? true : undefined,
+      new_arrival: effectiveFilters.get('new_arrival') === 'true' ? true : undefined,
+      bestseller: effectiveFilters.get('bestseller') === 'true' ? true : undefined,
+      sort: effectiveFilters.get('sort') || 'relevance',
+      page,
+      per_page: 24,
+      q: query || undefined,
     })
-      .then(setProducts)
-      .catch(() => setError('Failed to load products.'))
+      .then((result) => {
+        setProducts(result.products);
+        setMeta(result.meta);
+      })
+      .catch(() => setError('Something went wrong.'))
       .finally(() => setLoading(false));
-  }, [selectedCategory, searchQuery]);
+  }, [effectiveFilters, query, page]);
 
-  function selectCategory(cat: string) {
-    const params = new URLSearchParams(searchParams);
-    if (cat) params.set('category', cat);
-    else params.delete('category');
-    params.delete('q');
-    setSearchParams(params);
+  function changeFilter(key: string, value: string): void {
+    const next = new URLSearchParams(searchParams);
+    if (value) next.set(key, value);
+    else next.delete(key);
+    next.delete('page');
+    setSearchParams(next);
   }
 
+  function clearFilters(): void {
+    const next = new URLSearchParams();
+    if (query) next.set('q', query);
+    setSearchParams(next);
+  }
+
+  const count = meta?.total ?? products.length;
+  const title = query
+    ? `${count} results for "${query}"`
+    : preset === 'new'
+      ? `${count} new arrivals`
+      : preset === 'sale'
+        ? `${count} sale deals`
+        : `${count} products`;
+
   return (
-    <main className="max-w-[1200px] mx-auto px-6 py-10">
-      {/* Search bar */}
-      <div className="mb-8">
-        <input
-          type="search"
-          placeholder="Search products..."
-          defaultValue={searchQuery}
-          className="w-full max-w-[400px] h-9 px-3 rounded-[10px] border border-[var(--color-border)] bg-[var(--color-surface)] text-[13px] text-[var(--color-ink)] placeholder:text-[var(--color-muted)] focus:outline-none focus:border-[var(--color-muted)] transition-colors"
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              const val = (e.target as HTMLInputElement).value.trim();
-              const params = new URLSearchParams(searchParams);
-              if (val) params.set('q', val);
-              else params.delete('q');
-              setSearchParams(params);
-            }
-          }}
-          id="shop-search-input"
-        />
-      </div>
-
-      <div className="flex gap-8 items-start">
-        {/* ── Left filter rail (desktop) ── */}
-        <aside className="hidden md:block w-[130px] shrink-0 sticky top-20">
-          <p className="text-[10px] uppercase tracking-[0.07em] text-[var(--color-muted)] mb-4">Category</p>
-          <ul className="space-y-1.5">
-            <li>
-              <button
-                onClick={() => selectCategory('')}
-                className={`text-[13px] transition-colors text-left w-full ${
-                  !selectedCategory
-                    ? 'text-[var(--color-ink)] font-[500]'
-                    : 'text-[var(--color-muted)] hover:text-[var(--color-ink)]'
-                }`}
-              >
-                All
-              </button>
-            </li>
-            {ALL_CATEGORIES.map((cat) => (
-              <li key={cat}>
-                <button
-                  onClick={() => selectCategory(cat)}
-                  className={`text-[13px] transition-colors text-left w-full capitalize ${
-                    selectedCategory === cat
-                      ? 'text-[var(--color-ink)] font-[500]'
-                      : 'text-[var(--color-muted)] hover:text-[var(--color-ink)]'
-                  }`}
-                >
-                  {cat}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </aside>
-
-        {/* ── Mobile: horizontal pill chips ── */}
-        <div className="md:hidden flex gap-2 overflow-x-auto pb-2 mb-4 w-full">
-          <button
-            onClick={() => selectCategory('')}
-            className={`shrink-0 px-3 h-7 rounded-full text-[11px] font-[500] border transition-colors ${
-              !selectedCategory
-                ? 'bg-[var(--color-ink)] text-white border-[var(--color-ink)]'
-                : 'bg-[var(--color-surface)] text-[var(--color-muted)] border-[var(--color-border)]'
-            }`}
-          >
-            All
-          </button>
-          {ALL_CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => selectCategory(cat)}
-              className={`shrink-0 px-3 h-7 rounded-full text-[11px] font-[500] border transition-colors capitalize ${
-                selectedCategory === cat
-                  ? 'bg-[var(--color-ink)] text-white border-[var(--color-ink)]'
-                  : 'bg-[var(--color-surface)] text-[var(--color-muted)] border-[var(--color-border)]'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* ── Product grid ── */}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between mb-5">
-            <h1 className="text-[15px] font-[500] text-[var(--color-ink)]">
-              {selectedCategory
-                ? `${selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}`
-                : searchQuery
-                ? `Results for "${searchQuery}"`
-                : 'All products'}
-            </h1>
-            {!loading && (
-              <span className="text-[12px] text-[var(--color-muted)]">
-                {products.length} {products.length === 1 ? 'item' : 'items'}
-              </span>
-            )}
+    <main className="mx-auto max-w-[1240px] px-4 py-6 md:px-6 md:py-10">
+      <div className="grid gap-6 md:grid-cols-[260px_minmax(0,1fr)]">
+        <FilterRail meta={meta} filters={effectiveFilters} onChange={changeFilter} onClear={clearFilters} />
+        <section className="min-w-0">
+          <div className="mb-5 grid gap-3">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h1 className="text-[20px] font-[500] text-[var(--color-ink)]">{title}</h1>
+              <select className="h-9 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 text-[12px]" value={effectiveFilters.get('sort') || 'relevance'} onChange={(event) => changeFilter('sort', event.target.value)}>
+                <option value="relevance">Relevance</option>
+                <option value="price_asc">Price: low to high</option>
+                <option value="price_desc">Price: high to low</option>
+                <option value="newest">Newest first</option>
+                <option value="rating_desc">Rating</option>
+                <option value="popularity">Popularity</option>
+              </select>
+            </div>
+            <ActiveFilterPills params={filters} onRemove={(key) => changeFilter(key, '')} onClear={clearFilters} />
           </div>
-
           {error ? (
-            <p className="text-red-500 text-[13px]">{error}</p>
+            <div className="rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] p-6 text-[13px] text-[var(--color-muted)]">
+              {error} <button className="text-[var(--color-accent)]" type="button" onClick={() => setSearchParams(new URLSearchParams(searchParams))}>Retry</button>
+            </div>
           ) : (
-            <ProductGrid products={products} loading={loading} />
+            <>
+              <ProductGrid products={products} loading={loading} />
+              <Pagination page={meta?.page ?? page} totalPages={meta?.total_pages ?? 0} onPage={(nextPage) => changeFilter('page', String(nextPage))} />
+            </>
           )}
-        </div>
+        </section>
       </div>
     </main>
   );
+}
+
+function numberParam(params: URLSearchParams, key: string): number | undefined {
+  const raw = params.get(key);
+  if (!raw) return undefined;
+  const value = Number(raw);
+  return Number.isFinite(value) ? value : undefined;
 }

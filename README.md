@@ -31,6 +31,7 @@ On the shared server, AI-KART owns the root public path and the system Nginx edg
 ```text
 /                         -> AI-KART frontend on 127.0.0.1:5175
 /api/                     -> AI-KART backend on 127.0.0.1:8000
+/static/                  -> AI-KART backend static files on 127.0.0.1:8000
 /aihub/                   -> AI Hub Docker app on 127.0.0.1:5176
 /client-panel/<client_id> -> Client Panel on 127.0.0.1:5177
 ```
@@ -155,13 +156,28 @@ It is ignored by Git and should not be committed. Deployment backs it up to:
 .deploy-backups/aikart-db/
 ```
 
-Source-controlled dummy products live in:
+Source-controlled catalog seed files live in:
 
 ```text
 backend/products.seed.json
+backend/products.seed.v2.json
 ```
 
-The seed file is used only when the database is empty.
+The backend syncs both seed files on startup, including existing databases. Restarting `ai-kart-backend` after a pull applies product, review, and image URL updates without deleting `backend/aikart.db`.
+
+Expanded catalog product art is committed under:
+
+```text
+backend/static/catalog/
+```
+
+Phone upload images still live under ignored runtime storage:
+
+```text
+backend/static/uploads/phones/
+```
+
+Deploy catalog/image updates with step `8A. Validate Catalog Seed And Images` in [aikart.md](aikart.md). If phone uploads changed, copy `backend/static/uploads/phones/` to the server before restarting the backend.
 
 ## Admin Credentials
 
@@ -212,21 +228,24 @@ The AI Hub script URL is not configured through frontend env. It lives in `front
 
 ## Local Development
 
-Backend:
+Run the backend and frontend in two separate PowerShell terminals.
 
-```bash
-cd backend
+Terminal 1, backend API:
+
+```powershell
+cd C:\Users\admin\Desktop\Vercel_website\backend
+if (!(Test-Path .env)) { Copy-Item .env.example .env }
 python -m venv .venv
-. .venv/bin/activate
+.\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-Frontend:
+Terminal 2, storefront:
 
-```bash
-cd frontend
+```powershell
+cd C:\Users\admin\Desktop\Vercel_website\frontend
 npm install
 npm run dev
 ```
@@ -235,6 +254,18 @@ Open:
 
 ```text
 http://localhost:5173
+```
+
+Local notes:
+
+- Keep `frontend/.env.local` as `VITE_API_BASE_URL=` or omit it. Vite proxies `/api` and `/static` to `http://127.0.0.1:8000` during development.
+- If `backend/.env` is missing, copy `backend/.env.example` to `backend/.env` before starting the backend.
+- The local SQLite database is `backend/aikart.db`. If it is missing, the backend creates it and seeds products on startup.
+- If PowerShell blocks venv activation, run:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\.venv\Scripts\Activate.ps1
 ```
 
 ## Server Deployment
@@ -251,6 +282,7 @@ The deployment runbook is split into small controlled steps:
 6. Environment file creation and secret repair.
 7. Backend and frontend build.
 8. PM2 restart.
+8A. Validate catalog seed and image sync.
 9. Local smoke.
 10. Admin login reset if needed.
 11. Shared Nginx apply.
@@ -348,6 +380,12 @@ Frontend shows old UI:
 
 ```text
 Rebuild frontend and restart PM2 using aikart.md steps 7 and 8.
+```
+
+New seed products are missing after deploy:
+
+```text
+Restart ai-kart-backend so the seed sync runs, then run aikart.md step 8A validation.
 ```
 
 AI mic is missing:

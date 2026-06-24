@@ -10,18 +10,19 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from fastapi.staticfiles import StaticFiles
 
-from app.api import admin, auth, health, products
+from app.api import admin, auth, cart_suggestions, health, pincode, products, reviews, search, wishlist
 from app.core.config import settings
 from app.db.models import Base
+from app.db.migrate import migrate_existing_schema
 from app.db.seed import ensure_default_admin, seed_if_empty
 from app.db.session import engine
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Create tables then seed
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+    await migrate_existing_schema(engine)
     await seed_if_empty()
     await ensure_default_admin()
     yield
@@ -85,6 +86,11 @@ app.include_router(health.router)
 app.include_router(auth.router)
 app.include_router(admin.router)
 app.include_router(products.router)
+app.include_router(reviews.router)
+app.include_router(search.router)
+app.include_router(wishlist.router)
+app.include_router(cart_suggestions.router)
+app.include_router(pincode.router)
 
 static_dir = Path(settings.upload_dir).parent
 static_dir.mkdir(parents=True, exist_ok=True)

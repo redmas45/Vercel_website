@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { currentUser, getProduct } from '../lib/api';
+import { currentUser } from '../lib/authApi';
+import { getProduct } from '../lib/productApi';
 import { useCart } from './useCart';
 
 interface ShopBotConfig {
@@ -9,6 +10,19 @@ interface ShopBotConfig {
   onAddToCart?: (productId: string, quantity: number) => Promise<void>;
   onNavigate?: (page: string) => void;
   onCheckout?: () => void;
+  onProductView?: (productId: string) => void;
+  onWishlistAdd?: (productId: string) => void;
+  onSearch?: (query: string) => void;
+  onCheckoutStart?: () => void;
+  onOrderPlaced?: (orderId: string, total: number) => void;
+  catalog?: {
+    currency: string;
+    symbol: string;
+    getProduct: (id: string) => Promise<unknown>;
+    searchProducts: (q: string) => Promise<unknown>;
+    getCrossSells: (id: string) => Promise<unknown>;
+    filterProducts: (params: Record<string, string>) => Promise<unknown>;
+  };
 }
 
 interface ShopCart {
@@ -20,6 +34,9 @@ interface ShopCart {
   checkout: () => void;
   showProductDetail: (productId: string) => void;
   filterProducts: (params: Record<string, string>) => void;
+  getItems: () => unknown[];
+  getTotal: () => { subtotal: number; discount: number; total: number };
+  applyPromoCode: (code: string) => { success: boolean; discount: number };
 }
 
 declare global {
@@ -57,7 +74,15 @@ export function useShopBotBridge(): void {
       onOpenCart: cart.openCart,
       onAddToCart: addProduct,
       onNavigate: (page: string) => navigate(normalizePath(page)),
-      onCheckout: () => navigate('/cart'),
+      onCheckout: () => navigate('/checkout'),
+      catalog: {
+        currency: 'INR',
+        symbol: 'Rs',
+        getProduct: (id: string) => fetch(`/api/products/${id}`).then((response) => response.json()),
+        searchProducts: (q: string) => fetch(`/api/products?q=${encodeURIComponent(q)}`).then((response) => response.json()),
+        getCrossSells: (id: string) => fetch(`/api/products/${id}/related`).then((response) => response.json()),
+        filterProducts: (params: Record<string, string>) => fetch(`/api/products?${new URLSearchParams(params)}`).then((response) => response.json()),
+      },
     };
 
     window.ShopCart = {
@@ -66,9 +91,12 @@ export function useShopBotBridge(): void {
       clear: cart.clearCart,
       removeItem: cart.removeItem,
       updateQuantity: cart.updateQuantity,
-      checkout: () => navigate('/cart'),
+      checkout: () => navigate('/checkout'),
       showProductDetail: openProduct,
       filterProducts,
+      getItems: () => cart.items,
+      getTotal: cart.cartTotal,
+      applyPromoCode: cart.applyPromoCode,
     };
 
     currentUser()
