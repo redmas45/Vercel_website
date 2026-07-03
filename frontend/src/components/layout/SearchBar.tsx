@@ -31,7 +31,6 @@ export function SearchBar() {
         return;
       }
       searchSuggestions(query).then(setSuggestions).catch(() => setSuggestions([]));
-      window.ShopBotConfig?.onSearch?.(query);
     }, SEARCH_DELAY_MS);
     return () => window.clearTimeout(timer);
   }, [query]);

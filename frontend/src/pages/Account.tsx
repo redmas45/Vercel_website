@@ -30,7 +30,6 @@ export function Account() {
 
   function logout(): void {
     clearAuthToken();
-    if (window.ShopBotConfig) delete window.ShopBotConfig.sessionId;
     navigate('/');
   }
 

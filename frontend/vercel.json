@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/((?!api|static).*项目*)",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/((?!api|static).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

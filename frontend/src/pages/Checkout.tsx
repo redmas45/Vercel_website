@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../hooks/useCart';
 import { money } from '../lib/format';
@@ -10,14 +10,9 @@ export function Checkout() {
   const navigate = useNavigate();
   const totals = cartTotal();
 
-  useEffect(() => {
-    window.ShopBotConfig?.onCheckoutStart?.();
-  }, []);
-
   function placeOrder(): void {
     const orderId = `AK-2026-${String(Math.round(totals.total)).padStart(5, '0').slice(-5)}`;
     clearCart();
-    window.ShopBotConfig?.onOrderPlaced?.(orderId, totals.total);
     navigate(`/order-confirmation?order=${orderId}&total=${totals.total}`);
   }
 

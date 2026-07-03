@@ -15,7 +15,6 @@ export function Login() {
     const formData = new FormData(event.currentTarget);
     try {
       const response = await login(String(formData.get('email') || ''), String(formData.get('password') || ''));
-      window.ShopBotConfig = { ...window.ShopBotConfig, sessionId: `user-${response.user.id}` };
       navigate(response.user.role === 'admin' ? '/admin' : '/account');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed.');

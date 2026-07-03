@@ -39,7 +39,6 @@ export function ProductDetail() {
         setCrossSell(related.cross_sell);
         setFrequentlyBought(related.frequently_bought_with);
         rememberProduct(nextProduct.id);
-        window.ShopBotConfig?.onProductView?.(nextProduct.id);
       })
       .catch(() => setError('Product failed to load.'))
       .finally(() => setLoading(false));

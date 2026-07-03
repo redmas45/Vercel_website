@@ -43,7 +43,7 @@ AI Hub and Client Panel are separate projects. AI-KART only routes public traffi
 ```text
 frontend/
   React + Vite storefront
-  product listing, cart, account, admin UI, widget bridge hooks
+  product listing, cart, account, admin UI, optional one-line AI Hub installer
 
 backend/
   FastAPI API
@@ -51,7 +51,7 @@ backend/
   auth, users, products, uploads, seed products
 
 widget-integration/
-  documentation for the AI Hub script and browser hooks
+  documentation for the AI Hub script contract
 ```
 
 Runtime services on the server:
@@ -69,7 +69,7 @@ AI Hub integration is manual and explicit. The storefront does not inject Hub co
 Current connected script in `frontend/index.html`:
 
 ```html
-<script defer src="http://143.198.5.97/aihub/shopbot.js?site=ai_kart" data-site-id="ai_kart"></script>
+<script defer src="http://143.198.5.97/aihub/install.js?site=ai_kart" data-site-id="ai_kart"></script>
 ```
 
 Behavior:
@@ -77,31 +77,14 @@ Behavior:
 - If the script is absent, no AI mic/widget appears.
 - If the AI Hub CRM disables the `ai_kart` client, the served widget is disabled.
 - The storefront can still run normally without the script.
+- The AI Hub installer loads the hosted adapter runtime and widget bundle.
 - Site-specific commerce behavior belongs in the Hub-hosted adapter layer.
 
-## Storefront Browser Hooks
+## Storefront Browser Contract
 
-The React app exposes browser hooks for the Hub widget:
+AI-KART does not expose Hub-specific globals or adapter hooks from its React code. The old storefront-owned cart/config bridge has been removed.
 
-```text
-window.ShopCart.addItem(productId, quantity)
-window.ShopCart.open()
-window.ShopCart.clear()
-window.ShopCart.removeItem(productId)
-window.ShopCart.updateQuantity(productId, quantity)
-window.ShopCart.showProductDetail(productId)
-window.ShopCart.filterProducts(params)
-window.ShopBotConfig.onAddToCart(productId, quantity)
-window.ShopBotConfig.onOpenCart()
-```
-
-When a shopper logs in, the storefront exposes a stable session ID:
-
-```text
-window.ShopBotConfig.sessionId
-```
-
-AI Hub can use that session ID for per-shopper/session token limits from Client Panel.
+AI Hub control comes from the hosted installer script only. The Hub runtime discovers routes, buttons, forms, catalog APIs, and safe actions from the rendered website and from public storefront APIs.
 
 ## Backend API
 

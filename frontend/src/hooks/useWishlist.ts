@@ -30,7 +30,6 @@ export function useWishlist() {
         throw new Error('Wishlist update failed.');
       }
     }
-    window.ShopBotConfig?.onWishlistAdd?.(productId);
     return nextIsSaved;
   }
 

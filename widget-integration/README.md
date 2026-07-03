@@ -7,28 +7,18 @@ AI-KART is a standalone client website. It does not auto-load AI Hub code.
 Paste the one-line script into `frontend/index.html` only when this website is connected in AI Hub CRM:
 
 ```html
-<script defer src="http://143.198.5.97/aihub/shopbot.js?site=ai_kart" data-site-id="ai_kart"></script>
+<script defer src="http://143.198.5.97/aihub/install.js?site=ai_kart" data-site-id="ai_kart"></script>
 ```
 
 If the script is absent, no mic is shown. If AI Hub CRM disables the client, the served script is disabled and no mic is shown.
 
-## Storefront Hooks
+The installer loads AI Hub's hosted adapter runtime first, then the mic/widget bundle. AI-KART does not need to ship Hub credentials or Hub-owned logic.
 
-The React app exposes generic browser hooks for the Hub script:
+## Storefront Contract
 
-- `window.ShopCart.addItem(productId, quantity)`
-- `window.ShopCart.open()`
-- `window.ShopCart.clear()`
-- `window.ShopCart.removeItem(productId)`
-- `window.ShopCart.updateQuantity(productId, quantity)`
-- `window.ShopCart.showProductDetail(productId)`
-- `window.ShopCart.filterProducts(params)`
-- `window.ShopBotConfig.onAddToCart(productId, quantity)`
-- `window.ShopBotConfig.onOpenCart()`
+The React app does not expose Hub-specific browser globals. The old storefront-owned cart/config bridge has been removed.
 
-These hooks do not contain a Hub URL or Hub credentials. The pasted script provides the Hub connection.
-
-If a shopper is logged in, `window.ShopBotConfig.sessionId` is set to a stable website user session such as `user-12`. Anonymous visitors keep the Hub widget's anonymous browser session.
+The pasted installer script is the only connection to AI Hub. The Hub-hosted runtime discovers routes, buttons, forms, catalog APIs, and safe actions from the rendered website.
 
 ## Catalog API
 

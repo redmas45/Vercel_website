@@ -6,7 +6,6 @@ import { CartDrawer } from './components/cart/CartDrawer';
 import { AddedToCartModal } from './components/cart/AddedToCartModal';
 import { ToastContainer } from './components/ui/Toast';
 import { ToastProvider } from './components/ui/ToastProvider';
-import { useShopBotBridge } from './hooks/useShopBotBridge';
 import { Home } from './pages/Home';
 import { ShopListing } from './pages/ShopListing';
 import { ProductDetail } from './pages/ProductDetail';
@@ -21,8 +20,6 @@ import { Checkout } from './pages/Checkout';
 import { OrderConfirmation } from './pages/OrderConfirmation';
 
 function AppShell() {
-  useShopBotBridge();
-
   return (
     <>
       <Header />

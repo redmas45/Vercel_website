@@ -14,12 +14,11 @@ export function Signup() {
     setError('');
     const formData = new FormData(event.currentTarget);
     try {
-      const response = await signup(
+      await signup(
         String(formData.get('email') || ''),
         String(formData.get('password') || ''),
         String(formData.get('name') || ''),
       );
-      window.ShopBotConfig = { ...window.ShopBotConfig, sessionId: `user-${response.user.id}` };
       navigate('/account');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Signup failed.');

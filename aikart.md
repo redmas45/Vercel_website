@@ -269,6 +269,16 @@ Run this after catalog, review, or image changes. The backend startup syncs `bac
 
 Committed catalog art under `backend/static/catalog/` arrives through Git. If runtime phone uploads changed, copy them from your workstation before restarting the backend:
 
+From Windows PowerShell:
+
+```powershell
+cd C:\Users\admin\Desktop\Vercel_website
+ssh dev@143.198.5.97 "mkdir -p /var/www/Vercel_website/backend/static/uploads"
+scp -r .\backend\static\uploads\phones dev@143.198.5.97:/var/www/Vercel_website/backend/static/uploads/
+```
+
+From Linux, macOS, WSL, or Git Bash:
+
 ```bash
 rsync -av backend/static/uploads/phones/ dev@143.198.5.97:/var/www/Vercel_website/backend/static/uploads/phones/
 ```
