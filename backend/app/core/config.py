@@ -1,6 +1,12 @@
 from __future__ import annotations
 
+import os
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+IS_VERCEL = bool(os.getenv("VERCEL"))
+DEFAULT_DATABASE_URL = "sqlite+aiosqlite:////tmp/aikart.db" if IS_VERCEL else "sqlite+aiosqlite:///./aikart.db"
+DEFAULT_UPLOAD_DIR = "backend/static/uploads" if IS_VERCEL else "static/uploads"
 
 
 class Settings(BaseSettings):
@@ -11,7 +17,7 @@ class Settings(BaseSettings):
     )
 
     # Database
-    database_url: str = "sqlite+aiosqlite:///./aikart.db"
+    database_url: str = DEFAULT_DATABASE_URL
 
     # CORS — comma-separated origins for the frontend
     cors_origins: str = "http://localhost:5173,http://127.0.0.1:5173"
@@ -25,7 +31,7 @@ class Settings(BaseSettings):
     auth_secret_key: str = "dev-change-me"
     default_admin_email: str = "admin@aikart.local"
     default_admin_password: str = "change_this_admin_password"
-    upload_dir: str = "static/uploads"
+    upload_dir: str = DEFAULT_UPLOAD_DIR
 
     @property
     def cors_origins_list(self) -> list[str]:
