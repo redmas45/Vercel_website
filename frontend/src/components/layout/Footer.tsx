@@ -1,6 +1,20 @@
 import { Link } from 'react-router-dom';
 
-const CATEGORIES = ['Shirts', 'Hoodies', 'Jackets', 'Headwear', 'Bags', 'Drinkware', 'Electronics', 'Kids', 'Pets'];
+const SHOP_LINKS = [
+  ['Electronics', '/shop?category=electronics'],
+  ["Men's fashion", '/shop?category=fashion-men'],
+  ["Women's fashion", '/shop?category=fashion-women'],
+  ['Home & kitchen', '/shop?category=home-kitchen'],
+  ['Beauty', '/shop?category=beauty-personal-care'],
+] as const;
+
+const INFO_LINKS = [
+  ['About', '/about'],
+  ['FAQ', '/faq'],
+  ['Shipping & Returns', '/shipping-and-returns'],
+  ['Privacy Policy', '/privacy-policy'],
+  ['Terms & Conditions', '/terms-and-conditions'],
+] as const;
 
 export function Footer() {
   return (
@@ -24,13 +38,13 @@ export function Footer() {
           <div>
             <p className="text-[10px] uppercase tracking-[0.08em] text-[var(--color-muted)] mb-4">Shop</p>
             <ul className="space-y-2.5">
-              {CATEGORIES.slice(0, 5).map((cat) => (
-                <li key={cat}>
+              {SHOP_LINKS.map(([label, href]) => (
+                <li key={href}>
                   <Link
-                    to={`/shop?category=${cat.toLowerCase()}`}
+                    to={href}
                     className="text-[13px] text-[var(--color-paper)] opacity-70 hover:opacity-100 transition-opacity"
                   >
-                    {cat}
+                    {label}
                   </Link>
                 </li>
               ))}
@@ -41,13 +55,13 @@ export function Footer() {
           <div>
             <p className="text-[10px] uppercase tracking-[0.08em] text-[var(--color-muted)] mb-4">Info</p>
             <ul className="space-y-2.5">
-              {['About', 'FAQ', 'Shipping & Returns', 'Privacy Policy', 'Terms & Conditions'].map((item) => (
-                <li key={item}>
+              {INFO_LINKS.map(([label, href]) => (
+                <li key={href}>
                   <Link
-                    to={`/${item.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`}
+                    to={href}
                     className="text-[13px] text-[var(--color-paper)] opacity-70 hover:opacity-100 transition-opacity"
                   >
-                    {item}
+                    {label}
                   </Link>
                 </li>
               ))}

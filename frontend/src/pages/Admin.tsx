@@ -3,7 +3,6 @@ import { AdminAccessRequired } from '../components/admin/AdminAccessRequired';
 import { AdminHeader } from '../components/admin/AdminHeader';
 import { AdminMessages } from '../components/admin/AdminMessages';
 import { AdminTabs, type AdminTab } from '../components/admin/AdminTabs';
-import { AnalyticsStub } from '../components/admin/AnalyticsStub';
 import { ProductForm } from '../components/admin/ProductForm';
 import { ProductTable } from '../components/admin/ProductTable';
 import { ReviewModeration } from '../components/admin/ReviewModeration';
@@ -142,7 +141,6 @@ export function Admin() {
       ) : null}
 
       {activeTab === 'reviews' ? <ReviewModeration reviews={reviews} onPublish={toggleReview} onDelete={removeReview} /> : null}
-      {activeTab === 'analytics' ? <AnalyticsStub /> : null}
     </main>
   );
 }

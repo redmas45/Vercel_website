@@ -82,6 +82,11 @@ export function ProductDetail() {
     );
   }
 
+  const reviewLabel = product.review_count
+    ? `${product.review_count} verified reviews`
+    : 'Reviews coming soon';
+  const descriptionParagraphs = productDescriptionParagraphs(product.description);
+
   return (
     <main className="mx-auto max-w-[1240px] px-4 py-6 md:px-6 md:py-10">
       <nav className="mb-6 flex flex-wrap items-center gap-2 text-[12px] text-[var(--color-muted)]">
@@ -108,7 +113,7 @@ export function ProductDetail() {
             <h1 className="mt-2 text-[30px] font-[500] leading-tight text-[var(--color-ink)] md:text-[42px]">{product.name}</h1>
             <div className="mt-3 flex flex-wrap items-center gap-2">
               <RatingStars rating={product.rating} count={product.review_count} />
-              <span className="text-[12px] text-[var(--color-muted)]">| {(product.review_count || 0) + 356} sold this month</span>
+              <span className="text-[12px] text-[var(--color-muted)]">| {reviewLabel}</span>
             </div>
           </div>
 
@@ -118,9 +123,11 @@ export function ProductDetail() {
               {product.original_price ? <p className="pb-1 text-[13px] text-[var(--color-muted)] line-through">{money(product.original_price, product.currency)}</p> : null}
               {product.discount_percent ? <p className="pb-1 text-[13px] text-[var(--color-muted)]">{percentText(product.discount_percent)}</p> : null}
             </div>
-            <p className="mt-2 inline-flex rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1 text-[12px] text-[var(--color-muted)]">
-              Bank offer: 10% off on HDFC cards
-            </p>
+            {product.discount_percent ? (
+              <p className="mt-2 inline-flex rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1 text-[12px] text-[var(--color-muted)]">
+                Offer applied from current catalog data
+              </p>
+            ) : null}
           </section>
 
           <VariantSelector variants={product.variants} />
@@ -168,10 +175,12 @@ export function ProductDetail() {
             </section>
           ) : null}
           <SpecsAccordion specs={product.specs} />
-          {product.description ? (
+          {descriptionParagraphs.length ? (
             <section className="rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
               <h2 className="mb-3 text-[16px] font-[500] text-[var(--color-ink)]">Product description</h2>
-              <div className="grid gap-3 text-[13px] leading-6 text-[var(--color-muted)]" dangerouslySetInnerHTML={{ __html: product.description }} />
+              <div className="grid gap-3 text-[13px] leading-6 text-[var(--color-muted)]">
+                {descriptionParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              </div>
             </section>
           ) : null}
         </section>
@@ -183,4 +192,15 @@ export function ProductDetail() {
       <ReviewSection productId={product.id} />
     </main>
   );
+}
+
+function productDescriptionParagraphs(description: string): string[] {
+  const template = document.createElement('template');
+  template.innerHTML = description;
+  const paragraphs = Array.from(template.content.querySelectorAll('p'))
+    .map((paragraph) => paragraph.textContent?.trim() ?? '')
+    .filter(Boolean);
+  if (paragraphs.length) return paragraphs;
+  const fallback = template.content.textContent?.trim();
+  return fallback ? [fallback] : [];
 }

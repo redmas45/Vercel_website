@@ -3,10 +3,11 @@
   "version": "2.0.0",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@11.10.0",
   "scripts": {
-    "build": "npm --prefix frontend run build",
-    "lint": "npm --prefix frontend run lint",
-    "dev": "npm --prefix frontend run dev",
-    "preview": "npm --prefix frontend run preview"
+    "build": "corepack pnpm --filter frontend build",
+    "lint": "corepack pnpm --filter frontend lint",
+    "dev": "corepack pnpm --filter frontend dev",
+    "preview": "corepack pnpm --filter frontend preview"
   }
 }

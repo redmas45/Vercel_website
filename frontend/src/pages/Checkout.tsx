@@ -3,6 +3,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../hooks/useCart';
 import { money } from '../lib/format';
 
+const CHECKOUT_STEPS = ['Address', 'Review'] as const;
+const ADDRESS_FIELDS = [
+  { label: 'Name', required: true },
+  { label: 'Phone', required: true },
+  { label: 'Pincode', required: true },
+  { label: 'Address line 1', required: true },
+  { label: 'Address line 2', required: false },
+  { label: 'City', required: true },
+  { label: 'State', required: true },
+] as const;
+
 export function Checkout() {
   const { items, cartTotal, applyPromoCode, clearCart } = useCart();
   const [step, setStep] = useState(1);
@@ -23,8 +34,8 @@ export function Checkout() {
   return (
     <main className="mx-auto max-w-[980px] px-4 py-10 md:px-6">
       <h1 className="text-[24px] font-[500] text-[var(--color-ink)]">Checkout</h1>
-      <div className="my-6 grid grid-cols-3 rounded-[8px] border border-[var(--color-border)] text-center text-[12px] text-[var(--color-muted)]">
-        {['Address', 'Review', 'Confirmation'].map((label, index) => <button key={label} className={`py-3 ${step === index + 1 ? 'bg-[var(--color-ink)] text-[var(--color-paper)]' : ''}`} type="button" onClick={() => setStep(index + 1)}>{label}</button>)}
+      <div className="my-6 grid grid-cols-2 rounded-[8px] border border-[var(--color-border)] text-center text-[12px] text-[var(--color-muted)]">
+        {CHECKOUT_STEPS.map((label, index) => <button key={label} className={`py-3 ${step === index + 1 ? 'bg-[var(--color-ink)] text-[var(--color-paper)]' : ''}`} type="button" onClick={() => setStep(index + 1)}>{label}</button>)}
       </div>
       {step === 1 ? <AddressStep onNext={() => setStep(2)} /> : null}
       {step === 2 ? (
@@ -44,7 +55,7 @@ function AddressStep({ onNext }: { onNext: () => void }) {
     <section className="rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] p-5">
       <h2 className="text-[16px] font-[500]">Delivery address</h2>
       <form className="mt-4 grid gap-3 md:grid-cols-2" onSubmit={(event) => { event.preventDefault(); onNext(); }}>
-        {['Name', 'Phone', 'Pincode', 'Address line 1', 'Address line 2', 'City', 'State'].map((label) => <input key={label} className="h-10 rounded-[8px] border border-[var(--color-border)] px-3 text-[13px]" placeholder={label} required={!label.includes('2')} />)}
+        {ADDRESS_FIELDS.map(({ label, required }) => <input key={label} className="h-10 rounded-[8px] border border-[var(--color-border)] px-3 text-[13px]" placeholder={label} required={required} />)}
         <button className="h-10 rounded-[8px] bg-[var(--color-ink)] px-4 text-[13px] text-[var(--color-paper)]" type="submit">Deliver here</button>
       </form>
     </section>

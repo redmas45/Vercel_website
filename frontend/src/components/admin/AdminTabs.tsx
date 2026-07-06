@@ -1,7 +1,7 @@
-export type AdminTab = 'products' | 'reviews' | 'analytics';
+export type AdminTab = 'products' | 'reviews';
 
 export function AdminTabs({ active, onChange }: { active: AdminTab; onChange: (tab: AdminTab) => void }) {
-  const tabs: [AdminTab, string][] = [['products', 'Products'], ['reviews', 'Reviews'], ['analytics', 'Analytics']];
+  const tabs: [AdminTab, string][] = [['products', 'Products'], ['reviews', 'Reviews']];
   return (
     <nav className="mt-6 flex flex-wrap gap-2">
       {tabs.map(([value, label]) => (

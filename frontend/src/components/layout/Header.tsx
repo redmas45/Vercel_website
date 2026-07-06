@@ -2,6 +2,13 @@ import { Link, NavLink } from 'react-router-dom';
 import { useCart } from '../../hooks/useCart';
 import { SearchBar } from './SearchBar';
 
+const NAV_LINKS = [
+  ['/', 'Home'],
+  ['/shop', 'Shop'],
+  ['/new', 'New'],
+  ['/sale', 'Sale'],
+] as const;
+
 export function Header() {
   const { totalItems, openCart } = useCart();
   const count = totalItems();
@@ -19,8 +26,7 @@ export function Header() {
 
         {/* Nav */}
         <nav className="hidden md:flex items-center gap-6">
-          {(['/', '/shop', '/new', '/sale', '/admin'] as const).map((href, i) => {
-            const labels = ['Home', 'Shop', 'New', 'Sale', 'Admin'];
+          {NAV_LINKS.map(([href, label]) => {
             return (
               <NavLink
                 key={href}
@@ -33,7 +39,7 @@ export function Header() {
                   }`
                 }
               >
-                {labels[i]}
+                {label}
               </NavLink>
             );
           })}

@@ -18,6 +18,9 @@ import { SearchResults } from './pages/SearchResults';
 import { AccountWishlist } from './pages/AccountWishlist';
 import { Checkout } from './pages/Checkout';
 import { OrderConfirmation } from './pages/OrderConfirmation';
+import { INFO_PAGES } from './lib/infoPages';
+import { InfoPage } from './pages/InfoPage';
+import { NotFound } from './pages/NotFound';
 
 function AppShell() {
   return (
@@ -41,8 +44,10 @@ function AppShell() {
         <Route path="/account/addresses" element={<Account />} />
         <Route path="/account/wishlist" element={<AccountWishlist />} />
         <Route path="/admin" element={<Admin />} />
-        {/* Fallback */}
-        <Route path="*" element={<Home />} />
+        {Object.entries(INFO_PAGES).map(([path, content]) => (
+          <Route key={path} path={path} element={<InfoPage content={content} />} />
+        ))}
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
       <CartDrawer />
