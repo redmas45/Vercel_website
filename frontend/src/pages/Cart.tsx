@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../hooks/useCart';
 import { Button } from '../components/ui/Button';
 import { money } from '../lib/format';
+import { productPath } from '../lib/productRoutes';
 
 export function Cart() {
   const { items, removeItem, updateQuantity, clearCart, cartTotal } = useCart();
@@ -27,7 +28,7 @@ export function Cart() {
               <img className="h-20 w-20 rounded-[8px] object-contain" src={product.image_url} alt={product.name} />
               <div className="min-w-0 flex-1">
                 <div className="flex items-start justify-between gap-2">
-                  <Link to={`/product/${product.id}`} className="truncate text-[13px] font-[500] text-[var(--color-ink)]">{product.name}</Link>
+                  <Link to={productPath(product)} className="truncate text-[13px] font-[500] text-[var(--color-ink)]">{product.name}</Link>
                   <span className="shrink-0 text-[13px] font-[500] text-[var(--color-accent)]">{money(product.price * quantity, product.currency)}</span>
                 </div>
                 <p className="mt-1 text-[11px] text-[var(--color-muted)]">{money(product.price, product.currency)} each</p>

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { searchSuggestions } from '../../lib/productApi';
+import { productPath } from '../../lib/productRoutes';
 import type { Product } from '../../lib/types';
 
 const SEARCH_DELAY_MS = 300;
@@ -64,7 +65,7 @@ export function SearchBar() {
           <p className="text-[11px] uppercase tracking-[0.08em] text-[var(--color-muted)]">Suggestions</p>
           <div className="mt-2 grid gap-1">
             {suggestions.map((product) => (
-              <Link key={product.id} className="flex items-center gap-3 rounded-[8px] px-2 py-2 hover:bg-[var(--color-paper)]" to={`/product/${product.id}`} onClick={() => setOpen(false)}>
+              <Link key={product.id} className="flex items-center gap-3 rounded-[8px] px-2 py-2 hover:bg-[var(--color-paper)]" to={productPath(product)} onClick={() => setOpen(false)}>
                 <img className="h-9 w-9 rounded-[6px] object-contain" src={product.image_url} alt="" />
                 <span className="text-[12px] text-[var(--color-ink)]">{product.name}</span>
               </Link>

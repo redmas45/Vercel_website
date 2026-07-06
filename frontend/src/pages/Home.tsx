@@ -6,6 +6,7 @@ import { ProductCard } from '../components/product/ProductCard';
 import { RecommendationRail } from '../components/product/RecommendationRail';
 import { useRecentlyViewed } from '../hooks/useRecentlyViewed';
 import { listProducts } from '../lib/productApi';
+import { productPath } from '../lib/productRoutes';
 import type { Product } from '../lib/types';
 
 const HERO_SLIDES = [
@@ -64,7 +65,7 @@ export function Home() {
                 key={product.id}
                 className="absolute w-[150px] rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] p-3 shadow-xl transition-transform hover:scale-105 md:w-[190px]"
                 style={{ left: `${(index % 2) * 45 + 4}%`, top: `${Math.floor(index / 2) * 42 + 2}%` }}
-                to={`/product/${product.id}`}
+                to={productPath(product)}
               >
                 <img className="aspect-square w-full object-contain" src={product.image_url} alt={product.name} loading={index === 0 ? 'eager' : 'lazy'} />
                 <p className="mt-2 truncate text-[12px] font-[500] text-[var(--color-ink)]">{product.name}</p>

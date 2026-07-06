@@ -4,6 +4,7 @@ import { useCart } from '../../hooks/useCart';
 import { useToast } from '../../hooks/useToast';
 import { useWishlist } from '../../hooks/useWishlist';
 import { money } from '../../lib/format';
+import { productPath } from '../../lib/productRoutes';
 import { RatingStars } from '../ui/RatingStars';
 
 interface ProductCardProps {
@@ -38,7 +39,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Link
-      to={`/product/${product.id}`}
+      to={productPath(product)}
       className="group block rounded-[10px] bg-[var(--color-surface)] border border-[var(--color-border)] overflow-hidden hover:border-[var(--color-muted)] transition-colors duration-200"
     >
       {/* Image area */}
