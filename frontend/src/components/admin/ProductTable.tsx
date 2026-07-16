@@ -1,4 +1,6 @@
 import type { Product } from '../../lib/types';
+import { money } from '../../lib/format';
+import { ProductImage } from '../ui/ProductImage';
 
 export function ProductTable({
   products,
@@ -26,13 +28,7 @@ export function ProductTable({
               <tr key={product.id} className="border-t border-[var(--color-border)]">
                 <td className="py-3 pr-4">
                   <div className="flex items-center gap-3">
-                    {product.image_url ? (
-                      <img
-                        className="h-12 w-12 rounded-[8px] object-contain bg-[var(--color-paper)]"
-                        src={product.image_url}
-                        alt=""
-                      />
-                    ) : null}
+                    <ProductImage className="h-12 w-12 rounded-[8px] bg-[var(--color-paper)] object-contain" src={product.image_url} alt="" />
                     <div>
                       <p className="font-[500] text-[var(--color-ink)]">{product.name}</p>
                       <p className="text-[11px] text-[var(--color-muted)]">{product.id}</p>
@@ -40,7 +36,7 @@ export function ProductTable({
                   </div>
                 </td>
                 <td className="py-3 pr-4">{product.category || '-'}</td>
-                <td className="py-3 pr-4">${product.price.toFixed(2)}</td>
+                <td className="py-3 pr-4">{money(product.price, product.currency)}</td>
                 <td className="py-3 pr-4">{product.stock ?? '-'}</td>
                 <td className="py-3 text-right">
                   <button className="text-red-600" type="button" onClick={() => onDelete(product.id)}>

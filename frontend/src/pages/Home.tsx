@@ -8,6 +8,7 @@ import { useRecentlyViewed } from '../hooks/useRecentlyViewed';
 import { listProducts } from '../lib/productApi';
 import { productPath } from '../lib/productRoutes';
 import type { Product } from '../lib/types';
+import { ProductImage } from '../components/ui/ProductImage';
 
 const HERO_SLIDES = [
   { title: 'Shop with your voice', copy: 'Ask the AI assistant to find products, compare options, and add items to cart.', href: '/shop' },
@@ -26,6 +27,13 @@ const CATEGORIES = [
   ['Books', '/shop?category=books-stationery'],
 ] as const;
 
+const FEATURE_CARD_POSITIONS = [
+  'md:left-[4%] md:top-[2%]',
+  'md:left-[49%] md:top-[2%]',
+  'md:left-[4%] md:top-[44%]',
+  'md:left-[49%] md:top-[44%]',
+];
+
 export function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -43,7 +51,7 @@ export function Home() {
     return () => window.clearInterval(timer);
   }, []);
 
-  const featured = products.filter((product) => product.is_featured).slice(0, 4);
+  const featured = takeDiverseProducts(products.filter((product) => product.is_featured), 4);
   const deals = products.filter((product) => (product.discount_percent || 0) >= 30).sort((a, b) => (b.discount_percent || 0) - (a.discount_percent || 0)).slice(0, 12);
   const arrivals = products.filter((product) => product.is_new_arrival).slice(0, 12);
   const bestsellers = products.filter((product) => product.is_bestseller).sort((a, b) => (b.review_count || 0) - (a.review_count || 0)).slice(0, 12);
@@ -52,22 +60,21 @@ export function Home() {
   return (
     <main>
       <section className="relative overflow-hidden bg-[var(--color-accent)]">
-        <div className="mx-auto grid min-h-[520px] max-w-[1240px] gap-8 px-6 py-12 md:grid-cols-[minmax(0,1fr)_520px] md:items-center">
+        <div className="mx-auto grid min-h-[520px] max-w-[1240px] gap-8 px-4 py-10 sm:px-6 md:grid-cols-[minmax(0,1fr)_520px] md:items-center md:py-12">
           <div className="text-[var(--color-paper)]">
             <p className="mb-4 text-[11px] uppercase tracking-[0.08em] opacity-80">AI-KART storefront</p>
-            <h1 className="text-[42px] font-[500] leading-none md:text-[68px]">{currentSlide.title}</h1>
+            <h1 className="text-[36px] font-[500] leading-none sm:text-[42px] md:text-[68px]">{currentSlide.title}</h1>
             <p className="mt-5 max-w-[420px] text-[14px] leading-6 opacity-80">{currentSlide.copy}</p>
             <Link className="mt-8 inline-grid h-11 place-items-center rounded-[8px] bg-[var(--color-ink)] px-6 text-[13px] text-[var(--color-paper)]" to={currentSlide.href}>Browse catalog</Link>
           </div>
-          <div className="relative min-h-[280px]">
+          <div className="grid grid-cols-2 gap-3 md:relative md:block md:min-h-[380px]">
             {(featured.length ? featured : products.slice(0, 4)).map((product, index) => (
               <Link
                 key={product.id}
-                className="absolute w-[150px] rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] p-3 shadow-xl transition-transform hover:scale-105 md:w-[190px]"
-                style={{ left: `${(index % 2) * 45 + 4}%`, top: `${Math.floor(index / 2) * 42 + 2}%` }}
+                className={`relative min-w-0 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] p-2.5 shadow-xl transition-transform hover:scale-105 md:absolute md:w-[190px] md:p-3 ${FEATURE_CARD_POSITIONS[index] ?? ''}`}
                 to={productPath(product)}
               >
-                <img className="aspect-square w-full object-contain" src={product.image_url} alt={product.name} loading={index === 0 ? 'eager' : 'lazy'} />
+                <ProductImage className="aspect-square w-full object-contain" src={product.image_url} alt={product.name} loading={index === 0 ? 'eager' : 'lazy'} />
                 <p className="mt-2 truncate text-[12px] font-[500] text-[var(--color-ink)]">{product.name}</p>
               </Link>
             ))}
@@ -131,4 +138,17 @@ function TopCategories() {
       </div>
     </section>
   );
+}
+
+function takeDiverseProducts(products: Product[], limit: number): Product[] {
+  const selected: Product[] = [];
+  const categories = new Set<string>();
+  for (const product of products) {
+    const category = product.category || 'other';
+    if (categories.has(category)) continue;
+    selected.push(product);
+    categories.add(category);
+    if (selected.length === limit) return selected;
+  }
+  return [...selected, ...products.filter((product) => !selected.includes(product))].slice(0, limit);
 }

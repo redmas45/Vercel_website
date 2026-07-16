@@ -4,6 +4,7 @@ import { CartCrossSell } from './CartCrossSell';
 import { money } from '../../lib/format';
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { ProductImage } from '../ui/ProductImage';
 
 export function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, updateQuantity, cartTotal, totalItems } = useCart();
@@ -67,7 +68,7 @@ export function CartDrawer() {
                 className="flex gap-3 p-3 rounded-[10px] bg-[var(--color-surface)] border border-[var(--color-border)]"
               >
                 <div className="w-16 h-16 rounded-[8px] bg-[var(--color-accent-contrast)] flex-shrink-0 overflow-hidden">
-                  <img
+                  <ProductImage
                     src={product.image_url}
                     alt={product.name}
                     className="w-full h-full object-contain p-1.5"
@@ -88,6 +89,7 @@ export function CartDrawer() {
                     <button
                       onClick={() => updateQuantity(product.id, quantity + 1)}
                       className="w-6 h-6 rounded-[6px] border border-[var(--color-border)] text-[var(--color-ink)] flex items-center justify-center hover:bg-[var(--color-border)] transition-colors text-sm"
+                      disabled={product.stock !== null && quantity >= product.stock}
                     >
                       +
                     </button>

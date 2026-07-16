@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { Product } from '../../lib/types';
 import { percentText, productImages } from '../../lib/format';
+import { ProductImage } from '../ui/ProductImage';
 
 export function ImageGallery({ product }: { product: Product }) {
   const images = productImages(product);
@@ -16,12 +17,12 @@ export function ImageGallery({ product }: { product: Product }) {
             type="button"
             onClick={() => setActive(image)}
           >
-            <img className="h-full w-full object-contain" src={image} alt="" loading="lazy" />
+            <ProductImage className="h-full w-full object-contain" src={image} alt="" />
           </button>
         ))}
       </div>
       <div className="group relative order-1 aspect-square overflow-hidden rounded-[8px] border border-[var(--color-border)] bg-[var(--color-accent-contrast)] md:order-2">
-        <img
+        <ProductImage
           className="h-full w-full object-contain p-5 transition-transform duration-300 group-hover:scale-[1.7]"
           src={active}
           alt={product.name}

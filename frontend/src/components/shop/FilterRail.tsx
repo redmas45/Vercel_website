@@ -1,7 +1,6 @@
 import type { ProductListMeta } from '../../lib/types';
 import { money } from '../../lib/format';
 
-const CATEGORIES = ['electronics', 'fashion-men', 'fashion-women', 'home-kitchen', 'beauty-personal-care', 'sports-fitness', 'books-stationery', 'food-grocery'];
 const RATINGS = [4, 3];
 const DISCOUNTS = [10, 30, 50];
 
@@ -26,7 +25,7 @@ export function FilterRail({
       </div>
       <FilterGroup title="Category">
         <Radio label="All" active={!category} onClick={() => onChange('category', '')} />
-        {CATEGORIES.map((item) => <Radio key={item} label={label(item)} active={category === item} onClick={() => onChange('category', item)} />)}
+        {(meta?.facets.categories || []).map((item) => <Radio key={item.name} label={`${label(item.name)} (${item.count})`} active={category === item.name} onClick={() => onChange('category', item.name)} />)}
       </FilterGroup>
       <FilterGroup title="Brand">
         {(meta?.facets.brands || []).slice(0, 8).map((item) => (
@@ -57,11 +56,11 @@ function FilterGroup({ title, children }: { title: string; children: React.React
 }
 
 function Radio({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
-  return <button className={`text-left text-[12px] ${active ? 'font-[500] text-[var(--color-ink)]' : 'text-[var(--color-muted)]'}`} type="button" onClick={onClick}>{active ? '●' : '○'} {label}</button>;
+  return <label className={`flex cursor-pointer items-center gap-2 text-left text-[12px] ${active ? 'font-[500] text-[var(--color-ink)]' : 'text-[var(--color-muted)]'}`}><input type="radio" checked={active} onChange={onClick} /><span>{label}</span></label>;
 }
 
 function Checkbox({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
-  return <button className={`text-left text-[12px] ${active ? 'font-[500] text-[var(--color-ink)]' : 'text-[var(--color-muted)]'}`} type="button" onClick={onClick}>{active ? '☑' : '☐'} {label}</button>;
+  return <label className={`flex cursor-pointer items-center gap-2 text-left text-[12px] ${active ? 'font-[500] text-[var(--color-ink)]' : 'text-[var(--color-muted)]'}`}><input type="checkbox" checked={active} onChange={onClick} /><span>{label}</span></label>;
 }
 
 function toggleCsv(params: URLSearchParams, key: string, value: string, onChange: (key: string, value: string) => void): void {

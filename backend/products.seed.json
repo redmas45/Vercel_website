@@ -9,17 +9,16 @@
       "title": "NOVA Baby Cap",
       "name": "NOVA Baby Cap",
       "description": "100% combed ringspun cotton",
-      "category": "headwear",
+      "category": "fashion-kids",
       "categories": [
-        "headwear",
-        "kids"
+        "fashion-kids"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 10,
+      "price": 799,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/real-fashion-cap-1.jpg",
       "url": "/product/acme-baby-cap/",
@@ -27,7 +26,14 @@
         "/static/catalog/real-fashion-cap-1.jpg",
         "/static/catalog/real-fashion-cap-2.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Kids & Baby > Accessories",
+      "tags": [
+        "kids",
+        "baby",
+        "cap"
+      ]
     },
     {
       "id": "acme-baby-onesie",
@@ -35,23 +41,30 @@
       "title": "NOVA Baby Onesie",
       "name": "NOVA Baby Onesie",
       "description": "Short sleeve 5-oz, 100% combed ringspun cotton onesie",
-      "category": "kids",
+      "category": "fashion-kids",
       "categories": [
-        "kids"
+        "fashion-kids"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 10,
+      "price": 799,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/real-kids-baby-onesie-1.jpg",
       "url": "/product/acme-baby-onesie/",
       "images": [
         "/static/catalog/real-kids-baby-onesie-1.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Kids & Baby > Clothing",
+      "tags": [
+        "kids",
+        "baby",
+        "onesie"
+      ]
     },
     {
       "id": "acme-bomber-jacket",
@@ -59,23 +72,30 @@
       "title": "NOVA Bomber Jacket",
       "name": "NOVA Bomber Jacket",
       "description": "The multi-season must-have jacket: light and classic for daily wear, with a soft fleece lining for extra warmth.",
-      "category": "jackets",
+      "category": "fashion-men",
       "categories": [
-        "jackets"
+        "fashion-men"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 50,
+      "price": 4199,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/real-fashion-jacket-1.jpg",
       "url": "/product/acme-bomber-jacket/",
       "images": [
         "/static/catalog/real-fashion-jacket-1.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Men's Fashion > Jackets",
+      "tags": [
+        "jacket",
+        "bomber",
+        "unisex"
+      ]
     },
     {
       "id": "acme-cap",
@@ -83,16 +103,16 @@
       "title": "NOVA Cap",
       "name": "NOVA Cap",
       "description": "100% peach-washed cotton.",
-      "category": "headwear",
+      "category": "fashion-men",
       "categories": [
-        "headwear"
+        "fashion-men"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 20,
+      "price": 1699,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/real-fashion-cap-2.jpg",
       "url": "/product/acme-cap/",
@@ -100,7 +120,14 @@
         "/static/catalog/real-fashion-cap-2.jpg",
         "/static/catalog/real-fashion-cap-1.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Men's Fashion > Accessories",
+      "tags": [
+        "cap",
+        "headwear",
+        "unisex"
+      ]
     },
     {
       "id": "acme-geometric-circles-t-shirt",
@@ -108,16 +135,16 @@
       "title": "NOVA Circles T-Shirt",
       "name": "NOVA Circles T-Shirt",
       "description": "60% combed ringspun cotton/40% polyester jersey tee.",
-      "category": "shirts",
+      "category": "fashion-men",
       "categories": [
-        "shirts"
+        "fashion-men"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 20,
+      "price": 1699,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/real-fashion-tshirt-2.jpg",
       "url": "/product/acme-geometric-circles-t-shirt/",
@@ -126,7 +153,14 @@
         "/static/catalog/dummy-mens-shirts-gigabyte-aorus-men-tshirt.webp",
         "/static/catalog/real-fashion-tshirt-1.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Men's Fashion > T-Shirts",
+      "tags": [
+        "t-shirt",
+        "graphic",
+        "unisex"
+      ]
     },
     {
       "id": "acme-cowboy-hat",
@@ -134,16 +168,16 @@
       "title": "NOVA Cowboy Hat",
       "name": "NOVA Cowboy Hat",
       "description": "Part of our Buffalo collection, this cowboy hat is made in the USA of high-quality, weather-resistant 4X buffalo felt. Its classic Western profile features a classic cattleman crease, a 4\" brim and a 4 1/2\" regular oval crown. Additional details include a leather sweatband, satin lining, and a self-matching hat band with a three-piece silver-toned buckle set, as well as a hat box. 4\" Brim 4 1/2\" Regular Oval Crown Cattleman Crease Self-Matching Hat Band 3-Piece Silver Buckle Set Hat Box 4X Wool Felt Construction American Buffalo Collection Made in the USA",
-      "category": "headwear",
+      "category": "fashion-men",
       "categories": [
-        "headwear"
+        "fashion-men"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 160,
+      "price": 13299,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/real-fashion-cap-2.jpg",
       "url": "/product/acme-cowboy-hat/",
@@ -151,7 +185,14 @@
         "/static/catalog/real-fashion-cap-2.jpg",
         "/static/catalog/real-fashion-cap-1.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Men's Fashion > Accessories",
+      "tags": [
+        "hat",
+        "headwear",
+        "unisex"
+      ]
     },
     {
       "id": "acme-cup",
@@ -159,47 +200,60 @@
       "title": "NOVA Cup",
       "name": "NOVA Cup",
       "description": "12oz double wall ceramic body with a padded bottom.",
-      "category": "drinkware",
+      "category": "home-kitchen",
       "categories": [
-        "drinkware"
+        "home-kitchen"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 15,
+      "price": 1199,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/real-drinkware-mug-1.jpg",
       "url": "/product/acme-cup/",
       "images": [
         "/static/catalog/real-drinkware-mug-1.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Home & Kitchen > Drinkware",
+      "tags": [
+        "cup",
+        "drinkware"
+      ]
     },
     {
       "id": "acme-dog-sweater",
       "handle": "acme-dog-sweater",
       "title": "NOVA Dog Sweater",
       "name": "NOVA Dog Sweater",
-      "description": "Keep your dog warm all winter long - When the cold weather hits, make sure your dog isn\u2019t shivering and stays warm with the soft and stretchy fleece dog sweater. Made with 90% polyester & 5% polyurethane to keep moisture out, freezing rain or snow, and to help keep warm air in, so your dog always stays warm. Our dog clothing is safe, durable, and made to last.",
+      "description": "Keep your dog warm all winter long - When the cold weather hits, make sure your dog isn’t shivering and stays warm with the soft and stretchy fleece dog sweater. Made with 90% polyester & 5% polyurethane to keep moisture out, freezing rain or snow, and to help keep warm air in, so your dog always stays warm. Our dog clothing is safe, durable, and made to last.",
       "category": "pets",
       "categories": [
         "pets"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 20,
+      "price": 1699,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/real-pet-dog-sweater-1.jpg",
       "url": "/product/acme-dog-sweater/",
       "images": [
         "/static/catalog/real-pet-dog-sweater-1.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Pet Supplies > Clothing",
+      "tags": [
+        "pets",
+        "dog",
+        "sweater"
+      ]
     },
     {
       "id": "acme-drawstring-bag",
@@ -207,16 +261,16 @@
       "title": "NOVA Drawstring Bag",
       "name": "NOVA Drawstring Bag",
       "description": "Strong 210D ripstop nylon drawstring bag Available in multiple sizes Easy-to-close durable drawstring Sturdy, reusable, and resilient",
-      "category": "bags",
+      "category": "fashion-women",
       "categories": [
-        "bags"
+        "fashion-women"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 12,
+      "price": 999,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/dummy-womens-bags-blue-women-s-handbag.webp",
       "url": "/product/acme-drawstring-bag/",
@@ -225,7 +279,14 @@
         "/static/catalog/dummy-womens-bags-white-faux-leather-backpack.webp",
         "/static/catalog/dummy-womens-bags-women-handbag-black.webp"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Women's Fashion > Bags & Accessories",
+      "tags": [
+        "bag",
+        "drawstring",
+        "unisex"
+      ]
     },
     {
       "id": "acme-hoodie",
@@ -233,23 +294,29 @@
       "title": "NOVA Hoodie",
       "name": "NOVA Hoodie",
       "description": "Fabric blend of Supima Cotton and Micromodal.",
-      "category": "hoodies",
+      "category": "fashion-men",
       "categories": [
-        "hoodies"
+        "fashion-men"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 50,
+      "price": 4199,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/real-fashion-hoodie-1.jpg",
       "url": "/product/acme-hoodie/",
       "images": [
         "/static/catalog/real-fashion-hoodie-1.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Men's Fashion > Hoodies",
+      "tags": [
+        "hoodie",
+        "unisex"
+      ]
     },
     {
       "id": "acme-mechanical-keyboard",
@@ -263,10 +330,10 @@
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 150,
+      "price": 12499,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/real-electronics-keyboard-mouse-2.jpg",
       "url": "/product/acme-mechanical-keyboard/",
@@ -275,7 +342,14 @@
         "/static/catalog/photo-computer_accessories-1.jpg",
         "/static/catalog/real-electronics-keyboard-mouse-1.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Computer Accessories > Keyboards",
+      "tags": [
+        "keyboard",
+        "mechanical",
+        "computer-accessory"
+      ]
     },
     {
       "id": "acme-mug",
@@ -283,23 +357,29 @@
       "title": "NOVA Mug",
       "name": "NOVA Mug",
       "description": "12 oz Beck Cork-Bottom Mug.",
-      "category": "drinkware",
+      "category": "home-kitchen",
       "categories": [
-        "drinkware"
+        "home-kitchen"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 15,
+      "price": 1199,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/real-drinkware-mug-1.jpg",
       "url": "/product/acme-mug/",
       "images": [
         "/static/catalog/real-drinkware-mug-1.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Home & Kitchen > Drinkware",
+      "tags": [
+        "mug",
+        "drinkware"
+      ]
     },
     {
       "id": "acme-pacifier",
@@ -307,23 +387,30 @@
       "title": "NOVA Pacifier",
       "name": "NOVA Pacifier",
       "description": "This line of pacifiers has been thoughtfully designed for your baby's comfort. The pacifier allows your child to self-soothe in the most natural way possible.",
-      "category": "kids",
+      "category": "fashion-kids",
       "categories": [
-        "kids"
+        "fashion-kids"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 10,
+      "price": 799,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/real-kids-pacifier-1.jpg",
       "url": "/product/acme-pacifier/",
       "images": [
         "/static/catalog/real-kids-pacifier-1.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Kids & Baby > Essentials",
+      "tags": [
+        "kids",
+        "baby",
+        "pacifier"
+      ]
     },
     {
       "id": "acme-rainbow-prism-t-shirt",
@@ -331,16 +418,16 @@
       "title": "NOVA Prism T-Shirt",
       "name": "NOVA Prism T-Shirt",
       "description": "60% combed ringspun cotton/40% polyester jersey tee.",
-      "category": "shirts",
+      "category": "fashion-men",
       "categories": [
-        "shirts"
+        "fashion-men"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 25,
+      "price": 2099,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/real-fashion-tshirt-2.jpg",
       "url": "/product/acme-rainbow-prism-t-shirt/",
@@ -349,7 +436,14 @@
         "/static/catalog/dummy-mens-shirts-gigabyte-aorus-men-tshirt.webp",
         "/static/catalog/real-fashion-tshirt-1.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Men's Fashion > T-Shirts",
+      "tags": [
+        "t-shirt",
+        "graphic",
+        "unisex"
+      ]
     },
     {
       "id": "acme-rainbow-sticker",
@@ -357,16 +451,16 @@
       "title": "NOVA Rainbow Sticker",
       "name": "NOVA Rainbow Sticker",
       "description": "",
-      "category": "stickers",
+      "category": "books-stationery",
       "categories": [
-        "stickers"
+        "books-stationery"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 4,
+      "price": 299,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/real-sticker-pack-1.jpg",
       "url": "/product/acme-rainbow-sticker/",
@@ -374,7 +468,13 @@
         "/static/catalog/real-sticker-pack-1.jpg",
         "/static/catalog/photo-stationery-1.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Books & Stationery > Stickers",
+      "tags": [
+        "sticker",
+        "stationery"
+      ]
     },
     {
       "id": "acme-slip-on-shoes",
@@ -382,16 +482,16 @@
       "title": "NOVA Slip-On Shoes",
       "name": "NOVA Slip-On Shoes",
       "description": "Step into summer! Every time your head looks down, you'll see these beauties, and your mood bounces right back up. Sleek, easy, and effortlessly stylish. NOVA Slip-On Shoes are the ultimate get-up-and-go footwear. The low-profile slip-on canvas upper offers unbeatable convenience, while the clean design makes this all-white slip-on the perfect choice for anyone with places to go and things to do. One of the most popular designs, these shoes are the perfect middle ground between style and convenience. Iconic slip-on shoe Low profile canvas uppers Supportive padded collars Elastic side accents Signature rubber waffle outsoles",
-      "category": "footware",
+      "category": "fashion-men",
       "categories": [
-        "footware"
+        "fashion-men"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 45,
+      "price": 3699,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/dummy-mens-shoes-sports-sneakers-off-white-red.webp",
       "url": "/product/acme-slip-on-shoes/",
@@ -399,7 +499,14 @@
         "/static/catalog/dummy-mens-shoes-sports-sneakers-off-white-red.webp",
         "/static/catalog/dummy-mens-shoes-puma-future-rider-trainers.webp"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Men's Fashion > Footwear",
+      "tags": [
+        "shoes",
+        "slip-on",
+        "unisex"
+      ]
     },
     {
       "id": "acme-sticker",
@@ -407,16 +514,16 @@
       "title": "NOVA Sticker",
       "name": "NOVA Sticker",
       "description": "",
-      "category": "stickers",
+      "category": "books-stationery",
       "categories": [
-        "stickers"
+        "books-stationery"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 4,
+      "price": 299,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/real-sticker-pack-1.jpg",
       "url": "/product/acme-sticker/",
@@ -424,7 +531,13 @@
         "/static/catalog/real-sticker-pack-1.jpg",
         "/static/catalog/photo-stationery-1.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Books & Stationery > Stickers",
+      "tags": [
+        "sticker",
+        "stationery"
+      ]
     },
     {
       "id": "acme-t-shirt",
@@ -432,16 +545,16 @@
       "title": "NOVA T-Shirt",
       "name": "NOVA T-Shirt",
       "description": "60% combed ringspun cotton/40% polyester jersey tee.",
-      "category": "shirts",
+      "category": "fashion-men",
       "categories": [
-        "shirts"
+        "fashion-men"
       ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 20,
+      "price": 1699,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/dummy-mens-shirts-gigabyte-aorus-men-tshirt.webp",
       "url": "/product/acme-t-shirt/",
@@ -450,7 +563,13 @@
         "/static/catalog/real-fashion-tshirt-1.jpg",
         "/static/catalog/real-fashion-tshirt-2.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Men's Fashion > T-Shirts",
+      "tags": [
+        "t-shirt",
+        "unisex"
+      ]
     },
     {
       "id": "acme-webcam-cover",
@@ -458,14 +577,16 @@
       "title": "NOVA Webcam Cover",
       "name": "NOVA Webcam Cover",
       "description": "This webcam cover is made of high grade plastic and is the thinnest model on the market, measuring at just 0.8mm thick. This is an example of a \"hidden\" product. You should not be able to find it browsing the site. You need to know the direct url to access it.",
-      "category": null,
-      "categories": [],
+      "category": "electronics",
+      "categories": [
+        "electronics"
+      ],
       "brand": "NOVA",
       "vendor": "NOVA",
-      "price": 5,
+      "price": 399,
       "original_price": null,
-      "currency": "USD",
-      "stock": null,
+      "currency": "INR",
+      "stock": 25,
       "in_stock": true,
       "image_url": "/static/catalog/real-electronics-keyboard-mouse-1.jpg",
       "url": "/product/acme-webcam-cover/",
@@ -474,7 +595,14 @@
         "/static/catalog/real-electronics-keyboard-mouse-2.jpg",
         "/static/catalog/photo-computer_accessories-1.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Computer Accessories",
+      "tags": [
+        "webcam",
+        "privacy",
+        "computer-accessory"
+      ]
     },
     {
       "id": "phone-iphone-17",
@@ -484,25 +612,31 @@
       "description": "Latest iPhone for most shoppers: A19 chip, 6.3-inch ProMotion display, Ceramic Shield 2, and a 48MP Dual Fusion camera system.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "Apple",
       "vendor": "Apple",
-      "price": 799,
+      "price": 79900,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 24,
       "in_stock": true,
       "source_url": "https://www.apple.com/iphone-17/",
-      "image_url": "/static/uploads/phones/iphone-17.png",
+      "image_url": "/static/catalog/phones/iphone-17.png",
       "url": "/product/iphone-17/",
       "images": [
-        "/static/uploads/phones/iphone-17.png",
-        "/static/uploads/phones/iphone-17-pro.png",
-        "/static/uploads/phones/iphone-air.png"
+        "/static/catalog/phones/iphone-17.png",
+        "/static/catalog/phones/iphone-17-pro.png",
+        "/static/catalog/phones/iphone-air.png"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "apple"
+      ]
     },
     {
       "id": "phone-iphone-air",
@@ -512,25 +646,31 @@
       "description": "Thin, light premium iPhone with A19 Pro, 6.5-inch display, Ceramic Shield front and back, and a 48MP Fusion Main camera.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "Apple",
       "vendor": "Apple",
-      "price": 999,
+      "price": 99900,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 18,
       "in_stock": true,
       "source_url": "https://www.apple.com/iphone-air/",
-      "image_url": "/static/uploads/phones/iphone-air.png",
+      "image_url": "/static/catalog/phones/iphone-air.png",
       "url": "/product/iphone-air/",
       "images": [
-        "/static/uploads/phones/iphone-air.png",
-        "/static/uploads/phones/iphone-17.png",
-        "/static/uploads/phones/iphone-17-pro.png"
+        "/static/catalog/phones/iphone-air.png",
+        "/static/catalog/phones/iphone-17.png",
+        "/static/catalog/phones/iphone-17-pro.png"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "apple"
+      ]
     },
     {
       "id": "phone-iphone-17-pro",
@@ -540,25 +680,31 @@
       "description": "Pro iPhone for creators: A19 Pro chip, Pro Fusion camera system, long battery life, and advanced telephoto options.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "Apple",
       "vendor": "Apple",
-      "price": 1099,
+      "price": 109900,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 15,
       "in_stock": true,
       "source_url": "https://www.apple.com/iphone-17-pro/",
-      "image_url": "/static/uploads/phones/iphone-17-pro.png",
+      "image_url": "/static/catalog/phones/iphone-17-pro.png",
       "url": "/product/iphone-17-pro/",
       "images": [
-        "/static/uploads/phones/iphone-17-pro.png",
-        "/static/uploads/phones/iphone-17.png",
-        "/static/uploads/phones/iphone-air.png"
+        "/static/catalog/phones/iphone-17-pro.png",
+        "/static/catalog/phones/iphone-17.png",
+        "/static/catalog/phones/iphone-air.png"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "apple"
+      ]
     },
     {
       "id": "phone-galaxy-s26",
@@ -568,25 +714,31 @@
       "description": "Smartphone choice. Compact Galaxy flagship with Galaxy AI, premium display, strong everyday cameras, and a lighter Android flagship feel.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "Samsung",
       "vendor": "Samsung",
-      "price": 899.99,
+      "price": 74699,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 20,
       "in_stock": true,
       "source_url": "https://www.samsung.com/us/smartphones/galaxy-s26/",
-      "image_url": "/static/uploads/phones/galaxy-s26.jpg",
+      "image_url": "/static/catalog/phones/galaxy-s26.jpg",
       "url": "/product/galaxy-s26/",
       "images": [
-        "/static/uploads/phones/galaxy-s26.jpg",
-        "/static/uploads/phones/galaxy-s26-plus.jpg",
-        "/static/uploads/phones/galaxy-s26-ultra.jpg"
+        "/static/catalog/phones/galaxy-s26.jpg",
+        "/static/catalog/phones/galaxy-s26-plus.jpg",
+        "/static/catalog/phones/galaxy-s26-ultra.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "samsung"
+      ]
     },
     {
       "id": "phone-galaxy-s26-plus",
@@ -596,25 +748,31 @@
       "description": "Smartphone choice. Balanced big-screen Galaxy: larger display, more comfortable battery headroom, Galaxy AI, and flagship performance for daily work.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "Samsung",
       "vendor": "Samsung",
-      "price": 1099.99,
+      "price": 91299,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 16,
       "in_stock": true,
       "source_url": "https://www.samsung.com/us/smartphones/galaxy-s26-plus/buy/",
-      "image_url": "/static/uploads/phones/galaxy-s26-plus.jpg",
+      "image_url": "/static/catalog/phones/galaxy-s26-plus.jpg",
       "url": "/product/galaxy-s26-plus/",
       "images": [
-        "/static/uploads/phones/galaxy-s26-plus.jpg",
-        "/static/uploads/phones/galaxy-s26.jpg",
-        "/static/uploads/phones/galaxy-s26-ultra.jpg"
+        "/static/catalog/phones/galaxy-s26-plus.jpg",
+        "/static/catalog/phones/galaxy-s26.jpg",
+        "/static/catalog/phones/galaxy-s26-ultra.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "samsung"
+      ]
     },
     {
       "id": "phone-galaxy-s26-ultra",
@@ -624,25 +782,31 @@
       "description": "Smartphone choice. Top Galaxy choice for camera and power users: Ultra-grade camera hardware, Galaxy AI, large display, and premium battery life.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "Samsung",
       "vendor": "Samsung",
-      "price": 1299.99,
+      "price": 107899,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 12,
       "in_stock": true,
       "source_url": "https://www.samsung.com/us/smartphones/galaxy-s26-ultra/buy/",
-      "image_url": "/static/uploads/phones/galaxy-s26-ultra.jpg",
+      "image_url": "/static/catalog/phones/galaxy-s26-ultra.jpg",
       "url": "/product/galaxy-s26-ultra/",
       "images": [
-        "/static/uploads/phones/galaxy-s26-ultra.jpg",
-        "/static/uploads/phones/galaxy-s26-plus.jpg",
-        "/static/uploads/phones/galaxy-s26.jpg"
+        "/static/catalog/phones/galaxy-s26-ultra.jpg",
+        "/static/catalog/phones/galaxy-s26-plus.jpg",
+        "/static/catalog/phones/galaxy-s26.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "samsung"
+      ]
     },
     {
       "id": "phone-oppo-find-x9",
@@ -652,25 +816,31 @@
       "description": "Smartphone choice. Premium OPPO flagship for shoppers who want a strong camera, bright display, fast charging, and modern Android performance.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "OPPO",
       "vendor": "OPPO",
-      "price": 799,
+      "price": 66299,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 19,
       "in_stock": true,
       "source_url": "https://www.oppo.com/en/smartphones/series-find-x/find-x9/",
-      "image_url": "/static/uploads/phones/oppo-find-x9.png",
+      "image_url": "/static/catalog/phones/oppo-find-x9.png",
       "url": "/product/oppo-find-x9/",
       "images": [
-        "/static/uploads/phones/oppo-find-x9.png",
-        "/static/uploads/phones/oppo-find-x9-pro.png",
-        "/static/uploads/phones/oppo-find-x9-ultra.png"
+        "/static/catalog/phones/oppo-find-x9.png",
+        "/static/catalog/phones/oppo-find-x9-pro.png",
+        "/static/catalog/phones/oppo-find-x9-ultra.png"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "oppo"
+      ]
     },
     {
       "id": "phone-oppo-find-x9-pro",
@@ -680,25 +850,31 @@
       "description": "Smartphone choice. OPPO camera-focused flagship with a pro-grade imaging setup, premium display, and fast charging for heavy daily use.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "OPPO",
       "vendor": "OPPO",
-      "price": 999,
+      "price": 82899,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 14,
       "in_stock": true,
       "source_url": "https://www.oppo.com/en/smartphones/series-find-x/find-x9-pro/",
-      "image_url": "/static/uploads/phones/oppo-find-x9-pro.png",
+      "image_url": "/static/catalog/phones/oppo-find-x9-pro.png",
       "url": "/product/oppo-find-x9-pro/",
       "images": [
-        "/static/uploads/phones/oppo-find-x9-pro.png",
-        "/static/uploads/phones/oppo-find-x9.png",
-        "/static/uploads/phones/oppo-find-x9-ultra.png"
+        "/static/catalog/phones/oppo-find-x9-pro.png",
+        "/static/catalog/phones/oppo-find-x9.png",
+        "/static/catalog/phones/oppo-find-x9-ultra.png"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "oppo"
+      ]
     },
     {
       "id": "phone-oppo-find-x9-ultra",
@@ -708,25 +884,31 @@
       "description": "Smartphone choice. Ultra OPPO flagship for photography shoppers who care about zoom, low-light detail, premium materials, and top-tier performance.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "OPPO",
       "vendor": "OPPO",
-      "price": 1199,
+      "price": 99499,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 10,
       "in_stock": true,
       "source_url": "https://www.oppo.com/en/smartphones/series-find-x/find-x9-ultra/",
-      "image_url": "/static/uploads/phones/oppo-find-x9-ultra.png",
+      "image_url": "/static/catalog/phones/oppo-find-x9-ultra.png",
       "url": "/product/oppo-find-x9-ultra/",
       "images": [
-        "/static/uploads/phones/oppo-find-x9-ultra.png",
-        "/static/uploads/phones/oppo-find-x9-pro.png",
-        "/static/uploads/phones/oppo-find-x9.png"
+        "/static/catalog/phones/oppo-find-x9-ultra.png",
+        "/static/catalog/phones/oppo-find-x9-pro.png",
+        "/static/catalog/phones/oppo-find-x9.png"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "oppo"
+      ]
     },
     {
       "id": "phone-redmi-note-15-5g",
@@ -736,25 +918,31 @@
       "description": "Value 5G phone for budget shoppers who want a large display, reliable battery, and everyday performance without flagship pricing.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "Redmi",
       "vendor": "Xiaomi",
-      "price": 249,
+      "price": 20699,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 35,
       "in_stock": true,
       "source_url": "https://www.mi.com/global/product/redmi-note-15-5g/",
-      "image_url": "/static/uploads/phones/redmi-note-15-5g.jpg",
+      "image_url": "/static/catalog/phones/redmi-note-15-5g.jpg",
       "url": "/product/redmi-note-15-5g/",
       "images": [
-        "/static/uploads/phones/redmi-note-15-5g.jpg",
-        "/static/uploads/phones/redmi-note-15-pro.jpg",
-        "/static/uploads/phones/redmi-note-15-pro-plus-5g.jpg"
+        "/static/catalog/phones/redmi-note-15-5g.jpg",
+        "/static/catalog/phones/redmi-note-15-pro.jpg",
+        "/static/catalog/phones/redmi-note-15-pro-plus-5g.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "redmi"
+      ]
     },
     {
       "id": "phone-redmi-note-15-pro",
@@ -764,25 +952,31 @@
       "description": "Smartphone choice. Midrange Redmi pick with stronger camera hardware, smoother display, and better durability for shoppers trying to stay under budget.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "Redmi",
       "vendor": "Xiaomi",
-      "price": 329,
+      "price": 27299,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 28,
       "in_stock": true,
       "source_url": "https://www.mi.com/global/product/redmi-note-15-pro/",
-      "image_url": "/static/uploads/phones/redmi-note-15-pro.jpg",
+      "image_url": "/static/catalog/phones/redmi-note-15-pro.jpg",
       "url": "/product/redmi-note-15-pro/",
       "images": [
-        "/static/uploads/phones/redmi-note-15-pro.jpg",
-        "/static/uploads/phones/redmi-note-15-5g.jpg",
-        "/static/uploads/phones/redmi-note-15-pro-plus-5g.jpg"
+        "/static/catalog/phones/redmi-note-15-pro.jpg",
+        "/static/catalog/phones/redmi-note-15-5g.jpg",
+        "/static/catalog/phones/redmi-note-15-pro-plus-5g.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "redmi"
+      ]
     },
     {
       "id": "phone-redmi-note-15-pro-plus-5g",
@@ -792,25 +986,31 @@
       "description": "Smartphone choice. Best Redmi Note choice for buyers who want extra performance, premium display feel, stronger charging, and flagship-like value.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "Redmi",
       "vendor": "Xiaomi",
-      "price": 399,
+      "price": 33099,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 24,
       "in_stock": true,
       "source_url": "https://www.mi.com/global/product/redmi-note-15-pro-plus-5g/",
-      "image_url": "/static/uploads/phones/redmi-note-15-pro-plus-5g.jpg",
+      "image_url": "/static/catalog/phones/redmi-note-15-pro-plus-5g.jpg",
       "url": "/product/redmi-note-15-pro-plus-5g/",
       "images": [
-        "/static/uploads/phones/redmi-note-15-pro-plus-5g.jpg",
-        "/static/uploads/phones/redmi-note-15-pro.jpg",
-        "/static/uploads/phones/redmi-note-15-5g.jpg"
+        "/static/catalog/phones/redmi-note-15-pro-plus-5g.jpg",
+        "/static/catalog/phones/redmi-note-15-pro.jpg",
+        "/static/catalog/phones/redmi-note-15-5g.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "redmi"
+      ]
     },
     {
       "id": "phone-vivo-x300",
@@ -820,25 +1020,31 @@
       "description": "Smartphone choice. Compact vivo flagship with ZEISS cameras, slim design, OriginOS, and strong performance for buyers who want a camera-first Android.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "vivo",
       "vendor": "vivo",
-      "price": 749,
+      "price": 62199,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 17,
       "in_stock": true,
       "source_url": "https://www.vivo.com/en/products/x300",
-      "image_url": "/static/uploads/phones/vivo-x300.png",
+      "image_url": "/static/catalog/phones/vivo-x300.png",
       "url": "/product/vivo-x300/",
       "images": [
-        "/static/uploads/phones/vivo-x300.png",
-        "/static/uploads/phones/vivo-x300-pro.png",
-        "/static/uploads/phones/vivo-x300-ultra.png"
+        "/static/catalog/phones/vivo-x300.png",
+        "/static/catalog/phones/vivo-x300-pro.png",
+        "/static/catalog/phones/vivo-x300-ultra.png"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "vivo"
+      ]
     },
     {
       "id": "phone-vivo-x300-pro",
@@ -848,25 +1054,31 @@
       "description": "vivo Pro camera phone with ZEISS cameras, pro imaging chip, telephoto strength, and a large premium display.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "vivo",
       "vendor": "vivo",
-      "price": 949,
+      "price": 78799,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 13,
       "in_stock": true,
       "source_url": "https://www.vivo.com/en/products/x300-pro",
-      "image_url": "/static/uploads/phones/vivo-x300-pro.png",
+      "image_url": "/static/catalog/phones/vivo-x300-pro.png",
       "url": "/product/vivo-x300-pro/",
       "images": [
-        "/static/uploads/phones/vivo-x300-pro.png",
-        "/static/uploads/phones/vivo-x300.png",
-        "/static/uploads/phones/vivo-x300-ultra.png"
+        "/static/catalog/phones/vivo-x300-pro.png",
+        "/static/catalog/phones/vivo-x300.png",
+        "/static/catalog/phones/vivo-x300-ultra.png"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "vivo"
+      ]
     },
     {
       "id": "phone-vivo-x300-ultra",
@@ -876,25 +1088,31 @@
       "description": "Smartphone choice. vivo Ultra flagship for serious camera buyers with ZEISS master lenses, multi-focal video, and premium Android performance.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "vivo",
       "vendor": "vivo",
-      "price": 1199,
+      "price": 99499,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 9,
       "in_stock": true,
       "source_url": "https://www.vivo.com/en/products/x300-ultra",
-      "image_url": "/static/uploads/phones/vivo-x300-ultra.png",
+      "image_url": "/static/catalog/phones/vivo-x300-ultra.png",
       "url": "/product/vivo-x300-ultra/",
       "images": [
-        "/static/uploads/phones/vivo-x300-ultra.png",
-        "/static/uploads/phones/vivo-x300-pro.png",
-        "/static/uploads/phones/vivo-x300.png"
+        "/static/catalog/phones/vivo-x300-ultra.png",
+        "/static/catalog/phones/vivo-x300-pro.png",
+        "/static/catalog/phones/vivo-x300.png"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "vivo"
+      ]
     },
     {
       "id": "phone-iphone-17e",
@@ -904,25 +1122,31 @@
       "description": "Value iPhone for shoppers who want iOS, A19 performance, Apple Intelligence, 48MP Fusion camera, MagSafe, USB-C, and long software support without Pro pricing.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "Apple",
       "vendor": "Apple",
-      "price": 599,
+      "price": 59900,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 26,
       "in_stock": true,
       "source_url": "https://www.apple.com/iphone-17e/",
-      "image_url": "/static/uploads/phones/iphone-17e.png",
+      "image_url": "/static/catalog/phones/iphone-17e.png",
       "url": "/product/iphone-17e/",
       "images": [
-        "/static/uploads/phones/iphone-17e.png",
-        "/static/uploads/phones/iphone-17.png",
-        "/static/uploads/phones/iphone-air.png"
+        "/static/catalog/phones/iphone-17e.png",
+        "/static/catalog/phones/iphone-17.png",
+        "/static/catalog/phones/iphone-air.png"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "apple"
+      ]
     },
     {
       "id": "phone-pixel-10a",
@@ -932,23 +1156,29 @@
       "description": "Midrange Google phone for buyers who want clean Android, Google AI, strong everyday photos, a bright Actua display, and seven-year style software support at a practical price.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "Google",
       "vendor": "Google",
-      "price": 499,
+      "price": 41399,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 22,
       "in_stock": true,
       "source_url": "https://store.google.com/product/pixel_10a?hl=en-US",
-      "image_url": "/static/uploads/phones/pixel-10a.png",
+      "image_url": "/static/catalog/phones/pixel-10a.png",
       "url": "/product/pixel-10a/",
       "images": [
-        "/static/uploads/phones/pixel-10a.png"
+        "/static/catalog/phones/pixel-10a.png"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "google"
+      ]
     },
     {
       "id": "phone-galaxy-a17-5g",
@@ -958,25 +1188,31 @@
       "description": "Budget Samsung 5G phone for shoppers under $200 who need reliable basics, triple cameras, optical image stabilization, expandable storage, and long battery life.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "Samsung",
       "vendor": "Samsung",
-      "price": 199.99,
+      "price": 16599,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 38,
       "in_stock": true,
       "source_url": "https://www.samsung.com/us/smartphones/galaxy-a17-5g/",
-      "image_url": "/static/uploads/phones/galaxy-a17-5g.jpg",
+      "image_url": "/static/catalog/phones/galaxy-a17-5g.jpg",
       "url": "/product/galaxy-a17-5g/",
       "images": [
-        "/static/uploads/phones/galaxy-a17-5g.jpg",
-        "/static/uploads/phones/galaxy-a36-5g.jpg",
-        "/static/uploads/phones/galaxy-s26.jpg"
+        "/static/catalog/phones/galaxy-a17-5g.jpg",
+        "/static/catalog/phones/galaxy-a36-5g.jpg",
+        "/static/catalog/phones/galaxy-s26.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "samsung"
+      ]
     },
     {
       "id": "phone-galaxy-a36-5g",
@@ -986,25 +1222,31 @@
       "description": "Sub-$400 Samsung phone for buyers who want a big 120Hz AMOLED display, 5000mAh battery, IP67 durability, 45W charging, Knox security, and long OS updates.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "Samsung",
       "vendor": "Samsung",
-      "price": 399.99,
+      "price": 33199,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 31,
       "in_stock": true,
       "source_url": "https://www.samsung.com/us/smartphones/galaxy-a36-5g/",
-      "image_url": "/static/uploads/phones/galaxy-a36-5g.jpg",
+      "image_url": "/static/catalog/phones/galaxy-a36-5g.jpg",
       "url": "/product/galaxy-a36-5g/",
       "images": [
-        "/static/uploads/phones/galaxy-a36-5g.jpg",
-        "/static/uploads/phones/galaxy-a17-5g.jpg",
-        "/static/uploads/phones/galaxy-s26.jpg"
+        "/static/catalog/phones/galaxy-a36-5g.jpg",
+        "/static/catalog/phones/galaxy-a17-5g.jpg",
+        "/static/catalog/phones/galaxy-s26.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "samsung"
+      ]
     },
     {
       "id": "phone-oppo-a5-pro-5g",
@@ -1014,25 +1256,31 @@
       "description": "Durable OPPO 5G phone for practical buyers who prioritize IP69 water and dust resistance, military-grade shock resistance, AI LinkBoost, and a 5800mAh battery.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "OPPO",
       "vendor": "OPPO",
-      "price": 299,
+      "price": 24799,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 29,
       "in_stock": true,
       "source_url": "https://www.oppo.com/en/smartphones/series-a/a5-pro-5g/",
-      "image_url": "/static/uploads/phones/oppo-a5-pro-5g.png",
+      "image_url": "/static/catalog/phones/oppo-a5-pro-5g.png",
       "url": "/product/oppo-a5-pro-5g/",
       "images": [
-        "/static/uploads/phones/oppo-a5-pro-5g.png",
-        "/static/uploads/phones/oppo-find-x9.png",
-        "/static/uploads/phones/oppo-find-x9-pro.png"
+        "/static/catalog/phones/oppo-a5-pro-5g.png",
+        "/static/catalog/phones/oppo-find-x9.png",
+        "/static/catalog/phones/oppo-find-x9-pro.png"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "oppo"
+      ]
     },
     {
       "id": "phone-redmi-15-5g",
@@ -1042,25 +1290,31 @@
       "description": "Budget REDMI 5G phone for shoppers near $200 who care most about 7000mAh battery life, a large 6.9-inch FHD+ display, Snapdragon 6s Gen 3, and 50MP AI camera.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "Redmi",
       "vendor": "Xiaomi",
-      "price": 199,
+      "price": 16499,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 42,
       "in_stock": true,
       "source_url": "https://www.mi.com/global/product/redmi-15-5g/",
-      "image_url": "/static/uploads/phones/redmi-15-5g.png",
+      "image_url": "/static/catalog/phones/redmi-15-5g.png",
       "url": "/product/redmi-15-5g/",
       "images": [
-        "/static/uploads/phones/redmi-15-5g.png",
-        "/static/uploads/phones/redmi-note-15-5g.jpg",
-        "/static/uploads/phones/redmi-note-15-pro.jpg"
+        "/static/catalog/phones/redmi-15-5g.png",
+        "/static/catalog/phones/redmi-note-15-5g.jpg",
+        "/static/catalog/phones/redmi-note-15-pro.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "redmi"
+      ]
     },
     {
       "id": "phone-vivo-y29s-5g",
@@ -1070,25 +1324,31 @@
       "description": "Affordable vivo 5G phone for battery-first shoppers who want 5500mAh BlueVolt battery, SGS and military-grade shock resistance, IP64 protection, and everyday cameras.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "vivo",
       "vendor": "vivo",
-      "price": 229,
+      "price": 18999,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 34,
       "in_stock": true,
       "source_url": "https://www.vivo.com/en/products/y29s-5g",
-      "image_url": "/static/uploads/phones/vivo-y29s-5g.jpg",
+      "image_url": "/static/catalog/phones/vivo-y29s-5g.jpg",
       "url": "/product/vivo-y29s-5g/",
       "images": [
-        "/static/uploads/phones/vivo-y29s-5g.jpg",
-        "/static/uploads/phones/vivo-x300.png",
-        "/static/uploads/phones/vivo-x300-pro.png"
+        "/static/catalog/phones/vivo-y29s-5g.jpg",
+        "/static/catalog/phones/vivo-x300.png",
+        "/static/catalog/phones/vivo-x300-pro.png"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "vivo"
+      ]
     },
     {
       "id": "phone-oneplus-nord-ce4-lite-5g",
@@ -1098,23 +1358,29 @@
       "description": "Battery-focused midrange phone for shoppers under $400 who want a 5500mAh battery, 80W SUPERVOOC charging, 120Hz AMOLED display, 50MP Sony camera, and expandable storage.",
       "category": "electronics",
       "categories": [
-        "electronics",
-        "phones"
+        "electronics"
       ],
       "brand": "OnePlus",
       "vendor": "OnePlus",
-      "price": 299,
+      "price": 24799,
       "original_price": null,
-      "currency": "USD",
+      "currency": "INR",
       "stock": 25,
       "in_stock": true,
       "source_url": "https://www.oneplus.com/global/nord-ce4-lite-5g",
-      "image_url": "/static/uploads/phones/oneplus-nord-ce4-lite-5g.jpg",
+      "image_url": "/static/catalog/phones/oneplus-nord-ce4-lite-5g.jpg",
       "url": "/product/oneplus-nord-ce4-lite-5g/",
       "images": [
-        "/static/uploads/phones/oneplus-nord-ce4-lite-5g.jpg"
+        "/static/catalog/phones/oneplus-nord-ce4-lite-5g.jpg"
       ],
-      "image_source": "local-real-catalog"
+      "image_source": "local-real-catalog",
+      "discount_percent": null,
+      "subcategory": "Electronics > Smartphones",
+      "tags": [
+        "smartphone",
+        "phone",
+        "oneplus"
+      ]
     }
   ],
   "brand": "AI-KART",

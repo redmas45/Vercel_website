@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import { useCart } from '../../hooks/useCart';
 import { money } from '../../lib/format';
+import { ProductImage } from '../ui/ProductImage';
 
 const DISMISS_MS = 8000;
 
@@ -29,7 +30,7 @@ export function AddedToCartModal() {
       <section className="w-full max-w-[380px] rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 shadow-2xl" onClick={(event) => event.stopPropagation()}>
         <h2 className="text-[16px] font-[500] text-[var(--color-ink)]">Added to cart</h2>
         <div className="mt-3 flex gap-3 border-y border-[var(--color-border)] py-3">
-          <img className="h-16 w-16 rounded-[8px] object-contain" src={lastAdded.product.image_url} alt="" />
+          <ProductImage className="h-16 w-16 rounded-[8px] object-contain" src={lastAdded.product.image_url} alt="" />
           <div>
             <p className="text-[13px] text-[var(--color-ink)]">{lastAdded.product.name}</p>
             <p className="text-[12px] text-[var(--color-muted)]">{money(lastAdded.product.price, lastAdded.product.currency)} - {lastAdded.quantity} item</p>

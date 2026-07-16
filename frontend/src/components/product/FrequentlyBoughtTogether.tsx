@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useCart } from '../../hooks/useCart';
 import { money } from '../../lib/format';
 import type { Product } from '../../lib/types';
+import { ProductImage } from '../ui/ProductImage';
 
 export function FrequentlyBoughtTogether({ product, products }: { product: Product; products: Product[] }) {
   const { addItem, openCart } = useCart();
@@ -27,7 +28,7 @@ export function FrequentlyBoughtTogether({ product, products }: { product: Produ
               {index ? <span className="text-[18px] text-[var(--color-muted)]">+</span> : null}
               <div className="grid w-[88px] gap-2">
                 <div className="grid aspect-square place-items-center rounded-[8px] border border-[var(--color-border)] bg-[var(--color-paper)]">
-                  <img className="h-full w-full object-contain p-2" src={item.image_url} alt="" />
+                  <ProductImage className="h-full w-full object-contain p-2" src={item.image_url} alt="" />
                 </div>
                 <p className="line-clamp-2 text-[11px] leading-snug text-[var(--color-muted)]">{item.name}</p>
               </div>

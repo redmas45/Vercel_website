@@ -15,6 +15,7 @@ export function ShopListing({ forcedQuery, preset }: { forcedQuery?: string; pre
   const [meta, setMeta] = useState<ProductListMeta | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
   const searchKey = searchParams.toString();
   const query = forcedQuery ?? searchParams.get('q') ?? '';
   const page = Number(searchParams.get('page') || 1);
@@ -85,19 +86,26 @@ export function ShopListing({ forcedQuery, preset }: { forcedQuery?: string; pre
   return (
     <main className="mx-auto max-w-[1240px] px-4 py-6 md:px-6 md:py-10">
       <div className="grid gap-6 md:grid-cols-[260px_minmax(0,1fr)]">
-        <FilterRail meta={meta} filters={effectiveFilters} onChange={changeFilter} onClear={clearFilters} />
+        <div className={`${showMobileFilters ? 'block' : 'hidden'} md:block`}>
+          <FilterRail meta={meta} filters={effectiveFilters} onChange={changeFilter} onClear={clearFilters} />
+        </div>
         <section className="min-w-0">
           <div className="mb-5 grid gap-3">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <h1 className="text-[20px] font-[500] text-[var(--color-ink)]">{title}</h1>
-              <select className="h-9 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 text-[12px]" value={effectiveFilters.get('sort') || 'relevance'} onChange={(event) => changeFilter('sort', event.target.value)}>
-                <option value="relevance">Relevance</option>
-                <option value="price_asc">Price: low to high</option>
-                <option value="price_desc">Price: high to low</option>
-                <option value="newest">Newest first</option>
-                <option value="rating_desc">Rating</option>
-                <option value="popularity">Popularity</option>
-              </select>
+              <div className="flex gap-2">
+                <button className="h-9 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 text-[12px] md:hidden" type="button" onClick={() => setShowMobileFilters((visible) => !visible)}>
+                  {showMobileFilters ? 'Hide filters' : 'Show filters'}
+                </button>
+                <select className="h-9 max-w-[170px] rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 text-[12px]" value={effectiveFilters.get('sort') || 'relevance'} onChange={(event) => changeFilter('sort', event.target.value)}>
+                  <option value="relevance">Relevance</option>
+                  <option value="price_asc">Price: low to high</option>
+                  <option value="price_desc">Price: high to low</option>
+                  <option value="newest">Newest first</option>
+                  <option value="rating_desc">Rating</option>
+                  <option value="popularity">Popularity</option>
+                </select>
+              </div>
             </div>
             <ActiveFilterPills params={filters} onRemove={(key) => changeFilter(key, '')} onClear={clearFilters} />
           </div>

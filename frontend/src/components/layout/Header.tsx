@@ -15,13 +15,13 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-[var(--color-paper)] border-b border-[var(--color-border)] backdrop-blur-sm">
-      <div className="max-w-[1200px] mx-auto px-6 h-14 flex items-center justify-between gap-6">
+      <div className="mx-auto flex h-14 max-w-[1200px] items-center justify-between gap-2 px-3 sm:gap-4 sm:px-6">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 shrink-0">
           <span className="w-7 h-7 rounded-[6px] bg-[var(--color-ink)] text-white text-[11px] font-[500] flex items-center justify-center">
             AK
           </span>
-          <span className="text-[14px] font-[500] text-[var(--color-ink)]">AI-KART</span>
+          <span className="hidden text-[14px] font-[500] text-[var(--color-ink)] sm:inline">AI-KART</span>
         </Link>
 
         {/* Nav */}
@@ -46,7 +46,7 @@ export function Header() {
         </nav>
 
         {/* Right actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
           <Link
             to="/login"
             className="hidden sm:inline text-[12px] font-[500] text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors"

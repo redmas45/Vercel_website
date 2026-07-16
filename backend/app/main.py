@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 from contextlib import asynccontextmanager
-from urllib.parse import urlparse
-
+import mimetypes
 from pathlib import Path
+from urllib.parse import urlparse
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -16,6 +16,9 @@ from app.db.models import Base
 from app.db.migrate import migrate_existing_schema
 from app.db.seed import ensure_default_admin, seed_if_empty
 from app.db.session import engine
+
+
+mimetypes.add_type("image/webp", ".webp")
 
 
 @asynccontextmanager

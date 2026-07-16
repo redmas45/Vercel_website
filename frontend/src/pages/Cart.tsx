@@ -3,6 +3,7 @@ import { useCart } from '../hooks/useCart';
 import { Button } from '../components/ui/Button';
 import { money } from '../lib/format';
 import { productPath } from '../lib/productRoutes';
+import { ProductImage } from '../components/ui/ProductImage';
 
 export function Cart() {
   const { items, removeItem, updateQuantity, clearCart, cartTotal } = useCart();
@@ -25,7 +26,7 @@ export function Cart() {
         <div className="space-y-3">
           {items.map(({ product, quantity }) => (
             <div key={product.id} className="flex gap-4 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
-              <img className="h-20 w-20 rounded-[8px] object-contain" src={product.image_url} alt={product.name} />
+              <ProductImage className="h-20 w-20 rounded-[8px] object-contain" src={product.image_url} alt={product.name} />
               <div className="min-w-0 flex-1">
                 <div className="flex items-start justify-between gap-2">
                   <Link to={productPath(product)} className="truncate text-[13px] font-[500] text-[var(--color-ink)]">{product.name}</Link>
@@ -35,7 +36,7 @@ export function Cart() {
                 <div className="mt-3 flex items-center gap-3">
                   <button className="h-8 w-8 rounded-[8px] border border-[var(--color-border)]" onClick={() => updateQuantity(product.id, quantity - 1)} type="button">-</button>
                   <span className="text-[12px] font-[500]">{quantity}</span>
-                  <button className="h-8 w-8 rounded-[8px] border border-[var(--color-border)]" onClick={() => updateQuantity(product.id, quantity + 1)} type="button">+</button>
+                  <button className="h-8 w-8 rounded-[8px] border border-[var(--color-border)] disabled:cursor-not-allowed disabled:text-[var(--color-muted)]" onClick={() => updateQuantity(product.id, quantity + 1)} type="button" disabled={product.stock !== null && quantity >= product.stock}>+</button>
                   <button className="ml-auto text-[11px] text-[var(--color-muted)]" onClick={() => removeItem(product.id)} type="button">Remove</button>
                 </div>
               </div>

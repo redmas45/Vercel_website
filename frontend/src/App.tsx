@@ -26,7 +26,8 @@ function AppShell() {
   return (
     <>
       <Header />
-      <Routes>
+      <div className="pb-12 md:pb-0">
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<ShopListing />} />
         <Route path="/new" element={<ShopListing preset="new" />} />
@@ -48,7 +49,8 @@ function AppShell() {
           <Route key={path} path={path} element={<InfoPage content={content} />} />
         ))}
         <Route path="*" element={<NotFound />} />
-      </Routes>
+        </Routes>
+      </div>
       <Footer />
       <CartDrawer />
       <AddedToCartModal />

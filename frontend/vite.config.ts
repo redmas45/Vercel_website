@@ -1,12 +1,29 @@
+import { cpSync, rmSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
+import type { Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+
+const CATALOG_STATIC_DIR = fileURLToPath(new URL('../backend/static', import.meta.url))
+const CATALOG_OUTPUT_DIR = fileURLToPath(new URL('./dist/static', import.meta.url))
+
+function copyCatalogMedia(): Plugin {
+  return {
+    name: 'copy-catalog-media',
+    closeBundle(): void {
+      rmSync(CATALOG_OUTPUT_DIR, { recursive: true, force: true })
+      cpSync(CATALOG_STATIC_DIR, CATALOG_OUTPUT_DIR, { recursive: true })
+    },
+  }
+}
 
 export default defineConfig({
   base: '/',
   plugins: [
     react(),
     tailwindcss(),
+    copyCatalogMedia(),
   ],
   server: {
     host: '0.0.0.0',

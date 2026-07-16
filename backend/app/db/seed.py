@@ -11,10 +11,12 @@ from app.core.config import settings
 from app.core.security import hash_password
 from app.db.models import Product, Review, User
 from app.db.session import AsyncSessionLocal
+from catalog_validation import validate_catalog
 
 SEED_FILE = Path(__file__).resolve().parents[2] / "products.seed.json"
 SEED_V2_FILE = Path(__file__).resolve().parents[2] / "products.seed.v2.json"
 REVIEWS_SEED_FILE = Path(__file__).resolve().parents[2] / "reviews.seed.json"
+STATIC_DIR = Path(__file__).resolve().parents[2] / "static"
 DEFAULT_BRAND = "NOVA"
 DEFAULT_CURRENCY = "INR"
 
@@ -26,6 +28,9 @@ async def seed_if_empty() -> None:
 
 async def sync_product_seed() -> None:
     seed_files = [path for path in (SEED_FILE, SEED_V2_FILE) if path.is_file()]
+    validation_errors = validate_catalog(seed_files, STATIC_DIR)
+    if validation_errors:
+        raise ValueError(f"Product seed validation failed: {'; '.join(validation_errors[:10])}")
     async with AsyncSessionLocal() as session:
         if not seed_files:
             print("[seed] Product seed files not found, skipping.")

@@ -5,7 +5,9 @@
   "type": "module",
   "packageManager": "pnpm@11.10.0",
   "scripts": {
-    "build": "corepack pnpm --filter frontend build",
+    "build": "python backend/verify_seed.py && corepack pnpm --filter frontend build",
+    "validate:catalog": "python backend/verify_seed.py",
+    "test:catalog": "python -m unittest discover -s backend/tests -v",
     "lint": "corepack pnpm --filter frontend lint",
     "dev": "corepack pnpm --filter frontend dev",
     "preview": "corepack pnpm --filter frontend preview"

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { searchSuggestions } from '../../lib/productApi';
 import { productPath } from '../../lib/productRoutes';
 import type { Product } from '../../lib/types';
+import { ProductImage } from '../ui/ProductImage';
 
 const SEARCH_DELAY_MS = 300;
 const POPULAR_SEARCHES = ['Laptop', 'Saree', 'Air Fryer', 'Sneakers'];
@@ -45,7 +46,7 @@ export function SearchBar() {
 
   return (
     <div className="relative">
-      <div className={`flex h-9 items-center rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] transition-all ${open ? 'w-[min(320px,70vw)]' : 'w-9'}`}>
+      <div className={`flex h-9 items-center rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] transition-all ${open ? 'w-[min(224px,calc(100vw-96px))] sm:w-[min(320px,70vw)]' : 'w-9'}`}>
         <button className="grid h-9 w-9 shrink-0 place-items-center text-[var(--color-muted)]" type="button" aria-label="Search" onClick={() => { setOpen(true); inputRef.current?.focus(); }}>
           <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="9" cy="9" r="6" /><path d="m15 15 3 3" strokeLinecap="round" /></svg>
         </button>
@@ -66,7 +67,7 @@ export function SearchBar() {
           <div className="mt-2 grid gap-1">
             {suggestions.map((product) => (
               <Link key={product.id} className="flex items-center gap-3 rounded-[8px] px-2 py-2 hover:bg-[var(--color-paper)]" to={productPath(product)} onClick={() => setOpen(false)}>
-                <img className="h-9 w-9 rounded-[6px] object-contain" src={product.image_url} alt="" />
+                <ProductImage className="h-9 w-9 rounded-[6px] object-contain" src={product.image_url} alt="" />
                 <span className="text-[12px] text-[var(--color-ink)]">{product.name}</span>
               </Link>
             ))}

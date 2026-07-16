@@ -45,7 +45,7 @@ export function ProductDetail() {
   }, [productId]);
 
   function addToCart(): void {
-    if (!product) return;
+    if (!product || !product.in_stock) return;
     addItem(product, quantity);
     openCart();
     showToast('Item added to cart');
@@ -142,10 +142,10 @@ export function ProductDetail() {
               </div>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              <button className="h-11 rounded-[8px] bg-[var(--color-ink)] px-5 text-[13px] font-[500] text-[var(--color-paper)]" id="add-to-cart-btn" type="button" onClick={addToCart}>
-                Add to cart
+              <button className="h-11 rounded-[8px] bg-[var(--color-ink)] px-5 text-[13px] font-[500] text-[var(--color-paper)] disabled:cursor-not-allowed disabled:bg-[var(--color-muted)]" id="add-to-cart-btn" type="button" onClick={addToCart} disabled={!product.in_stock}>
+                {product.in_stock ? 'Add to cart' : 'Out of stock'}
               </button>
-              <button className="h-11 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] px-5 text-[13px] font-[500] text-[var(--color-ink)]" type="button" onClick={addToCart}>
+              <button className="h-11 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] px-5 text-[13px] font-[500] text-[var(--color-ink)] disabled:cursor-not-allowed disabled:text-[var(--color-muted)]" type="button" onClick={addToCart} disabled={!product.in_stock}>
                 Buy now
               </button>
             </div>
