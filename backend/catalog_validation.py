@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from collections.abc import Iterable, Mapping
 from pathlib import Path
 
@@ -9,6 +10,22 @@ EXPECTED_CURRENCY = "INR"
 REQUIRED_TEXT_FIELDS = ("id", "handle", "name", "title", "category", "currency", "image_url")
 REFERENCE_FIELDS = ("related_ids", "frequently_bought_with")
 UNIQUE_FIELDS = ("id", "handle", "sku", "name")
+
+# Generated marketing adjectives that carry no product meaning. Excludes words that
+# also appear in genuine product names (e.g. "Pro", "Smart", "Air") to avoid false
+# positives against curated catalog entries.
+GENERATED_NAME_ADJECTIVES = (
+    "flex", "classic", "active", "elite", "signature", "luxe",
+    "urban", "daily", "prime", "essential", "standard", "basic",
+)
+
+# Electronics product-type nouns. A non-electronics product whose searchable text
+# claims one of these indicates taxonomy contamination (e.g. a dry-fruit pack that
+# surfaces for a "smartwatch" search).
+ELECTRONICS_TYPE_NOUNS = (
+    "smartwatch", "laptop", "tablet", "iphone", "ipad", "headphone",
+    "earbud", "smartphone", "dslr", "monitor",
+)
 
 
 def load_catalog(seed_paths: Iterable[Path]) -> list[ProductRecord]:
@@ -45,7 +62,39 @@ def _validate_product(product: ProductRecord) -> list[str]:
     errors.extend(_validate_rating(product_id, product))
     errors.extend(_validate_product_paths(product_id, product))
     errors.extend(_validate_search_taxonomy(product_id, product))
+    errors.extend(_validate_name_quality(product_id, product))
+    errors.extend(_validate_cross_category_types(product_id, product))
     return errors
+
+
+def _searchable_text(product: ProductRecord) -> str:
+    return " ".join(
+        [
+            _text(product.get("name")),
+            _text(product.get("title")),
+            _text(product.get("description")),
+            _text(product.get("subcategory")),
+            *_string_list(product.get("tags")),
+        ]
+    ).casefold()
+
+
+def _validate_name_quality(product_id: str, product: ProductRecord) -> list[str]:
+    words = set(re.findall(r"[a-z0-9]+", _text(product.get("name")).casefold()))
+    generated = [adjective for adjective in GENERATED_NAME_ADJECTIVES if adjective in words]
+    if generated:
+        return [f"{product_id}: name uses generated marketing adjective '{generated[0]}'"]
+    return []
+
+
+def _validate_cross_category_types(product_id: str, product: ProductRecord) -> list[str]:
+    if _text(product.get("category")).casefold() == "electronics":
+        return []
+    tokens = set(re.findall(r"[a-z0-9]+", _searchable_text(product)))
+    contaminating = [noun for noun in ELECTRONICS_TYPE_NOUNS if noun in tokens]
+    if contaminating:
+        return [f"{product_id}: non-electronics product claims electronics type '{contaminating[0]}'"]
+    return []
 
 
 def _validate_price(product_id: str, product: ProductRecord) -> list[str]:
@@ -103,16 +152,11 @@ def _validate_product_paths(product_id: str, product: ProductRecord) -> list[str
 def _validate_search_taxonomy(product_id: str, product: ProductRecord) -> list[str]:
     if _text(product.get("brand")).casefold() == "apple":
         return []
-    searchable = " ".join(
-        [
-            _text(product.get("name")),
-            _text(product.get("title")),
-            _text(product.get("description")),
-            _text(product.get("subcategory")),
-            *_string_list(product.get("tags")),
-        ]
-    ).casefold()
-    return [f"{product_id}: non-Apple searchable data cannot claim iPhone"] if "iphone" in searchable else []
+    return (
+        [f"{product_id}: non-Apple searchable data cannot claim iPhone"]
+        if "iphone" in _searchable_text(product)
+        else []
+    )
 
 
 def _validate_unique_fields(products: list[ProductRecord]) -> list[str]:

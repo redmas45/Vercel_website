@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import json
 import sys
 import tempfile
@@ -10,6 +11,7 @@ BACKEND_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BACKEND_DIR))
 
 from catalog_validation import validate_catalog
+from rename_catalog import apply_transform
 
 
 class CatalogValidationTests(unittest.TestCase):
@@ -37,6 +39,58 @@ class CatalogValidationTests(unittest.TestCase):
             errors = validate_catalog((seed_path,), static_dir)
 
         self.assertTrue(any("non-Apple searchable data" in error for error in errors))
+
+    def test_generated_marketing_adjective_is_rejected(self) -> None:
+        product = _valid_product("NOVA Flex Smartwatch")
+        errors = _validate_single(product)
+        self.assertTrue(any("generated marketing adjective" in error for error in errors))
+
+    def test_cross_category_electronics_contamination_is_rejected(self) -> None:
+        product = _valid_product("NOVA Trail Mix")
+        product["category"] = "food-grocery"
+        product["tags"] = ["smartwatch", "snack"]
+        errors = _validate_single(product)
+        self.assertTrue(any("electronics type" in error for error in errors))
+
+    def test_clean_name_and_taxonomy_pass(self) -> None:
+        product = _valid_product("NOVA Trail Mix")
+        product["category"] = "food-grocery"
+        product["tags"] = ["snack", "healthy"]
+        self.assertEqual([], _validate_single(product))
+
+    def test_catalog_rename_is_idempotent_and_preserves_product_identity(self) -> None:
+        product = _valid_product("Apple Flex Chargers 1")
+        product["brand"] = "Apple"
+        product["subcategory"] = "Electronics > Chargers, Cables & Adapters"
+        product["tags"] = ["flex", "charger", "apple"]
+        immutable_before = {
+            key: copy.deepcopy(product.get(key))
+            for key in ("id", "handle", "url", "price", "stock", "image_url", "images", "brand", "category", "subcategory")
+        }
+        products = [product]
+
+        self.assertEqual(1, apply_transform(products, set()))
+        first_result = copy.deepcopy(products)
+        self.assertEqual(0, apply_transform(products, set()))
+        self.assertEqual(first_result, products)
+        self.assertEqual("Apple Fast Charger", products[0]["name"])
+        self.assertNotIn("variants", products[0]["description"].lower())
+        self.assertEqual(
+            immutable_before,
+            {key: products[0].get(key) for key in immutable_before},
+        )
+
+
+def _validate_single(product: dict[str, object]) -> list[str]:
+    with tempfile.TemporaryDirectory() as directory:
+        root = Path(directory)
+        static_dir = root / "static"
+        media = static_dir / "catalog" / "phone.jpg"
+        media.parent.mkdir(parents=True)
+        media.write_bytes(b"fixture")
+        seed_path = root / "products.json"
+        seed_path.write_text(json.dumps({"products": [product]}), encoding="utf-8")
+        return validate_catalog((seed_path,), static_dir)
 
 
 def _valid_product(name: str) -> dict[str, object]:
