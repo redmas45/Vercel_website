@@ -1,12 +1,15 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useCart } from '../../hooks/useCart';
 import { SearchBar } from './SearchBar';
+import { AIHUB_NAV_ATTR, AIHUB_ROLE, aihubRole } from '../../lib/hostContract';
 
+// [route, label, nav-key]. The nav-key is a stable, vertical-neutral handle an
+// assistant can navigate to without reading the storefront's URLs or labels.
 const NAV_LINKS = [
-  ['/', 'Home'],
-  ['/shop', 'Shop'],
-  ['/new', 'New'],
-  ['/sale', 'Sale'],
+  ['/', 'Home', 'home'],
+  ['/shop', 'Shop', 'shop'],
+  ['/new', 'New', 'new'],
+  ['/sale', 'Sale', 'sale'],
 ] as const;
 
 export function Header() {
@@ -26,11 +29,13 @@ export function Header() {
 
         {/* Nav */}
         <nav className="hidden md:flex items-center gap-6">
-          {NAV_LINKS.map(([href, label]) => {
+          {NAV_LINKS.map(([href, label, navKey]) => {
             return (
               <NavLink
                 key={href}
                 to={href}
+                {...aihubRole(AIHUB_ROLE.navLink)}
+                {...{ [AIHUB_NAV_ATTR]: navKey }}
                 className={({ isActive }) =>
                   `text-[13px] transition-colors ${
                     isActive
@@ -49,6 +54,8 @@ export function Header() {
         <div className="flex min-w-0 items-center gap-2 sm:gap-3">
           <Link
             to="/login"
+            {...aihubRole(AIHUB_ROLE.navLink)}
+            {...{ [AIHUB_NAV_ATTR]: 'login' }}
             className="hidden sm:inline text-[12px] font-[500] text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors"
           >
             Login
@@ -60,14 +67,22 @@ export function Header() {
             className="relative text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors"
             aria-label={`Cart (${count} items)`}
             id="cart-icon-btn"
+            {...aihubRole(AIHUB_ROLE.cartButton)}
+            data-cart-count={count}
           >
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8">
               <path d="M6 2 3 6v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6l-3-4z" />
               <path d="M3 6h14" strokeLinecap="round" />
               <path d="M13 10a3 3 0 0 1-6 0" />
             </svg>
+            {/* The visible badge is hidden at zero. `data-cart-count` on the
+                button (above) is always present, so automation can read and
+                verify the cart total in every state, including empty. */}
             {count > 0 && (
-              <span className="absolute -top-1.5 -right-1.5 min-w-[16px] h-4 px-1 bg-[var(--color-accent)] text-white text-[9px] font-[500] rounded-full flex items-center justify-center">
+              <span
+                aria-hidden="true"
+                className="absolute -top-1.5 -right-1.5 min-w-[16px] h-4 px-1 bg-[var(--color-accent)] text-white text-[9px] font-[500] rounded-full flex items-center justify-center"
+              >
                 {count}
               </span>
             )}

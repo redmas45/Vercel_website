@@ -4,6 +4,7 @@ import { searchSuggestions } from '../../lib/productApi';
 import { productPath } from '../../lib/productRoutes';
 import type { Product } from '../../lib/types';
 import { ProductImage } from '../ui/ProductImage';
+import { AIHUB_ROLE, aihubRole } from '../../lib/hostContract';
 
 const SEARCH_DELAY_MS = 300;
 const POPULAR_SEARCHES = ['Laptop', 'Saree', 'Air Fryer', 'Sneakers'];
@@ -88,24 +89,52 @@ export function SearchBar() {
     closePanel();
   }
 
+  // A real <form> so a submit — from Enter, the submit control, or an assistant's
+  // requestSubmit() — takes one path. Reading the value from the field on submit
+  // (not only from React state) means a programmatic value set is honored even if
+  // React state has not yet caught up to the dispatched input event.
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
+    event.preventDefault();
+    const fieldValue = inputRef.current?.value ?? '';
+    const clean = fieldValue.trim() || query.trim();
+    if (!clean) return;
+    navigate(`/search?q=${encodeURIComponent(clean)}`);
+    closePanel();
+  }
+
   return (
     <div className="relative" ref={containerRef}>
-      <div className={`flex h-9 items-center rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] transition-all ${open ? 'w-[min(224px,calc(100vw-96px))] sm:w-[min(320px,70vw)]' : 'w-9'}`}>
-        <button className="grid h-9 w-9 shrink-0 place-items-center text-[var(--color-muted)]" type="button" aria-label="Search" aria-expanded={open} aria-controls="search-suggestions" onClick={() => { setOpen(true); inputRef.current?.focus(); }}>
+      <form
+        className={`flex h-9 items-center rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] transition-all ${open ? 'w-[min(224px,calc(100vw-96px))] sm:w-[min(320px,70vw)]' : 'w-9'}`}
+        role="search"
+        onSubmit={handleSubmit}
+        {...aihubRole(AIHUB_ROLE.searchForm)}
+      >
+        <button
+          className="grid h-9 w-9 shrink-0 place-items-center text-[var(--color-muted)]"
+          type={open ? 'submit' : 'button'}
+          aria-label="Search"
+          aria-expanded={open}
+          aria-controls="search-suggestions"
+          onClick={() => { if (!open) { setOpen(true); inputRef.current?.focus(); } }}
+          {...aihubRole(AIHUB_ROLE.searchSubmit)}
+        >
           <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="9" cy="9" r="6" /><path d="m15 15 3 3" strokeLinecap="round" /></svg>
         </button>
         {open ? (
           <input
             ref={inputRef}
+            name="q"
+            type="search"
             className="min-w-0 flex-1 bg-transparent pr-3 text-[13px] outline-none"
             aria-label="Search products"
             value={query}
             placeholder="Search products..."
             onChange={(event) => setQuery(event.target.value)}
-            onKeyDown={(event) => { if (event.key === 'Enter') submit(); }}
+            {...aihubRole(AIHUB_ROLE.searchInput)}
           />
         ) : null}
-      </div>
+      </form>
       {open ? (
         <div id="search-suggestions" role="region" aria-label="Search suggestions" className="fixed left-3 right-3 top-[60px] z-50 max-h-[calc(100dvh-72px)] overflow-y-auto rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] p-3 shadow-xl sm:absolute sm:left-auto sm:right-0 sm:top-11 sm:w-[min(360px,calc(100vw-24px))]">
           <p className="text-[11px] uppercase tracking-[0.08em] text-[var(--color-muted)]">Suggestions</p>

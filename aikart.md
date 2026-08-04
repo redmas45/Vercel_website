@@ -29,7 +29,7 @@ AI-KART owns the shared public Nginx edge:
 - AI-KART must work without AI Hub.
 - The Hub widget connection is the tracked script tag in `frontend/index.html`.
 - `backend/aikart.db` is runtime data. It is ignored and backed up before every pull.
-- `backend/products.seed.json` and `backend/products.seed.v2.json` sync on backend startup, including existing databases.
+- `backend/products.seed.json` (the single product catalog) syncs on backend startup, including existing databases.
 - Expanded catalog images under `backend/static/catalog/` are committed and deploy with Git.
 - Phone catalog images under `backend/static/uploads/phones/` are runtime uploads and are ignored by Git. Copy them to the server before running step 8A if they changed.
 - `.env`, `.env.local`, `.node`, `node_modules`, `dist`, uploads, and `.deploy-backups` are ignored runtime files.
@@ -265,7 +265,7 @@ pm2 list
 
 ## 8A. Validate Catalog Seed And Images
 
-Run this after catalog, review, or image changes. The backend startup syncs `backend/products.seed.json`, `backend/products.seed.v2.json`, and `backend/reviews.seed.json` into the existing SQLite DB, so do not run a manual SQLite product upsert.
+Run this after catalog, review, or image changes. The backend startup syncs `backend/products.seed.json` and `backend/reviews.seed.json` into the existing SQLite DB, so do not run a manual SQLite product upsert.
 
 Committed catalog art under `backend/static/catalog/` arrives through Git. If runtime phone uploads changed, copy them from your workstation before restarting the backend:
 
@@ -299,7 +299,7 @@ import time
 import urllib.request
 from pathlib import Path
 
-seed_files = [Path("products.seed.json"), Path("products.seed.v2.json")]
+seed_files = [Path("products.seed.json")]
 missing = []
 external = []
 seed_count = 0
@@ -573,7 +573,7 @@ Local AI-KART works but public / fails
 Admin login says "Invalid email or password"
   -> Run step 10, "Reset AI-KART Admin Login".
 
-New products from products.seed.json or products.seed.v2.json do not appear
+New products from products.seed.json do not appear
   -> Restart ai-kart-backend so startup seed sync runs, then run step 8A validation.
 
 Product images are broken

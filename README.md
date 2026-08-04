@@ -142,11 +142,11 @@ It is ignored by Git and should not be committed. Deployment backs it up to:
 Source-controlled catalog seed files live in:
 
 ```text
-backend/products.seed.json
-backend/products.seed.v2.json
+backend/products.seed.json   # the single product catalog (572 products)
+backend/reviews.seed.json     # review rows (a separate entity)
 ```
 
-The backend syncs both seed files on startup, including existing databases. Restarting `ai-kart-backend` after a pull applies product, review, and image URL updates without deleting `backend/aikart.db`.
+The backend syncs the product seed on startup, including existing databases. Restarting `ai-kart-backend` after a pull applies product, review, and image URL updates without deleting `backend/aikart.db`. (The former `products.seed.v2.json` was merged into `products.seed.json`; curated products carry `"curated": true`.)
 
 Expanded catalog product art is committed under:
 

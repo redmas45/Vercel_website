@@ -1,4 +1,5 @@
-"""Deterministic, idempotent catalog naming transform for products.seed.v2.json.
+"""Deterministic, idempotent catalog naming transform for the generated products
+in products.seed.json (those without ``curated: true``).
 
 The v2 seed shipped with synthetic names of the form
 ``<Brand> <GenericAdjective> <SubcategoryLeaf> <N>`` (e.g. "Apple Flex Smartwatches
@@ -22,8 +23,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-SEED_FILE = Path(__file__).resolve().parent / "products.seed.v2.json"
-SEED_V1_FILE = Path(__file__).resolve().parent / "products.seed.json"
+SEED_FILE = Path(__file__).resolve().parent / "products.seed.json"
 
 # Marketing adjectives the generator injected; stripped from names and tags.
 GENERIC_ADJECTIVES = frozenset(
@@ -204,20 +204,22 @@ def apply_transform(products: list[dict], reserved_names: set[str]) -> int:
     return changed
 
 
-def _reserved_v1_names() -> set[str]:
-    if not SEED_V1_FILE.exists():
-        return set()
-    payload = json.loads(SEED_V1_FILE.read_text(encoding="utf-8"))
-    return {str(p.get("name") or "").strip() for p in payload.get("products", []) if p.get("name")}
+def _reserved_curated_names(products: list) -> set[str]:
+    """Curated products keep their human names; reserve them so the generated
+    products are never renamed into a collision."""
+    return {str(p.get("name") or "").strip() for p in products if p.get("curated") and p.get("name")}
 
 
 def main() -> int:
     payload = json.loads(SEED_FILE.read_text(encoding="utf-8"))
     products = payload.get("products")
     if not isinstance(products, list):
-        raise ValueError("products.seed.v2.json: 'products' must be a list")
+        raise ValueError("products.seed.json: 'products' must be a list")
 
-    changed = apply_transform(products, _reserved_v1_names())
+    # The curated (v1) products already carry final names; transform only the
+    # generated ones, reserving the curated names.
+    generated = [p for p in products if not p.get("curated")]
+    changed = apply_transform(generated, _reserved_curated_names(products))
 
     names = [str(p.get("name") or "") for p in products]
     duplicates = {name for name in names if names.count(name) > 1}

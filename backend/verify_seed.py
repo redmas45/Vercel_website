@@ -5,7 +5,7 @@ from pathlib import Path
 from catalog_validation import validate_catalog, validate_review_aggregates
 
 BACKEND_DIR = Path(__file__).resolve().parent
-SEED_PATHS = (BACKEND_DIR / "products.seed.json", BACKEND_DIR / "products.seed.v2.json")
+SEED_PATHS = (BACKEND_DIR / "products.seed.json",)
 STATIC_DIR = BACKEND_DIR / "static"
 REVIEWS_PATH = BACKEND_DIR / "reviews.seed.json"
 

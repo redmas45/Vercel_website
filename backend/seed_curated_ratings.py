@@ -135,9 +135,6 @@ def refresh_generated_review_dates(rows: list[dict], product: dict) -> int:
     return updated
 
 
-GENERATED_SEED = BACKEND_DIR / "products.seed.v2.json"
-
-
 def _published_scores(rows: list) -> dict[str, list[float]]:
     scores: dict[str, list[float]] = {}
     for row in rows:
@@ -168,7 +165,9 @@ def main() -> int:
     refreshed_dates = 0
     catalogs: list[tuple[Path, dict]] = []
 
-    for seed_path in (CURATED_SEED, GENERATED_SEED):
+    # The curated and generated catalogs are now one file; the curated products
+    # are marked `curated: true` so the date-refresh still targets only them.
+    for seed_path in (CURATED_SEED,):
         catalog = json.loads(seed_path.read_text(encoding="utf-8"))
         catalogs.append((seed_path, catalog))
         for product in catalog.get("products", []):
@@ -182,7 +181,7 @@ def main() -> int:
                 scores = [float(row["rating"]) for row in rows]
                 covered[product_id] = scores
                 seeded += 1
-            elif seed_path == CURATED_SEED:
+            elif product.get("curated"):
                 refreshed_dates += refresh_generated_review_dates(existing, product)
             rating = round(sum(scores) / len(scores), 1)
             if product.get("rating") != rating or product.get("review_count") != len(scores):

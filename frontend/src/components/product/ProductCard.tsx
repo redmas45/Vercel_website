@@ -7,6 +7,7 @@ import { money } from '../../lib/format';
 import { productPath } from '../../lib/productRoutes';
 import { RatingStars } from '../ui/RatingStars';
 import { ProductImage } from '../ui/ProductImage';
+import { AIHUB_ROLE, aihubRole } from '../../lib/hostContract';
 
 interface ProductCardProps {
   product: Product;
@@ -42,9 +43,14 @@ export function ProductCard({ product }: ProductCardProps) {
     }
   }
 
+  const path = productPath(product);
+
   return (
-    <Link
-      to={productPath(product)}
+    // The card is an <article>, not an <a>: the quick-add and wishlist controls
+    // are real siblings of the navigation links rather than buttons nested inside
+    // an anchor. That is valid markup and gives automation an unambiguous target -
+    // the add control is no longer buried inside the product link.
+    <article
       /* Stable identity for assistants and automation. Without these attributes a
          question about "these results" has no records to be answered from, and a
          claim that products were shown cannot be checked against the page. */
@@ -55,11 +61,13 @@ export function ProductCard({ product }: ProductCardProps) {
     >
       {/* Image area */}
       <div className={`relative aspect-square ${IMAGE_BG[bgIndex]} overflow-hidden`}>
-        <ProductImage
-          src={product.image_url}
-          alt={product.name}
-          className="h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105 sm:p-5"
-        />
+        <Link to={path} aria-label={product.name} className="block h-full w-full">
+          <ProductImage
+            src={product.image_url}
+            alt={product.name}
+            className="h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105 sm:p-5"
+          />
+        </Link>
 
         <button
           className="absolute right-2 top-2 grid h-8 w-8 place-items-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[14px] text-[var(--color-ink)]"
@@ -80,16 +88,19 @@ export function ProductCard({ product }: ProductCardProps) {
         <button
           onClick={handleAdd}
           className="absolute inset-x-0 bottom-0 flex h-9 items-center justify-center bg-[var(--color-ink)] text-[11px] font-[500] text-white opacity-100 transition-opacity duration-200 disabled:cursor-not-allowed disabled:bg-[var(--color-muted)] md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100"
+          type="button"
           aria-label={`Add ${product.name} to cart`}
           disabled={!product.in_stock}
+          {...aihubRole(AIHUB_ROLE.addToCart)}
+          data-product-id={product.id}
         >
           {product.in_stock ? 'Add to cart' : 'Out of stock'}
         </button>
       </div>
 
       {/* Info */}
-      <div className="px-2.5 py-2.5 sm:px-3">
-        <p className="line-clamp-2 min-h-7 text-[11px] font-[500] leading-tight text-[var(--color-ink)]">
+      <Link to={path} className="block px-2.5 py-2.5 sm:px-3">
+        <p className="line-clamp-2 min-h-7 text-[11px] font-[500] leading-tight text-[var(--color-ink)]" itemProp="name">
           {product.name}
         </p>
         <RatingStars rating={product.rating} count={product.review_count} />
@@ -104,7 +115,7 @@ export function ProductCard({ product }: ProductCardProps) {
             <p className="text-[10px] text-[var(--color-muted)] line-through">{money(product.original_price, product.currency)}</p>
           ) : null}
         </div>
-      </div>
-    </Link>
+      </Link>
+    </article>
   );
 }

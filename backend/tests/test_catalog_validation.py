@@ -18,7 +18,7 @@ from rename_catalog import apply_transform
 class CatalogValidationTests(unittest.TestCase):
     def test_repository_catalog_is_valid(self) -> None:
         errors = validate_catalog(
-            (BACKEND_DIR / "products.seed.json", BACKEND_DIR / "products.seed.v2.json"),
+            (BACKEND_DIR / "products.seed.json",),
             BACKEND_DIR / "static",
         )
 
@@ -158,7 +158,7 @@ class ReviewAggregateCoherenceTests(unittest.TestCase):
 
     def test_repository_aggregates_match_the_review_detail(self) -> None:
         errors = validate_review_aggregates(
-            (BACKEND_DIR / "products.seed.json", BACKEND_DIR / "products.seed.v2.json"),
+            (BACKEND_DIR / "products.seed.json",),
             BACKEND_DIR / "reviews.seed.json",
         )
         self.assertEqual([], errors)

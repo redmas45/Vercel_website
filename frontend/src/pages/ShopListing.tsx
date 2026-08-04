@@ -6,6 +6,7 @@ import { Pagination } from '../components/shop/Pagination';
 import { ProductGrid } from '../components/product/ProductGrid';
 import { listProductResult } from '../lib/productApi';
 import type { Product, ProductListMeta } from '../lib/types';
+import { AIHUB_ROLE, AIHUB_ROLE_ATTR } from '../lib/hostContract';
 
 type ShopPreset = 'new' | 'sale';
 
@@ -89,10 +90,17 @@ export function ShopListing({ forcedQuery, preset }: { forcedQuery?: string; pre
         <div className={`${showMobileFilters ? 'block' : 'hidden'} md:block`}>
           <FilterRail meta={meta} filters={effectiveFilters} onChange={changeFilter} onClear={clearFilters} />
         </div>
-        <section className="min-w-0">
+        <section
+          className="min-w-0"
+          {...{ [AIHUB_ROLE_ATTR]: AIHUB_ROLE.searchResults }}
+          data-result-count={count}
+          data-results-loading={loading ? 'true' : 'false'}
+          data-results-empty={!loading && products.length === 0 ? 'true' : 'false'}
+          data-query={query}
+        >
           <div className="mb-5 grid gap-3">
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <h1 className="text-[20px] font-[500] text-[var(--color-ink)]">{title}</h1>
+              <h1 className="text-[20px] font-[500] text-[var(--color-ink)]" {...{ [AIHUB_ROLE_ATTR]: AIHUB_ROLE.resultCount }}>{title}</h1>
               <div className="flex gap-2">
                 <button className="h-9 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 text-[12px] md:hidden" type="button" onClick={() => setShowMobileFilters((visible) => !visible)}>
                   {showMobileFilters ? 'Hide filters' : 'Show filters'}
