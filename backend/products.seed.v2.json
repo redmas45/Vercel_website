@@ -24,8 +24,8 @@
         "/static/catalog/phones/redmi-note-15-5g.jpg",
         "/static/catalog/phones/redmi-15-5g.png"
       ],
-      "rating": 3.6,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "redmi",
@@ -123,8 +123,8 @@
         "/static/catalog/phones/redmi-15-5g.png",
         "/static/catalog/phones/redmi-note-15-pro.jpg"
       ],
-      "rating": 4.4,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "realme",
@@ -224,8 +224,8 @@
         "/static/catalog/phones/galaxy-a17-5g.jpg",
         "/static/catalog/phones/galaxy-s26-ultra.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "samsung",
@@ -325,8 +325,8 @@
         "/static/catalog/phones/oppo-find-x9.png",
         "/static/catalog/phones/oppo-find-x9-ultra.png"
       ],
-      "rating": 4.6,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "oppo",
@@ -426,8 +426,8 @@
         "/static/catalog/phones/vivo-x300-ultra.png",
         "/static/catalog/phones/vivo-y29s-5g.jpg"
       ],
-      "rating": 4,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "vivo",
@@ -527,8 +527,8 @@
         "/static/catalog/phones/redmi-15-5g.png",
         "/static/catalog/phones/redmi-note-15-pro-plus-5g.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 246,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "redmi",
@@ -626,8 +626,8 @@
         "/static/catalog/phones/redmi-note-15-pro.jpg",
         "/static/catalog/phones/redmi-15-5g.png"
       ],
-      "rating": 4.2,
-      "review_count": 283,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "realme",
@@ -727,8 +727,8 @@
         "/static/catalog/phones/galaxy-a17-5g.jpg",
         "/static/catalog/phones/galaxy-s26-ultra.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 320,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "samsung",
@@ -828,8 +828,8 @@
         "/static/catalog/phones/oppo-find-x9-ultra.png",
         "/static/catalog/phones/oppo-a5-pro-5g.png"
       ],
-      "rating": 4.4,
-      "review_count": 357,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "oppo",
@@ -929,8 +929,8 @@
         "/static/catalog/phones/vivo-y29s-5g.jpg",
         "/static/catalog/phones/vivo-x300-pro.png"
       ],
-      "rating": 3.8,
-      "review_count": 394,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "vivo",
@@ -1027,8 +1027,8 @@
       "images": [
         "/static/catalog/phones/oneplus-nord-ce4-lite-5g.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "oneplus",
@@ -1129,8 +1129,8 @@
         "/static/catalog/phones/galaxy-a36-5g.jpg",
         "/static/catalog/phones/galaxy-a17-5g.jpg"
       ],
-      "rating": 4,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "samsung",
@@ -1231,8 +1231,8 @@
         "/static/catalog/phones/oppo-find-x9-ultra.png",
         "/static/catalog/phones/oppo-a5-pro-5g.png"
       ],
-      "rating": 4.8,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "oppo",
@@ -1333,8 +1333,8 @@
         "/static/catalog/phones/vivo-y29s-5g.jpg",
         "/static/catalog/phones/vivo-x300-pro.png"
       ],
-      "rating": 4.2,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "vivo",
@@ -1433,8 +1433,8 @@
         "/static/catalog/phones/oneplus-nord-ce4-lite-5g.jpg",
         "/static/catalog/phones/pixel-10a.png"
       ],
-      "rating": 3.6,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "nothing",
@@ -1532,8 +1532,8 @@
       "images": [
         "/static/catalog/phones/oneplus-nord-ce4-lite-5g.jpg"
       ],
-      "rating": 4.4,
-      "review_count": 246,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "oneplus",
@@ -1634,8 +1634,8 @@
         "/static/catalog/phones/galaxy-a36-5g.jpg",
         "/static/catalog/phones/galaxy-a17-5g.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 283,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "samsung",
@@ -1736,8 +1736,8 @@
         "/static/catalog/phones/oppo-a5-pro-5g.png",
         "/static/catalog/phones/oppo-find-x9-pro.png"
       ],
-      "rating": 4.6,
-      "review_count": 320,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "oppo",
@@ -1838,8 +1838,8 @@
         "/static/catalog/phones/vivo-x300-pro.png",
         "/static/catalog/phones/vivo-x300.png"
       ],
-      "rating": 4,
-      "review_count": 357,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "vivo",
@@ -1938,8 +1938,8 @@
         "/static/catalog/phones/pixel-10a.png",
         "/static/catalog/phones/oneplus-nord-ce4-lite-5g.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 394,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartphone",
         "nothing",
@@ -2040,8 +2040,8 @@
         "/static/catalog/phones/iphone-air.png",
         "/static/catalog/phones/iphone-17e.png"
       ],
-      "rating": 4.2,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "flagship",
         "smartphone",
@@ -2141,8 +2141,8 @@
         "/static/catalog/phones/galaxy-a36-5g.jpg",
         "/static/catalog/phones/galaxy-a17-5g.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "flagship",
         "smartphone",
@@ -2239,8 +2239,8 @@
       "images": [
         "/static/catalog/phones/pixel-10a.png"
       ],
-      "rating": 4.4,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "flagship",
         "smartphone",
@@ -2337,8 +2337,8 @@
       "images": [
         "/static/catalog/phones/oneplus-nord-ce4-lite-5g.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "flagship",
         "smartphone",
@@ -2438,8 +2438,8 @@
         "/static/catalog/phones/iphone-air.png",
         "/static/catalog/phones/iphone-17e.png"
       ],
-      "rating": 4.6,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "flagship",
         "smartphone",
@@ -2539,8 +2539,8 @@
         "/static/catalog/phones/galaxy-s26.jpg",
         "/static/catalog/phones/galaxy-a36-5g.jpg"
       ],
-      "rating": 4,
-      "review_count": 246,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "flagship",
         "smartphone",
@@ -2637,8 +2637,8 @@
       "images": [
         "/static/catalog/phones/pixel-10a.png"
       ],
-      "rating": 4.8,
-      "review_count": 283,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "flagship",
         "smartphone",
@@ -2735,8 +2735,8 @@
       "images": [
         "/static/catalog/phones/oneplus-nord-ce4-lite-5g.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 320,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "flagship",
         "smartphone",
@@ -2836,8 +2836,8 @@
         "/static/catalog/phones/iphone-air.png",
         "/static/catalog/phones/iphone-17e.png"
       ],
-      "rating": 3.6,
-      "review_count": 357,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "flagship",
         "smartphone",
@@ -2938,7 +2938,7 @@
         "/static/catalog/phones/galaxy-s26.jpg"
       ],
       "rating": 4.4,
-      "review_count": 394,
+      "review_count": 8,
       "tags": [
         "flagship",
         "smartphone",
@@ -3038,8 +3038,8 @@
         "/static/catalog/dummy-laptops-huawei-matebook-x-pro.webp",
         "/static/catalog/dummy-laptops-lenovo-yoga-920.webp"
       ],
-      "rating": 3.8,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "everyday",
         "laptop",
@@ -3149,8 +3149,8 @@
         "/static/catalog/dummy-laptops-lenovo-yoga-920.webp",
         "/static/catalog/dummy-laptops-new-dell-xps-13-9300-laptop.webp"
       ],
-      "rating": 4.6,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "everyday",
         "laptop",
@@ -3260,8 +3260,8 @@
         "/static/catalog/dummy-laptops-new-dell-xps-13-9300-laptop.webp",
         "/static/catalog/dummy-laptops-apple-macbook-pro-14-inch-space-grey.webp"
       ],
-      "rating": 4,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "everyday",
         "laptop",
@@ -3371,8 +3371,8 @@
         "/static/catalog/dummy-laptops-apple-macbook-pro-14-inch-space-grey.webp",
         "/static/catalog/dummy-laptops-asus-zenbook-pro-dual-screen-laptop.webp"
       ],
-      "rating": 4.8,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "everyday",
         "laptop",
@@ -3482,8 +3482,8 @@
         "/static/catalog/dummy-laptops-asus-zenbook-pro-dual-screen-laptop.webp",
         "/static/catalog/dummy-laptops-huawei-matebook-x-pro.webp"
       ],
-      "rating": 4.2,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "everyday",
         "laptop",
@@ -3593,8 +3593,8 @@
         "/static/catalog/dummy-laptops-huawei-matebook-x-pro.webp",
         "/static/catalog/dummy-laptops-lenovo-yoga-920.webp"
       ],
-      "rating": 3.6,
-      "review_count": 246,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "everyday",
         "laptop",
@@ -3705,7 +3705,7 @@
         "/static/catalog/dummy-laptops-new-dell-xps-13-9300-laptop.webp"
       ],
       "rating": 4.4,
-      "review_count": 283,
+      "review_count": 8,
       "tags": [
         "everyday",
         "laptop",
@@ -3816,7 +3816,7 @@
         "/static/catalog/dummy-laptops-apple-macbook-pro-14-inch-space-grey.webp"
       ],
       "rating": 4.5,
-      "review_count": 61,
+      "review_count": 8,
       "tags": [
         "business",
         "laptop",
@@ -3926,8 +3926,8 @@
         "/static/catalog/dummy-laptops-apple-macbook-pro-14-inch-space-grey.webp",
         "/static/catalog/dummy-laptops-asus-zenbook-pro-dual-screen-laptop.webp"
       ],
-      "rating": 3.9,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "business",
         "laptop",
@@ -4037,8 +4037,8 @@
         "/static/catalog/dummy-laptops-asus-zenbook-pro-dual-screen-laptop.webp",
         "/static/catalog/dummy-laptops-huawei-matebook-x-pro.webp"
       ],
-      "rating": 4.7,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "business",
         "laptop",
@@ -4148,8 +4148,8 @@
         "/static/catalog/dummy-laptops-huawei-matebook-x-pro.webp",
         "/static/catalog/dummy-laptops-lenovo-yoga-920.webp"
       ],
-      "rating": 4.1,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "business",
         "laptop",
@@ -4259,8 +4259,8 @@
         "/static/catalog/dummy-laptops-lenovo-yoga-920.webp",
         "/static/catalog/dummy-laptops-new-dell-xps-13-9300-laptop.webp"
       ],
-      "rating": 4.9,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "business",
         "laptop",
@@ -4370,8 +4370,8 @@
         "/static/catalog/dummy-laptops-new-dell-xps-13-9300-laptop.webp",
         "/static/catalog/dummy-laptops-apple-macbook-pro-14-inch-space-grey.webp"
       ],
-      "rating": 4.3,
-      "review_count": 246,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "business",
         "laptop",
@@ -4481,8 +4481,8 @@
         "/static/catalog/dummy-laptops-apple-macbook-pro-14-inch-space-grey.webp",
         "/static/catalog/dummy-laptops-asus-zenbook-pro-dual-screen-laptop.webp"
       ],
-      "rating": 3.7,
-      "review_count": 283,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "business",
         "laptop",
@@ -4592,8 +4592,8 @@
         "/static/catalog/dummy-laptops-asus-zenbook-pro-dual-screen-laptop.webp",
         "/static/catalog/dummy-laptops-huawei-matebook-x-pro.webp"
       ],
-      "rating": 3.8,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "gaming",
         "laptop",
@@ -4702,8 +4702,8 @@
         "/static/catalog/dummy-laptops-huawei-matebook-x-pro.webp",
         "/static/catalog/dummy-laptops-lenovo-yoga-920.webp"
       ],
-      "rating": 4.6,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "gaming",
         "laptop",
@@ -4812,8 +4812,8 @@
         "/static/catalog/dummy-laptops-lenovo-yoga-920.webp",
         "/static/catalog/dummy-laptops-new-dell-xps-13-9300-laptop.webp"
       ],
-      "rating": 4,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "gaming",
         "laptop",
@@ -4922,8 +4922,8 @@
         "/static/catalog/dummy-laptops-new-dell-xps-13-9300-laptop.webp",
         "/static/catalog/dummy-laptops-apple-macbook-pro-14-inch-space-grey.webp"
       ],
-      "rating": 4.8,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "gaming",
         "laptop",
@@ -5032,8 +5032,8 @@
         "/static/catalog/dummy-laptops-apple-macbook-pro-14-inch-space-grey.webp",
         "/static/catalog/dummy-laptops-asus-zenbook-pro-dual-screen-laptop.webp"
       ],
-      "rating": 4.2,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "gaming",
         "laptop",
@@ -5142,8 +5142,8 @@
         "/static/catalog/dummy-laptops-asus-zenbook-pro-dual-screen-laptop.webp",
         "/static/catalog/dummy-laptops-huawei-matebook-x-pro.webp"
       ],
-      "rating": 3.6,
-      "review_count": 246,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "gaming",
         "laptop",
@@ -5251,8 +5251,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-airpods.webp",
         "/static/catalog/dummy-mobile-accessories-beats-flex-wireless-earphones.webp"
       ],
-      "rating": 4.4,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "wireless",
         "earbuds",
@@ -5338,8 +5338,8 @@
         "/static/catalog/dummy-mobile-accessories-beats-flex-wireless-earphones.webp",
         "/static/catalog/photo-audio-1.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "wireless",
         "earbuds",
@@ -5425,8 +5425,8 @@
         "/static/catalog/photo-audio-1.jpg",
         "/static/catalog/dummy-mobile-accessories-apple-airpods.webp"
       ],
-      "rating": 4.6,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "wireless",
         "earbuds",
@@ -5512,8 +5512,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-airpods.webp",
         "/static/catalog/dummy-mobile-accessories-beats-flex-wireless-earphones.webp"
       ],
-      "rating": 4,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "wireless",
         "earbuds",
@@ -5599,8 +5599,8 @@
         "/static/catalog/dummy-mobile-accessories-beats-flex-wireless-earphones.webp",
         "/static/catalog/photo-audio-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "wireless",
         "earbuds",
@@ -5686,8 +5686,8 @@
         "/static/catalog/photo-audio-1.jpg",
         "/static/catalog/dummy-mobile-accessories-apple-airpods.webp"
       ],
-      "rating": 4.2,
-      "review_count": 246,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "wireless",
         "earbuds",
@@ -5773,8 +5773,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-airpods.webp",
         "/static/catalog/dummy-mobile-accessories-beats-flex-wireless-earphones.webp"
       ],
-      "rating": 3.6,
-      "review_count": 283,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "wireless",
         "earbuds",
@@ -5860,8 +5860,8 @@
         "/static/catalog/dummy-mobile-accessories-beats-flex-wireless-earphones.webp",
         "/static/catalog/photo-audio-1.jpg"
       ],
-      "rating": 4.4,
-      "review_count": 320,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "wireless",
         "earbuds",
@@ -5948,8 +5948,8 @@
         "/static/catalog/real-electronics-headphones-1.jpg",
         "/static/catalog/real-electronics-headphones-2.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "over-ear",
         "over",
@@ -6037,8 +6037,8 @@
         "/static/catalog/real-electronics-headphones-2.jpg",
         "/static/catalog/dummy-mobile-accessories-apple-airpods-max-silver.webp"
       ],
-      "rating": 4.6,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "over-ear",
         "over",
@@ -6126,8 +6126,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-airpods-max-silver.webp",
         "/static/catalog/dummy-mobile-accessories-beats-flex-wireless-earphones.webp"
       ],
-      "rating": 4,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "over-ear",
         "over",
@@ -6215,8 +6215,8 @@
         "/static/catalog/dummy-mobile-accessories-beats-flex-wireless-earphones.webp",
         "/static/catalog/real-electronics-headphones-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "over-ear",
         "over",
@@ -6304,8 +6304,8 @@
         "/static/catalog/real-electronics-headphones-1.jpg",
         "/static/catalog/real-electronics-headphones-2.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "over-ear",
         "over",
@@ -6393,8 +6393,8 @@
         "/static/catalog/real-electronics-headphones-2.jpg",
         "/static/catalog/dummy-mobile-accessories-apple-airpods-max-silver.webp"
       ],
-      "rating": 3.6,
-      "review_count": 246,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "over-ear",
         "over",
@@ -6482,8 +6482,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-homepod-mini-cosmic-grey.webp",
         "/static/catalog/dummy-mobile-accessories-amazon-echo-plus.webp"
       ],
-      "rating": 4.4,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "bluetooth",
         "speaker",
@@ -6569,8 +6569,8 @@
         "/static/catalog/dummy-mobile-accessories-amazon-echo-plus.webp",
         "/static/catalog/real-electronics-speaker-1.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "bluetooth",
         "speaker",
@@ -6656,8 +6656,8 @@
         "/static/catalog/real-electronics-speaker-1.jpg",
         "/static/catalog/real-electronics-speaker-2.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "bluetooth",
         "speaker",
@@ -6743,8 +6743,8 @@
         "/static/catalog/real-electronics-speaker-2.jpg",
         "/static/catalog/dummy-mobile-accessories-apple-homepod-mini-cosmic-grey.webp"
       ],
-      "rating": 4,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "bluetooth",
         "speaker",
@@ -6830,8 +6830,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-homepod-mini-cosmic-grey.webp",
         "/static/catalog/dummy-mobile-accessories-amazon-echo-plus.webp"
       ],
-      "rating": 4.8,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "bluetooth",
         "speaker",
@@ -6917,8 +6917,8 @@
         "/static/catalog/dummy-mobile-accessories-amazon-echo-plus.webp",
         "/static/catalog/real-electronics-speaker-1.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 246,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "bluetooth",
         "speaker",
@@ -7003,8 +7003,8 @@
         "/static/catalog/dummy-womens-watches-women-s-wrist-watch.webp",
         "/static/catalog/dummy-mobile-accessories-apple-watch-series-4-gold.webp"
       ],
-      "rating": 3.6,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "smartwatch",
         "noise",
@@ -7089,8 +7089,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-watch-series-4-gold.webp",
         "/static/catalog/dummy-mens-watches-rolex-datejust.webp"
       ],
-      "rating": 4.4,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartwatch",
         "amazfit",
@@ -7175,8 +7175,8 @@
         "/static/catalog/dummy-mens-watches-rolex-datejust.webp",
         "/static/catalog/dummy-womens-watches-women-s-wrist-watch.webp"
       ],
-      "rating": 3.8,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartwatch",
         "apple",
@@ -7261,8 +7261,8 @@
         "/static/catalog/dummy-womens-watches-women-s-wrist-watch.webp",
         "/static/catalog/dummy-mobile-accessories-apple-watch-series-4-gold.webp"
       ],
-      "rating": 4.6,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartwatch",
         "samsung",
@@ -7347,8 +7347,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-watch-series-4-gold.webp",
         "/static/catalog/dummy-mens-watches-rolex-datejust.webp"
       ],
-      "rating": 4,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "smartwatch",
         "fitbit",
@@ -7433,8 +7433,8 @@
         "/static/catalog/dummy-mens-watches-rolex-datejust.webp",
         "/static/catalog/dummy-womens-watches-women-s-wrist-watch.webp"
       ],
-      "rating": 4.8,
-      "review_count": 246,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "smartwatch",
         "noise",
@@ -7519,8 +7519,8 @@
         "/static/catalog/dummy-womens-watches-women-s-wrist-watch.webp",
         "/static/catalog/dummy-mobile-accessories-apple-watch-series-4-gold.webp"
       ],
-      "rating": 4.2,
-      "review_count": 283,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "smartwatch",
         "amazfit",
@@ -7605,8 +7605,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-watch-series-4-gold.webp",
         "/static/catalog/dummy-mens-watches-rolex-datejust.webp"
       ],
-      "rating": 3.6,
-      "review_count": 320,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartwatch",
         "apple",
@@ -7691,8 +7691,8 @@
         "/static/catalog/dummy-mens-watches-rolex-datejust.webp",
         "/static/catalog/dummy-womens-watches-women-s-wrist-watch.webp"
       ],
-      "rating": 4.4,
-      "review_count": 357,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartwatch",
         "samsung",
@@ -7777,8 +7777,8 @@
         "/static/catalog/dummy-womens-watches-women-s-wrist-watch.webp",
         "/static/catalog/dummy-mobile-accessories-apple-watch-series-4-gold.webp"
       ],
-      "rating": 3.8,
-      "review_count": 394,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "smartwatch",
         "fitbit",
@@ -7863,8 +7863,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-watch-series-4-gold.webp",
         "/static/catalog/dummy-mens-watches-rolex-datejust.webp"
       ],
-      "rating": 4.6,
-      "review_count": 431,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartwatch",
         "noise",
@@ -7949,8 +7949,8 @@
         "/static/catalog/dummy-mens-watches-rolex-datejust.webp",
         "/static/catalog/dummy-womens-watches-women-s-wrist-watch.webp"
       ],
-      "rating": 4,
-      "review_count": 468,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "smartwatch",
         "amazfit",
@@ -8035,8 +8035,8 @@
         "/static/catalog/dummy-womens-watches-women-s-wrist-watch.webp",
         "/static/catalog/dummy-mobile-accessories-apple-watch-series-4-gold.webp"
       ],
-      "rating": 4.8,
-      "review_count": 505,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "smartwatch",
         "apple",
@@ -8121,8 +8121,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-watch-series-4-gold.webp",
         "/static/catalog/dummy-mens-watches-rolex-datejust.webp"
       ],
-      "rating": 4.2,
-      "review_count": 542,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "smartwatch",
         "samsung",
@@ -8207,8 +8207,8 @@
         "/static/catalog/dummy-mens-watches-rolex-datejust.webp",
         "/static/catalog/dummy-womens-watches-women-s-wrist-watch.webp"
       ],
-      "rating": 3.6,
-      "review_count": 579,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "smartwatch",
         "fitbit",
@@ -8293,8 +8293,8 @@
         "/static/catalog/dummy-tablets-ipad-mini-2021-starlight.webp",
         "/static/catalog/dummy-tablets-samsung-galaxy-tab-s8-plus-grey.webp"
       ],
-      "rating": 3.7,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "tablet",
         "apple",
@@ -8379,8 +8379,8 @@
         "/static/catalog/dummy-tablets-samsung-galaxy-tab-s8-plus-grey.webp",
         "/static/catalog/dummy-tablets-samsung-galaxy-tab-white.webp"
       ],
-      "rating": 4.5,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "tablet",
         "samsung",
@@ -8465,8 +8465,8 @@
         "/static/catalog/dummy-tablets-samsung-galaxy-tab-white.webp",
         "/static/catalog/dummy-tablets-ipad-mini-2021-starlight.webp"
       ],
-      "rating": 3.9,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "tablet",
         "lenovo",
@@ -8551,8 +8551,8 @@
         "/static/catalog/dummy-tablets-ipad-mini-2021-starlight.webp",
         "/static/catalog/dummy-tablets-samsung-galaxy-tab-s8-plus-grey.webp"
       ],
-      "rating": 4.7,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "tablet",
         "xiaomi",
@@ -8637,8 +8637,8 @@
         "/static/catalog/dummy-tablets-samsung-galaxy-tab-s8-plus-grey.webp",
         "/static/catalog/dummy-tablets-samsung-galaxy-tab-white.webp"
       ],
-      "rating": 4.1,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "tablet",
         "apple",
@@ -8723,8 +8723,8 @@
         "/static/catalog/dummy-tablets-samsung-galaxy-tab-white.webp",
         "/static/catalog/dummy-tablets-ipad-mini-2021-starlight.webp"
       ],
-      "rating": 4.9,
-      "review_count": 246,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "tablet",
         "samsung",
@@ -8809,8 +8809,8 @@
         "/static/catalog/dummy-tablets-ipad-mini-2021-starlight.webp",
         "/static/catalog/dummy-tablets-samsung-galaxy-tab-s8-plus-grey.webp"
       ],
-      "rating": 4.3,
-      "review_count": 283,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "tablet",
         "lenovo",
@@ -8895,8 +8895,8 @@
         "/static/catalog/dummy-tablets-samsung-galaxy-tab-s8-plus-grey.webp",
         "/static/catalog/dummy-tablets-samsung-galaxy-tab-white.webp"
       ],
-      "rating": 3.7,
-      "review_count": 320,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "tablet",
         "xiaomi",
@@ -8982,7 +8982,7 @@
         "/static/catalog/dummy-tablets-ipad-mini-2021-starlight.webp"
       ],
       "rating": 4.5,
-      "review_count": 357,
+      "review_count": 8,
       "tags": [
         "tablet",
         "apple",
@@ -9067,8 +9067,8 @@
         "/static/catalog/dummy-tablets-ipad-mini-2021-starlight.webp",
         "/static/catalog/dummy-tablets-samsung-galaxy-tab-s8-plus-grey.webp"
       ],
-      "rating": 3.9,
-      "review_count": 394,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "tablet",
         "samsung",
@@ -9153,8 +9153,8 @@
         "/static/catalog/photo-camera-1.jpg",
         "/static/catalog/real-electronics-camera-lens-1.jpg"
       ],
-      "rating": 4.7,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "mirrorless",
         "camera",
@@ -9218,8 +9218,8 @@
         "/static/catalog/real-electronics-camera-lens-1.jpg",
         "/static/catalog/dummy-mobile-accessories-tv-studio-camera-pedestal.webp"
       ],
-      "rating": 4.1,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "mirrorless",
         "camera",
@@ -9283,8 +9283,8 @@
         "/static/catalog/dummy-mobile-accessories-tv-studio-camera-pedestal.webp",
         "/static/catalog/photo-camera-1.jpg"
       ],
-      "rating": 4.9,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "mirrorless",
         "camera",
@@ -9348,8 +9348,8 @@
         "/static/catalog/photo-camera-1.jpg",
         "/static/catalog/real-electronics-camera-lens-1.jpg"
       ],
-      "rating": 4.3,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "mirrorless",
         "camera",
@@ -9413,8 +9413,8 @@
         "/static/catalog/real-electronics-camera-lens-1.jpg",
         "/static/catalog/dummy-mobile-accessories-tv-studio-camera-pedestal.webp"
       ],
-      "rating": 3.7,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "mirrorless",
         "camera",
@@ -9477,8 +9477,8 @@
         "/static/catalog/real-electronics-action-camera-1.jpg",
         "/static/catalog/real-electronics-action-camera-2.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "action",
         "camera",
@@ -9542,8 +9542,8 @@
         "/static/catalog/real-electronics-action-camera-2.jpg",
         "/static/catalog/real-electronics-action-camera-1.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "action",
         "camera",
@@ -9607,8 +9607,8 @@
         "/static/catalog/real-electronics-action-camera-1.jpg",
         "/static/catalog/real-electronics-action-camera-2.jpg"
       ],
-      "rating": 4,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "action",
         "camera",
@@ -9672,8 +9672,8 @@
         "/static/catalog/real-electronics-action-camera-2.jpg",
         "/static/catalog/real-electronics-action-camera-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "action",
         "camera",
@@ -9737,8 +9737,8 @@
         "/static/catalog/real-electronics-action-camera-1.jpg",
         "/static/catalog/real-electronics-action-camera-2.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "action",
         "camera",
@@ -9803,8 +9803,8 @@
         "/static/catalog/real-electronics-tripod-1.jpg",
         "/static/catalog/photo-camera-1.jpg"
       ],
-      "rating": 4.3,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "camera",
         "lens",
@@ -9868,8 +9868,8 @@
         "/static/catalog/photo-camera-1.jpg",
         "/static/catalog/real-electronics-camera-lens-1.jpg"
       ],
-      "rating": 3.7,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "camera",
         "lens",
@@ -9933,8 +9933,8 @@
         "/static/catalog/real-electronics-camera-lens-1.jpg",
         "/static/catalog/real-electronics-tripod-1.jpg"
       ],
-      "rating": 4.5,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "camera",
         "lens",
@@ -9998,8 +9998,8 @@
         "/static/catalog/real-electronics-tripod-1.jpg",
         "/static/catalog/photo-camera-1.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "camera",
         "lens",
@@ -10063,8 +10063,8 @@
         "/static/catalog/photo-camera-1.jpg",
         "/static/catalog/real-electronics-camera-lens-1.jpg"
       ],
-      "rating": 4.7,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "camera",
         "lens",
@@ -10128,8 +10128,8 @@
         "/static/catalog/real-electronics-keyboard-mouse-1.jpg",
         "/static/catalog/real-electronics-keyboard-mouse-2.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "wireless",
         "keyboard",
@@ -10193,8 +10193,8 @@
         "/static/catalog/real-electronics-keyboard-mouse-2.jpg",
         "/static/catalog/photo-computer_accessories-1.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "wireless",
         "keyboard",
@@ -10258,8 +10258,8 @@
         "/static/catalog/photo-computer_accessories-1.jpg",
         "/static/catalog/real-electronics-keyboard-mouse-1.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "wireless",
         "keyboard",
@@ -10323,8 +10323,8 @@
         "/static/catalog/real-electronics-keyboard-mouse-1.jpg",
         "/static/catalog/real-electronics-keyboard-mouse-2.jpg"
       ],
-      "rating": 4.4,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "wireless",
         "keyboard",
@@ -10388,8 +10388,8 @@
         "/static/catalog/real-electronics-keyboard-mouse-2.jpg",
         "/static/catalog/photo-computer_accessories-1.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "wireless",
         "keyboard",
@@ -10453,8 +10453,8 @@
         "/static/catalog/photo-computer_accessories-1.jpg",
         "/static/catalog/real-electronics-keyboard-mouse-1.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 246,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "wireless",
         "keyboard",
@@ -10518,8 +10518,8 @@
         "/static/catalog/real-electronics-keyboard-mouse-1.jpg",
         "/static/catalog/real-electronics-keyboard-mouse-2.jpg"
       ],
-      "rating": 4,
-      "review_count": 283,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "wireless",
         "keyboard",
@@ -10583,8 +10583,8 @@
         "/static/catalog/real-electronics-keyboard-mouse-2.jpg",
         "/static/catalog/photo-computer_accessories-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 320,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "wireless",
         "keyboard",
@@ -10648,8 +10648,8 @@
         "/static/catalog/photo-computer_accessories-1.jpg",
         "/static/catalog/real-electronics-monitor-1.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "monitor",
         "lg",
@@ -10713,8 +10713,8 @@
         "/static/catalog/real-electronics-monitor-1.jpg",
         "/static/catalog/real-electronics-monitor-2.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "monitor",
         "samsung",
@@ -10778,8 +10778,8 @@
         "/static/catalog/real-electronics-monitor-2.jpg",
         "/static/catalog/photo-computer_accessories-1.jpg"
       ],
-      "rating": 4.4,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "monitor",
         "benq",
@@ -10843,8 +10843,8 @@
         "/static/catalog/photo-computer_accessories-1.jpg",
         "/static/catalog/real-electronics-monitor-1.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "monitor",
         "acer",
@@ -10908,8 +10908,8 @@
         "/static/catalog/real-electronics-monitor-1.jpg",
         "/static/catalog/real-electronics-monitor-2.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "monitor",
         "lg",
@@ -10973,8 +10973,8 @@
         "/static/catalog/real-electronics-monitor-2.jpg",
         "/static/catalog/photo-computer_accessories-1.jpg"
       ],
-      "rating": 4,
-      "review_count": 246,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "monitor",
         "samsung",
@@ -11038,8 +11038,8 @@
         "/static/catalog/photo-computer_accessories-1.jpg",
         "/static/catalog/real-electronics-monitor-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 283,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "monitor",
         "benq",
@@ -11103,8 +11103,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-iphone-charger.webp",
         "/static/catalog/dummy-mobile-accessories-apple-airpower-wireless-charger.webp"
       ],
-      "rating": 4.9,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -11169,8 +11169,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-airpower-wireless-charger.webp",
         "/static/catalog/dummy-mobile-accessories-apple-magsafe-battery-pack.webp"
       ],
-      "rating": 4.3,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -11235,8 +11235,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-magsafe-battery-pack.webp",
         "/static/catalog/dummy-mobile-accessories-apple-iphone-charger.webp"
       ],
-      "rating": 3.7,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -11302,7 +11302,7 @@
         "/static/catalog/dummy-mobile-accessories-apple-airpower-wireless-charger.webp"
       ],
       "rating": 4.5,
-      "review_count": 172,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -11367,8 +11367,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-airpower-wireless-charger.webp",
         "/static/catalog/dummy-mobile-accessories-apple-magsafe-battery-pack.webp"
       ],
-      "rating": 3.9,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -11433,8 +11433,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-magsafe-battery-pack.webp",
         "/static/catalog/dummy-mobile-accessories-apple-iphone-charger.webp"
       ],
-      "rating": 4.7,
-      "review_count": 246,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -11499,8 +11499,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-iphone-charger.webp",
         "/static/catalog/dummy-mobile-accessories-apple-airpower-wireless-charger.webp"
       ],
-      "rating": 4.1,
-      "review_count": 283,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -11565,8 +11565,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-airpower-wireless-charger.webp",
         "/static/catalog/dummy-mobile-accessories-apple-magsafe-battery-pack.webp"
       ],
-      "rating": 4.9,
-      "review_count": 320,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -11631,8 +11631,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-magsafe-battery-pack.webp",
         "/static/catalog/dummy-mobile-accessories-apple-iphone-charger.webp"
       ],
-      "rating": 4.3,
-      "review_count": 357,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -11697,8 +11697,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-iphone-charger.webp",
         "/static/catalog/dummy-mobile-accessories-apple-airpower-wireless-charger.webp"
       ],
-      "rating": 3.7,
-      "review_count": 394,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -11763,8 +11763,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-airpower-wireless-charger.webp",
         "/static/catalog/dummy-mobile-accessories-apple-magsafe-battery-pack.webp"
       ],
-      "rating": 4.5,
-      "review_count": 431,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -11829,8 +11829,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-magsafe-battery-pack.webp",
         "/static/catalog/dummy-mobile-accessories-apple-iphone-charger.webp"
       ],
-      "rating": 3.9,
-      "review_count": 468,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -11895,8 +11895,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-iphone-charger.webp",
         "/static/catalog/dummy-mobile-accessories-apple-airpower-wireless-charger.webp"
       ],
-      "rating": 4.7,
-      "review_count": 505,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -11961,8 +11961,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-airpower-wireless-charger.webp",
         "/static/catalog/dummy-mobile-accessories-apple-magsafe-battery-pack.webp"
       ],
-      "rating": 4.1,
-      "review_count": 542,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -12027,8 +12027,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-magsafe-battery-pack.webp",
         "/static/catalog/dummy-mobile-accessories-apple-iphone-charger.webp"
       ],
-      "rating": 4.9,
-      "review_count": 579,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -12093,8 +12093,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-iphone-charger.webp",
         "/static/catalog/dummy-mobile-accessories-apple-airpower-wireless-charger.webp"
       ],
-      "rating": 4.3,
-      "review_count": 616,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -12159,8 +12159,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-airpower-wireless-charger.webp",
         "/static/catalog/dummy-mobile-accessories-apple-magsafe-battery-pack.webp"
       ],
-      "rating": 3.7,
-      "review_count": 653,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -12226,7 +12226,7 @@
         "/static/catalog/dummy-mobile-accessories-apple-iphone-charger.webp"
       ],
       "rating": 4.5,
-      "review_count": 690,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -12291,8 +12291,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-iphone-charger.webp",
         "/static/catalog/dummy-mobile-accessories-apple-airpower-wireless-charger.webp"
       ],
-      "rating": 3.9,
-      "review_count": 727,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -12357,8 +12357,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-airpower-wireless-charger.webp",
         "/static/catalog/dummy-mobile-accessories-apple-magsafe-battery-pack.webp"
       ],
-      "rating": 4.7,
-      "review_count": 764,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -12423,8 +12423,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-magsafe-battery-pack.webp",
         "/static/catalog/dummy-mobile-accessories-apple-iphone-charger.webp"
       ],
-      "rating": 4.1,
-      "review_count": 801,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -12489,8 +12489,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-iphone-charger.webp",
         "/static/catalog/dummy-mobile-accessories-apple-airpower-wireless-charger.webp"
       ],
-      "rating": 4.9,
-      "review_count": 838,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -12555,8 +12555,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-airpower-wireless-charger.webp",
         "/static/catalog/dummy-mobile-accessories-apple-magsafe-battery-pack.webp"
       ],
-      "rating": 4.3,
-      "review_count": 875,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -12621,8 +12621,8 @@
         "/static/catalog/dummy-mobile-accessories-apple-magsafe-battery-pack.webp",
         "/static/catalog/dummy-mobile-accessories-apple-iphone-charger.webp"
       ],
-      "rating": 3.7,
-      "review_count": 912,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -12688,7 +12688,7 @@
         "/static/catalog/dummy-mobile-accessories-apple-airpower-wireless-charger.webp"
       ],
       "rating": 4.5,
-      "review_count": 949,
+      "review_count": 8,
       "tags": [
         "fast",
         "charger",
@@ -12754,8 +12754,8 @@
         "/static/catalog/dummy-mens-shirts-blue-black-check-shirt.webp",
         "/static/catalog/dummy-mens-shirts-man-plaid-shirt.webp"
       ],
-      "rating": 4.6,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "formal",
         "shirt",
@@ -12865,8 +12865,8 @@
         "/static/catalog/dummy-mens-shirts-man-plaid-shirt.webp",
         "/static/catalog/dummy-mens-shirts-man-short-sleeve-shirt.webp"
       ],
-      "rating": 4,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "formal",
         "shirt",
@@ -12976,8 +12976,8 @@
         "/static/catalog/dummy-mens-shirts-man-short-sleeve-shirt.webp",
         "/static/catalog/dummy-mens-shirts-men-check-shirt.webp"
       ],
-      "rating": 4.8,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "formal",
         "shirt",
@@ -13086,8 +13086,8 @@
         "/static/catalog/dummy-mens-shirts-men-check-shirt.webp",
         "/static/catalog/dummy-mens-shirts-blue-black-check-shirt.webp"
       ],
-      "rating": 4.2,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "formal",
         "shirt",
@@ -13197,8 +13197,8 @@
         "/static/catalog/dummy-mens-shirts-blue-black-check-shirt.webp",
         "/static/catalog/dummy-mens-shirts-man-plaid-shirt.webp"
       ],
-      "rating": 3.6,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "formal",
         "shirt",
@@ -13308,8 +13308,8 @@
         "/static/catalog/dummy-mens-shirts-man-plaid-shirt.webp",
         "/static/catalog/dummy-mens-shirts-man-short-sleeve-shirt.webp"
       ],
-      "rating": 3.7,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "casual",
         "shirt",
@@ -13419,7 +13419,7 @@
         "/static/catalog/dummy-mens-shirts-men-check-shirt.webp"
       ],
       "rating": 4.5,
-      "review_count": 98,
+      "review_count": 8,
       "tags": [
         "casual",
         "shirt",
@@ -13529,8 +13529,8 @@
         "/static/catalog/dummy-mens-shirts-men-check-shirt.webp",
         "/static/catalog/dummy-mens-shirts-blue-black-check-shirt.webp"
       ],
-      "rating": 3.9,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "casual",
         "shirt",
@@ -13639,8 +13639,8 @@
         "/static/catalog/dummy-mens-shirts-blue-black-check-shirt.webp",
         "/static/catalog/dummy-mens-shirts-man-plaid-shirt.webp"
       ],
-      "rating": 4.7,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "casual",
         "shirt",
@@ -13749,8 +13749,8 @@
         "/static/catalog/dummy-mens-shirts-man-plaid-shirt.webp",
         "/static/catalog/dummy-mens-shirts-man-short-sleeve-shirt.webp"
       ],
-      "rating": 4.1,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "casual",
         "shirt",
@@ -13859,8 +13859,8 @@
         "/static/catalog/dummy-mens-shirts-man-short-sleeve-shirt.webp",
         "/static/catalog/real-fashion-polo-1.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "polo",
         "shirt",
@@ -13969,8 +13969,8 @@
         "/static/catalog/real-fashion-polo-1.jpg",
         "/static/catalog/real-fashion-tshirt-1.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "polo",
         "shirt",
@@ -14079,7 +14079,7 @@
         "/static/catalog/dummy-mens-shirts-man-short-sleeve-shirt.webp"
       ],
       "rating": 4.4,
-      "review_count": 135,
+      "review_count": 8,
       "tags": [
         "polo",
         "shirt",
@@ -14187,8 +14187,8 @@
         "/static/catalog/dummy-mens-shirts-man-short-sleeve-shirt.webp",
         "/static/catalog/real-fashion-polo-1.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "polo",
         "shirt",
@@ -14297,8 +14297,8 @@
         "/static/catalog/real-fashion-polo-1.jpg",
         "/static/catalog/real-fashion-tshirt-1.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "polo",
         "shirt",
@@ -14406,8 +14406,8 @@
         "/static/catalog/real-fashion-tshirt-2.jpg",
         "/static/catalog/dummy-mens-shirts-gigabyte-aorus-men-tshirt.webp"
       ],
-      "rating": 4.7,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "cotton",
         "t-shirt",
@@ -14516,8 +14516,8 @@
         "/static/catalog/dummy-mens-shirts-gigabyte-aorus-men-tshirt.webp",
         "/static/catalog/real-fashion-tshirt-1.jpg"
       ],
-      "rating": 4.1,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "cotton",
         "t-shirt",
@@ -14627,8 +14627,8 @@
         "/static/catalog/real-fashion-tshirt-1.jpg",
         "/static/catalog/real-fashion-tshirt-2.jpg"
       ],
-      "rating": 4.9,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "cotton",
         "t-shirt",
@@ -14737,8 +14737,8 @@
         "/static/catalog/real-fashion-tshirt-2.jpg",
         "/static/catalog/dummy-mens-shirts-gigabyte-aorus-men-tshirt.webp"
       ],
-      "rating": 4.3,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "cotton",
         "t-shirt",
@@ -14847,8 +14847,8 @@
         "/static/catalog/dummy-mens-shirts-gigabyte-aorus-men-tshirt.webp",
         "/static/catalog/real-fashion-tshirt-1.jpg"
       ],
-      "rating": 3.7,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "cotton",
         "t-shirt",
@@ -14958,8 +14958,8 @@
         "/static/catalog/real-fashion-tshirt-1.jpg",
         "/static/catalog/real-fashion-tshirt-2.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "graphic",
         "t-shirt",
@@ -15068,8 +15068,8 @@
         "/static/catalog/real-fashion-tshirt-2.jpg",
         "/static/catalog/dummy-mens-shirts-gigabyte-aorus-men-tshirt.webp"
       ],
-      "rating": 4.6,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "graphic",
         "t-shirt",
@@ -15178,8 +15178,8 @@
         "/static/catalog/dummy-mens-shirts-gigabyte-aorus-men-tshirt.webp",
         "/static/catalog/real-fashion-tshirt-1.jpg"
       ],
-      "rating": 4,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "graphic",
         "t-shirt",
@@ -15288,8 +15288,8 @@
         "/static/catalog/real-fashion-tshirt-1.jpg",
         "/static/catalog/real-fashion-tshirt-2.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "graphic",
         "t-shirt",
@@ -15398,8 +15398,8 @@
         "/static/catalog/real-fashion-tshirt-2.jpg",
         "/static/catalog/dummy-mens-shirts-gigabyte-aorus-men-tshirt.webp"
       ],
-      "rating": 4.2,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "graphic",
         "t-shirt",
@@ -15508,8 +15508,8 @@
         "/static/catalog/dummy-mens-shirts-gigabyte-aorus-men-tshirt.webp",
         "/static/catalog/real-fashion-tshirt-1.jpg"
       ],
-      "rating": 4.3,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "oversized",
         "t-shirt",
@@ -15618,8 +15618,8 @@
         "/static/catalog/real-fashion-tshirt-1.jpg",
         "/static/catalog/real-fashion-tshirt-2.jpg"
       ],
-      "rating": 3.7,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "oversized",
         "t-shirt",
@@ -15730,7 +15730,7 @@
         "/static/catalog/dummy-mens-shirts-gigabyte-aorus-men-tshirt.webp"
       ],
       "rating": 4.5,
-      "review_count": 135,
+      "review_count": 8,
       "tags": [
         "oversized",
         "t-shirt",
@@ -15839,8 +15839,8 @@
         "/static/catalog/dummy-mens-shirts-gigabyte-aorus-men-tshirt.webp",
         "/static/catalog/real-fashion-tshirt-1.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "oversized",
         "t-shirt",
@@ -15949,8 +15949,8 @@
         "/static/catalog/real-fashion-tshirt-1.jpg",
         "/static/catalog/real-fashion-tshirt-2.jpg"
       ],
-      "rating": 4.7,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "oversized",
         "t-shirt",
@@ -16058,8 +16058,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "slim",
         "fit",
@@ -16168,8 +16168,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "slim",
         "fit",
@@ -16278,8 +16278,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "slim",
         "fit",
@@ -16390,7 +16390,7 @@
         "/static/catalog/photo-pants-1.jpg"
       ],
       "rating": 4.4,
-      "review_count": 172,
+      "review_count": 8,
       "tags": [
         "slim",
         "fit",
@@ -16499,8 +16499,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "slim",
         "fit",
@@ -16609,8 +16609,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "cargo",
         "trousers",
@@ -16716,8 +16716,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 4.7,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "cargo",
         "trousers",
@@ -16823,8 +16823,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 4.1,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "cargo",
         "trousers",
@@ -16931,8 +16931,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 4.9,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "cargo",
         "trousers",
@@ -17038,8 +17038,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 4.3,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "cargo",
         "trousers",
@@ -17145,8 +17145,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 4.4,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "chinos",
         "nova",
@@ -17252,8 +17252,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "chinos",
         "dockers",
@@ -17359,8 +17359,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "chinos",
         "arrow",
@@ -17466,8 +17466,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 4,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "chinos",
         "nova",
@@ -17573,8 +17573,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "chinos",
         "dockers",
@@ -17680,8 +17680,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 4.9,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "kurta",
         "manyavar",
@@ -17784,8 +17784,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 4.3,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "kurta",
         "nova",
@@ -17888,8 +17888,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 3.7,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "kurta",
         "fabindia",
@@ -17992,8 +17992,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 4.5,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "kurta",
         "manyavar",
@@ -18096,8 +18096,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "kurta",
         "nova",
@@ -18200,8 +18200,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 4,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "sherwani",
         "manyavar",
@@ -18273,8 +18273,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "sherwani",
         "nova",
@@ -18346,8 +18346,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "sherwani",
         "manyavar",
@@ -18419,8 +18419,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "sherwani",
         "nova",
@@ -18492,8 +18492,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 4.4,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "sherwani",
         "manyavar",
@@ -18568,7 +18568,7 @@
         "/static/catalog/dummy-mens-shoes-sports-sneakers-off-white-red.webp"
       ],
       "rating": 4.5,
-      "review_count": 61,
+      "review_count": 8,
       "tags": [
         "sneakers",
         "nike",
@@ -18672,8 +18672,8 @@
         "/static/catalog/dummy-mens-shoes-sports-sneakers-off-white-red.webp",
         "/static/catalog/dummy-mens-shoes-puma-future-rider-trainers.webp"
       ],
-      "rating": 3.9,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "sneakers",
         "adidas",
@@ -18777,8 +18777,8 @@
         "/static/catalog/dummy-mens-shoes-puma-future-rider-trainers.webp",
         "/static/catalog/dummy-mens-shoes-nike-air-jordan-1-red-and-black.webp"
       ],
-      "rating": 4.7,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "sneakers",
         "puma",
@@ -18882,8 +18882,8 @@
         "/static/catalog/dummy-mens-shoes-nike-air-jordan-1-red-and-black.webp",
         "/static/catalog/dummy-mens-shoes-sports-sneakers-off-white-red.webp"
       ],
-      "rating": 4.1,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "sneakers",
         "nova",
@@ -18987,8 +18987,8 @@
         "/static/catalog/dummy-mens-shoes-sports-sneakers-off-white-red.webp",
         "/static/catalog/dummy-mens-shoes-puma-future-rider-trainers.webp"
       ],
-      "rating": 4.9,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "sneakers",
         "nike",
@@ -19091,8 +19091,8 @@
         "/static/catalog/real-fashion-formal-shoes-1.jpg",
         "/static/catalog/real-fashion-formal-shoes-2.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "formal",
         "shoes",
@@ -19198,7 +19198,7 @@
         "/static/catalog/real-fashion-formal-shoes-1.jpg"
       ],
       "rating": 4.4,
-      "review_count": 98,
+      "review_count": 8,
       "tags": [
         "formal",
         "shoes",
@@ -19304,8 +19304,8 @@
         "/static/catalog/real-fashion-formal-shoes-1.jpg",
         "/static/catalog/real-fashion-formal-shoes-2.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "formal",
         "shoes",
@@ -19410,8 +19410,8 @@
         "/static/catalog/real-fashion-formal-shoes-2.jpg",
         "/static/catalog/real-fashion-formal-shoes-1.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "formal",
         "shoes",
@@ -19516,8 +19516,8 @@
         "/static/catalog/real-fashion-formal-shoes-1.jpg",
         "/static/catalog/real-fashion-formal-shoes-2.jpg"
       ],
-      "rating": 4,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "formal",
         "shoes",
@@ -19624,8 +19624,8 @@
         "/static/catalog/real-fashion-sandals-1.jpg",
         "/static/catalog/real-fashion-sandals-2.jpg"
       ],
-      "rating": 4.1,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "sandals",
         "bata",
@@ -19729,8 +19729,8 @@
         "/static/catalog/real-fashion-sandals-2.jpg",
         "/static/catalog/dummy-womens-shoes-black-brown-slipper.webp"
       ],
-      "rating": 4.9,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "sandals",
         "crocs",
@@ -19834,8 +19834,8 @@
         "/static/catalog/dummy-womens-shoes-black-brown-slipper.webp",
         "/static/catalog/real-fashion-sandals-1.jpg"
       ],
-      "rating": 4.3,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "sandals",
         "nova",
@@ -19939,8 +19939,8 @@
         "/static/catalog/real-fashion-sandals-1.jpg",
         "/static/catalog/real-fashion-sandals-2.jpg"
       ],
-      "rating": 3.7,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "sandals",
         "bata",
@@ -20044,8 +20044,8 @@
         "/static/catalog/real-fashion-sandals-2.jpg",
         "/static/catalog/dummy-womens-shoes-black-brown-slipper.webp"
       ],
-      "rating": 4.5,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "sandals",
         "crocs",
@@ -20148,8 +20148,8 @@
         "/static/catalog/real-fashion-belt-1.jpg",
         "/static/catalog/real-fashion-belt-2.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "belt",
         "nova",
@@ -20222,8 +20222,8 @@
         "/static/catalog/real-fashion-belt-2.jpg",
         "/static/catalog/real-fashion-belt-1.jpg"
       ],
-      "rating": 4,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "belt",
         "hidesign",
@@ -20296,8 +20296,8 @@
         "/static/catalog/real-fashion-belt-1.jpg",
         "/static/catalog/real-fashion-belt-2.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "belt",
         "bata",
@@ -20370,8 +20370,8 @@
         "/static/catalog/real-fashion-wallet-2.jpg",
         "/static/catalog/real-fashion-wallet-1.jpg"
       ],
-      "rating": 4.9,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "wallet",
         "nova",
@@ -20444,8 +20444,8 @@
         "/static/catalog/real-fashion-wallet-1.jpg",
         "/static/catalog/real-fashion-wallet-2.jpg"
       ],
-      "rating": 4.3,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "wallet",
         "wildhorn",
@@ -20518,8 +20518,8 @@
         "/static/catalog/real-fashion-wallet-2.jpg",
         "/static/catalog/real-fashion-wallet-1.jpg"
       ],
-      "rating": 3.7,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "wallet",
         "hidesign",
@@ -20592,8 +20592,8 @@
         "/static/catalog/real-fashion-wallet-1.jpg",
         "/static/catalog/real-fashion-wallet-2.jpg"
       ],
-      "rating": 4.5,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "wallet",
         "nova",
@@ -20666,8 +20666,8 @@
         "/static/catalog/real-fashion-cap-2.jpg",
         "/static/catalog/real-fashion-cap-1.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "cap",
         "nova",
@@ -20740,8 +20740,8 @@
         "/static/catalog/real-fashion-cap-1.jpg",
         "/static/catalog/real-fashion-cap-2.jpg"
       ],
-      "rating": 4.7,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "cap",
         "nike",
@@ -20814,8 +20814,8 @@
         "/static/catalog/real-fashion-cap-2.jpg",
         "/static/catalog/real-fashion-cap-1.jpg"
       ],
-      "rating": 4.1,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "cap",
         "adidas",
@@ -20890,8 +20890,8 @@
         "/static/catalog/dummy-tops-gray-dress.webp",
         "/static/catalog/dummy-tops-short-frock.webp"
       ],
-      "rating": 4.2,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "top",
         "nova",
@@ -20997,8 +20997,8 @@
         "/static/catalog/dummy-tops-short-frock.webp",
         "/static/catalog/dummy-tops-tartan-dress.webp"
       ],
-      "rating": 3.6,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "top",
         "zara",
@@ -21105,7 +21105,7 @@
         "/static/catalog/dummy-tops-blue-frock.webp"
       ],
       "rating": 4.4,
-      "review_count": 135,
+      "review_count": 8,
       "tags": [
         "top",
         "h&m",
@@ -21212,8 +21212,8 @@
         "/static/catalog/dummy-tops-blue-frock.webp",
         "/static/catalog/dummy-tops-girl-summer-dress.webp"
       ],
-      "rating": 3.8,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "top",
         "biba",
@@ -21319,8 +21319,8 @@
         "/static/catalog/dummy-tops-girl-summer-dress.webp",
         "/static/catalog/dummy-tops-gray-dress.webp"
       ],
-      "rating": 4.6,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "top",
         "nova",
@@ -21426,8 +21426,8 @@
         "/static/catalog/dummy-tops-gray-dress.webp",
         "/static/catalog/dummy-tops-short-frock.webp"
       ],
-      "rating": 4,
-      "review_count": 246,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "top",
         "zara",
@@ -21533,8 +21533,8 @@
         "/static/catalog/dummy-tops-short-frock.webp",
         "/static/catalog/dummy-tops-tartan-dress.webp"
       ],
-      "rating": 4.8,
-      "review_count": 283,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "top",
         "h&m",
@@ -21641,8 +21641,8 @@
         "/static/catalog/dummy-tops-tartan-dress.webp",
         "/static/catalog/dummy-tops-blue-frock.webp"
       ],
-      "rating": 4.2,
-      "review_count": 320,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "top",
         "biba",
@@ -21748,8 +21748,8 @@
         "/static/catalog/dummy-tops-blue-frock.webp",
         "/static/catalog/dummy-tops-girl-summer-dress.webp"
       ],
-      "rating": 3.6,
-      "review_count": 357,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "top",
         "nova",
@@ -21856,7 +21856,7 @@
         "/static/catalog/dummy-tops-gray-dress.webp"
       ],
       "rating": 4.4,
-      "review_count": 394,
+      "review_count": 8,
       "tags": [
         "top",
         "zara",
@@ -21962,8 +21962,8 @@
         "/static/catalog/dummy-tops-gray-dress.webp",
         "/static/catalog/dummy-tops-short-frock.webp"
       ],
-      "rating": 3.8,
-      "review_count": 431,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "top",
         "h&m",
@@ -22070,8 +22070,8 @@
         "/static/catalog/dummy-tops-short-frock.webp",
         "/static/catalog/dummy-tops-tartan-dress.webp"
       ],
-      "rating": 4.6,
-      "review_count": 468,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "top",
         "biba",
@@ -22177,8 +22177,8 @@
         "/static/catalog/dummy-tops-tartan-dress.webp",
         "/static/catalog/dummy-tops-blue-frock.webp"
       ],
-      "rating": 4,
-      "review_count": 505,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "top",
         "nova",
@@ -22284,8 +22284,8 @@
         "/static/catalog/dummy-tops-blue-frock.webp",
         "/static/catalog/dummy-tops-girl-summer-dress.webp"
       ],
-      "rating": 4.8,
-      "review_count": 542,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "top",
         "zara",
@@ -22391,8 +22391,8 @@
         "/static/catalog/dummy-tops-girl-summer-dress.webp",
         "/static/catalog/dummy-tops-gray-dress.webp"
       ],
-      "rating": 4.2,
-      "review_count": 579,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "top",
         "h&m",
@@ -22499,8 +22499,8 @@
         "/static/catalog/dummy-womens-dresses-corset-with-black-skirt.webp",
         "/static/catalog/dummy-womens-dresses-dress-pea.webp"
       ],
-      "rating": 4.3,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "dress",
         "nova",
@@ -22605,8 +22605,8 @@
         "/static/catalog/dummy-womens-dresses-dress-pea.webp",
         "/static/catalog/dummy-womens-dresses-marni-red-black-suit.webp"
       ],
-      "rating": 3.7,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "dress",
         "zara",
@@ -22712,7 +22712,7 @@
         "/static/catalog/dummy-womens-dresses-black-women-s-gown.webp"
       ],
       "rating": 4.5,
-      "review_count": 135,
+      "review_count": 8,
       "tags": [
         "dress",
         "vero moda",
@@ -22818,8 +22818,8 @@
         "/static/catalog/dummy-womens-dresses-black-women-s-gown.webp",
         "/static/catalog/dummy-womens-dresses-corset-leather-with-skirt.webp"
       ],
-      "rating": 3.9,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "dress",
         "nova",
@@ -22924,8 +22924,8 @@
         "/static/catalog/dummy-womens-dresses-corset-leather-with-skirt.webp",
         "/static/catalog/dummy-womens-dresses-corset-with-black-skirt.webp"
       ],
-      "rating": 4.7,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "dress",
         "zara",
@@ -23030,8 +23030,8 @@
         "/static/catalog/dummy-womens-dresses-corset-with-black-skirt.webp",
         "/static/catalog/dummy-womens-dresses-dress-pea.webp"
       ],
-      "rating": 4.1,
-      "review_count": 246,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "dress",
         "vero moda",
@@ -23137,8 +23137,8 @@
         "/static/catalog/dummy-womens-dresses-dress-pea.webp",
         "/static/catalog/dummy-womens-dresses-marni-red-black-suit.webp"
       ],
-      "rating": 4.9,
-      "review_count": 283,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "dress",
         "nova",
@@ -23243,8 +23243,8 @@
         "/static/catalog/dummy-womens-dresses-marni-red-black-suit.webp",
         "/static/catalog/dummy-womens-dresses-black-women-s-gown.webp"
       ],
-      "rating": 4.3,
-      "review_count": 320,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "dress",
         "zara",
@@ -23349,8 +23349,8 @@
         "/static/catalog/dummy-womens-dresses-black-women-s-gown.webp",
         "/static/catalog/dummy-womens-dresses-corset-leather-with-skirt.webp"
       ],
-      "rating": 3.7,
-      "review_count": 357,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "dress",
         "vero moda",
@@ -23456,8 +23456,8 @@
         "/static/catalog/dummy-womens-dresses-corset-leather-with-skirt.webp",
         "/static/catalog/dummy-womens-dresses-corset-with-black-skirt.webp"
       ],
-      "rating": 4.5,
-      "review_count": 394,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "dress",
         "nova",
@@ -23562,8 +23562,8 @@
         "/static/catalog/dummy-womens-dresses-corset-with-black-skirt.webp",
         "/static/catalog/dummy-womens-dresses-dress-pea.webp"
       ],
-      "rating": 3.9,
-      "review_count": 431,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "dress",
         "zara",
@@ -23668,8 +23668,8 @@
         "/static/catalog/dummy-womens-dresses-dress-pea.webp",
         "/static/catalog/dummy-womens-dresses-marni-red-black-suit.webp"
       ],
-      "rating": 4.7,
-      "review_count": 468,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "dress",
         "vero moda",
@@ -23775,8 +23775,8 @@
         "/static/catalog/dummy-womens-dresses-marni-red-black-suit.webp",
         "/static/catalog/dummy-womens-dresses-black-women-s-gown.webp"
       ],
-      "rating": 4.1,
-      "review_count": 505,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "dress",
         "nova",
@@ -23881,8 +23881,8 @@
         "/static/catalog/dummy-womens-dresses-black-women-s-gown.webp",
         "/static/catalog/dummy-womens-dresses-corset-leather-with-skirt.webp"
       ],
-      "rating": 4.9,
-      "review_count": 542,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "dress",
         "zara",
@@ -23987,8 +23987,8 @@
         "/static/catalog/dummy-womens-dresses-corset-leather-with-skirt.webp",
         "/static/catalog/dummy-womens-dresses-corset-with-black-skirt.webp"
       ],
-      "rating": 4.3,
-      "review_count": 579,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "dress",
         "vero moda",
@@ -24092,7 +24092,7 @@
         "/static/catalog/photo-ethnic-1.jpg"
       ],
       "rating": 4.4,
-      "review_count": 61,
+      "review_count": 8,
       "tags": [
         "saree",
         "biba",
@@ -24168,8 +24168,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "saree",
         "nova",
@@ -24245,8 +24245,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "saree",
         "fabindia",
@@ -24322,8 +24322,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 4,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "saree",
         "biba",
@@ -24399,8 +24399,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "saree",
         "nova",
@@ -24476,8 +24476,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 4.9,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "kurti",
         "biba",
@@ -24553,8 +24553,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 4.3,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "kurti",
         "aurelia",
@@ -24630,8 +24630,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 3.7,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "kurti",
         "nova",
@@ -24707,8 +24707,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 4.5,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "kurti",
         "biba",
@@ -24784,8 +24784,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "kurti",
         "aurelia",
@@ -24861,8 +24861,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 4,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "lehenga",
         "nova",
@@ -24934,8 +24934,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "lehenga",
         "manyavar",
@@ -25007,8 +25007,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "lehenga",
         "biba",
@@ -25080,8 +25080,8 @@
       "images": [
         "/static/catalog/photo-ethnic-1.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "lehenga",
         "nova",
@@ -25154,7 +25154,7 @@
         "/static/catalog/photo-ethnic-1.jpg"
       ],
       "rating": 4.4,
-      "review_count": 209,
+      "review_count": 8,
       "tags": [
         "lehenga",
         "manyavar",
@@ -25227,7 +25227,7 @@
         "/static/catalog/photo-pants-1.jpg"
       ],
       "rating": 4.5,
-      "review_count": 61,
+      "review_count": 8,
       "tags": [
         "jeans",
         "levis",
@@ -25334,8 +25334,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "jeans",
         "only",
@@ -25442,8 +25442,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 4.7,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "jeans",
         "nova",
@@ -25550,8 +25550,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 4.1,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "jeans",
         "levis",
@@ -25658,8 +25658,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 4.9,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "jeans",
         "only",
@@ -25766,8 +25766,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 4.3,
-      "review_count": 246,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "jeans",
         "nova",
@@ -25874,8 +25874,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 3.7,
-      "review_count": 283,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "jeans",
         "levis",
@@ -25982,8 +25982,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 4.5,
-      "review_count": 320,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "jeans",
         "only",
@@ -26090,8 +26090,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 357,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "jeans",
         "nova",
@@ -26198,8 +26198,8 @@
       "images": [
         "/static/catalog/photo-pants-1.jpg"
       ],
-      "rating": 4.7,
-      "review_count": 394,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "jeans",
         "levis",
@@ -26308,8 +26308,8 @@
         "/static/catalog/dummy-womens-shoes-red-shoes.webp",
         "/static/catalog/dummy-womens-shoes-golden-shoes-woman.webp"
       ],
-      "rating": 4.1,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "heels",
         "nova",
@@ -26413,8 +26413,8 @@
         "/static/catalog/dummy-womens-shoes-golden-shoes-woman.webp",
         "/static/catalog/dummy-womens-shoes-calvin-klein-heel-shoes.webp"
       ],
-      "rating": 4.9,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "heels",
         "catwalk",
@@ -26518,8 +26518,8 @@
         "/static/catalog/dummy-womens-shoes-calvin-klein-heel-shoes.webp",
         "/static/catalog/dummy-womens-shoes-red-shoes.webp"
       ],
-      "rating": 4.3,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "heels",
         "metro",
@@ -26623,8 +26623,8 @@
         "/static/catalog/dummy-womens-shoes-red-shoes.webp",
         "/static/catalog/dummy-womens-shoes-golden-shoes-woman.webp"
       ],
-      "rating": 3.7,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "heels",
         "nova",
@@ -26728,8 +26728,8 @@
         "/static/catalog/dummy-womens-shoes-golden-shoes-woman.webp",
         "/static/catalog/dummy-womens-shoes-calvin-klein-heel-shoes.webp"
       ],
-      "rating": 4.5,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "heels",
         "catwalk",
@@ -26833,8 +26833,8 @@
         "/static/catalog/dummy-womens-shoes-black-brown-slipper.webp",
         "/static/catalog/dummy-womens-shoes-pampi-shoes.webp"
       ],
-      "rating": 4.6,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "flats",
         "nova",
@@ -26938,8 +26938,8 @@
         "/static/catalog/dummy-womens-shoes-pampi-shoes.webp",
         "/static/catalog/dummy-womens-shoes-golden-shoes-woman.webp"
       ],
-      "rating": 4,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "flats",
         "bata",
@@ -27043,8 +27043,8 @@
         "/static/catalog/dummy-womens-shoes-golden-shoes-woman.webp",
         "/static/catalog/dummy-womens-shoes-black-brown-slipper.webp"
       ],
-      "rating": 4.8,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "flats",
         "metro",
@@ -27148,8 +27148,8 @@
         "/static/catalog/dummy-womens-shoes-black-brown-slipper.webp",
         "/static/catalog/dummy-womens-shoes-pampi-shoes.webp"
       ],
-      "rating": 4.2,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "flats",
         "nova",
@@ -27253,8 +27253,8 @@
         "/static/catalog/dummy-womens-shoes-pampi-shoes.webp",
         "/static/catalog/dummy-womens-shoes-golden-shoes-woman.webp"
       ],
-      "rating": 3.6,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "flats",
         "bata",
@@ -27356,8 +27356,8 @@
       "images": [
         "/static/catalog/real-fashion-women-sneakers-1.jpg"
       ],
-      "rating": 3.7,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "sneakers",
         "nike",
@@ -27459,8 +27459,8 @@
       "images": [
         "/static/catalog/real-fashion-women-sneakers-1.jpg"
       ],
-      "rating": 4.5,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "sneakers",
         "adidas",
@@ -27562,8 +27562,8 @@
       "images": [
         "/static/catalog/real-fashion-women-sneakers-1.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "sneakers",
         "puma",
@@ -27665,8 +27665,8 @@
       "images": [
         "/static/catalog/real-fashion-women-sneakers-1.jpg"
       ],
-      "rating": 4.7,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "sneakers",
         "nova",
@@ -27768,8 +27768,8 @@
       "images": [
         "/static/catalog/real-fashion-women-sneakers-1.jpg"
       ],
-      "rating": 4.1,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "sneakers",
         "nike",
@@ -27874,8 +27874,8 @@
         "/static/catalog/dummy-womens-bags-prada-women-bag.webp",
         "/static/catalog/dummy-womens-bags-white-faux-leather-backpack.webp"
       ],
-      "rating": 4.2,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "handbag",
         "nova",
@@ -27950,8 +27950,8 @@
         "/static/catalog/dummy-womens-bags-white-faux-leather-backpack.webp",
         "/static/catalog/dummy-womens-bags-women-handbag-black.webp"
       ],
-      "rating": 3.6,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "handbag",
         "lavie",
@@ -28027,7 +28027,7 @@
         "/static/catalog/dummy-womens-bags-blue-women-s-handbag.webp"
       ],
       "rating": 4.4,
-      "review_count": 135,
+      "review_count": 8,
       "tags": [
         "handbag",
         "caprese",
@@ -28102,8 +28102,8 @@
         "/static/catalog/dummy-womens-bags-blue-women-s-handbag.webp",
         "/static/catalog/dummy-womens-bags-heshe-women-s-leather-bag.webp"
       ],
-      "rating": 3.8,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "handbag",
         "nova",
@@ -28178,8 +28178,8 @@
         "/static/catalog/dummy-womens-bags-heshe-women-s-leather-bag.webp",
         "/static/catalog/dummy-womens-bags-prada-women-bag.webp"
       ],
-      "rating": 4.6,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "handbag",
         "lavie",
@@ -28254,8 +28254,8 @@
         "/static/catalog/dummy-womens-bags-prada-women-bag.webp",
         "/static/catalog/dummy-womens-bags-white-faux-leather-backpack.webp"
       ],
-      "rating": 4,
-      "review_count": 246,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "handbag",
         "caprese",
@@ -28330,8 +28330,8 @@
         "/static/catalog/dummy-womens-bags-white-faux-leather-backpack.webp",
         "/static/catalog/dummy-womens-bags-women-handbag-black.webp"
       ],
-      "rating": 4.8,
-      "review_count": 283,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "handbag",
         "nova",
@@ -28406,8 +28406,8 @@
         "/static/catalog/dummy-womens-bags-women-handbag-black.webp",
         "/static/catalog/dummy-womens-bags-blue-women-s-handbag.webp"
       ],
-      "rating": 4.2,
-      "review_count": 320,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "handbag",
         "lavie",
@@ -28482,8 +28482,8 @@
         "/static/catalog/dummy-womens-bags-blue-women-s-handbag.webp",
         "/static/catalog/dummy-womens-bags-heshe-women-s-leather-bag.webp"
       ],
-      "rating": 3.6,
-      "review_count": 357,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "handbag",
         "caprese",
@@ -28559,7 +28559,7 @@
         "/static/catalog/dummy-womens-bags-prada-women-bag.webp"
       ],
       "rating": 4.4,
-      "review_count": 394,
+      "review_count": 8,
       "tags": [
         "handbag",
         "nova",
@@ -28633,8 +28633,8 @@
         "/static/catalog/dummy-kitchen-accessories-silver-pot-with-glass-cap.webp",
         "/static/catalog/dummy-kitchen-accessories-pan.webp"
       ],
-      "rating": 3.8,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "non-stick",
         "non",
@@ -28700,8 +28700,8 @@
         "/static/catalog/dummy-kitchen-accessories-pan.webp",
         "/static/catalog/dummy-kitchen-accessories-carbon-steel-wok.webp"
       ],
-      "rating": 4.6,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "non-stick",
         "non",
@@ -28767,8 +28767,8 @@
         "/static/catalog/dummy-kitchen-accessories-carbon-steel-wok.webp",
         "/static/catalog/dummy-kitchen-accessories-silver-pot-with-glass-cap.webp"
       ],
-      "rating": 4,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "non-stick",
         "non",
@@ -28834,8 +28834,8 @@
         "/static/catalog/dummy-kitchen-accessories-silver-pot-with-glass-cap.webp",
         "/static/catalog/dummy-kitchen-accessories-pan.webp"
       ],
-      "rating": 4.8,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "non-stick",
         "non",
@@ -28901,8 +28901,8 @@
         "/static/catalog/dummy-kitchen-accessories-pan.webp",
         "/static/catalog/dummy-kitchen-accessories-carbon-steel-wok.webp"
       ],
-      "rating": 4.2,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "non-stick",
         "non",
@@ -28968,8 +28968,8 @@
         "/static/catalog/dummy-kitchen-accessories-silver-pot-with-glass-cap.webp",
         "/static/catalog/dummy-kitchen-accessories-carbon-steel-wok.webp"
       ],
-      "rating": 4.3,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "pressure",
         "cooker",
@@ -29038,8 +29038,8 @@
         "/static/catalog/dummy-kitchen-accessories-carbon-steel-wok.webp",
         "/static/catalog/real-home-pressure-cooker-1.jpg"
       ],
-      "rating": 3.7,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "pressure",
         "cooker",
@@ -29109,7 +29109,7 @@
         "/static/catalog/dummy-kitchen-accessories-silver-pot-with-glass-cap.webp"
       ],
       "rating": 4.5,
-      "review_count": 135,
+      "review_count": 8,
       "tags": [
         "pressure",
         "cooker",
@@ -29178,8 +29178,8 @@
         "/static/catalog/dummy-kitchen-accessories-silver-pot-with-glass-cap.webp",
         "/static/catalog/dummy-kitchen-accessories-carbon-steel-wok.webp"
       ],
-      "rating": 3.9,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "pressure",
         "cooker",
@@ -29248,8 +29248,8 @@
         "/static/catalog/dummy-kitchen-accessories-carbon-steel-wok.webp",
         "/static/catalog/real-home-pressure-cooker-1.jpg"
       ],
-      "rating": 4.7,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "pressure",
         "cooker",
@@ -29318,8 +29318,8 @@
         "/static/catalog/dummy-kitchen-accessories-pan.webp",
         "/static/catalog/dummy-kitchen-accessories-carbon-steel-wok.webp"
       ],
-      "rating": 4.8,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "kadai",
         "prestige",
@@ -29383,8 +29383,8 @@
         "/static/catalog/dummy-kitchen-accessories-carbon-steel-wok.webp",
         "/static/catalog/dummy-kitchen-accessories-silver-pot-with-glass-cap.webp"
       ],
-      "rating": 4.2,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "kadai",
         "nova",
@@ -29448,8 +29448,8 @@
         "/static/catalog/dummy-kitchen-accessories-silver-pot-with-glass-cap.webp",
         "/static/catalog/dummy-kitchen-accessories-pan.webp"
       ],
-      "rating": 3.6,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "kadai",
         "pigeon",
@@ -29514,7 +29514,7 @@
         "/static/catalog/dummy-kitchen-accessories-carbon-steel-wok.webp"
       ],
       "rating": 4.4,
-      "review_count": 172,
+      "review_count": 8,
       "tags": [
         "kadai",
         "prestige",
@@ -29578,8 +29578,8 @@
         "/static/catalog/dummy-kitchen-accessories-carbon-steel-wok.webp",
         "/static/catalog/dummy-kitchen-accessories-silver-pot-with-glass-cap.webp"
       ],
-      "rating": 3.8,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "kadai",
         "nova",
@@ -29641,8 +29641,8 @@
       "images": [
         "/static/catalog/real-home-air-fryer-1.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "air",
         "fryer",
@@ -29710,8 +29710,8 @@
       "images": [
         "/static/catalog/real-home-air-fryer-1.jpg"
       ],
-      "rating": 4.7,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "air",
         "fryer",
@@ -29779,8 +29779,8 @@
       "images": [
         "/static/catalog/real-home-air-fryer-1.jpg"
       ],
-      "rating": 4.1,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "air",
         "fryer",
@@ -29848,8 +29848,8 @@
       "images": [
         "/static/catalog/real-home-air-fryer-1.jpg"
       ],
-      "rating": 4.9,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "air",
         "fryer",
@@ -29917,8 +29917,8 @@
       "images": [
         "/static/catalog/real-home-air-fryer-1.jpg"
       ],
-      "rating": 4.3,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "air",
         "fryer",
@@ -29988,8 +29988,8 @@
         "/static/catalog/dummy-kitchen-accessories-hand-blender.webp",
         "/static/catalog/dummy-kitchen-accessories-boxed-blender.webp"
       ],
-      "rating": 4.4,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "mixer",
         "grinder",
@@ -30054,8 +30054,8 @@
         "/static/catalog/dummy-kitchen-accessories-boxed-blender.webp",
         "/static/catalog/real-home-mixer-grinder-1.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "mixer",
         "grinder",
@@ -30120,8 +30120,8 @@
         "/static/catalog/real-home-mixer-grinder-1.jpg",
         "/static/catalog/dummy-kitchen-accessories-hand-blender.webp"
       ],
-      "rating": 4.6,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "mixer",
         "grinder",
@@ -30186,8 +30186,8 @@
         "/static/catalog/dummy-kitchen-accessories-hand-blender.webp",
         "/static/catalog/dummy-kitchen-accessories-boxed-blender.webp"
       ],
-      "rating": 4,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "mixer",
         "grinder",
@@ -30252,8 +30252,8 @@
         "/static/catalog/dummy-kitchen-accessories-boxed-blender.webp",
         "/static/catalog/real-home-mixer-grinder-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "mixer",
         "grinder",
@@ -30316,8 +30316,8 @@
       "images": [
         "/static/catalog/dummy-kitchen-accessories-electric-stove.webp"
       ],
-      "rating": 4.9,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "induction",
         "cooktop",
@@ -30379,8 +30379,8 @@
       "images": [
         "/static/catalog/dummy-kitchen-accessories-electric-stove.webp"
       ],
-      "rating": 4.3,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "induction",
         "cooktop",
@@ -30442,8 +30442,8 @@
       "images": [
         "/static/catalog/dummy-kitchen-accessories-electric-stove.webp"
       ],
-      "rating": 3.7,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "induction",
         "cooktop",
@@ -30506,7 +30506,7 @@
         "/static/catalog/dummy-kitchen-accessories-electric-stove.webp"
       ],
       "rating": 4.5,
-      "review_count": 172,
+      "review_count": 8,
       "tags": [
         "induction",
         "cooktop",
@@ -30568,8 +30568,8 @@
       "images": [
         "/static/catalog/dummy-kitchen-accessories-electric-stove.webp"
       ],
-      "rating": 3.9,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "induction",
         "cooktop",
@@ -30631,8 +30631,8 @@
       "images": [
         "/static/catalog/real-home-toaster-1.jpg"
       ],
-      "rating": 4,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "toaster",
         "philips",
@@ -30693,8 +30693,8 @@
       "images": [
         "/static/catalog/real-home-toaster-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "toaster",
         "bajaj",
@@ -30755,8 +30755,8 @@
       "images": [
         "/static/catalog/real-home-toaster-1.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "toaster",
         "nova",
@@ -30817,8 +30817,8 @@
       "images": [
         "/static/catalog/real-home-toaster-1.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "toaster",
         "philips",
@@ -30880,7 +30880,7 @@
         "/static/catalog/real-home-toaster-1.jpg"
       ],
       "rating": 4.4,
-      "review_count": 209,
+      "review_count": 8,
       "tags": [
         "toaster",
         "bajaj",
@@ -30943,8 +30943,8 @@
         "/static/catalog/dummy-kitchen-accessories-spice-rack.webp",
         "/static/catalog/dummy-kitchen-accessories-lunch-box.webp"
       ],
-      "rating": 4.5,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "storage",
         "box",
@@ -31009,8 +31009,8 @@
         "/static/catalog/dummy-kitchen-accessories-lunch-box.webp",
         "/static/catalog/real-home-storage-box-1.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "storage",
         "box",
@@ -31075,8 +31075,8 @@
         "/static/catalog/real-home-storage-box-1.jpg",
         "/static/catalog/dummy-kitchen-accessories-spice-rack.webp"
       ],
-      "rating": 4.7,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "storage",
         "box",
@@ -31141,8 +31141,8 @@
         "/static/catalog/dummy-kitchen-accessories-spice-rack.webp",
         "/static/catalog/dummy-kitchen-accessories-lunch-box.webp"
       ],
-      "rating": 4.1,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "storage",
         "box",
@@ -31207,8 +31207,8 @@
         "/static/catalog/dummy-kitchen-accessories-lunch-box.webp",
         "/static/catalog/real-home-storage-box-1.jpg"
       ],
-      "rating": 4.9,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "storage",
         "box",
@@ -31273,8 +31273,8 @@
         "/static/catalog/real-home-storage-box-1.jpg",
         "/static/catalog/dummy-kitchen-accessories-spice-rack.webp"
       ],
-      "rating": 4.3,
-      "review_count": 246,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "storage",
         "box",
@@ -31339,8 +31339,8 @@
         "/static/catalog/dummy-kitchen-accessories-spice-rack.webp",
         "/static/catalog/dummy-kitchen-accessories-lunch-box.webp"
       ],
-      "rating": 3.7,
-      "review_count": 283,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "storage",
         "box",
@@ -31405,8 +31405,8 @@
         "/static/catalog/dummy-kitchen-accessories-lunch-box.webp",
         "/static/catalog/real-home-storage-box-1.jpg"
       ],
-      "rating": 4.5,
-      "review_count": 320,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "storage",
         "box",
@@ -31471,8 +31471,8 @@
         "/static/catalog/real-home-storage-box-1.jpg",
         "/static/catalog/dummy-kitchen-accessories-spice-rack.webp"
       ],
-      "rating": 3.9,
-      "review_count": 357,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "storage",
         "box",
@@ -31537,8 +31537,8 @@
         "/static/catalog/dummy-kitchen-accessories-spice-rack.webp",
         "/static/catalog/dummy-kitchen-accessories-lunch-box.webp"
       ],
-      "rating": 4.7,
-      "review_count": 394,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "storage",
         "box",
@@ -31603,8 +31603,8 @@
         "/static/catalog/dummy-kitchen-accessories-lunch-box.webp",
         "/static/catalog/real-home-storage-box-1.jpg"
       ],
-      "rating": 4.1,
-      "review_count": 431,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "storage",
         "box",
@@ -31669,8 +31669,8 @@
         "/static/catalog/real-home-storage-box-1.jpg",
         "/static/catalog/dummy-kitchen-accessories-spice-rack.webp"
       ],
-      "rating": 4.9,
-      "review_count": 468,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "storage",
         "box",
@@ -31735,8 +31735,8 @@
         "/static/catalog/dummy-kitchen-accessories-spice-rack.webp",
         "/static/catalog/dummy-kitchen-accessories-lunch-box.webp"
       ],
-      "rating": 4.3,
-      "review_count": 505,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "storage",
         "box",
@@ -31801,8 +31801,8 @@
         "/static/catalog/dummy-kitchen-accessories-lunch-box.webp",
         "/static/catalog/real-home-storage-box-1.jpg"
       ],
-      "rating": 3.7,
-      "review_count": 542,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "storage",
         "box",
@@ -31868,7 +31868,7 @@
         "/static/catalog/dummy-kitchen-accessories-spice-rack.webp"
       ],
       "rating": 4.5,
-      "review_count": 579,
+      "review_count": 8,
       "tags": [
         "storage",
         "box",
@@ -31932,8 +31932,8 @@
         "/static/catalog/photo-bedding-1.jpg",
         "/static/catalog/dummy-furniture-annibale-colombo-bed.webp"
       ],
-      "rating": 4.6,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "bed",
         "sheet",
@@ -31997,8 +31997,8 @@
         "/static/catalog/dummy-furniture-annibale-colombo-bed.webp",
         "/static/catalog/photo-bedding-1.jpg"
       ],
-      "rating": 4,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "bed",
         "sheet",
@@ -32062,8 +32062,8 @@
         "/static/catalog/photo-bedding-1.jpg",
         "/static/catalog/dummy-furniture-annibale-colombo-bed.webp"
       ],
-      "rating": 4.8,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "bed",
         "sheet",
@@ -32128,8 +32128,8 @@
         "/static/catalog/dummy-furniture-annibale-colombo-bed.webp",
         "/static/catalog/photo-bedding-1.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "bed",
         "sheet",
@@ -32193,8 +32193,8 @@
         "/static/catalog/photo-bedding-1.jpg",
         "/static/catalog/dummy-furniture-annibale-colombo-bed.webp"
       ],
-      "rating": 3.6,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "bed",
         "sheet",
@@ -32258,8 +32258,8 @@
         "/static/catalog/photo-bedding-1.jpg",
         "/static/catalog/real-home-towel-1.jpg"
       ],
-      "rating": 3.7,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "towel",
         "nova",
@@ -32323,7 +32323,7 @@
         "/static/catalog/photo-bedding-1.jpg"
       ],
       "rating": 4.5,
-      "review_count": 98,
+      "review_count": 8,
       "tags": [
         "towel",
         "spaces",
@@ -32386,8 +32386,8 @@
         "/static/catalog/photo-bedding-1.jpg",
         "/static/catalog/real-home-towel-1.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "towel",
         "trident",
@@ -32450,8 +32450,8 @@
         "/static/catalog/real-home-towel-1.jpg",
         "/static/catalog/photo-bedding-1.jpg"
       ],
-      "rating": 4.7,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "towel",
         "nova",
@@ -32514,8 +32514,8 @@
         "/static/catalog/photo-bedding-1.jpg",
         "/static/catalog/real-home-towel-1.jpg"
       ],
-      "rating": 4.1,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "towel",
         "spaces",
@@ -32579,8 +32579,8 @@
         "/static/catalog/dummy-furniture-annibale-colombo-bed.webp",
         "/static/catalog/real-home-pillow-1.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "pillow",
         "nova",
@@ -32644,8 +32644,8 @@
         "/static/catalog/real-home-pillow-1.jpg",
         "/static/catalog/photo-bedding-1.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "pillow",
         "wakefit",
@@ -32710,7 +32710,7 @@
         "/static/catalog/dummy-furniture-annibale-colombo-bed.webp"
       ],
       "rating": 4.4,
-      "review_count": 135,
+      "review_count": 8,
       "tags": [
         "pillow",
         "sleepycat",
@@ -32774,8 +32774,8 @@
         "/static/catalog/dummy-furniture-annibale-colombo-bed.webp",
         "/static/catalog/real-home-pillow-1.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "pillow",
         "nova",
@@ -32839,8 +32839,8 @@
         "/static/catalog/real-home-pillow-1.jpg",
         "/static/catalog/photo-bedding-1.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "pillow",
         "wakefit",
@@ -32903,8 +32903,8 @@
         "/static/catalog/dummy-home-decoration-table-lamp.webp",
         "/static/catalog/real-home-table-lamp-1.jpg"
       ],
-      "rating": 4.7,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "table",
         "lamp",
@@ -32968,8 +32968,8 @@
         "/static/catalog/real-home-table-lamp-1.jpg",
         "/static/catalog/dummy-home-decoration-table-lamp.webp"
       ],
-      "rating": 4.1,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "table",
         "lamp",
@@ -33033,8 +33033,8 @@
         "/static/catalog/dummy-home-decoration-table-lamp.webp",
         "/static/catalog/real-home-table-lamp-1.jpg"
       ],
-      "rating": 4.9,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "table",
         "lamp",
@@ -33098,8 +33098,8 @@
         "/static/catalog/real-home-table-lamp-1.jpg",
         "/static/catalog/dummy-home-decoration-table-lamp.webp"
       ],
-      "rating": 4.3,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "table",
         "lamp",
@@ -33163,8 +33163,8 @@
         "/static/catalog/dummy-home-decoration-table-lamp.webp",
         "/static/catalog/real-home-table-lamp-1.jpg"
       ],
-      "rating": 3.7,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "table",
         "lamp",
@@ -33229,8 +33229,8 @@
         "/static/catalog/real-home-wall-art-1.jpg",
         "/static/catalog/dummy-home-decoration-family-tree-photo-frame.webp"
       ],
-      "rating": 3.8,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "wall",
         "art",
@@ -33295,8 +33295,8 @@
         "/static/catalog/dummy-home-decoration-family-tree-photo-frame.webp",
         "/static/catalog/dummy-home-decoration-decoration-swing.webp"
       ],
-      "rating": 4.6,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "wall",
         "art",
@@ -33361,8 +33361,8 @@
         "/static/catalog/dummy-home-decoration-decoration-swing.webp",
         "/static/catalog/real-home-wall-art-1.jpg"
       ],
-      "rating": 4,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "wall",
         "art",
@@ -33427,8 +33427,8 @@
         "/static/catalog/real-home-wall-art-1.jpg",
         "/static/catalog/dummy-home-decoration-family-tree-photo-frame.webp"
       ],
-      "rating": 4.8,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "wall",
         "art",
@@ -33493,8 +33493,8 @@
         "/static/catalog/dummy-home-decoration-family-tree-photo-frame.webp",
         "/static/catalog/dummy-home-decoration-decoration-swing.webp"
       ],
-      "rating": 4.2,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "wall",
         "art",
@@ -33558,8 +33558,8 @@
         "/static/catalog/dummy-home-decoration-house-showpiece-plant.webp",
         "/static/catalog/dummy-home-decoration-plant-pot.webp"
       ],
-      "rating": 4.3,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "planter",
         "nova",
@@ -33622,8 +33622,8 @@
         "/static/catalog/dummy-home-decoration-plant-pot.webp",
         "/static/catalog/dummy-home-decoration-house-showpiece-plant.webp"
       ],
-      "rating": 3.7,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "planter",
         "ugaoo",
@@ -33687,7 +33687,7 @@
         "/static/catalog/dummy-home-decoration-plant-pot.webp"
       ],
       "rating": 4.5,
-      "review_count": 135,
+      "review_count": 8,
       "tags": [
         "planter",
         "trustbasket",
@@ -33750,8 +33750,8 @@
         "/static/catalog/dummy-home-decoration-plant-pot.webp",
         "/static/catalog/dummy-home-decoration-house-showpiece-plant.webp"
       ],
-      "rating": 3.9,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "planter",
         "nova",
@@ -33814,8 +33814,8 @@
         "/static/catalog/dummy-home-decoration-house-showpiece-plant.webp",
         "/static/catalog/dummy-home-decoration-plant-pot.webp"
       ],
-      "rating": 4.7,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "planter",
         "ugaoo",
@@ -33879,8 +33879,8 @@
         "/static/catalog/real-beauty-face-wash-2.jpg",
         "/static/catalog/dummy-skin-care-olay-ultra-moisture-shea-butter-body-wash.webp"
       ],
-      "rating": 4.8,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "moisturiser",
         "cetaphil",
@@ -33945,8 +33945,8 @@
         "/static/catalog/dummy-skin-care-olay-ultra-moisture-shea-butter-body-wash.webp",
         "/static/catalog/dummy-skin-care-vaseline-men-body-and-face-lotion.webp"
       ],
-      "rating": 4.2,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "moisturiser",
         "nova",
@@ -34011,8 +34011,8 @@
         "/static/catalog/dummy-skin-care-vaseline-men-body-and-face-lotion.webp",
         "/static/catalog/real-beauty-face-wash-2.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "moisturiser",
         "minimalist",
@@ -34077,8 +34077,8 @@
         "/static/catalog/real-beauty-face-wash-2.jpg",
         "/static/catalog/dummy-skin-care-olay-ultra-moisture-shea-butter-body-wash.webp"
       ],
-      "rating": 4.4,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "moisturiser",
         "cetaphil",
@@ -34143,8 +34143,8 @@
         "/static/catalog/dummy-skin-care-olay-ultra-moisture-shea-butter-body-wash.webp",
         "/static/catalog/dummy-skin-care-vaseline-men-body-and-face-lotion.webp"
       ],
-      "rating": 3.8,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "moisturiser",
         "nova",
@@ -34209,8 +34209,8 @@
         "/static/catalog/real-beauty-serum-1.jpg",
         "/static/catalog/real-beauty-serum-2.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "face",
         "serum",
@@ -34280,8 +34280,8 @@
         "/static/catalog/real-beauty-serum-2.jpg",
         "/static/catalog/real-beauty-foundation-1.jpg"
       ],
-      "rating": 4.7,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "face",
         "serum",
@@ -34351,8 +34351,8 @@
         "/static/catalog/real-beauty-foundation-1.jpg",
         "/static/catalog/real-beauty-serum-1.jpg"
       ],
-      "rating": 4.1,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "face",
         "serum",
@@ -34423,8 +34423,8 @@
         "/static/catalog/real-beauty-serum-1.jpg",
         "/static/catalog/real-beauty-serum-2.jpg"
       ],
-      "rating": 4.9,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "face",
         "serum",
@@ -34494,8 +34494,8 @@
         "/static/catalog/real-beauty-serum-2.jpg",
         "/static/catalog/real-beauty-foundation-1.jpg"
       ],
-      "rating": 4.3,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "face",
         "serum",
@@ -34566,7 +34566,7 @@
         "/static/catalog/real-beauty-sunscreen-1.jpg"
       ],
       "rating": 4.4,
-      "review_count": 61,
+      "review_count": 8,
       "tags": [
         "sunscreen",
         "nova",
@@ -34630,8 +34630,8 @@
         "/static/catalog/real-beauty-sunscreen-1.jpg",
         "/static/catalog/real-beauty-sunscreen-2.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "sunscreen",
         "neutrogena",
@@ -34695,8 +34695,8 @@
         "/static/catalog/real-beauty-sunscreen-2.jpg",
         "/static/catalog/dummy-skin-care-vaseline-men-body-and-face-lotion.webp"
       ],
-      "rating": 4.6,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "sunscreen",
         "minimalist",
@@ -34760,8 +34760,8 @@
         "/static/catalog/dummy-skin-care-vaseline-men-body-and-face-lotion.webp",
         "/static/catalog/real-beauty-sunscreen-1.jpg"
       ],
-      "rating": 4,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "sunscreen",
         "nova",
@@ -34825,8 +34825,8 @@
         "/static/catalog/real-beauty-sunscreen-1.jpg",
         "/static/catalog/real-beauty-sunscreen-2.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "sunscreen",
         "neutrogena",
@@ -34889,8 +34889,8 @@
         "/static/catalog/real-beauty-shampoo-2.jpg",
         "/static/catalog/real-beauty-shampoo-1.jpg"
       ],
-      "rating": 4.9,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "shampoo",
         "dove",
@@ -34957,8 +34957,8 @@
         "/static/catalog/real-beauty-shampoo-1.jpg",
         "/static/catalog/real-beauty-shampoo-2.jpg"
       ],
-      "rating": 4.3,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "shampoo",
         "nova",
@@ -35025,8 +35025,8 @@
         "/static/catalog/real-beauty-shampoo-2.jpg",
         "/static/catalog/real-beauty-shampoo-1.jpg"
       ],
-      "rating": 3.7,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "shampoo",
         "l'oreal",
@@ -35095,7 +35095,7 @@
         "/static/catalog/real-beauty-shampoo-2.jpg"
       ],
       "rating": 4.5,
-      "review_count": 172,
+      "review_count": 8,
       "tags": [
         "shampoo",
         "dove",
@@ -35162,8 +35162,8 @@
         "/static/catalog/real-beauty-shampoo-2.jpg",
         "/static/catalog/real-beauty-shampoo-1.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "shampoo",
         "nova",
@@ -35230,8 +35230,8 @@
         "/static/catalog/real-beauty-hair-oil-1.jpg",
         "/static/catalog/real-beauty-hair-oil-2.jpg"
       ],
-      "rating": 4,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "hair",
         "oil",
@@ -35297,8 +35297,8 @@
         "/static/catalog/real-beauty-hair-oil-2.jpg",
         "/static/catalog/real-beauty-hair-oil-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "hair",
         "oil",
@@ -35364,8 +35364,8 @@
         "/static/catalog/real-beauty-hair-oil-1.jpg",
         "/static/catalog/real-beauty-hair-oil-2.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "hair",
         "oil",
@@ -35431,8 +35431,8 @@
         "/static/catalog/real-beauty-hair-oil-2.jpg",
         "/static/catalog/real-beauty-hair-oil-1.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "hair",
         "oil",
@@ -35499,7 +35499,7 @@
         "/static/catalog/real-beauty-hair-oil-2.jpg"
       ],
       "rating": 4.4,
-      "review_count": 209,
+      "review_count": 8,
       "tags": [
         "hair",
         "oil",
@@ -35565,8 +35565,8 @@
         "/static/catalog/real-beauty-hair-styling-2.jpg",
         "/static/catalog/real-beauty-hair-styling-1.jpg"
       ],
-      "rating": 4.5,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "hair",
         "styling",
@@ -35630,8 +35630,8 @@
         "/static/catalog/real-beauty-hair-styling-1.jpg",
         "/static/catalog/real-beauty-hair-styling-2.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "hair",
         "styling",
@@ -35696,8 +35696,8 @@
         "/static/catalog/real-beauty-hair-styling-2.jpg",
         "/static/catalog/real-beauty-hair-styling-1.jpg"
       ],
-      "rating": 4.7,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "hair",
         "styling",
@@ -35762,8 +35762,8 @@
         "/static/catalog/real-beauty-hair-styling-1.jpg",
         "/static/catalog/real-beauty-hair-styling-2.jpg"
       ],
-      "rating": 4.1,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "hair",
         "styling",
@@ -35827,8 +35827,8 @@
         "/static/catalog/real-beauty-hair-styling-2.jpg",
         "/static/catalog/real-beauty-hair-styling-1.jpg"
       ],
-      "rating": 4.9,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "hair",
         "styling",
@@ -35894,8 +35894,8 @@
         "/static/catalog/dummy-beauty-red-nail-polish.webp",
         "/static/catalog/dummy-beauty-eyeshadow-palette-with-mirror.webp"
       ],
-      "rating": 3.6,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "lipstick",
         "maybelline",
@@ -35960,7 +35960,7 @@
         "/static/catalog/dummy-beauty-red-lipstick.webp"
       ],
       "rating": 4.4,
-      "review_count": 98,
+      "review_count": 8,
       "tags": [
         "lipstick",
         "nova",
@@ -36024,8 +36024,8 @@
         "/static/catalog/dummy-beauty-red-lipstick.webp",
         "/static/catalog/dummy-beauty-red-nail-polish.webp"
       ],
-      "rating": 3.8,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "lipstick",
         "lakme",
@@ -36089,8 +36089,8 @@
         "/static/catalog/dummy-beauty-red-nail-polish.webp",
         "/static/catalog/dummy-beauty-eyeshadow-palette-with-mirror.webp"
       ],
-      "rating": 4.6,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "lipstick",
         "maybelline",
@@ -36154,8 +36154,8 @@
         "/static/catalog/dummy-beauty-eyeshadow-palette-with-mirror.webp",
         "/static/catalog/dummy-beauty-red-lipstick.webp"
       ],
-      "rating": 4,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "lipstick",
         "nova",
@@ -36219,8 +36219,8 @@
         "/static/catalog/real-beauty-foundation-1.jpg",
         "/static/catalog/real-beauty-foundation-2.jpg"
       ],
-      "rating": 4.1,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "foundation",
         "maybelline",
@@ -36284,8 +36284,8 @@
         "/static/catalog/real-beauty-foundation-2.jpg",
         "/static/catalog/dummy-beauty-powder-canister.webp"
       ],
-      "rating": 4.9,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "foundation",
         "nova",
@@ -36349,8 +36349,8 @@
         "/static/catalog/dummy-beauty-powder-canister.webp",
         "/static/catalog/real-beauty-foundation-1.jpg"
       ],
-      "rating": 4.3,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "foundation",
         "lakme",
@@ -36414,8 +36414,8 @@
         "/static/catalog/real-beauty-foundation-1.jpg",
         "/static/catalog/real-beauty-foundation-2.jpg"
       ],
-      "rating": 3.7,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "foundation",
         "maybelline",
@@ -36480,7 +36480,7 @@
         "/static/catalog/dummy-beauty-powder-canister.webp"
       ],
       "rating": 4.5,
-      "review_count": 209,
+      "review_count": 8,
       "tags": [
         "foundation",
         "nova",
@@ -36544,8 +36544,8 @@
         "/static/catalog/dummy-beauty-powder-canister.webp",
         "/static/catalog/dummy-beauty-essence-mascara-lash-princess.webp"
       ],
-      "rating": 4.6,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "eye",
         "makeup",
@@ -36610,8 +36610,8 @@
         "/static/catalog/dummy-beauty-essence-mascara-lash-princess.webp",
         "/static/catalog/dummy-beauty-eyeshadow-palette-with-mirror.webp"
       ],
-      "rating": 4,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "eye",
         "makeup",
@@ -36676,8 +36676,8 @@
         "/static/catalog/dummy-beauty-eyeshadow-palette-with-mirror.webp",
         "/static/catalog/dummy-beauty-powder-canister.webp"
       ],
-      "rating": 4.8,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "eye",
         "makeup",
@@ -36742,8 +36742,8 @@
         "/static/catalog/dummy-beauty-powder-canister.webp",
         "/static/catalog/dummy-beauty-essence-mascara-lash-princess.webp"
       ],
-      "rating": 4.2,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "eye",
         "makeup",
@@ -36808,8 +36808,8 @@
         "/static/catalog/dummy-beauty-essence-mascara-lash-princess.webp",
         "/static/catalog/dummy-beauty-eyeshadow-palette-with-mirror.webp"
       ],
-      "rating": 3.6,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "eye",
         "makeup",
@@ -36874,8 +36874,8 @@
         "/static/catalog/real-beauty-face-wash-2.jpg",
         "/static/catalog/dummy-skin-care-attitude-super-leaves-hand-soap.webp"
       ],
-      "rating": 3.7,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "face",
         "wash",
@@ -36942,8 +36942,8 @@
         "/static/catalog/dummy-skin-care-attitude-super-leaves-hand-soap.webp",
         "/static/catalog/real-beauty-face-wash-1.jpg"
       ],
-      "rating": 4.5,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "face",
         "wash",
@@ -37010,8 +37010,8 @@
         "/static/catalog/real-beauty-face-wash-1.jpg",
         "/static/catalog/real-beauty-face-wash-2.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "face",
         "wash",
@@ -37078,8 +37078,8 @@
         "/static/catalog/real-beauty-face-wash-2.jpg",
         "/static/catalog/dummy-skin-care-attitude-super-leaves-hand-soap.webp"
       ],
-      "rating": 4.7,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "face",
         "wash",
@@ -37146,8 +37146,8 @@
         "/static/catalog/dummy-skin-care-attitude-super-leaves-hand-soap.webp",
         "/static/catalog/real-beauty-face-wash-1.jpg"
       ],
-      "rating": 4.1,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "face",
         "wash",
@@ -37214,8 +37214,8 @@
         "/static/catalog/real-beauty-beard-care-1.jpg",
         "/static/catalog/real-beauty-beard-care-2.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "beard",
         "care",
@@ -37282,8 +37282,8 @@
         "/static/catalog/real-beauty-beard-care-2.jpg",
         "/static/catalog/real-beauty-face-wash-1.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "beard",
         "care",
@@ -37351,7 +37351,7 @@
         "/static/catalog/real-beauty-beard-care-1.jpg"
       ],
       "rating": 4.4,
-      "review_count": 135,
+      "review_count": 8,
       "tags": [
         "beard",
         "care",
@@ -37418,8 +37418,8 @@
         "/static/catalog/real-beauty-beard-care-1.jpg",
         "/static/catalog/real-beauty-beard-care-2.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "beard",
         "care",
@@ -37486,8 +37486,8 @@
         "/static/catalog/real-beauty-beard-care-2.jpg",
         "/static/catalog/real-beauty-face-wash-1.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "beard",
         "care",
@@ -37554,8 +37554,8 @@
         "/static/catalog/dummy-fragrances-dior-j-adore.webp",
         "/static/catalog/dummy-fragrances-calvin-klein-ck-one.webp"
       ],
-      "rating": 4.7,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "deodorant",
         "nivea",
@@ -37621,8 +37621,8 @@
         "/static/catalog/dummy-fragrances-calvin-klein-ck-one.webp",
         "/static/catalog/dummy-fragrances-chanel-coco-noir-eau-de.webp"
       ],
-      "rating": 4.1,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "deodorant",
         "nova",
@@ -37688,8 +37688,8 @@
         "/static/catalog/dummy-fragrances-chanel-coco-noir-eau-de.webp",
         "/static/catalog/dummy-fragrances-dior-j-adore.webp"
       ],
-      "rating": 4.9,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "deodorant",
         "wild stone",
@@ -37756,8 +37756,8 @@
         "/static/catalog/dummy-fragrances-dior-j-adore.webp",
         "/static/catalog/dummy-fragrances-calvin-klein-ck-one.webp"
       ],
-      "rating": 4.3,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "deodorant",
         "nivea",
@@ -37823,8 +37823,8 @@
         "/static/catalog/dummy-fragrances-calvin-klein-ck-one.webp",
         "/static/catalog/dummy-fragrances-chanel-coco-noir-eau-de.webp"
       ],
-      "rating": 3.7,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "deodorant",
         "nova",
@@ -37889,8 +37889,8 @@
         "/static/catalog/real-sports-dumbbells-1.jpg",
         "/static/catalog/real-sports-dumbbells-2.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "dumbbell",
         "set",
@@ -37954,8 +37954,8 @@
         "/static/catalog/real-sports-dumbbells-2.jpg",
         "/static/catalog/real-sports-dumbbells-1.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "dumbbell",
         "set",
@@ -38019,8 +38019,8 @@
         "/static/catalog/real-sports-dumbbells-1.jpg",
         "/static/catalog/real-sports-dumbbells-2.jpg"
       ],
-      "rating": 4,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "dumbbell",
         "set",
@@ -38084,8 +38084,8 @@
         "/static/catalog/real-sports-dumbbells-2.jpg",
         "/static/catalog/real-sports-dumbbells-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "dumbbell",
         "set",
@@ -38148,8 +38148,8 @@
       "images": [
         "/static/catalog/real-sports-resistance-band-1.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "resistance",
         "band",
@@ -38212,8 +38212,8 @@
       "images": [
         "/static/catalog/real-sports-resistance-band-1.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "resistance",
         "band",
@@ -38276,8 +38276,8 @@
       "images": [
         "/static/catalog/real-sports-resistance-band-1.jpg"
       ],
-      "rating": 4.4,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "resistance",
         "band",
@@ -38341,7 +38341,7 @@
         "/static/catalog/real-sports-yoga-mat-1.jpg"
       ],
       "rating": 4.5,
-      "review_count": 61,
+      "review_count": 8,
       "tags": [
         "yoga",
         "mat",
@@ -38403,8 +38403,8 @@
       "images": [
         "/static/catalog/real-sports-yoga-mat-1.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "yoga",
         "mat",
@@ -38466,8 +38466,8 @@
       "images": [
         "/static/catalog/real-sports-yoga-mat-1.jpg"
       ],
-      "rating": 4.7,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "yoga",
         "mat",
@@ -38529,8 +38529,8 @@
       "images": [
         "/static/catalog/real-sportswear-men-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "men's",
         "sportswear",
@@ -38633,8 +38633,8 @@
       "images": [
         "/static/catalog/real-sportswear-men-1.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "men's",
         "sportswear",
@@ -38737,8 +38737,8 @@
       "images": [
         "/static/catalog/real-sportswear-men-1.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "men's",
         "sportswear",
@@ -38842,7 +38842,7 @@
         "/static/catalog/real-sportswear-men-1.jpg"
       ],
       "rating": 4.4,
-      "review_count": 172,
+      "review_count": 8,
       "tags": [
         "men's",
         "sportswear",
@@ -38945,8 +38945,8 @@
       "images": [
         "/static/catalog/real-sportswear-men-1.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "men's",
         "sportswear",
@@ -39049,8 +39049,8 @@
       "images": [
         "/static/catalog/real-sportswear-men-1.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 246,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "men's",
         "sportswear",
@@ -39153,8 +39153,8 @@
       "images": [
         "/static/catalog/real-sportswear-men-1.jpg"
       ],
-      "rating": 4,
-      "review_count": 283,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "men's",
         "sportswear",
@@ -39257,8 +39257,8 @@
       "images": [
         "/static/catalog/real-sportswear-men-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 320,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "men's",
         "sportswear",
@@ -39361,8 +39361,8 @@
       "images": [
         "/static/catalog/real-sportswear-women-1.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "women's",
         "sportswear",
@@ -39465,8 +39465,8 @@
       "images": [
         "/static/catalog/real-sportswear-women-1.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "women's",
         "sportswear",
@@ -39570,7 +39570,7 @@
         "/static/catalog/real-sportswear-women-1.jpg"
       ],
       "rating": 4.4,
-      "review_count": 135,
+      "review_count": 8,
       "tags": [
         "women's",
         "sportswear",
@@ -39673,8 +39673,8 @@
       "images": [
         "/static/catalog/real-sportswear-women-1.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "women's",
         "sportswear",
@@ -39777,8 +39777,8 @@
       "images": [
         "/static/catalog/real-sportswear-women-1.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "women's",
         "sportswear",
@@ -39881,8 +39881,8 @@
       "images": [
         "/static/catalog/real-sportswear-women-1.jpg"
       ],
-      "rating": 4,
-      "review_count": 246,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "women's",
         "sportswear",
@@ -39985,8 +39985,8 @@
       "images": [
         "/static/catalog/real-sportswear-women-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 283,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "women's",
         "sportswear",
@@ -40089,8 +40089,8 @@
       "images": [
         "/static/catalog/real-sports-bicycle-1.jpg"
       ],
-      "rating": 4.9,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "bicycle",
         "hero",
@@ -40152,8 +40152,8 @@
       "images": [
         "/static/catalog/real-sports-bicycle-1.jpg"
       ],
-      "rating": 4.3,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "bicycle",
         "firefox",
@@ -40215,8 +40215,8 @@
       "images": [
         "/static/catalog/real-sports-bicycle-1.jpg"
       ],
-      "rating": 3.7,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "bicycle",
         "nova",
@@ -40279,7 +40279,7 @@
         "/static/catalog/real-sports-bicycle-1.jpg"
       ],
       "rating": 4.5,
-      "review_count": 172,
+      "review_count": 8,
       "tags": [
         "bicycle",
         "hero",
@@ -40341,8 +40341,8 @@
       "images": [
         "/static/catalog/real-sports-bicycle-1.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "bicycle",
         "firefox",
@@ -40404,8 +40404,8 @@
       "images": [
         "/static/catalog/real-sports-trekking-backpack-1.jpg"
       ],
-      "rating": 4,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "trekking",
         "backpack",
@@ -40468,8 +40468,8 @@
       "images": [
         "/static/catalog/real-sports-trekking-backpack-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "trekking",
         "backpack",
@@ -40532,8 +40532,8 @@
       "images": [
         "/static/catalog/real-sports-trekking-backpack-1.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "trekking",
         "backpack",
@@ -40596,8 +40596,8 @@
       "images": [
         "/static/catalog/real-sports-trekking-backpack-1.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "trekking",
         "backpack",
@@ -40661,7 +40661,7 @@
         "/static/catalog/real-sports-trekking-backpack-1.jpg"
       ],
       "rating": 4.4,
-      "review_count": 209,
+      "review_count": 8,
       "tags": [
         "trekking",
         "backpack",
@@ -40727,8 +40727,8 @@
         "/static/catalog/dummy-sports-accessories-cricket-wicket.webp",
         "/static/catalog/dummy-sports-accessories-cricket-bat.webp"
       ],
-      "rating": 4.5,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "cricket",
         "bat",
@@ -40792,8 +40792,8 @@
         "/static/catalog/dummy-sports-accessories-cricket-bat.webp",
         "/static/catalog/dummy-sports-accessories-cricket-ball.webp"
       ],
-      "rating": 3.9,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "cricket",
         "bat",
@@ -40857,8 +40857,8 @@
         "/static/catalog/dummy-sports-accessories-cricket-ball.webp",
         "/static/catalog/dummy-sports-accessories-cricket-helmet.webp"
       ],
-      "rating": 4.7,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "cricket",
         "bat",
@@ -40922,8 +40922,8 @@
         "/static/catalog/dummy-sports-accessories-cricket-helmet.webp",
         "/static/catalog/dummy-sports-accessories-cricket-wicket.webp"
       ],
-      "rating": 4.1,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "cricket",
         "bat",
@@ -40987,8 +40987,8 @@
         "/static/catalog/dummy-sports-accessories-cricket-wicket.webp",
         "/static/catalog/dummy-sports-accessories-cricket-bat.webp"
       ],
-      "rating": 4.9,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "cricket",
         "bat",
@@ -41050,8 +41050,8 @@
         "/static/catalog/photo-stationery-1.jpg",
         "/static/catalog/photo-books-1.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "self-help",
         "self",
@@ -41117,8 +41117,8 @@
         "/static/catalog/photo-books-1.jpg",
         "/static/catalog/photo-stationery-1.jpg"
       ],
-      "rating": 4.4,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "self-help",
         "self",
@@ -41184,8 +41184,8 @@
         "/static/catalog/photo-stationery-1.jpg",
         "/static/catalog/photo-books-1.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "self-help",
         "self",
@@ -41251,8 +41251,8 @@
         "/static/catalog/photo-books-1.jpg",
         "/static/catalog/photo-stationery-1.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "self-help",
         "self",
@@ -41318,8 +41318,8 @@
         "/static/catalog/photo-stationery-1.jpg",
         "/static/catalog/photo-books-1.jpg"
       ],
-      "rating": 4,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "self-help",
         "self",
@@ -41385,8 +41385,8 @@
         "/static/catalog/photo-books-1.jpg",
         "/static/catalog/photo-stationery-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 246,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "self-help",
         "self",
@@ -41452,8 +41452,8 @@
         "/static/catalog/photo-stationery-1.jpg",
         "/static/catalog/photo-books-1.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 283,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "self-help",
         "self",
@@ -41519,8 +41519,8 @@
         "/static/catalog/photo-books-1.jpg",
         "/static/catalog/photo-stationery-1.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 320,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "self-help",
         "self",
@@ -41587,7 +41587,7 @@
         "/static/catalog/photo-books-1.jpg"
       ],
       "rating": 4.4,
-      "review_count": 61,
+      "review_count": 8,
       "tags": [
         "fiction",
         "novel",
@@ -41649,8 +41649,8 @@
         "/static/catalog/photo-books-1.jpg",
         "/static/catalog/photo-stationery-1.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "fiction",
         "novel",
@@ -41712,8 +41712,8 @@
         "/static/catalog/photo-stationery-1.jpg",
         "/static/catalog/photo-books-1.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "fiction",
         "novel",
@@ -41775,8 +41775,8 @@
         "/static/catalog/photo-books-1.jpg",
         "/static/catalog/photo-stationery-1.jpg"
       ],
-      "rating": 4,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "fiction",
         "novel",
@@ -41838,8 +41838,8 @@
         "/static/catalog/photo-stationery-1.jpg",
         "/static/catalog/photo-books-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "fiction",
         "novel",
@@ -41901,8 +41901,8 @@
         "/static/catalog/photo-books-1.jpg",
         "/static/catalog/photo-stationery-1.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 246,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "fiction",
         "novel",
@@ -41964,8 +41964,8 @@
         "/static/catalog/photo-stationery-1.jpg",
         "/static/catalog/photo-books-1.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 283,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "fiction",
         "novel",
@@ -42027,8 +42027,8 @@
         "/static/catalog/photo-books-1.jpg",
         "/static/catalog/photo-stationery-1.jpg"
       ],
-      "rating": 3.7,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "stationery",
         "set",
@@ -42092,8 +42092,8 @@
         "/static/catalog/photo-stationery-1.jpg",
         "/static/catalog/photo-books-1.jpg"
       ],
-      "rating": 4.5,
-      "review_count": 98,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "stationery",
         "set",
@@ -42157,8 +42157,8 @@
         "/static/catalog/photo-books-1.jpg",
         "/static/catalog/photo-stationery-1.jpg"
       ],
-      "rating": 3.9,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "stationery",
         "set",
@@ -42222,8 +42222,8 @@
         "/static/catalog/photo-stationery-1.jpg",
         "/static/catalog/photo-books-1.jpg"
       ],
-      "rating": 4.7,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "stationery",
         "set",
@@ -42287,8 +42287,8 @@
         "/static/catalog/photo-books-1.jpg",
         "/static/catalog/photo-stationery-1.jpg"
       ],
-      "rating": 4.1,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "stationery",
         "set",
@@ -42354,8 +42354,8 @@
         "/static/catalog/real-grocery-snacks-1.jpg",
         "/static/catalog/real-grocery-snacks-2.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 61,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "healthy",
         "snack",
@@ -42421,8 +42421,8 @@
         "/static/catalog/real-grocery-snacks-2.jpg",
         "/static/catalog/dummy-groceries-protein-powder.webp"
       ],
-      "rating": 3.6,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "healthy",
         "snack",
@@ -42487,8 +42487,8 @@
         "/static/catalog/dummy-groceries-protein-powder.webp",
         "/static/catalog/photo-dry_fruits-1.jpg"
       ],
-      "rating": 4.4,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "healthy",
         "snack",
@@ -42553,8 +42553,8 @@
         "/static/catalog/photo-dry_fruits-1.jpg",
         "/static/catalog/real-grocery-snacks-1.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "healthy",
         "snack",
@@ -42620,8 +42620,8 @@
         "/static/catalog/real-grocery-snacks-1.jpg",
         "/static/catalog/real-grocery-snacks-2.jpg"
       ],
-      "rating": 4.6,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "healthy",
         "snack",
@@ -42686,8 +42686,8 @@
         "/static/catalog/real-grocery-snacks-2.jpg",
         "/static/catalog/dummy-groceries-protein-powder.webp"
       ],
-      "rating": 4,
-      "review_count": 246,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "healthy",
         "snack",
@@ -42752,8 +42752,8 @@
         "/static/catalog/dummy-groceries-protein-powder.webp",
         "/static/catalog/photo-dry_fruits-1.jpg"
       ],
-      "rating": 4.8,
-      "review_count": 283,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "healthy",
         "snack",
@@ -42819,8 +42819,8 @@
         "/static/catalog/photo-dry_fruits-1.jpg",
         "/static/catalog/real-grocery-snacks-1.jpg"
       ],
-      "rating": 4.2,
-      "review_count": 320,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "healthy",
         "snack",
@@ -42885,8 +42885,8 @@
         "/static/catalog/dummy-groceries-water.webp",
         "/static/catalog/dummy-groceries-nescafe-coffee.webp"
       ],
-      "rating": 3.6,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "beverage",
         "tata",
@@ -42950,8 +42950,8 @@
         "/static/catalog/dummy-groceries-nescafe-coffee.webp",
         "/static/catalog/real-grocery-beverage-1.jpg"
       ],
-      "rating": 4.4,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "beverage",
         "nova",
@@ -43015,8 +43015,8 @@
         "/static/catalog/real-grocery-beverage-1.jpg",
         "/static/catalog/real-grocery-beverage-2.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 135,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "beverage",
         "paper boat",
@@ -43081,8 +43081,8 @@
         "/static/catalog/real-grocery-beverage-2.jpg",
         "/static/catalog/dummy-groceries-juice.webp"
       ],
-      "rating": 4.6,
-      "review_count": 172,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "beverage",
         "tata",
@@ -43146,8 +43146,8 @@
         "/static/catalog/dummy-groceries-juice.webp",
         "/static/catalog/dummy-groceries-soft-drinks.webp"
       ],
-      "rating": 4,
-      "review_count": 209,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "beverage",
         "nova",
@@ -43211,8 +43211,8 @@
         "/static/catalog/dummy-groceries-soft-drinks.webp",
         "/static/catalog/dummy-groceries-water.webp"
       ],
-      "rating": 4.8,
-      "review_count": 246,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "beverage",
         "paper boat",
@@ -43275,8 +43275,8 @@
         "/static/catalog/photo-dry_fruits-1.jpg",
         "/static/catalog/dummy-groceries-honey-jar.webp"
       ],
-      "rating": 4.2,
-      "review_count": 61,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "dry",
         "fruits",
@@ -43341,8 +43341,8 @@
         "/static/catalog/dummy-groceries-honey-jar.webp",
         "/static/catalog/photo-dry_fruits-1.jpg"
       ],
-      "rating": 3.6,
-      "review_count": 98,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "dry",
         "fruits",
@@ -43407,8 +43407,8 @@
         "/static/catalog/photo-dry_fruits-1.jpg",
         "/static/catalog/dummy-groceries-honey-jar.webp"
       ],
-      "rating": 4.4,
-      "review_count": 135,
+      "rating": 4.5,
+      "review_count": 8,
       "tags": [
         "dry",
         "fruits",
@@ -43473,8 +43473,8 @@
         "/static/catalog/dummy-groceries-honey-jar.webp",
         "/static/catalog/photo-dry_fruits-1.jpg"
       ],
-      "rating": 3.8,
-      "review_count": 172,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "dry",
         "fruits",
@@ -43539,8 +43539,8 @@
         "/static/catalog/photo-dry_fruits-1.jpg",
         "/static/catalog/dummy-groceries-honey-jar.webp"
       ],
-      "rating": 4.6,
-      "review_count": 209,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "dry",
         "fruits",
@@ -43605,8 +43605,8 @@
         "/static/catalog/dummy-groceries-honey-jar.webp",
         "/static/catalog/photo-dry_fruits-1.jpg"
       ],
-      "rating": 4,
-      "review_count": 246,
+      "rating": 4.4,
+      "review_count": 8,
       "tags": [
         "dry",
         "fruits",

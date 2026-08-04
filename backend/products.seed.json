@@ -33,7 +33,9 @@
         "kids",
         "baby",
         "cap"
-      ]
+      ],
+      "rating": 4.4,
+      "review_count": 7
     },
     {
       "id": "acme-baby-onesie",
@@ -64,7 +66,9 @@
         "kids",
         "baby",
         "onesie"
-      ]
+      ],
+      "rating": 4.5,
+      "review_count": 8
     },
     {
       "id": "acme-bomber-jacket",
@@ -95,7 +99,9 @@
         "jacket",
         "bomber",
         "unisex"
-      ]
+      ],
+      "rating": 4.2,
+      "review_count": 12
     },
     {
       "id": "acme-cap",
@@ -127,7 +133,9 @@
         "cap",
         "headwear",
         "unisex"
-      ]
+      ],
+      "rating": 4.1,
+      "review_count": 14
     },
     {
       "id": "acme-geometric-circles-t-shirt",
@@ -160,7 +168,9 @@
         "t-shirt",
         "graphic",
         "unisex"
-      ]
+      ],
+      "rating": 4.8,
+      "review_count": 6
     },
     {
       "id": "acme-cowboy-hat",
@@ -192,7 +202,9 @@
         "hat",
         "headwear",
         "unisex"
-      ]
+      ],
+      "rating": 4.7,
+      "review_count": 6
     },
     {
       "id": "acme-cup",
@@ -222,7 +234,9 @@
       "tags": [
         "cup",
         "drinkware"
-      ]
+      ],
+      "rating": 4.7,
+      "review_count": 9
     },
     {
       "id": "acme-dog-sweater",
@@ -253,7 +267,9 @@
         "pets",
         "dog",
         "sweater"
-      ]
+      ],
+      "rating": 4.2,
+      "review_count": 9
     },
     {
       "id": "acme-drawstring-bag",
@@ -286,7 +302,9 @@
         "bag",
         "drawstring",
         "unisex"
-      ]
+      ],
+      "rating": 4.6,
+      "review_count": 7
     },
     {
       "id": "acme-hoodie",
@@ -316,7 +334,9 @@
       "tags": [
         "hoodie",
         "unisex"
-      ]
+      ],
+      "rating": 3.8,
+      "review_count": 13
     },
     {
       "id": "acme-mechanical-keyboard",
@@ -349,7 +369,9 @@
         "keyboard",
         "mechanical",
         "computer-accessory"
-      ]
+      ],
+      "rating": 4.6,
+      "review_count": 14
     },
     {
       "id": "acme-mug",
@@ -379,7 +401,9 @@
       "tags": [
         "mug",
         "drinkware"
-      ]
+      ],
+      "rating": 4.4,
+      "review_count": 12
     },
     {
       "id": "acme-pacifier",
@@ -410,7 +434,9 @@
         "kids",
         "baby",
         "pacifier"
-      ]
+      ],
+      "rating": 4.5,
+      "review_count": 10
     },
     {
       "id": "acme-rainbow-prism-t-shirt",
@@ -443,7 +469,9 @@
         "t-shirt",
         "graphic",
         "unisex"
-      ]
+      ],
+      "rating": 4.7,
+      "review_count": 6
     },
     {
       "id": "acme-rainbow-sticker",
@@ -474,7 +502,9 @@
       "tags": [
         "sticker",
         "stationery"
-      ]
+      ],
+      "rating": 5.0,
+      "review_count": 7
     },
     {
       "id": "acme-slip-on-shoes",
@@ -506,7 +536,9 @@
         "shoes",
         "slip-on",
         "unisex"
-      ]
+      ],
+      "rating": 4.1,
+      "review_count": 7
     },
     {
       "id": "acme-sticker",
@@ -537,7 +569,9 @@
       "tags": [
         "sticker",
         "stationery"
-      ]
+      ],
+      "rating": 4.3,
+      "review_count": 7
     },
     {
       "id": "acme-t-shirt",
@@ -569,7 +603,9 @@
       "tags": [
         "t-shirt",
         "unisex"
-      ]
+      ],
+      "rating": 4.2,
+      "review_count": 12
     },
     {
       "id": "acme-webcam-cover",
@@ -602,7 +638,9 @@
         "webcam",
         "privacy",
         "computer-accessory"
-      ]
+      ],
+      "rating": 4.1,
+      "review_count": 7
     },
     {
       "id": "phone-iphone-17",
@@ -636,7 +674,9 @@
         "smartphone",
         "phone",
         "apple"
-      ]
+      ],
+      "rating": 4.5,
+      "review_count": 8
     },
     {
       "id": "phone-iphone-air",
@@ -670,7 +710,9 @@
         "smartphone",
         "phone",
         "apple"
-      ]
+      ],
+      "rating": 4.4,
+      "review_count": 13
     },
     {
       "id": "phone-iphone-17-pro",
@@ -704,7 +746,9 @@
         "smartphone",
         "phone",
         "apple"
-      ]
+      ],
+      "rating": 4.3,
+      "review_count": 9
     },
     {
       "id": "phone-galaxy-s26",
@@ -738,7 +782,9 @@
         "smartphone",
         "phone",
         "samsung"
-      ]
+      ],
+      "rating": 4.0,
+      "review_count": 9
     },
     {
       "id": "phone-galaxy-s26-plus",
@@ -772,7 +818,9 @@
         "smartphone",
         "phone",
         "samsung"
-      ]
+      ],
+      "rating": 4.4,
+      "review_count": 13
     },
     {
       "id": "phone-galaxy-s26-ultra",
@@ -806,7 +854,9 @@
         "smartphone",
         "phone",
         "samsung"
-      ]
+      ],
+      "rating": 4.0,
+      "review_count": 7
     },
     {
       "id": "phone-oppo-find-x9",
@@ -840,7 +890,9 @@
         "smartphone",
         "phone",
         "oppo"
-      ]
+      ],
+      "rating": 4.7,
+      "review_count": 6
     },
     {
       "id": "phone-oppo-find-x9-pro",
@@ -874,7 +926,9 @@
         "smartphone",
         "phone",
         "oppo"
-      ]
+      ],
+      "rating": 4.6,
+      "review_count": 13
     },
     {
       "id": "phone-oppo-find-x9-ultra",
@@ -908,7 +962,9 @@
         "smartphone",
         "phone",
         "oppo"
-      ]
+      ],
+      "rating": 4.2,
+      "review_count": 12
     },
     {
       "id": "phone-redmi-note-15-5g",
@@ -942,7 +998,9 @@
         "smartphone",
         "phone",
         "redmi"
-      ]
+      ],
+      "rating": 4.4,
+      "review_count": 10
     },
     {
       "id": "phone-redmi-note-15-pro",
@@ -976,7 +1034,9 @@
         "smartphone",
         "phone",
         "redmi"
-      ]
+      ],
+      "rating": 4.4,
+      "review_count": 14
     },
     {
       "id": "phone-redmi-note-15-pro-plus-5g",
@@ -1010,7 +1070,9 @@
         "smartphone",
         "phone",
         "redmi"
-      ]
+      ],
+      "rating": 4.2,
+      "review_count": 13
     },
     {
       "id": "phone-vivo-x300",
@@ -1044,7 +1106,9 @@
         "smartphone",
         "phone",
         "vivo"
-      ]
+      ],
+      "rating": 4.3,
+      "review_count": 12
     },
     {
       "id": "phone-vivo-x300-pro",
@@ -1078,7 +1142,9 @@
         "smartphone",
         "phone",
         "vivo"
-      ]
+      ],
+      "rating": 4.4,
+      "review_count": 14
     },
     {
       "id": "phone-vivo-x300-ultra",
@@ -1112,7 +1178,9 @@
         "smartphone",
         "phone",
         "vivo"
-      ]
+      ],
+      "rating": 4.5,
+      "review_count": 10
     },
     {
       "id": "phone-iphone-17e",
@@ -1146,7 +1214,9 @@
         "smartphone",
         "phone",
         "apple"
-      ]
+      ],
+      "rating": 3.9,
+      "review_count": 8
     },
     {
       "id": "phone-pixel-10a",
@@ -1178,7 +1248,9 @@
         "smartphone",
         "phone",
         "google"
-      ]
+      ],
+      "rating": 4.4,
+      "review_count": 8
     },
     {
       "id": "phone-galaxy-a17-5g",
@@ -1212,7 +1284,9 @@
         "smartphone",
         "phone",
         "samsung"
-      ]
+      ],
+      "rating": 4.2,
+      "review_count": 10
     },
     {
       "id": "phone-galaxy-a36-5g",
@@ -1246,7 +1320,9 @@
         "smartphone",
         "phone",
         "samsung"
-      ]
+      ],
+      "rating": 4.4,
+      "review_count": 7
     },
     {
       "id": "phone-oppo-a5-pro-5g",
@@ -1280,7 +1356,9 @@
         "smartphone",
         "phone",
         "oppo"
-      ]
+      ],
+      "rating": 4.6,
+      "review_count": 14
     },
     {
       "id": "phone-redmi-15-5g",
@@ -1314,7 +1392,9 @@
         "smartphone",
         "phone",
         "redmi"
-      ]
+      ],
+      "rating": 4.5,
+      "review_count": 8
     },
     {
       "id": "phone-vivo-y29s-5g",
@@ -1348,7 +1428,9 @@
         "smartphone",
         "phone",
         "vivo"
-      ]
+      ],
+      "rating": 4.5,
+      "review_count": 6
     },
     {
       "id": "phone-oneplus-nord-ce4-lite-5g",
@@ -1380,7 +1462,9 @@
         "smartphone",
         "phone",
         "oneplus"
-      ]
+      ],
+      "rating": 4.5,
+      "review_count": 11
     }
   ],
   "brand": "AI-KART",

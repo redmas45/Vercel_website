@@ -45,6 +45,12 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <Link
       to={productPath(product)}
+      /* Stable identity for assistants and automation. Without these attributes a
+         question about "these results" has no records to be answered from, and a
+         claim that products were shown cannot be checked against the page. */
+      data-product-id={product.id}
+      data-entity-type="product"
+      data-entity-name={product.name}
       className="group block rounded-[10px] bg-[var(--color-surface)] border border-[var(--color-border)] overflow-hidden hover:border-[var(--color-muted)] transition-colors duration-200"
     >
       {/* Image area */}
@@ -88,7 +94,12 @@ export function ProductCard({ product }: ProductCardProps) {
         </p>
         <RatingStars rating={product.rating} count={product.review_count} />
         <div className="mt-0.5 flex flex-wrap items-center gap-1.5">
-          <p className="text-[11px] font-[500] text-[var(--color-accent)]">{money(product.price, product.currency)}</p>
+          <p
+            className="price text-[11px] font-[500] text-[var(--color-accent)]"
+            data-price={String(product.price)}
+          >
+            {money(product.price, product.currency)}
+          </p>
           {product.original_price ? (
             <p className="text-[10px] text-[var(--color-muted)] line-through">{money(product.original_price, product.currency)}</p>
           ) : null}

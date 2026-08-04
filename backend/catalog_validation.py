@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import re
 from collections.abc import Iterable, Mapping
+from datetime import datetime, timezone
 from pathlib import Path
 
 ProductRecord = Mapping[str, object]
@@ -126,14 +127,35 @@ def _validate_inventory(product_id: str, product: ProductRecord) -> list[str]:
 
 
 def _validate_rating(product_id: str, product: ProductRecord) -> list[str]:
+    """Rating and review_count must tell the same story.
+
+    A product is either genuinely unrated (both null) or rated (a score in 0-5
+    with at least one review). A zero score is rejected outright: downstream
+    consumers cannot tell it apart from a real 0/5 verdict, so unrated records
+    must stay null.
+    """
     rating = _number(product.get("rating"))
     review_count = _integer(product.get("review_count"))
     errors: list[str] = []
+
     if rating is not None and not 0 <= rating <= 5:
         errors.append(f"{product_id}: rating must be between 0 and 5")
     if review_count is not None and review_count < 0:
         errors.append(f"{product_id}: review_count cannot be negative")
-    return errors
+    if errors:
+        return errors
+
+    if rating is None and review_count is None:
+        return []
+    if rating is None:
+        return [f"{product_id}: review_count without a rating is incoherent; set both or neither"]
+    if review_count is None:
+        return [f"{product_id}: rating without a review_count is incoherent; set both or neither"]
+    if rating <= 0:
+        return [f"{product_id}: rating must be null when unrated, never 0"]
+    if review_count <= 0:
+        return [f"{product_id}: a rated product needs at least one review"]
+    return []
 
 
 def _validate_product_paths(product_id: str, product: ProductRecord) -> list[str]:
@@ -233,3 +255,79 @@ def _string_list(value: object) -> list[str]:
     if not isinstance(value, list):
         return []
     return [str(item) for item in value if isinstance(item, str) and item]
+
+
+def load_reviews(reviews_path: Path) -> list[Mapping[str, object]]:
+    """Published review rows keyed for aggregate reconciliation."""
+    payload = json.loads(reviews_path.read_text(encoding="utf-8"))
+    rows = payload.get("reviews") if isinstance(payload, dict) else payload
+    return [row for row in rows if isinstance(row, Mapping)] if isinstance(rows, list) else []
+
+
+def validate_review_aggregates(
+    seed_paths: Iterable[Path],
+    reviews_path: Path,
+    *,
+    current_time: datetime | None = None,
+) -> list[str]:
+    """A product's summary rating must be derived from its published reviews.
+
+    Aggregates were previously written independently of `reviews.seed.json`, so a
+    product card could advertise hundreds of reviews while the Customer Reviews
+    section, the API, and Maya's spoken answer all reported none. The summary is
+    only trustworthy if it is reproducible from the detail rows.
+    """
+    products = load_catalog(seed_paths)
+    review_cutoff = current_time or datetime.now(timezone.utc)
+    if review_cutoff.tzinfo is None:
+        review_cutoff = review_cutoff.replace(tzinfo=timezone.utc)
+    else:
+        review_cutoff = review_cutoff.astimezone(timezone.utc)
+    published: dict[str, list[float]] = {}
+    errors: list[str] = []
+    for review in load_reviews(reviews_path):
+        if review.get("is_published") is False:
+            continue
+        product_id = _text(review.get("product_id"))
+        score = _number(review.get("rating"))
+        created_at = _text(review.get("created_at"))
+        try:
+            created_time = datetime.fromisoformat(created_at)
+        except ValueError:
+            errors.append(f"{product_id or '<missing-product>'}: review has an invalid created_at")
+            continue
+        if created_time.tzinfo is None:
+            # Existing deterministic seed files predate timezone-aware output and
+            # were generated as UTC. Preserve that contract while rejecting
+            # malformed or genuinely future-dated review data.
+            created_time = created_time.replace(tzinfo=timezone.utc)
+        else:
+            created_time = created_time.astimezone(timezone.utc)
+        if created_time > review_cutoff:
+            errors.append(f"{product_id or '<missing-product>'}: review cannot be future-dated")
+            continue
+        if product_id and score is not None:
+            published.setdefault(product_id, []).append(score)
+
+    for product in products:
+        product_id = _text(product.get("id")) or "<missing-id>"
+        rating = _number(product.get("rating"))
+        review_count = _integer(product.get("review_count"))
+        scores = published.get(product_id, [])
+
+        if rating is None and review_count is None:
+            if scores:
+                errors.append(f"{product_id}: has {len(scores)} published reviews but no aggregate rating")
+            continue
+
+        if not scores:
+            errors.append(f"{product_id}: claims a rating but has no published reviews")
+            continue
+        if review_count != len(scores):
+            errors.append(
+                f"{product_id}: review_count {review_count} does not match {len(scores)} published reviews"
+            )
+        expected = round(sum(scores) / len(scores), 1)
+        if rating is None or abs(rating - expected) > 0.05:
+            errors.append(f"{product_id}: rating {rating} does not match the review mean {expected}")
+    return errors
