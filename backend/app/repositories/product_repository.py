@@ -165,17 +165,47 @@ class ProductRepository:
         if filters.bestseller is not None:
             stmt = stmt.where(Product.is_bestseller == filters.bestseller)
         if filters.q:
-            q = f"%{filters.q.lower()}%"
-            stmt = stmt.where(
-                Product.name.ilike(q)
-                | Product.title.ilike(q)
-                | Product.description.ilike(q)
-                | Product.category.ilike(q)
-                | Product.subcategory.ilike(q)
-                | Product.brand.ilike(q)
-                | cast(Product.tags, String).ilike(q)
-            )
+            stmt = stmt.where(self._search_predicate(filters.q))
         return stmt
+
+    # A search term must line up with the start of a word. Matching it anywhere
+    # inside one made "ipod" return camera lenses, because the subcategory
+    # "Lenses & Tripods" contains "ipod" - and "ens" returned every "Lens".
+    _WORD_START_PREFIXES = ("", " ", "-", "_", ",", "/", "&", "(", "[", '"', "'", ">")
+    _LIKE_ESCAPE = "\\"
+
+    def _escape_like(self, value: str) -> str:
+        """Neutralise LIKE wildcards so a term matches itself literally.
+
+        `_` matches any single character in SQL LIKE, so an unescaped separator or
+        user term silently turns into a wildcard - which is how "ipod" matched
+        "tr-ipod" again even after word-start anchoring was added.
+        """
+        for special in (self._LIKE_ESCAPE, "%", "_"):
+            value = value.replace(special, f"{self._LIKE_ESCAPE}{special}")
+        return value
+
+    def _search_predicate(self, raw_term: str):
+        term = self._escape_like(raw_term.strip().lower())
+        fields = (
+            Product.name,
+            Product.title,
+            Product.description,
+            Product.category,
+            Product.subcategory,
+            Product.brand,
+            cast(Product.tags, String),
+        )
+        patterns = [
+            f"{term}%" if prefix == "" else f"%{self._escape_like(prefix)}{term}%"
+            for prefix in self._WORD_START_PREFIXES
+        ]
+        predicate = None
+        for field in fields:
+            for pattern in patterns:
+                match = field.ilike(pattern, escape=self._LIKE_ESCAPE)
+                predicate = match if predicate is None else predicate | match
+        return predicate
 
     def _sorted_statement(self, stmt, filters: ProductFilters | None):
         sort = filters.sort if filters else "relevance"

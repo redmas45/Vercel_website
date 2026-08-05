@@ -14,6 +14,7 @@ import { rememberProduct } from '../hooks/useRecentlyViewed';
 import { useToast } from '../hooks/useToast';
 import { useWishlist } from '../hooks/useWishlist';
 import { money, percentText, stockText } from '../lib/format';
+import { AIHUB_ROLE, aihubProductIdentity, aihubRole } from '../lib/hostContract';
 import { getProduct, getRelatedProducts } from '../lib/productApi';
 import type { Product } from '../lib/types';
 
@@ -88,7 +89,14 @@ export function ProductDetail() {
   const descriptionParagraphs = productDescriptionParagraphs(product.description);
 
   return (
-    <main className="mx-auto max-w-[1240px] px-4 py-6 md:px-6 md:py-10">
+    // The product page publishes its own identity so an assistant can prove it
+    // reached the product that was asked for, instead of inferring success from a
+    // URL change alone.
+    <main
+      className="mx-auto max-w-[1240px] px-4 py-6 md:px-6 md:py-10"
+      {...aihubProductIdentity(product)}
+      {...aihubRole(AIHUB_ROLE.productDetail)}
+    >
       <nav className="mb-6 flex flex-wrap items-center gap-2 text-[12px] text-[var(--color-muted)]">
         <Link to="/">Home</Link>
         <span>/</span>
@@ -110,7 +118,12 @@ export function ProductDetail() {
             <Link className="text-[12px] uppercase tracking-[0.08em] text-[var(--color-accent)]" to={`/shop?brand=${encodeURIComponent(product.brand)}`}>
               {product.brand}
             </Link>
-            <h1 className="mt-2 text-[30px] font-[500] leading-tight text-[var(--color-ink)] md:text-[42px]">{product.name}</h1>
+            <h1
+              className="mt-2 text-[30px] font-[500] leading-tight text-[var(--color-ink)] md:text-[42px]"
+              {...aihubRole(AIHUB_ROLE.productTitle)}
+            >
+              {product.name}
+            </h1>
             <div className="mt-3 flex flex-wrap items-center gap-2">
               <RatingStars rating={product.rating} count={product.review_count} />
               <span className="text-[12px] text-[var(--color-muted)]">| {reviewLabel}</span>
@@ -142,7 +155,15 @@ export function ProductDetail() {
               </div>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              <button className="h-11 rounded-[8px] bg-[var(--color-ink)] px-5 text-[13px] font-[500] text-[var(--color-paper)] disabled:cursor-not-allowed disabled:bg-[var(--color-muted)]" id="add-to-cart-btn" type="button" onClick={addToCart} disabled={!product.in_stock}>
+              <button
+                className="h-11 rounded-[8px] bg-[var(--color-ink)] px-5 text-[13px] font-[500] text-[var(--color-paper)] disabled:cursor-not-allowed disabled:bg-[var(--color-muted)]"
+                id="add-to-cart-btn"
+                type="button"
+                onClick={addToCart}
+                disabled={!product.in_stock}
+                {...aihubRole(AIHUB_ROLE.addToCart)}
+                data-product-id={product.id}
+              >
                 {product.in_stock ? 'Add to cart' : 'Out of stock'}
               </button>
               <button className="h-11 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] px-5 text-[13px] font-[500] text-[var(--color-ink)] disabled:cursor-not-allowed disabled:text-[var(--color-muted)]" type="button" onClick={addToCart} disabled={!product.in_stock}>

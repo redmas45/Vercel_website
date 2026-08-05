@@ -1,11 +1,16 @@
 import { Link } from 'react-router-dom';
+import { AIHUB_NAV_ATTR, AIHUB_ROLE, aihubRole } from '../../lib/hostContract';
 
+// [label, route, nav-key]. These are the storefront's category destinations, and
+// the footer is the one place they appear on every page - so publishing them with
+// stable nav keys is what lets an assistant open a section from anywhere without
+// knowing this site's URL shape. The key is the storefront's own category handle.
 const SHOP_LINKS = [
-  ['Electronics', '/shop?category=electronics'],
-  ["Men's fashion", '/shop?category=fashion-men'],
-  ["Women's fashion", '/shop?category=fashion-women'],
-  ['Home & kitchen', '/shop?category=home-kitchen'],
-  ['Beauty', '/shop?category=beauty-personal-care'],
+  ['Electronics', '/shop?category=electronics', 'electronics'],
+  ["Men's fashion", '/shop?category=fashion-men', 'fashion-men'],
+  ["Women's fashion", '/shop?category=fashion-women', 'fashion-women'],
+  ['Home & kitchen', '/shop?category=home-kitchen', 'home-kitchen'],
+  ['Beauty', '/shop?category=beauty-personal-care', 'beauty-personal-care'],
 ] as const;
 
 const INFO_LINKS = [
@@ -38,10 +43,12 @@ export function Footer() {
           <div>
             <p className="text-[10px] uppercase tracking-[0.08em] text-[var(--color-muted)] mb-4">Shop</p>
             <ul className="space-y-2.5">
-              {SHOP_LINKS.map(([label, href]) => (
+              {SHOP_LINKS.map(([label, href, navKey]) => (
                 <li key={href}>
                   <Link
                     to={href}
+                    {...aihubRole(AIHUB_ROLE.navLink)}
+                    {...{ [AIHUB_NAV_ATTR]: navKey }}
                     className="text-[13px] text-[var(--color-paper)] opacity-70 hover:opacity-100 transition-opacity"
                   >
                     {label}

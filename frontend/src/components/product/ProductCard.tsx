@@ -7,7 +7,7 @@ import { money } from '../../lib/format';
 import { productPath } from '../../lib/productRoutes';
 import { RatingStars } from '../ui/RatingStars';
 import { ProductImage } from '../ui/ProductImage';
-import { AIHUB_ROLE, aihubRole } from '../../lib/hostContract';
+import { AIHUB_ROLE, aihubProductIdentity, aihubRole } from '../../lib/hostContract';
 
 interface ProductCardProps {
   product: Product;
@@ -53,10 +53,11 @@ export function ProductCard({ product }: ProductCardProps) {
     <article
       /* Stable identity for assistants and automation. Without these attributes a
          question about "these results" has no records to be answered from, and a
-         claim that products were shown cannot be checked against the page. */
-      data-product-id={product.id}
-      data-entity-type="product"
-      data-entity-name={product.name}
+         claim that products were shown cannot be checked against the page. The
+         `product-card` role scopes the card's own link and add control, so an
+         assistant never has to guess which button belongs to which product. */
+      {...aihubProductIdentity(product)}
+      {...aihubRole(AIHUB_ROLE.productCard)}
       className="group block rounded-[10px] bg-[var(--color-surface)] border border-[var(--color-border)] overflow-hidden hover:border-[var(--color-muted)] transition-colors duration-200"
     >
       {/* Image area */}
@@ -99,8 +100,12 @@ export function ProductCard({ product }: ProductCardProps) {
       </div>
 
       {/* Info */}
-      <Link to={path} className="block px-2.5 py-2.5 sm:px-3">
-        <p className="line-clamp-2 min-h-7 text-[11px] font-[500] leading-tight text-[var(--color-ink)]" itemProp="name">
+      <Link to={path} className="block px-2.5 py-2.5 sm:px-3" {...aihubRole(AIHUB_ROLE.productLink)}>
+        <p
+          className="line-clamp-2 min-h-7 text-[11px] font-[500] leading-tight text-[var(--color-ink)]"
+          itemProp="name"
+          {...aihubRole(AIHUB_ROLE.productName)}
+        >
           {product.name}
         </p>
         <RatingStars rating={product.rating} count={product.review_count} />
