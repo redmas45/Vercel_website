@@ -4,6 +4,7 @@ import { Button } from '../components/ui/Button';
 import { money } from '../lib/format';
 import { productPath } from '../lib/productRoutes';
 import { ProductImage } from '../components/ui/ProductImage';
+import { AIHUB_ROLE, aihubRole } from '../lib/hostContract';
 
 export function Cart() {
   const { items, removeItem, updateQuantity, clearCart, cartTotal } = useCart();
@@ -42,7 +43,7 @@ export function Cart() {
               </div>
             </div>
           ))}
-          <button className="text-[11px] text-[var(--color-muted)]" onClick={clearCart} type="button">Clear cart</button>
+          <button {...aihubRole(AIHUB_ROLE.clearCart)} className="text-[11px] text-[var(--color-muted)]" onClick={clearCart} type="button">Clear cart</button>
         </div>
         <aside className="sticky top-20 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] p-5">
           <h2 className="mb-4 text-[14px] font-[500] text-[var(--color-ink)]">Price details</h2>

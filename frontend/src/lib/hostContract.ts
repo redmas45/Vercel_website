@@ -24,6 +24,7 @@ export const AIHUB_ROLE = {
   resultsLoading: 'results-loading',
   resultsEmpty: 'results-empty',
   addToCart: 'add-to-cart',
+  clearCart: 'clear-cart',
   cartButton: 'cart-button',
   cartCount: 'cart-count',
   cartDrawer: 'cart-drawer',
