@@ -141,7 +141,9 @@ export function CartDrawer() {
               <span className="font-[500]">{money(totals.total)}</span>
             </div>
             {totals.discount ? <p className="text-[11px] text-[var(--color-muted)]">You save {money(totals.discount)} on this order.</p> : null}
-            <Button className="w-full h-11" onClick={goToCheckout}>Proceed to checkout</Button>
+            <Button {...aihubRole(AIHUB_ROLE.checkout)} className="w-full h-11" onClick={goToCheckout}>
+              Proceed to checkout
+            </Button>
           </div>
         )}
       </div>

@@ -53,7 +53,13 @@ export function Cart() {
           <div className="mt-4 flex justify-between border-t border-[var(--color-border)] pt-4 text-[14px] font-[500]">
             <span>Total</span><span>{money(totals.total)}</span>
           </div>
-          <Link className="mt-5 block" to="/checkout"><Button className="h-11 w-full">Proceed to checkout</Button></Link>
+          <Link
+            className="mt-5 grid h-11 w-full place-items-center rounded-[8px] bg-[var(--color-ink)] text-[13px] text-[var(--color-paper)]"
+            to="/checkout"
+            {...aihubRole(AIHUB_ROLE.checkout)}
+          >
+            Proceed to checkout
+          </Link>
         </aside>
       </div>
     </main>
