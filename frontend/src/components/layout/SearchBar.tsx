@@ -9,6 +9,19 @@ import { AIHUB_ROLE, aihubRole } from '../../lib/hostContract';
 const SEARCH_DELAY_MS = 300;
 const POPULAR_SEARCHES = ['Laptop', 'Saree', 'Air Fryer', 'Sneakers'];
 
+// The storefront's half of the filter contract: which canonical hard-filter keys
+// this search form accepts, and the URL parameter each maps to. ShopListing reads
+// these same URL keys, so a canonical filter set by an assistant becomes a real
+// filtered results page. The website owns this mapping; the Hub only speaks the
+// canonical names.
+const FILTER_SLOTS: ReadonlyArray<{ canonical: string; urlKey: string }> = [
+  { canonical: 'max_price', urlKey: 'price_max' },
+  { canonical: 'min_price', urlKey: 'price_min' },
+  { canonical: 'min_rating', urlKey: 'rating_min' },
+  { canonical: 'brand', urlKey: 'brand' },
+  { canonical: 'category', urlKey: 'category' },
+];
+
 export function SearchBar() {
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
@@ -82,10 +95,26 @@ export function SearchBar() {
     };
   }, [open, query]);
 
+  // Build the search destination from the query plus any hard filters the form
+  // carries. The filter slots are published as hidden inputs (below): an assistant
+  // sets their values by the vertical-neutral canonical marker, and the storefront
+  // maps each to its own URL key here — the input's `name` is that key. This keeps
+  // filtered search (e.g. "phones under 20000") a single SPA move that ShopListing
+  // renders straight from the URL, with no reload.
+  function searchDestination(form: HTMLFormElement | null | undefined, cleanQuery: string): string {
+    const params = new URLSearchParams();
+    params.set('q', cleanQuery);
+    form?.querySelectorAll<HTMLInputElement>('[data-aihub-filter]').forEach((field) => {
+      const value = field.value.trim();
+      if (value && field.name) params.set(field.name, value);
+    });
+    return `/search?${params.toString()}`;
+  }
+
   function submit(): void {
     const clean = query.trim();
     if (!clean) return;
-    navigate(`/search?q=${encodeURIComponent(clean)}`);
+    navigate(searchDestination(inputRef.current?.form, clean));
     closePanel();
   }
 
@@ -98,7 +127,7 @@ export function SearchBar() {
     const fieldValue = inputRef.current?.value ?? '';
     const clean = fieldValue.trim() || query.trim();
     if (!clean) return;
-    navigate(`/search?q=${encodeURIComponent(clean)}`);
+    navigate(searchDestination(event.currentTarget, clean));
     closePanel();
   }
 
@@ -134,6 +163,13 @@ export function SearchBar() {
             {...aihubRole(AIHUB_ROLE.searchInput)}
           />
         ) : null}
+        {/* Published, always-present filter slots. An assistant addresses each by
+            its vertical-neutral canonical marker (`data-aihub-filter`) and the
+            storefront owns the URL key (`name`). Uncontrolled so a programmatic
+            value set survives to submit; hidden so they carry no visual weight. */}
+        {FILTER_SLOTS.map(({ canonical, urlKey }) => (
+          <input key={canonical} type="hidden" name={urlKey} data-aihub-filter={canonical} defaultValue="" />
+        ))}
       </form>
       {open ? (
         <div id="search-suggestions" role="region" aria-label="Search suggestions" className="fixed left-3 right-3 top-[60px] z-50 max-h-[calc(100dvh-72px)] overflow-y-auto rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] p-3 shadow-xl sm:absolute sm:left-auto sm:right-0 sm:top-11 sm:w-[min(360px,calc(100vw-24px))]">

@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from math import ceil
 
-from sqlalchemy import String, cast, func, or_, select
+from sqlalchemy import String, cast, false, func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.models import Product
@@ -185,8 +186,49 @@ class ProductRepository:
             value = value.replace(special, f"{self._LIKE_ESCAPE}{special}")
         return value
 
-    def _search_predicate(self, raw_term: str):
-        term = self._escape_like(raw_term.strip().lower())
+    # A shopper describes one product with words this catalog keeps in different
+    # columns: "samsung smartphones" is a brand and a subcategory. Matching the
+    # whole phrase against each field found neither, so the search returned
+    # nothing for a query that describes 21 real products.
+    _SEARCH_FIELD_SPLIT = re.compile(r"[^0-9a-z]+")
+    _MAX_SEARCH_TOKENS = 8
+    _MIN_PLURAL_LENGTH = 5
+
+    def _search_tokens(self, raw_term: str) -> list[str]:
+        """The words a product must satisfy, in the order they were typed."""
+        tokens: list[str] = []
+        for token in self._SEARCH_FIELD_SPLIT.split(raw_term.strip().lower()):
+            if token and token not in tokens:
+                tokens.append(token)
+        return tokens[: self._MAX_SEARCH_TOKENS]
+
+    def _singular(self, token: str) -> str | None:
+        """A conservative singular, so "phones" still finds a "Phone".
+
+        Word-start matching already lets a singular find its plural, so only the
+        opposite direction needs help. Short words are left alone: trimming
+        "lens" to "len" would match "Lenovo", which is the fragment matching this
+        search deliberately does not do.
+        """
+        if len(token) < self._MIN_PLURAL_LENGTH or token.endswith("ss"):
+            return None
+        if token.endswith("ies"):
+            return f"{token[:-3]}y"
+        if token.endswith("es") and token[:-2].endswith(("s", "x", "z", "ch", "sh")):
+            return token[:-2]
+        if token.endswith("s"):
+            return token[:-1]
+        return None
+
+    def _word_start_patterns(self, token: str) -> list[str]:
+        term = self._escape_like(token)
+        return [
+            f"{term}%" if prefix == "" else f"%{self._escape_like(prefix)}{term}%"
+            for prefix in self._WORD_START_PREFIXES
+        ]
+
+    def _token_predicate(self, token: str):
+        """One token against every searchable field - any field will do."""
         fields = (
             Product.name,
             Product.title,
@@ -196,15 +238,32 @@ class ProductRepository:
             Product.brand,
             cast(Product.tags, String),
         )
-        patterns = [
-            f"{term}%" if prefix == "" else f"%{self._escape_like(prefix)}{term}%"
-            for prefix in self._WORD_START_PREFIXES
+        forms = [token]
+        singular = self._singular(token)
+        if singular:
+            forms.append(singular)
+        matches = [
+            field.ilike(pattern, escape=self._LIKE_ESCAPE)
+            for form in forms
+            for pattern in self._word_start_patterns(form)
+            for field in fields
         ]
+        return or_(*matches)
+
+    def _search_predicate(self, raw_term: str):
+        """Every token must be found somewhere; each may be found anywhere.
+
+        AND across tokens keeps the search specific - "samsung smartphones" is
+        narrower than either word - while OR across fields lets the two words
+        come from the columns that actually hold them.
+        """
+        tokens = self._search_tokens(raw_term)
+        if not tokens:
+            return false()
         predicate = None
-        for field in fields:
-            for pattern in patterns:
-                match = field.ilike(pattern, escape=self._LIKE_ESCAPE)
-                predicate = match if predicate is None else predicate | match
+        for token in tokens:
+            clause = self._token_predicate(token)
+            predicate = clause if predicate is None else predicate & clause
         return predicate
 
     def _sorted_statement(self, stmt, filters: ProductFilters | None):

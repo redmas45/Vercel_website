@@ -62,6 +62,19 @@ export function Header() {
           </Link>
           <SearchBar />
 
+          {/* The cart icon opens the slide-out drawer for mouse users. The cart
+              also has its own real page at /cart; publish it as a navigable nav
+              target so an assistant (or a keyboard user) can reach the cart route
+              itself, not only the drawer. It carries no visual weight, so the
+              header design is unchanged. */}
+          <NavLink
+            to="/cart"
+            {...aihubRole(AIHUB_ROLE.navLink)}
+            {...{ [AIHUB_NAV_ATTR]: 'cart' }}
+            className="sr-only"
+          >
+            Cart page
+          </NavLink>
           <button
             onClick={openCart}
             className="relative text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors"
