@@ -5,7 +5,7 @@ import { money } from '../../lib/format';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ProductImage } from '../ui/ProductImage';
-import { AIHUB_ROLE, aihubRole } from '../../lib/hostContract';
+import { AIHUB_ROLE, aihubProductIdentity, aihubRole } from '../../lib/hostContract';
 
 export function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, updateQuantity, cartTotal, totalItems } = useCart();
@@ -78,6 +78,7 @@ export function CartDrawer() {
                 className="flex gap-3 p-3 rounded-[10px] bg-[var(--color-surface)] border border-[var(--color-border)]"
                 {...aihubRole(AIHUB_ROLE.cartLineItem)}
                 data-product-id={product.id}
+                data-entity-name={product.name}
                 data-quantity={quantity}
               >
                 <div className="w-16 h-16 rounded-[8px] bg-[var(--color-accent-contrast)] flex-shrink-0 overflow-hidden">
@@ -109,6 +110,10 @@ export function CartDrawer() {
                     <button
                       onClick={() => removeItem(product.id)}
                       className="ml-auto text-[11px] text-[var(--color-muted)] transition-colors"
+                      type="button"
+                      {...aihubRole(AIHUB_ROLE.removeFromCart)}
+                      {...aihubProductIdentity(product)}
+                      aria-label={`Remove ${product.name} from cart`}
                     >
                       Remove
                     </button>

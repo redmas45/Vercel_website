@@ -24,6 +24,11 @@ export const AIHUB_ROLE = {
   resultsLoading: 'results-loading',
   resultsEmpty: 'results-empty',
   addToCart: 'add-to-cart',
+  // A per-line-item control that removes exactly one record from the cart. It is
+  // identity-bearing: the assistant must remove the wrong item without touching a
+  // neighbouring line, so this role is always published with the line's product id
+  // and exact name.
+  removeFromCart: 'remove-from-cart',
   checkout: 'checkout',
   clearCart: 'clear-cart',
   cartButton: 'cart-button',
@@ -42,6 +47,26 @@ export const AIHUB_ROLE = {
 } as const;
 
 export const AIHUB_NAV_ATTR = 'data-aihub-nav';
+
+/**
+ * The contract roles a navigable destination owns.
+ *
+ * Some controls only exist on the page that owns them: the "Clear cart" button
+ * lives on the cart route, not on the catalog. An assistant standing on the home
+ * page therefore cannot see the control and would have to conclude the capability
+ * does not exist, which is both untrue and unhelpful.
+ *
+ * A nav link may declare the roles its destination owns, so the assistant can
+ * reach the right page and then operate the real control instead of guessing a
+ * URL. The list is space separated and holds role names only - never selectors -
+ * so it stays as restyling-proof as the roles themselves.
+ */
+export const AIHUB_PUBLISHES_ATTR = 'data-aihub-publishes';
+
+/** Spread onto a nav link to declare the roles its destination publishes. */
+export function aihubPublishes(...roles: AihubRole[]): Record<string, string> {
+  return { [AIHUB_PUBLISHES_ATTR]: roles.join(' ') };
+}
 
 /**
  * Product name published for identity matching.

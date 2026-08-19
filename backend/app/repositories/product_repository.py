@@ -148,7 +148,12 @@ class ProductRepository:
         if filters.subcategory:
             stmt = stmt.where(Product.subcategory.ilike(f"%{filters.subcategory}%"))
         if filters.brands:
-            stmt = stmt.where(Product.brand.in_(filters.brands))
+            # Case-insensitive, consistent with the category filter above. An
+            # assistant that speaks a brand as the customer said it ("samsung")
+            # must still match the catalog's stored casing ("Samsung"); an exact
+            # in_() silently returned zero products for a correctly-named brand.
+            wanted_brands = [brand.lower() for brand in filters.brands if brand]
+            stmt = stmt.where(func.lower(Product.brand).in_(wanted_brands))
         if filters.min_price is not None:
             stmt = stmt.where(Product.price >= filters.min_price)
         if filters.max_price is not None:

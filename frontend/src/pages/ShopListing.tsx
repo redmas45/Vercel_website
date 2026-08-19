@@ -20,6 +20,10 @@ export function ShopListing({ forcedQuery, preset }: { forcedQuery?: string; pre
   const searchKey = searchParams.toString();
   const query = forcedQuery ?? searchParams.get('q') ?? '';
   const page = Number(searchParams.get('page') || 1);
+  // A structural display limit ("top 3"): the assistant carries it so the store
+  // renders exactly N and the on-page count agrees with what Maya says aloud. A
+  // missing/invalid value simply means "no explicit limit", the ordinary page.
+  const displayLimit = numberParam(searchParams, 'limit');
   const filters = useMemo(() => new URLSearchParams(searchKey), [searchKey]);
   const effectiveFilters = useMemo(() => {
     const next = new URLSearchParams(searchKey);
@@ -50,7 +54,7 @@ export function ShopListing({ forcedQuery, preset }: { forcedQuery?: string; pre
       bestseller: effectiveFilters.get('bestseller') === 'true' ? true : undefined,
       sort: effectiveFilters.get('sort') || 'relevance',
       page,
-      per_page: 24,
+      per_page: displayLimit && displayLimit > 0 ? displayLimit : 24,
       q: query || undefined,
     })
       .then((result) => {
@@ -59,7 +63,7 @@ export function ShopListing({ forcedQuery, preset }: { forcedQuery?: string; pre
       })
       .catch(() => setError('Something went wrong.'))
       .finally(() => setLoading(false));
-  }, [effectiveFilters, query, page]);
+  }, [effectiveFilters, query, page, displayLimit]);
 
   function changeFilter(key: string, value: string): void {
     const next = new URLSearchParams(searchParams);
@@ -75,9 +79,15 @@ export function ShopListing({ forcedQuery, preset }: { forcedQuery?: string; pre
     setSearchParams(next);
   }
 
-  const count = meta?.total ?? products.length;
+  const matchTotal = meta?.total ?? products.length;
+  // When a limit is applied, the machine-readable count is what is actually on
+  // screen, so the assistant's spoken count, the DOM, and telemetry all agree.
+  const limited = Boolean(displayLimit && displayLimit > 0);
+  const count = limited ? products.length : matchTotal;
   const title = query
-    ? `${count} results for "${query}"`
+    ? limited
+      ? `Top ${products.length} of ${matchTotal} results for "${query}"`
+      : `${matchTotal} results for "${query}"`
     : preset === 'new'
       ? `${count} new arrivals`
       : preset === 'sale'

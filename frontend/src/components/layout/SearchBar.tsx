@@ -20,6 +20,9 @@ const FILTER_SLOTS: ReadonlyArray<{ canonical: string; urlKey: string }> = [
   { canonical: 'min_rating', urlKey: 'rating_min' },
   { canonical: 'brand', urlKey: 'brand' },
   { canonical: 'category', urlKey: 'category' },
+  // A display limit ("top 3"): render exactly this many, so the on-screen count
+  // matches what the assistant says aloud instead of the full result page.
+  { canonical: 'limit', urlKey: 'limit' },
 ];
 
 export function SearchBar() {

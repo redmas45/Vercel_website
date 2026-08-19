@@ -4,7 +4,7 @@ import { Button } from '../components/ui/Button';
 import { money } from '../lib/format';
 import { productPath } from '../lib/productRoutes';
 import { ProductImage } from '../components/ui/ProductImage';
-import { AIHUB_ROLE, aihubRole } from '../lib/hostContract';
+import { AIHUB_ROLE, aihubProductIdentity, aihubRole } from '../lib/hostContract';
 
 export function Cart() {
   const { items, removeItem, updateQuantity, clearCart, cartTotal } = useCart();
@@ -26,7 +26,13 @@ export function Cart() {
       <div className="grid gap-8 md:grid-cols-[1fr_320px]">
         <div className="space-y-3">
           {items.map(({ product, quantity }) => (
-            <div key={product.id} className="flex gap-4 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
+            <div
+              key={product.id}
+              className="flex gap-4 rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] p-4"
+              {...aihubRole(AIHUB_ROLE.cartLineItem)}
+              {...aihubProductIdentity(product)}
+              data-quantity={quantity}
+            >
               <ProductImage className="h-20 w-20 rounded-[8px] object-contain" src={product.image_url} alt={product.name} />
               <div className="min-w-0 flex-1">
                 <div className="flex items-start justify-between gap-2">
@@ -38,7 +44,16 @@ export function Cart() {
                   <button className="h-8 w-8 rounded-[8px] border border-[var(--color-border)]" onClick={() => updateQuantity(product.id, quantity - 1)} type="button">-</button>
                   <span className="text-[12px] font-[500]">{quantity}</span>
                   <button className="h-8 w-8 rounded-[8px] border border-[var(--color-border)] disabled:cursor-not-allowed disabled:text-[var(--color-muted)]" onClick={() => updateQuantity(product.id, quantity + 1)} type="button" disabled={product.stock !== null && quantity >= product.stock}>+</button>
-                  <button className="ml-auto text-[11px] text-[var(--color-muted)]" onClick={() => removeItem(product.id)} type="button">Remove</button>
+                  <button
+                    className="ml-auto text-[11px] text-[var(--color-muted)]"
+                    onClick={() => removeItem(product.id)}
+                    type="button"
+                    {...aihubRole(AIHUB_ROLE.removeFromCart)}
+                    {...aihubProductIdentity(product)}
+                    aria-label={`Remove ${product.name} from cart`}
+                  >
+                    Remove
+                  </button>
                 </div>
               </div>
             </div>

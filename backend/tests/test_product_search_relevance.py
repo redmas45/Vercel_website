@@ -223,3 +223,43 @@ class SearchTermMatchingTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class BrandFilterCaseTests(unittest.TestCase):
+    """The brand filter must match the catalog casing regardless of the caller's.
+
+    Reported defect (local voice run, "top 3 Samsung phones"): the assistant sends
+    a brand filter as the customer said it ("samsung"), but the storefront matched
+    it with an exact IN() against the stored "Samsung", so a correctly-named brand
+    silently returned zero products while the assistant said it was showing three.
+    The category filter was already case-insensitive; the brand filter now agrees.
+    """
+
+    def _brand_ids(self, brand: str) -> set[str]:
+        from app.schemas.product import ProductFilters
+
+        async def run() -> set[str]:
+            engine = create_async_engine("sqlite+aiosqlite:///:memory:")
+            try:
+                async with engine.begin() as connection:
+                    await connection.run_sync(Base.metadata.create_all)
+                maker = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+                async with maker() as session:
+                    session.add_all(_rows())
+                    await session.commit()
+                    repository = ProductRepository(session)
+                    page = await repository.list_product_page(ProductFilters(brands=[brand], per_page=96))
+                    return {product.id for product in page.products}
+            finally:
+                await engine.dispose()
+
+        return asyncio.run(run())
+
+    def test_lowercase_brand_matches_stored_casing(self) -> None:
+        self.assertEqual({"p-galaxy", "p-galaxy-a", "p-charger"}, self._brand_ids("samsung"))
+
+    def test_exact_casing_still_matches(self) -> None:
+        self.assertEqual({"p-galaxy", "p-galaxy-a", "p-charger"}, self._brand_ids("Samsung"))
+
+    def test_uppercase_brand_matches_too(self) -> None:
+        self.assertEqual({"p-iphone"}, self._brand_ids("APPLE"))

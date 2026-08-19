@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useCart } from '../../hooks/useCart';
 import { SearchBar } from './SearchBar';
-import { AIHUB_NAV_ATTR, AIHUB_ROLE, aihubRole } from '../../lib/hostContract';
+import { AIHUB_NAV_ATTR, AIHUB_ROLE, aihubPublishes, aihubRole } from '../../lib/hostContract';
 
 // [route, label, nav-key]. The nav-key is a stable, vertical-neutral handle an
 // assistant can navigate to without reading the storefront's URLs or labels.
@@ -66,11 +66,18 @@ export function Header() {
               also has its own real page at /cart; publish it as a navigable nav
               target so an assistant (or a keyboard user) can reach the cart route
               itself, not only the drawer. It carries no visual weight, so the
-              header design is unchanged. */}
+              header design is unchanged.
+
+              The cart route is also where the cart's own controls live - the line
+              items, the clear-cart button and the checkout link exist on no other
+              page. Declaring that here lets an assistant standing anywhere on the
+              storefront reach them, instead of reporting a capability missing
+              merely because the customer happened to be on the catalog. */}
           <NavLink
             to="/cart"
             {...aihubRole(AIHUB_ROLE.navLink)}
             {...{ [AIHUB_NAV_ATTR]: 'cart' }}
+            {...aihubPublishes(AIHUB_ROLE.clearCart, AIHUB_ROLE.removeFromCart, AIHUB_ROLE.cartLineItem, AIHUB_ROLE.checkout)}
             className="sr-only"
           >
             Cart page
