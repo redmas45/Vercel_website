@@ -11,6 +11,11 @@ const SHOP_LINKS = [
   ["Women's fashion", '/shop?category=fashion-women', 'fashion-women'],
   ['Home & kitchen', '/shop?category=home-kitchen', 'home-kitchen'],
   ['Beauty', '/shop?category=beauty-personal-care', 'beauty-personal-care'],
+  ['Sports & fitness', '/shop?category=sports-fitness', 'sports-fitness'],
+  ['Books & stationery', '/shop?category=books-stationery', 'books-stationery'],
+  ['Food & grocery', '/shop?category=food-grocery', 'food-grocery'],
+  ["Kids' fashion", '/shop?category=fashion-kids', 'fashion-kids'],
+  ['Pets', '/shop?category=pets', 'pets'],
 ] as const;
 
 const INFO_LINKS = [
