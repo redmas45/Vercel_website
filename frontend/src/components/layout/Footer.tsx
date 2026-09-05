@@ -18,12 +18,19 @@ const SHOP_LINKS = [
   ['Pets', '/shop?category=pets', 'pets'],
 ] as const;
 
+// [label, route, nav-key]. Same shape as SHOP_LINKS, and for the same reason: an
+// assistant that has to guess which URL is the returns page will guess wrong. A
+// crawl of this footer without declared keys mapped "contact" onto a product page.
 const INFO_LINKS = [
-  ['About', '/about'],
-  ['FAQ', '/faq'],
-  ['Shipping & Returns', '/shipping-and-returns'],
-  ['Privacy Policy', '/privacy-policy'],
-  ['Terms & Conditions', '/terms-and-conditions'],
+  ['About', '/about', 'about'],
+  ['FAQ', '/faq', 'faq'],
+  ['Shipping & Returns', '/shipping-and-returns', 'shipping-and-returns'],
+  ['Shipping Policy', '/shipping-policy', 'shipping-policy'],
+  ['Return Policy', '/return-policy', 'return-policy'],
+  ['Support', '/support', 'support'],
+  ['Contact Us', '/contact', 'contact'],
+  ['Privacy Policy', '/privacy-policy', 'privacy-policy'],
+  ['Terms & Conditions', '/terms-and-conditions', 'terms-and-conditions'],
 ] as const;
 
 export function Footer() {
@@ -67,10 +74,12 @@ export function Footer() {
           <div>
             <p className="text-[10px] uppercase tracking-[0.08em] text-[var(--color-muted)] mb-4">Info</p>
             <ul className="space-y-2.5">
-              {INFO_LINKS.map(([label, href]) => (
+              {INFO_LINKS.map(([label, href, navKey]) => (
                 <li key={href}>
                   <Link
                     to={href}
+                    {...aihubRole(AIHUB_ROLE.navLink)}
+                    {...{ [AIHUB_NAV_ATTR]: navKey }}
                     className="text-[13px] text-[var(--color-paper)] opacity-70 hover:opacity-100 transition-opacity"
                   >
                     {label}

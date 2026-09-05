@@ -10,6 +10,26 @@ import { AIHUB_ROLE, AIHUB_ROLE_ATTR } from '../lib/hostContract';
 
 type ShopPreset = 'new' | 'sale';
 
+// Sort values an assistant may send, mapped onto this listing's own. The Hub's
+// canonical vocabulary spells the rating ranking `rating` while this control's
+// option is `rating_desc`; without the synonym a select given `rating` silently
+// keeps `""`, the ordering never applies, and the turn still reports success -
+// a listing that claims to be ranked and is not. Accepting the synonym here is
+// cheaper and safer than teaching every caller this control's spelling.
+const SORT_SYNONYMS: Readonly<Record<string, string>> = {
+  rating: 'rating_desc',
+  reviews: 'popularity',
+  popular: 'popularity',
+  price_low: 'price_asc',
+  price_high: 'price_desc',
+};
+
+function normalizeSort(value: string | null | undefined): string {
+  const raw = String(value || '').trim();
+  if (!raw) return 'relevance';
+  return SORT_SYNONYMS[raw] || raw;
+}
+
 export function ShopListing({ forcedQuery, preset }: { forcedQuery?: string; preset?: ShopPreset }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState<Product[]>([]);
@@ -52,7 +72,7 @@ export function ShopListing({ forcedQuery, preset }: { forcedQuery?: string; pre
       in_stock: effectiveFilters.get('in_stock') === 'true' ? true : undefined,
       new_arrival: effectiveFilters.get('new_arrival') === 'true' ? true : undefined,
       bestseller: effectiveFilters.get('bestseller') === 'true' ? true : undefined,
-      sort: effectiveFilters.get('sort') || 'relevance',
+      sort: normalizeSort(effectiveFilters.get('sort')),
       page,
       per_page: displayLimit && displayLimit > 0 ? displayLimit : 24,
       q: query || undefined,

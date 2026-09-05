@@ -32,6 +32,54 @@ export const INFO_PAGES = {
       ['Support', 'Order issues should be handled from the account area once order persistence is enabled.'],
     ],
   },
+  '/support': {
+    title: 'Support',
+    summary: 'How to get help with an order, a product, or your account.',
+    sections: [
+      ['Order help', 'Order status, delivery updates, and cancellation requests are handled from the orders area of your account.'],
+      ['Product questions', 'Specifications, availability, and offer eligibility are shown on each product page, and the voice assistant can compare options for you.'],
+      ['Account and sign in', 'Password, address book, and wishlist issues can be resolved from the account area without contacting support.'],
+    ],
+  },
+  '/contact': {
+    title: 'Contact Us',
+    summary: 'Ways to reach the AI-KART team.',
+    sections: [
+      ['Customer care', 'Support requests raised from the account area are routed to the customer care team with your order context attached.'],
+      ['Response times', 'Requests are answered in the order they arrive; order-related issues are prioritised over general enquiries.'],
+      ['Before you write', 'The FAQ and the shipping and returns pages answer most questions immediately, without waiting for a reply.'],
+    ],
+  },
+  '/frequently-asked-questions': {
+    title: 'Frequently Asked Questions',
+    summary: 'Longer answers to the questions shoppers ask most often.',
+    sections: [
+      ['How do I find a specific product?', 'Search from the header, or browse by category and narrow with the price, rating, brand, and availability filters. The voice assistant can apply the same filters for you.'],
+      ['Can I compare products?', 'Yes. Open two or more products, or ask the assistant to compare them on processor, camera, battery, price, rating, or reviews.'],
+      ['What happens to my cart if I leave?', 'Cart contents are kept on this device so you can come back and continue where you left off.'],
+      ['How do I know an item is in stock?', 'Availability is shown on the product page and is checked again at checkout before the order is placed.'],
+    ],
+  },
+  '/return-policy': {
+    title: 'Return Policy',
+    summary: 'When an item can be returned, and how the process works.',
+    sections: [
+      ['Return window', 'Eligible items can be returned within the window shown on the product page and confirmed at checkout. The window varies by category.'],
+      ['Condition', 'Items should be returned unused and in their original packaging, with all included accessories and documentation.'],
+      ['Non-returnable items', 'Some categories, including certain personal care and consumable products, cannot be returned once opened. This is stated on the product page before purchase.'],
+      ['Refunds', 'Refunds are issued to the original payment method once the returned item has been received and checked.'],
+    ],
+  },
+  '/shipping-policy': {
+    title: 'Shipping Policy',
+    summary: 'Delivery coverage, timing, and charges.',
+    sections: [
+      ['Serviceability', 'Delivery coverage is checked by pincode. Enter a pincode on a product page to confirm whether we deliver to that address and see the estimated timing.'],
+      ['Delivery estimates', 'Estimates are shown per product and depend on the delivery address, the item, and current availability.'],
+      ['Charges', 'Any delivery charge is calculated at checkout and shown before the order is placed.'],
+      ['Tracking', 'Once an order is dispatched, tracking details are available from the orders area of your account.'],
+    ],
+  },
   '/privacy-policy': {
     title: 'Privacy Policy',
     summary: 'How AI-KART handles customer data in this storefront.',

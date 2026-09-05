@@ -23,6 +23,12 @@ const FILTER_SLOTS: ReadonlyArray<{ canonical: string; urlKey: string }> = [
   // A display limit ("top 3"): render exactly this many, so the on-screen count
   // matches what the assistant says aloud instead of the full result page.
   { canonical: 'limit', urlKey: 'limit' },
+  // Result ORDER. The listing already has a working sort control, but it carried
+  // no canonical marker, so an assistant could not legally reach it - "the cheapest
+  // Adidas thing" could filter to Adidas and then not order by price. Publishing the
+  // slot is what makes the storefront's own ordering addressable; the values are the
+  // listing's own (relevance, price_asc, price_desc, newest, rating_desc, popularity).
+  { canonical: 'sort', urlKey: 'sort' },
 ];
 
 export function SearchBar() {
@@ -106,7 +112,7 @@ export function SearchBar() {
   // renders straight from the URL, with no reload.
   function searchDestination(form: HTMLFormElement | null | undefined, cleanQuery: string): string {
     const params = new URLSearchParams();
-    params.set('q', cleanQuery);
+    if (cleanQuery) params.set('q', cleanQuery);
     form?.querySelectorAll<HTMLInputElement>('[data-aihub-filter]').forEach((field) => {
       const value = field.value.trim();
       if (value && field.name) params.set(field.name, value);
@@ -125,12 +131,29 @@ export function SearchBar() {
   // requestSubmit() — takes one path. Reading the value from the field on submit
   // (not only from React state) means a programmatic value set is honored even if
   // React state has not yet caught up to the dispatched input event.
+  // An EMPTY submit means "clear it": this storefront publishes
+  // `data-aihub-filter` slots, so it must honour a submit that empties them -
+  // refusing every empty submit left an assistant (or a shopper) with no way to
+  // clear filters at all.
+  //
+  // It must be honoured from ANY page, not only from an already-narrowed
+  // listing. "Clear all the filters, I'm just browsing now" is most often said
+  // while looking at a product, and the old rule made an empty submit a no-op
+  // there: the URL never moved, so the assistant's clear-filters action could
+  // not succeed and the shopper was told the page was unchanged. Landing on the
+  // unfiltered listing is what clearing filters means from anywhere.
+  //
+  // The one case that still does nothing is an empty submit on the listing when
+  // nothing is narrowing it - there is genuinely nothing to clear.
   function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     const fieldValue = inputRef.current?.value ?? '';
     const clean = fieldValue.trim() || query.trim();
-    if (!clean) return;
-    navigate(searchDestination(event.currentTarget, clean));
+    const destination = searchDestination(event.currentTarget, clean);
+    const alreadyUnfiltered =
+      location.pathname === '/search' && location.search.length <= 1;
+    if (!clean && alreadyUnfiltered) return;
+    navigate(destination);
     closePanel();
   }
 
